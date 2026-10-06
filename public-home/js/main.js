@@ -1,15 +1,14 @@
 /* ============================================================
  * FutureLearn — Main JS
- * Version: v1.1.2
+ * Version: v1.3.0
  * Concern: khởi tạo AOS, sticky nav shadow, mobile drawer,
- *          smooth scroll cho anchor link, hero image slider.
+ *          smooth scroll cho anchor link và scrollspy.
  * ============================================================ */
 (function ($) {
     'use strict';
 
     const SCROLL_THRESHOLD = 8;
-    const BREAKPOINT_MOBILE = 991;
-    const HERO_SLIDER_INTERVAL_MS = 3000;
+    const BREAKPOINT_MOBILE = 1199;
 
     /**
      * Khởi tạo AOS — 1 lần duy nhất.
@@ -127,90 +126,6 @@
     }
 
     /**
-     * Hero image slider — tự động chuyển giữa các slide mỗi 3s
-     * (vanilla JS, không phụ thuộc Slick/AOS). Tạm dừng khi tab ẩn.
-     */
-    function initHeroSlider() {
-        const $root = $('[data-hero-slider]');
-        if (!$root.length) return;
-
-        const $slides = $root.find('[data-hero-slide]');
-        if ($slides.length < 2) return;
-
-        let index = $slides.filter('.is-active').index();
-        if (index < 0) index = 0;
-        let timerId = null;
-
-        // Đánh dấu slide đã load thành công (img.complete && naturalWidth > 0).
-        // Slide load fail sẽ bị bỏ qua khi rotate → không hiện ô trống.
-        const $imgs = $slides.find('img');
-        $imgs.each(function () {
-            const img = this;
-            if (img.complete && img.naturalWidth > 0) {
-                $(img).closest('[data-hero-slide]').attr('data-loaded', 'true');
-            } else {
-                img.addEventListener('load', function () {
-                    $(img).closest('[data-hero-slide]').attr('data-loaded', 'true');
-                });
-                img.addEventListener('error', function () {
-                    $(img).closest('[data-hero-slide]').attr('data-failed', 'true');
-                    // eslint-disable-next-line no-console
-                    console.warn('[HeroSlider] Image failed:', img.currentSrc || img.src);
-                });
-            }
-        });
-
-        const showSlide = function (next) {
-            $slides.each(function (i) {
-                const $slide = $(this);
-                const isActive = i === next;
-                $slide.toggleClass('is-active', isActive);
-                if (isActive) {
-                    $slide.removeAttr('aria-hidden');
-                } else {
-                    $slide.attr('aria-hidden', 'true');
-                }
-            });
-            index = next;
-        };
-
-        const tick = function () {
-            // Tìm slide ready kế tiếp, bỏ qua slide load fail
-            const $validSlides = $slides.filter('[data-loaded="true"]');
-            if ($validSlides.length < 2) return;
-
-            const currentValidIdx = $validSlides.filter('.is-active').index();
-            const nextValidIdx = (currentValidIdx + 1) % $validSlides.length;
-            const $nextSlide = $validSlides.eq(nextValidIdx);
-            const nextGlobalIdx = $slides.index($nextSlide);
-            showSlide(nextGlobalIdx);
-        };
-
-        const start = function () {
-            stop();
-            timerId = window.setInterval(tick, HERO_SLIDER_INTERVAL_MS);
-        };
-
-        const stop = function () {
-            if (timerId !== null) {
-                window.clearInterval(timerId);
-                timerId = null;
-            }
-        };
-
-        // Pause khi tab không active — tiết kiệm CPU
-        document.addEventListener('visibilitychange', function () {
-            if (document.hidden) {
-                stop();
-            } else {
-                start();
-            }
-        });
-
-        start();
-    }
-
-    /**
      * Đánh dấu nav item active dựa trên section đang xem (scrollspy).
      */
     function initScrollSpy() {
@@ -251,7 +166,6 @@
         initStickyHeader();
         initMobileMenu();
         initSmoothScroll();
-        initHeroSlider();
         initScrollSpy();
     });
 })(jQuery);

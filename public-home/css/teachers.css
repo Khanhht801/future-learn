@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — Advisors and teachers
- * Version: v1.3.0
+ * Version: v1.6.0
  * ============================================================ */
 
 .teachers {
@@ -33,32 +33,38 @@
     color: var(--natural-black-3);
 }
 
-.teachers__rail {
+.teachers__carousel {
     --teachers-gap: 1rem;
     position: relative;
     width: 100%;
     margin-top: 2.75rem;
-    overflow-x: auto;
-    scrollbar-color: var(--secondary-cyan) transparent;
-    scrollbar-width: thin;
 }
 
-.teachers__rail.is-ready {
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(
-        90deg,
-        transparent 0,
-        #000 2.5%,
-        #000 97.5%,
-        transparent 100%
-    );
-    mask-image: linear-gradient(
-        90deg,
-        transparent 0,
-        #000 2.5%,
-        #000 97.5%,
-        transparent 100%
-    );
+.teachers__rail {
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    cursor: grab;
+    -ms-overflow-style: none;
+}
+
+.teachers__rail::-webkit-scrollbar {
+    display: none;
+}
+
+.teachers__rail.is-dragging {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+    cursor: grabbing;
+    user-select: none;
+}
+
+.teachers__rail:focus-visible {
+    outline: 3px solid var(--secondary-cyan);
+    outline-offset: 0.35rem;
 }
 
 .teachers__track {
@@ -68,20 +74,58 @@
     margin: 0;
     padding: 0.75rem 0.2rem 1.5rem;
     list-style: none;
-    will-change: transform;
 }
 
-.teachers__rail.is-ready .teachers__track {
-    animation: teachers-marquee var(--teachers-duration, 62s) linear infinite;
+.teachers__arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: 2px solid var(--secondary-cyan);
+    border-radius: 50%;
+    background-color: var(--white);
+    box-shadow: 0 7px 20px rgba(0, 75, 135, 0.2);
+    color: var(--primary-blue-1);
+    cursor: pointer;
+    place-items: center;
+    transform: translateY(-50%);
+    transition:
+        background-color 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
 }
 
-.teachers__rail.is-ready.is-paused .teachers__track {
-    animation-play-state: paused;
+.teachers__arrow--prev {
+    left: 0.4rem;
+}
+
+.teachers__arrow--next {
+    right: 0.4rem;
+}
+
+.teachers__arrow svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.4;
+}
+
+.teachers__arrow:focus-visible {
+    outline: 3px solid var(--accent-orange);
+    outline-offset: 3px;
 }
 
 .teachers__item {
     flex: 0 0 clamp(17.5rem, 24vw, 19rem);
     width: clamp(17.5rem, 24vw, 19rem);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .teacher-card {
@@ -122,6 +166,8 @@
     border-radius: 50%;
     object-fit: cover;
     object-position: center top;
+    pointer-events: none;
+    -webkit-user-drag: none;
 }
 
 .teacher-card__image--portrait {
@@ -163,40 +209,43 @@
     line-height: 1.58;
 }
 
-.teachers__progress {
-    height: 0.42rem;
-    margin: 0.55rem 0.2rem 0;
-    overflow: hidden;
-    border-radius: 999px;
-    background: rgba(0, 125, 211, 0.16);
-}
-
-.teachers__progress-fill {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(90deg, var(--secondary-cyan), var(--primary-blue-1));
-    transform: scaleX(var(--teachers-progress, 0));
-    transform-origin: left center;
-    will-change: transform;
-}
-
-@keyframes teachers-marquee {
-    from {
-        transform: translate3d(0, 0, 0);
-    }
-
-    to {
-        transform: translate3d(var(--teachers-translate, -50%), 0, 0);
-    }
-}
-
 @media (hover: hover) and (pointer: fine) {
+    .teachers__arrow:hover {
+        background-color: var(--secondary-cyan);
+        color: var(--white);
+        transform: translateY(-50%) scale(1.06);
+    }
+
     .teacher-card:hover {
         z-index: 2;
         box-shadow: 0 14px 34px rgba(0, 125, 211, 0.18);
         transform: scale(1.02);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .teachers__arrow {
+        width: 2.75rem;
+        height: 2.75rem;
+    }
+
+    .teachers__arrow--prev {
+        left: 0.15rem;
+    }
+
+    .teachers__arrow--next {
+        right: 0.15rem;
+    }
+
+    .teachers__item {
+        flex-basis: min(17.5rem, calc(100vw - 3rem));
+        width: min(17.5rem, calc(100vw - 3rem));
+        scroll-snap-align: center;
+    }
+
+    .teacher-card {
+        min-height: 26rem;
+        padding: 1.25rem 1rem 1.5rem;
     }
 }
 
@@ -209,7 +258,7 @@
         font-size: 1.08rem;
     }
 
-    .teachers__rail {
+    .teachers__carousel {
         --teachers-gap: 1.25rem;
         margin-top: 3.5rem;
     }
@@ -220,8 +269,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .teachers__rail.is-ready .teachers__track {
-        animation-duration: var(--teachers-duration, 62s) !important;
-        animation-iteration-count: infinite !important;
+    .teachers__rail {
+        scroll-behavior: auto;
     }
 }

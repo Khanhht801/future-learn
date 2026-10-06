@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — Global stylesheet
- * Version: v1.0.9
+ * Version: v1.1.0
  * Tokens rút từ style.md ở root
  * ============================================================ */
 
@@ -49,7 +49,7 @@
     --space-8: 4rem;
 
     /* Layout */
-    --header-height: 84px;
+    --header-height: 68px;
     --container-max: 1269px;
 
     /* Motion */
@@ -68,11 +68,14 @@
 html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 body {
     margin: 0;
     overflow-x: hidden;
+    overflow-x: clip;
     font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.5;
@@ -130,7 +133,25 @@ a:hover {
  * Container override — Bootstrap mặc định 1320px, brand 2 dùng 1269px
  * ============================================================ */
 .container-xl {
+    --bs-gutter-x: 2rem;
     max-width: var(--container-max);
+}
+
+main,
+section {
+    min-width: 0;
+}
+
+@media (min-width: 768px) {
+    :root {
+        --header-height: 76px;
+    }
+}
+
+@media (min-width: 1200px) {
+    :root {
+        --header-height: 84px;
+    }
 }
 
 /* ============================================================

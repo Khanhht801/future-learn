@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — Student reviews marquee
- * Version: v1.2.0
+ * Version: v1.3.0
  * ============================================================ */
 
 .student-reviews {
@@ -192,6 +192,30 @@
     }
 }
 
+@media (max-width: 1199.98px) {
+    .student-reviews__viewport,
+    .student-reviews__viewport.is-ready {
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scroll-snap-type: inline mandatory;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .student-reviews__viewport.is-ready .student-reviews__track {
+        animation: none !important;
+        transform: none;
+    }
+
+    .student-reviews__group {
+        padding-inline: 1rem;
+    }
+
+    .student-reviews__group[aria-hidden="true"] {
+        display: none;
+    }
+}
+
 @media (max-width: 767.98px) {
     .student-reviews {
         padding-block: 4rem 4.5rem;
@@ -206,26 +230,10 @@
         --reviews-gap: 0.9rem;
     }
 
-    .student-reviews__viewport.is-ready {
-        -webkit-mask-image: linear-gradient(
-            90deg,
-            transparent 0,
-            #000 1.5%,
-            #000 98.5%,
-            transparent 100%
-        );
-        mask-image: linear-gradient(
-            90deg,
-            transparent 0,
-            #000 1.5%,
-            #000 98.5%,
-            transparent 100%
-        );
-    }
-
     .student-reviews__item {
-        flex-basis: min(18rem, 78vw);
-        width: min(18rem, 78vw);
+        flex-basis: min(18rem, calc(100vw - 3rem));
+        width: min(18rem, calc(100vw - 3rem));
+        scroll-snap-align: center;
     }
 }
 

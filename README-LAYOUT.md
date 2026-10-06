@@ -6,16 +6,16 @@ d:\[2.2] Vibe coding\Futurelang\
 ├── style.md                    # Style guide (đã có)
 ├── public-home/
 │   ├── css/
-│   │   ├── style.css?v=1.0.9   # Global token, reset, capsule button
-│   │   ├── home.css?v=1.0.0    # Header + Hero riêng
+│   │   ├── style.css?v=1.1.0   # Global token, reset, capsule button
+│   │   ├── home.css?v=1.2.1    # Header + Hero riêng
 │   │   ├── stats.css?v=1.0.0   # Stat strip responsive
-│   │   ├── why-choose.css?v=1.0.1 # Section lý do chọn FutureLearn
-│   │   ├── audiences.css?v=1.0.1 # FutureLearn dành cho ai
+│   │   ├── why-choose.css?v=1.0.2 # Section lý do chọn FutureLearn
+│   │   ├── audiences.css?v=1.1.0 # FutureLearn dành cho ai
 │   │   ├── training-programs.css?v=1.0.0 # Chương trình đào tạo
-│   │   ├── teachers.css?v=1.0.0 # Đội ngũ cố vấn, giáo viên
+│   │   ├── teachers.css?v=1.4.0 # Đội ngũ cố vấn, giáo viên
 │   │   └── about-press.css?v=1.0.0 # Về chúng tôi / Báo chí
 │   ├── js/
-│   │   ├── main.js?v=1.0.0     # AOS init, sticky nav, mobile drawer
+│   │   ├── main.js?v=1.2.0     # AOS init, sticky nav, mobile drawer
 │   │   ├── stats.js?v=1.0.0    # Counter khi stat strip vào viewport
 │   │   └── teachers.js?v=1.0.0 # Điều khiển carousel giáo viên
 │   └── images/
@@ -31,15 +31,16 @@ d:\[2.2] Vibe coding\Futurelang\
 ## Asset version (cache bust)
 | File | Version |
 |---|---|
-| `style.css` | `v=1.0.9` |
-| `home.css` | `v=1.1.1` |
+| `style.css` | `v=1.1.0` |
+| `home.css` | `v=1.2.1` |
 | `stats.css` | `v=1.0.0` |
-| `why-choose.css` | `v=1.0.1` |
-| `audiences.css` | `v=1.0.1` |
+| `why-choose.css` | `v=1.0.2` |
+| `audiences.css` | `v=1.1.0` |
 | `training-programs.css` | `v=1.0.0` |
-| `teachers.css` | `v=1.0.0` |
+| `teachers.css` | `v=1.4.0` |
 | `about-press.css` | `v=1.0.0` |
-| `main.js` | `v=1.1.2` |
+| `testimonials.css` | `v=1.3.0` |
+| `main.js` | `v=1.2.0` |
 | `stats.js` | `v=1.0.0` |
 | `teachers.js` | `v=1.0.0` |
 
