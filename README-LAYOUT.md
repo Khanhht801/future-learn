@@ -6,11 +6,11 @@ d:\[2.2] Vibe coding\Futurelang\
 ├── style.md                    # Style guide (đã có)
 ├── public-home/
 │   ├── css/
-│   │   ├── style.css?v=1.0.0   # Global token, reset, capsule button
+│   │   ├── style.css?v=1.0.9   # Global token, reset, capsule button
 │   │   ├── home.css?v=1.0.0    # Header + Hero riêng
 │   │   ├── stats.css?v=1.0.0   # Stat strip responsive
 │   │   ├── why-choose.css?v=1.0.1 # Section lý do chọn FutureLearn
-│   │   ├── audiences.css?v=1.0.0 # FutureLearn dành cho ai
+│   │   ├── audiences.css?v=1.0.1 # FutureLearn dành cho ai
 │   │   ├── training-programs.css?v=1.0.0 # Chương trình đào tạo
 │   │   ├── teachers.css?v=1.0.0 # Đội ngũ cố vấn, giáo viên
 │   │   └── about-press.css?v=1.0.0 # Về chúng tôi / Báo chí
@@ -31,11 +31,11 @@ d:\[2.2] Vibe coding\Futurelang\
 ## Asset version (cache bust)
 | File | Version |
 |---|---|
-| `style.css` | `v=1.0.8` |
+| `style.css` | `v=1.0.9` |
 | `home.css` | `v=1.1.1` |
 | `stats.css` | `v=1.0.0` |
 | `why-choose.css` | `v=1.0.1` |
-| `audiences.css` | `v=1.0.0` |
+| `audiences.css` | `v=1.0.1` |
 | `training-programs.css` | `v=1.0.0` |
 | `teachers.css` | `v=1.0.0` |
 | `about-press.css` | `v=1.0.0` |

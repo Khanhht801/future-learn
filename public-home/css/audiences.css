@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — Audiences
- * Version: v1.0.0
+ * Version: v1.0.1
  * ============================================================ */
 
 .audiences {
@@ -188,7 +188,7 @@
     .audiences__visual {
         position: sticky;
         top: 6.5rem;
-        min-height: 38rem;
+        height: 38rem;
     }
 
     .audiences__image {

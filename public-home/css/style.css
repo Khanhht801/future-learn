@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — Global stylesheet
- * Version: v1.0.8
+ * Version: v1.0.9
  * Tokens rút từ style.md ở root
  * ============================================================ */
 
@@ -98,6 +98,20 @@ a {
 
 a:hover {
     color: var(--primary-blue-2);
+}
+
+/* ============================================================
+ * Body copy alignment
+ * Keep headings, labels and short interface text in their own alignment.
+ * ============================================================ */
+.about-story__lead,
+.about-story__copy p,
+.why-choose__description,
+.audience-accordion__list li,
+.training-program-card__description,
+.student-review-card__quote {
+    text-align: justify;
+    text-align-last: left;
 }
 
 /* Reduced motion */
