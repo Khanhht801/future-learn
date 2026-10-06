@@ -1,0 +1,222 @@
+/* ============================================================
+ * FutureLearn — Course consultation registration
+ * Version: v1.0.0
+ * ============================================================ */
+
+.consultation {
+    position: relative;
+    overflow: hidden;
+    scroll-margin-top: var(--header-height);
+    padding-block: 3.75rem;
+    background-color: var(--accent-orange-strong);
+}
+
+.consultation__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.consultation__content {
+    min-width: 0;
+}
+
+.consultation__header {
+    max-width: 46rem;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.consultation__title {
+    margin: 0;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: clamp(1.75rem, 7vw, 3rem);
+    font-weight: 600;
+    line-height: 1.17;
+    text-transform: uppercase;
+    text-wrap: balance;
+}
+
+.consultation__description {
+    max-width: 42rem;
+    margin: 0.75rem auto 0;
+    color: var(--white);
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    line-height: 1.45;
+    text-wrap: balance;
+}
+
+.consultation-form {
+    width: min(100%, 36rem);
+    margin: 2rem auto 0;
+    text-align: center;
+}
+
+.consultation-form__field {
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.consultation-form input,
+.consultation-form select {
+    display: block;
+    width: 100%;
+    min-height: 3.8125rem;
+    padding: 0.95rem 1.35rem;
+    border: 1px solid var(--white);
+    border-radius: var(--radius-input);
+    outline: none;
+    background-color: var(--white);
+    color: var(--natural-black-2);
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1.2;
+    transition:
+        border-color 0.2s var(--ease-out),
+        box-shadow 0.2s var(--ease-out);
+}
+
+.consultation-form input::placeholder {
+    color: var(--gray-muted);
+    opacity: 1;
+}
+
+.consultation-form select {
+    padding-right: 3.25rem;
+    appearance: none;
+    cursor: pointer;
+}
+
+.consultation-form input:focus-visible,
+.consultation-form select:focus-visible {
+    border-color: var(--primary-blue-1);
+    box-shadow: 0 0 0 4px rgba(0, 125, 211, 0.22);
+}
+
+.consultation-form [aria-invalid="true"] {
+    border-color: #b42318;
+    box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.16);
+}
+
+.consultation-form__field--select > i {
+    position: absolute;
+    top: 1.45rem;
+    right: 1.35rem;
+    color: var(--natural-black-3);
+    pointer-events: none;
+}
+
+.consultation-form__error {
+    display: block;
+    min-height: 0;
+    margin: 0.3rem 1.2rem 0;
+    color: #6d170f;
+    font-size: 0.84rem;
+    font-weight: 500;
+    line-height: 1.35;
+    text-align: left;
+}
+
+.consultation-form__error:empty {
+    display: none;
+}
+
+.consultation-form__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 13.4375rem);
+    min-height: 3.75rem;
+    margin-top: 0.875rem;
+    padding: 0.85rem 1.5rem;
+    border: 1px solid var(--primary-blue-1);
+    border-radius: 0.5rem;
+    background-color: var(--primary-blue-1);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition:
+        background-color 0.2s var(--ease-out),
+        border-color 0.2s var(--ease-out),
+        transform 0.2s var(--ease-out);
+}
+
+.consultation-form__submit:hover {
+    border-color: #006eb9;
+    background-color: #006eb9;
+    transform: translateY(-1px);
+}
+
+.consultation-form__submit:focus-visible {
+    outline: 3px solid var(--white);
+    outline-offset: 3px;
+}
+
+.consultation-form__status {
+    min-height: 1.5rem;
+    margin: 0.85rem 0 0;
+    color: var(--white);
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.consultation__visual {
+    width: min(100%, 29.3125rem);
+    margin: 0 auto;
+}
+
+.consultation__visual img {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 767.98px) {
+    .consultation {
+        padding-block: 2.5rem;
+    }
+
+    .consultation__visual {
+        grid-row: 1;
+    }
+
+    .consultation__content {
+        grid-row: 2;
+    }
+
+    .consultation-form__submit {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .consultation {
+        padding-block: 3.75rem;
+    }
+
+    .consultation__inner {
+        grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+        gap: clamp(2rem, 5vw, 5rem);
+    }
+
+    .consultation__visual {
+        justify-self: end;
+    }
+}
+
+@media (min-width: 1200px) {
+    .consultation__inner {
+        width: 80%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .consultation-form__submit:hover {
+        transform: none;
+    }
+}

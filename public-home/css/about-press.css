@@ -1,15 +1,17 @@
 /* ============================================================
  * FutureLearn — About story
- * Version: v1.1.0
+ * Version: v1.1.1
  * ============================================================ */
 
 .about-story {
     position: relative;
     overflow: hidden;
     padding-block: 4.75rem 5rem;
-    background:
-        radial-gradient(circle at 92% 8%, rgba(255, 255, 255, 0.72) 0 7rem, transparent 7.1rem),
-        linear-gradient(180deg, #f7fcff 0%, var(--gradient-cyan-end) 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(115, 205, 255, 0) 0%,
+        var(--gradient-cyan-end) 100%
+    );
 }
 
 .about-story__layout {

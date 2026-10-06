@@ -1,0 +1,239 @@
+/* ============================================================
+ * FutureLearn — Student reviews marquee
+ * Version: v1.2.0
+ * ============================================================ */
+
+.student-reviews {
+    position: relative;
+    overflow: hidden;
+    scroll-margin-top: var(--header-height);
+    padding-block: 5rem 5.5rem;
+    background-color: var(--white);
+    isolation: isolate;
+}
+
+.student-reviews::before {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    z-index: -1;
+    width: min(96rem, 115vw);
+    aspect-ratio: 2194 / 717;
+    background-image: url("https://www.futurelang.edu.vn/public-home/images/camnhanhocvien.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    opacity: 0.1;
+    transform: translateX(-50%);
+}
+
+.student-reviews__header {
+    position: relative;
+    margin-bottom: 2.75rem;
+    text-align: center;
+}
+
+.student-reviews__title {
+    margin: 0;
+    color: var(--primary-blue-1);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    text-transform: uppercase;
+    text-wrap: balance;
+}
+
+.student-reviews__description {
+    max-width: 42rem;
+    margin: 0.75rem auto 0;
+    color: var(--natural-black-2);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    text-wrap: balance;
+}
+
+.student-reviews__viewport {
+    --reviews-gap: 1.25rem;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary-cyan) transparent;
+}
+
+.student-reviews__viewport.is-ready {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent 0,
+        #000 3%,
+        #000 97%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        90deg,
+        transparent 0,
+        #000 3%,
+        #000 97%,
+        transparent 100%
+    );
+}
+
+.student-reviews__track {
+    display: flex;
+    width: max-content;
+    gap: var(--reviews-gap);
+    will-change: transform;
+}
+
+.student-reviews__viewport.is-ready .student-reviews__track {
+    animation: student-reviews-marquee var(--reviews-duration, 70s) linear infinite;
+}
+
+.student-reviews__viewport.is-ready.is-paused .student-reviews__track {
+    animation-play-state: paused;
+}
+
+.student-reviews__group {
+    display: flex;
+    flex: none;
+    width: max-content;
+    gap: var(--reviews-gap);
+    margin: 0;
+    padding: 0.5rem 0 1.25rem;
+    list-style: none;
+}
+
+.student-reviews__item {
+    flex: 0 0 clamp(17.5rem, 24vw, 22rem);
+    width: clamp(17.5rem, 24vw, 22rem);
+}
+
+.student-review-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--secondary-cyan);
+    border-radius: var(--radius-card);
+    background-color: var(--white);
+    box-shadow: 0 8px 26px rgba(0, 125, 211, 0.09);
+    transform: scale(1);
+    transform-origin: center;
+    transition:
+        transform 220ms ease,
+        box-shadow 220ms ease;
+    will-change: transform;
+}
+
+.student-review-card__media {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: #e8f5fb;
+}
+
+.student-review-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.student-review-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1.25rem 1.4rem 1.5rem;
+}
+
+.student-review-card__name {
+    margin: 0;
+    color: var(--natural-black-1);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.student-review-card__name::after {
+    display: block;
+    width: 2.75rem;
+    height: 2px;
+    margin-top: 0.7rem;
+    background-color: var(--secondary-cyan);
+    content: "";
+}
+
+.student-review-card__quote {
+    margin: 0.8rem 0 0;
+    color: var(--natural-black-2);
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+@keyframes student-reviews-marquee {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(var(--reviews-translate, -50%), 0, 0);
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .student-review-card:hover {
+        z-index: 2;
+        box-shadow: 0 14px 34px rgba(0, 125, 211, 0.2);
+        transform: scale(1.025);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .student-reviews {
+        padding-block: 4rem 4.5rem;
+    }
+
+    .student-reviews__header {
+        padding-inline: 1.25rem;
+        margin-bottom: 2rem;
+    }
+
+    .student-reviews__viewport {
+        --reviews-gap: 0.9rem;
+    }
+
+    .student-reviews__viewport.is-ready {
+        -webkit-mask-image: linear-gradient(
+            90deg,
+            transparent 0,
+            #000 1.5%,
+            #000 98.5%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            90deg,
+            transparent 0,
+            #000 1.5%,
+            #000 98.5%,
+            transparent 100%
+        );
+    }
+
+    .student-reviews__item {
+        flex-basis: min(18rem, 78vw);
+        width: min(18rem, 78vw);
+    }
+}
+
+/* This marquee is intentionally continuous, even when the global stylesheet
+ * shortens decorative animations for reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+    .student-reviews__viewport.is-ready .student-reviews__track {
+        animation-duration: var(--reviews-duration, 70s) !important;
+        animation-iteration-count: infinite !important;
+    }
+}

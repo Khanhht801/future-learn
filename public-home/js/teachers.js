@@ -1,62 +1,81 @@
 /* ============================================================
- * FutureLearn — Advisors and teachers carousel
- * Version: v1.0.0
+ * FutureLearn — Advisors and teachers marquee
+ * Version: v1.3.0
  * ============================================================ */
 (function () {
     'use strict';
 
-    const carousel = document.querySelector('[data-teachers-carousel]');
-    if (!carousel) return;
+    const viewport = document.querySelector('[data-teachers-carousel]');
+    const track = viewport?.querySelector('[data-teachers-track]');
+    const progressBar = document.querySelector('[data-teachers-progress]');
 
-    const track = carousel.querySelector('[data-teachers-track]');
-    const cards = Array.from(track.querySelectorAll('.teachers__item'));
-    const previousButton = carousel.querySelector('[data-teachers-previous]');
-    const nextButton = carousel.querySelector('[data-teachers-next]');
-    const currentElement = carousel.querySelector('[data-teachers-current]');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let scrollFrame = 0;
+    if (!viewport || !track || !progressBar) return;
 
-    function getStepSize() {
-        const firstCard = cards[0];
-        if (!firstCard) return track.clientWidth;
+    const sourceItems = Array.from(track.querySelectorAll('.teachers__item'));
+    if (!sourceItems.length) return;
 
-        const styles = window.getComputedStyle(track);
-        const gap = Number.parseFloat(styles.columnGap) || 0;
-        return firstCard.getBoundingClientRect().width + gap;
+    const clones = sourceItems.map((item) => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+        return clone;
+    });
+
+    function getMarqueeAnimation() {
+        return track.getAnimations().find((animation) => (
+            animation.animationName === 'teachers-marquee'
+        ));
     }
 
-    function updateCarouselState() {
-        const maximumScroll = Math.max(0, track.scrollWidth - track.clientWidth);
-        const currentIndex = Math.min(
-            cards.length - 1,
-            Math.max(0, Math.round(track.scrollLeft / getStepSize()))
-        );
+    function syncProgress() {
+        const animation = getMarqueeAnimation();
+        const duration = Number(animation?.effect.getComputedTiming().duration);
+        const currentTime = Number(animation?.currentTime);
 
-        previousButton.disabled = track.scrollLeft <= 2;
-        nextButton.disabled = track.scrollLeft >= maximumScroll - 2;
-        currentElement.textContent = String(currentIndex + 1);
+        if (animation && Number.isFinite(duration) && duration > 0 && Number.isFinite(currentTime)) {
+            const progress = ((currentTime % duration) + duration) % duration / duration;
+            const percentage = Math.round(progress * 100);
+
+            progressBar.style.setProperty('--teachers-progress', String(progress));
+            progressBar.setAttribute('aria-valuenow', String(percentage));
+        }
+
+        window.requestAnimationFrame(syncProgress);
     }
 
-    function moveCarousel(direction) {
-        track.scrollBy({
-            left: direction * getStepSize(),
-            behavior: reduceMotion.matches ? 'auto' : 'smooth'
+    track.querySelectorAll('.teacher-card').forEach((card) => {
+        card.addEventListener('mouseenter', function () {
+            viewport.classList.add('is-paused');
         });
+
+        card.addEventListener('mouseleave', function () {
+            viewport.classList.remove('is-paused');
+        });
+    });
+
+    function syncMarquee() {
+        const distance = clones[0].offsetLeft - sourceItems[0].offsetLeft;
+        const speed = window.matchMedia('(max-width: 767.98px)').matches ? 38 : 46;
+
+        if (distance <= 0) return;
+
+        track.style.setProperty('--teachers-translate', `${-distance}px`);
+        track.style.setProperty('--teachers-duration', `${distance / speed}s`);
+        viewport.classList.add('is-ready');
+        progressBar.hidden = false;
     }
 
-    previousButton.addEventListener('click', function () {
-        moveCarousel(-1);
+    window.requestAnimationFrame(syncMarquee);
+    window.requestAnimationFrame(syncProgress);
+
+    if ('ResizeObserver' in window) {
+        const observer = new ResizeObserver(syncMarquee);
+        observer.observe(viewport);
+    } else {
+        window.addEventListener('resize', syncMarquee, { passive: true });
+    }
+
+    window.addEventListener('blur', function () {
+        viewport.classList.remove('is-paused');
     });
-
-    nextButton.addEventListener('click', function () {
-        moveCarousel(1);
-    });
-
-    track.addEventListener('scroll', function () {
-        window.cancelAnimationFrame(scrollFrame);
-        scrollFrame = window.requestAnimationFrame(updateCarouselState);
-    }, { passive: true });
-
-    window.addEventListener('resize', updateCarouselState, { passive: true });
-    updateCarouselState();
 })();
