@@ -1,0 +1,222 @@
+---
+description: Quy tắc tổng cho dự án FutureLearn — tổ chức folder, coding convention, design system
+alwaysApply: true
+---
+
+# FutureLearn — Project Rules
+
+Dự án: Website học ngoại ngữ FutureLearn, tham chiếu giao diện từ `futurelang.edu.vn` (Bootstrap 5.3 + jQuery + Slick 1.8 + AOS 2.3 + DataTables 1.10 + Font Awesome 6.3). Tham chiếu style: xem `style.md` ở root.
+
+Agent phải tuân thủ các quy tắc dưới đây khi tạo, sửa, hoặc tổ chức bất kỳ file nào trong dự án.
+
+---
+
+## 1. Tổ chức thư mục (Folder Structure)
+
+Giữ cấu trúc phẳng, dễ tìm. **Một file chỉ có một mục đích rõ ràng**.
+
+```
+/
+├── index.html                  # Landing chính (single-page)
+├── style.md                    # Style guide — KHÔNG xoá, luôn cập nhật khi đổi design
+├── public-home/                # Tài nguyên tĩnh phục vụ homepage
+│   ├── css/
+│   │   ├── bootstrap.min.css
+│   │   ├── style.css           # Style chính (version rõ ràng: ?v=1.x.y)
+│   │   ├── home.css
+│   │   └── style-tablet.css
+│   ├── js/
+│   │   ├── jquery.min.js
+│   │   ├── bootstrap.bundle.min.js
+│   │   ├── slick.min.js
+│   │   ├── aos.js
+│   │   └── main.js             # Logic riêng của dự án
+│   ├── images/
+│   │   ├── icons/              # SVG icon, logo nhỏ
+│   │   ├── banners/            # Ảnh slider hero
+│   │   ├── teachers/           # Ảnh đội ngũ giáo viên
+│   │   ├── partners/           # Logo đối tác
+│   │   └── students/           # Ảnh học sinh, cảm nhận
+│   └── fonts/                  # Nếu self-host
+├── pages/                      # Trang phụ (about, courses, contact…)
+└── assets/                     # Tài nguyên dùng chung (svg, video, pdf)
+```
+
+### Nguyên tắc đặt tên
+- **Folder/file**: kebab-case (`banner-slider`, `course-card.js`).
+- **Ảnh**: mô tả nội dung, không dùng tên từ máy ảnh (`banner-hero-01.webp`, không `IMG_3920.jpg`).
+- **CSS/JS file riêng**: đặt cùng tên với component sử dụng nó (`course-card.css` ↔ `course-card.html`).
+- **Version asset**: thêm `?v=1.x.y` khi thay đổi để bust cache (`style.css?v=1.2.9`).
+
+### Không được
+- ❌ Tạo file rỗng, file test/debug còn sót lại (`test.html`, `new-file.js`, `Untitled-1`).
+- ❌ Gom tất cả CSS vào một file khổng lồ — tách theo component/section.
+- ❌ Đặt file gốc ở các vị trí lung tung (`public-home/css/css/`, `images/anh1.png`).
+- ❌ Để ảnh/video binary lớn trong repo mà không qua tối ưu (dùng WebP, lazy-load).
+
+---
+
+## 2. HTML — Convention
+
+- **DOCTYPE + lang**: `<!DOCTYPE html><html lang="vi">`.
+- **Sectioning**: mỗi section landing là một `<section id="...">` có tiêu đề rõ ràng; dùng `<header>`, `<main>`, `<footer>` semantic.
+- **Class Bootstrap trước, custom class sau**: `<div class="container-xl py-5 section-teachers">` — ưu tiên utility class Bootstrap 5.
+- **Accessibility**: luôn có `alt` cho `<img>`, `aria-label` cho icon-only button, `label for="..."` cho input.
+- **Ảnh**: dùng `loading="lazy"` cho ảnh dưới fold; `<picture>` + WebP khi có thể.
+- **External link**: `rel="noopener noreferrer"` + `target="_blank"`.
+- **Không inline style/inline script** trừ trường hợp dynamic thực sự cần thiết.
+
+```html
+<!-- ✅ TỐT -->
+<section id="teachers" class="py-5 section-teachers">
+  <div class="container-xl">
+    <h2 class="title-giaovien">Đội ngũ giáo viên</h2>
+    <div class="row g-4">
+      <article class="col-12 col-md-6 col-lg-4 teacher-card">
+        <img src="/public-home/images/teachers/teacher-01.webp"
+             alt="Cô Lan — giáo viên tiếng Anh"
+             class="teacher-card__avatar" loading="lazy" />
+        <h3 class="teacher-card__name">Cô Lan</h3>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ❌ XẤU -->
+<div class="box1"><img src="img1.jpg"></div>
+```
+
+---
+
+## 3. CSS — Convention
+
+### Phương pháp
+- **CSS Variable first**: dùng token màu/font/spacing từ `style.md` (`--primary-blue-1`, `--accent-orange`, …). Không hardcode hex khi đã có token.
+- **BEM cho custom class**: `block__element--modifier` (`.teacher-card__avatar`, `.btn--orange`).
+- **Mobile-first**: viết style cho mobile trước, dùng `min-width` media query để mở rộng.
+- **Breakpoint tham chiếu Bootstrap 5**: 576 / 768 / 992 / 1200 / 1400px.
+- **Tách file theo scope**: `style.css` (global), `home.css` (chỉ homepage), `style-tablet.css` (chỉ responsive tablet).
+
+### Quy tắc cứng
+- ❌ Không dùng `!important` trừ khi override thư viện (Slick, AOS) đã escape hết cách.
+- ❌ Không selector lồng quá 3 cấp (`a:hover .card .title span`).
+- ✅ Dùng `rem` cho font-size, `px` cho border/shadow, `%`/`fr` cho layout.
+- ✅ Một selector trên một dòng trong quy tắc đa-selector:
+
+```css
+/* ✅ TỐT */
+.teacher-card,
+.course-card {
+  border: 1px solid var(--secondary-cyan);
+  border-radius: 20px;
+}
+
+.teacher-card__avatar {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* ❌ XẤU */
+.teacher-card { border: 1px solid #71CEFF; border-radius: 20px; }
+img { width: 100% }
+```
+
+### Design token (rút gọn từ style.md)
+| Token | Giá trị | Dùng cho |
+|---|---|---|
+| `--primary-blue-1` | `#007DD3` | Heading, link, button chính |
+| `--secondary-cyan` | `#71CEFF` | Viền card, underline nav active |
+| `--accent-orange` | `#FF8A00` | CTA cam |
+| `--cream` | `#FFF9EB` | Nền section giáo viên / phụ huynh |
+| `--gray-light-2` | `#F2F2F2` | Nền section đối tác |
+| Heading font | `'Quicksand', sans-serif` | 500/600/700 |
+| Body font | `'Roboto', sans-serif` | 400/500 |
+| Border-radius | `20–24px` (card), `8px` (button) | |
+
+---
+
+## 4. JavaScript / jQuery — Convention
+
+### Nguyên tắc chung
+- **Một file = một concern**. Không nhồi tất cả logic vào `main.js`; tách `slider.js`, `form-validation.js`, `aos-init.js`.
+- **Không dùng jQuery cho code mới** khi có thể dùng vanilla JS/DOM API — jQuery chỉ dành cho plugin cũ (Slick, validate).
+- **DOM ready**: wrap toàn bộ code trong `$(function () { ... })` (jQuery) hoặc `DOMContentLoaded` (vanilla).
+- **Strict mode**: `'use strict';` ở đầu file.
+
+### Slider / Carousel (Slick)
+```js
+// ✅ TỐT — cấu hình rõ ràng, responsive breakpoints khớp Bootstrap
+$('.banner-slider').slick({
+  dots: true,
+  arrows: false,
+  autoplay: true,
+  autoplaySpeed: 5000,
+  fade: true,
+  cssEase: 'linear',
+  responsive: [
+    { breakpoint: 768, settings: { dots: false } }
+  ]
+});
+```
+
+### Form (jQuery Validate)
+- Validate **client-side** + kiểm tra **server-side**.
+- Hiển thị lỗi inline cạnh field, không dùng `alert()`.
+- Disable nút submit khi đang gửi, re-enable khi xong (kể cả khi lỗi).
+
+### AOS (Animate On Scroll)
+- Khởi tạo **một lần** ở cuối `main.js`, không khởi tạo lại trong từng component.
+- `AOS.init({ duration: 600, once: true, offset: 80 })` — `once: true` để không re-animate.
+- Tôn trọng `prefers-reduced-motion: reduce` — AOS đã hỗ trợ, không cần thêm gì.
+
+### Quy tắc cứng
+- ❌ Không dùng biến global. Wrap trong IIFE hoặc module:
+  ```js
+  (function ($) {
+    'use strict';
+    // ...
+  })(jQuery);
+  ```
+- ❌ Không dùng `var` — chỉ `const` / `let`.
+- ❌ Không dùng `==` — chỉ `===` / `!==`.
+- ✅ Đặt tên biến/hàm có nghĩa: `handleSubmitForm`, `teacherSliderOptions`, không `x`, `tmp`, `data1`.
+- ✅ Magic number đặt thành `const` ở đầu file (timeout, breakpoint, v.v.).
+
+---
+
+## 5. Khi agent tổ chức / dọn dẹp file
+
+Trước khi sửa, agent phải:
+
+1. **Liệt kê** các file/folder hiện có ở root và cấp 1.
+2. **Đề xuất cấu trúc mới** dưới dạng tree trước khi di chuyển file.
+3. **Hỏi ý kiến** trước khi xoá file (kể cả khi rõ ràng là rác) — tránh xoá nhầm.
+4. **Cập nhật đường dẫn** trong HTML/JS khi di chuyển asset.
+5. **Tăng version** asset bị đổi (`?v=1.2.8` → `?v=1.2.9`) để bust cache trình duyệt.
+6. **Không tạo file mới** nếu chưa rõ mục đích — hỏi user trước.
+
+---
+
+## 6. Nguyên tắc chung khi viết code
+
+- **Đọc trước, viết sau**: nếu sửa component đã có, đọc file hiện tại + style.md trước khi đề xuất thay đổi.
+- **Không bịa nội dung tiếng Việt**: bám sát giọng văn đã có trong site (thân thiện, dùng "bạn" hoặc "quý phụ huynh" tuỳ ngữ cảnh).
+- **Không hardcode text vào component nếu có thể đặt ở HTML** — dễ dịch/sửa sau.
+- **Commit nhỏ, rõ ràng**: nếu dùng git, một commit = một concern (refactor folder, fix bug slider, …).
+- **Tối ưu**: ảnh WebP, lazy-load, defer JS không quan trọng, preload font critical.
+- **Không emoji trong code** trừ khi user yêu cầu.
+
+---
+
+## 7. Tóm tắt checklist trước khi hoàn tất task
+
+- [ ] File mới tuân thủ cấu trúc thư mục và quy tắc đặt tên.
+- [ ] HTML có semantic, accessibility (`alt`, `aria-*`, `label`).
+- [ ] CSS dùng token từ `style.md`, không hardcode hex.
+- [ ] JS không có biến global, không `var`, không `==`.
+- [ ] Không còn file rác / file debug.
+- [ ] Đường dẫn asset vẫn đúng sau khi di chuyển.
+- [ ] Cache-bust version đã tăng nếu đổi nội dung asset.
+- [ ] Đã đọc `style.md` và `index.html` (nếu có) trước khi sửa.

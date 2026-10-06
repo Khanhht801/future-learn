@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FutureLearn — Ứng dụng học tiếng Anh online nâng tầm tri thức Việt, vì 50 triệu người giao tiếp thành thạo tiếng Anh." />
+    <meta name="theme-color" content="#007DD3" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>FutureLearn — Nâng tầm tri thức Việt</title>
+
+    <!-- Preload font critical -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5.3 -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous"
+    />
+    <!-- Font Awesome 6.3 -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+
+    <!-- Project styles -->
+    <link rel="stylesheet" href="/public-home/css/style.css?v=1.0.8" />
+    <link rel="stylesheet" href="/public-home/css/home.css?v=1.1.1" />
+    <link rel="stylesheet" href="/public-home/css/stats.css?v=1.0.0" />
+    <link rel="stylesheet" href="/public-home/css/why-choose.css?v=1.0.1" />
+    <link rel="stylesheet" href="/public-home/css/audiences.css?v=1.0.0" />
+    <link rel="stylesheet" href="/public-home/css/training-programs.css?v=1.0.0" />
+    <link rel="stylesheet" href="/public-home/css/teachers.css?v=1.0.0" />
+    <link rel="stylesheet" href="/public-home/css/about-press.css?v=1.1.0" />
+</head>
+<body>
+    <!-- ============================================================
+         HEADER / NAV
+         ============================================================ -->
+    <header class="site-header" id="site-header">
+        <div class="container-xl site-header__inner">
+            <a href="/" class="site-header__logo" aria-label="FutureLearn — Trang chủ">
+                <img
+                    src="/logo.png"
+                    alt="FutureLearn — Nâng tầm tri thức Việt"
+                    class="site-header__logo-img"
+                    width="160"
+                    height="44"
+                />
+            </a>
+
+            <nav class="site-header__nav" aria-label="Điều hướng chính">
+                <ul class="site-header__menu" role="menubar">
+                    <li role="none" class="site-header__item is-active">
+                        <a role="menuitem" href="#home" class="site-header__link">Trang chủ</a>
+                    </li>
+                    <li role="none" class="site-header__item">
+                        <a role="menuitem" href="#about" class="site-header__link">Giới thiệu</a>
+                    </li>
+                    <li role="none" class="site-header__item">
+                        <a role="menuitem" href="#pricing" class="site-header__link">Học phí</a>
+                    </li>
+                    <li role="none" class="site-header__item">
+                        <a role="menuitem" href="#testimonials" class="site-header__link">Cảm nhận</a>
+                    </li>
+                    <li role="none" class="site-header__item">
+                        <a role="menuitem" href="#careers" class="site-header__link">Tuyển dụng</a>
+                    </li>
+                    <li role="none" class="site-header__item">
+                        <a role="menuitem" href="#news" class="site-header__link">Tin tức</a>
+                    </li>
+                    <li role="none" class="site-header__item">
+                        <a role="menuitem" href="#contact" class="site-header__link">Liên hệ</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="site-header__cta">
+                <a href="#learn" class="capsule-btn capsule-btn--orange capsule-btn--animated" aria-label="Vào học ngay">
+                    <span class="capsule-btn__label">Vào học</span>
+                    <span class="capsule-btn__shine" aria-hidden="true"></span>
+                    <span class="capsule-btn__pulse" aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <button
+                class="site-header__hamburger"
+                type="button"
+                aria-label="Mở menu"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+            >
+                <span class="site-header__hamburger-bar"></span>
+                <span class="site-header__hamburger-bar"></span>
+                <span class="site-header__hamburger-bar"></span>
+            </button>
+        </div>
+
+        <!-- Mobile drawer -->
+        <div class="site-header__drawer" id="mobile-menu" hidden>
+            <ul class="site-header__drawer-list">
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="#pricing">Học phí</a></li>
+                <li><a href="#testimonials">Cảm nhận</a></li>
+                <li><a href="#careers">Tuyển dụng</a></li>
+                <li><a href="#news">Tin tức</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+            <div class="site-header__drawer-cta">
+                <a href="#learn" class="capsule-btn capsule-btn--orange capsule-btn--animated" aria-label="Vào học ngay">
+                    <span class="capsule-btn__label">Vào học</span>
+                    <span class="capsule-btn__shine" aria-hidden="true"></span>
+                    <span class="capsule-btn__pulse" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ============================================================
+             HERO
+             ============================================================ -->
+        <section id="home" class="hero" aria-label="FutureLearn — Giới thiệu">
+            <!-- Decorative background blobs -->
+            <div class="hero__bg" aria-hidden="true">
+                <span class="hero__blob hero__blob--cyan"></span>
+                <span class="hero__blob hero__blob--blue"></span>
+                <span class="hero__blob hero__blob--orange"></span>
+            </div>
+
+            <!-- Auto-rotating image slider (hero1 / hero2, 3s each) -->
+            <div
+                class="hero__slider"
+                data-hero-slider
+                aria-roledescription="carousel"
+                aria-label="Hình ảnh nổi bật của FutureLearn"
+            >
+                <div
+                    class="hero__slide is-active"
+                    data-hero-slide
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label="1 / 2"
+                >
+                    <img
+                        src="/hero1.png"
+                        alt="FutureLearn — Học viên tương tác với ứng dụng"
+                        class="hero__slide-img"
+                        loading="eager"
+                        decoding="async"
+                    />
+                </div>
+                <div
+                    class="hero__slide"
+                    data-hero-slide
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label="2 / 2"
+                    aria-hidden="true"
+                >
+                    <img
+                        src="/hero2.png"
+                        alt="FutureLearn — Đội ngũ giáo viên bản xứ"
+                        class="hero__slide-img"
+                        loading="eager"
+                        decoding="async"
+                    />
+                </div>
+            </div>
+
+            <!-- Wave divider -->
+            <svg
+                class="hero__wave"
+                viewBox="0 0 1440 120"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+            >
+                <path
+                    d="M0,64 C240,120 480,0 720,48 C960,96 1200,24 1440,72 L1440,120 L0,120 Z"
+                    fill="#FFFFFF"
+                />
+            </svg>
+        </section>
+
+        <!-- ============================================================
+             STAT STRIP
+             ============================================================ -->
+        <section id="stats" class="stats-strip" aria-labelledby="stats-title">
+            <div class="container-xl stats-strip__inner">
+                <h2 id="stats-title" class="stats-strip__title">
+                    Ứng dụng đầu tiên tại Việt Nam có đầy đủ chương trình học cho mọi lứa tuổi
+                </h2>
+
+                <ul class="stats-strip__list" aria-label="Những con số nổi bật của FutureLearn">
+                    <li class="stats-strip__item">
+                        <span class="stats-strip__icon" aria-hidden="true">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </span>
+                        <p class="stats-strip__value" aria-label="500.000 cộng">
+                            <span data-stat-counter="500000" aria-hidden="true">500.000</span><span aria-hidden="true">+</span>
+                        </p>
+                        <p class="stats-strip__label">Học viên</p>
+                    </li>
+
+                    <li class="stats-strip__item">
+                        <span class="stats-strip__icon" aria-hidden="true">
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                        </span>
+                        <p class="stats-strip__value" aria-label="10.000 cộng">
+                            <span data-stat-counter="10000" aria-hidden="true">10.000</span><span aria-hidden="true">+</span>
+                        </p>
+                        <p class="stats-strip__label">Giáo viên tin dùng</p>
+                    </li>
+
+                    <li class="stats-strip__item">
+                        <span class="stats-strip__icon" aria-hidden="true">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </span>
+                        <p class="stats-strip__value" aria-label="85 phần trăm">
+                            <span data-stat-counter="85" aria-hidden="true">85</span><span aria-hidden="true">%</span>
+                        </p>
+                        <p class="stats-strip__label">Học viên cải thiện điểm số trên lớp</p>
+                    </li>
+
+                    <li class="stats-strip__item">
+                        <span class="stats-strip__icon stats-strip__icon--highlight" aria-hidden="true">
+                            <i class="fa-solid fa-face-smile-beam"></i>
+                        </span>
+                        <p class="stats-strip__value" aria-label="96 phần trăm">
+                            <span data-stat-counter="96" aria-hidden="true">96</span><span aria-hidden="true">%</span>
+                        </p>
+                        <p class="stats-strip__label">Học viên hài lòng về FutureLearn</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             WHY CHOOSE FUTURELEARN
+             ============================================================ -->
+        <section id="why-choose" class="why-choose" aria-labelledby="why-choose-title">
+            <div class="why-choose__glow" aria-hidden="true"></div>
+
+            <div class="container-xl why-choose__inner">
+                <header class="why-choose__header">
+                    <h2 id="why-choose-title" class="why-choose__title">
+                        Tại sao nên chọn FutureLearn?
+                    </h2>
+                    <p class="why-choose__intro">
+                        Sáu nền tảng giúp người học xây chắc kiến thức, luyện phản xạ và duy trì tiến bộ mỗi ngày.
+                    </p>
+                </header>
+
+                <p class="why-choose__scroll-hint" aria-hidden="true">
+                    Vuốt để khám phá 6 lý do
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </p>
+
+                <ul class="why-choose__grid">
+                    <li class="why-choose__item">
+                        <div class="why-choose__visual why-choose__visual--program" aria-hidden="true">
+                            <span class="why-choose__visual-icon">
+                                <i class="fa-solid fa-book-open-reader"></i>
+                            </span>
+                            <span class="why-choose__visual-note">Mọi lứa tuổi</span>
+                            <span class="why-choose__visual-dot why-choose__visual-dot--one"></span>
+                            <span class="why-choose__visual-dot why-choose__visual-dot--two"></span>
+                        </div>
+                        <div class="why-choose__content">
+                            <h3 class="why-choose__item-title">Lộ trình toàn diện cho mọi độ tuổi</h3>
+                            <p class="why-choose__description">
+                                Từ chương trình bám sát sách giáo khoa đến giao tiếp, IELTS, TOEIC và Cambridge, người học dễ chọn đúng mục tiêu.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="why-choose__item">
+                        <div class="why-choose__visual why-choose__visual--method" aria-hidden="true">
+                            <span class="why-choose__method-mark">
+                                <strong>3R</strong>
+                                <span>+</span>
+                                <strong>3E</strong>
+                            </span>
+                            <span class="why-choose__visual-note">Ghi nhớ · Phản xạ</span>
+                        </div>
+                        <div class="why-choose__content">
+                            <h3 class="why-choose__item-title">Phương pháp 3R–3E độc quyền</h3>
+                            <p class="why-choose__description">
+                                Kết hợp lặp lại, phản xạ và môi trường học tích cực để ghi nhớ sâu, hình thành thói quen dùng tiếng Anh.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="why-choose__item">
+                        <div class="why-choose__visual why-choose__visual--teachers" aria-hidden="true">
+                            <span class="why-choose__visual-icon">
+                                <i class="fa-solid fa-person-chalkboard"></i>
+                            </span>
+                            <span class="why-choose__speech-mark">
+                                <i class="fa-solid fa-comment-dots"></i>
+                            </span>
+                            <span class="why-choose__visual-note">Học cùng chuyên gia</span>
+                        </div>
+                        <div class="why-choose__content">
+                            <h3 class="why-choose__item-title">Đội ngũ giảng dạy chuẩn quốc tế</h3>
+                            <p class="why-choose__description">
+                                Bài giảng được xây dựng cùng giáo viên, chuyên gia giàu kinh nghiệm, chú trọng phát âm và giao tiếp thực tế.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="why-choose__item">
+                        <div class="why-choose__visual why-choose__visual--ai" aria-hidden="true">
+                            <span class="why-choose__visual-icon">
+                                <i class="fa-solid fa-microphone-lines"></i>
+                            </span>
+                            <span class="why-choose__sound-wave">
+                                <i></i><i></i><i></i><i></i><i></i>
+                            </span>
+                            <span class="why-choose__visual-note">F-SPEAK</span>
+                        </div>
+                        <div class="why-choose__content">
+                            <h3 class="why-choose__item-title">AI luyện nói, sửa phát âm</h3>
+                            <p class="why-choose__description">
+                                Công nghệ nhận diện giọng nói phản hồi trực tiếp, giúp người học luyện từng từ và phản xạ hội thoại.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="why-choose__item">
+                        <div class="why-choose__visual why-choose__visual--family" aria-hidden="true">
+                            <span class="why-choose__visual-icon">
+                                <i class="fa-solid fa-people-roof"></i>
+                            </span>
+                            <span class="why-choose__progress-ring">
+                                <i class="fa-solid fa-heart"></i>
+                            </span>
+                            <span class="why-choose__visual-note">Cùng con tiến bộ</span>
+                        </div>
+                        <div class="why-choose__content">
+                            <h3 class="why-choose__item-title">Phụ huynh đồng hành cùng con</h3>
+                            <p class="why-choose__description">
+                                Báo cáo tiến độ, thành tích và điểm thưởng giúp phụ huynh theo sát quá trình học, khích lệ con đúng lúc.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="why-choose__item">
+                        <div class="why-choose__visual why-choose__visual--languages" aria-hidden="true">
+                            <span class="why-choose__language-orbit">
+                                <i class="fa-solid fa-earth-asia"></i>
+                            </span>
+                            <span class="why-choose__language why-choose__language--en">EN</span>
+                            <span class="why-choose__language why-choose__language--zh">中</span>
+                            <span class="why-choose__language why-choose__language--ja">あ</span>
+                            <span class="why-choose__language why-choose__language--ko">한</span>
+                        </div>
+                        <div class="why-choose__content">
+                            <h3 class="why-choose__item-title">Hệ sinh thái học đa ngôn ngữ</h3>
+                            <p class="why-choose__description">
+                                Một nền tảng mở rộng hành trình học Anh – Trung – Nhật – Hàn theo nhu cầu của từng người.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             FUTURELEARN AUDIENCES
+             ============================================================ -->
+        <section id="audiences" class="audiences" aria-labelledby="audiences-title">
+            <div class="container-xl">
+                <h2 id="audiences-title" class="audiences__title">FutureLearn dành cho ai?</h2>
+
+                <div class="audiences__layout">
+                    <figure class="audiences__visual">
+                        <img
+                            class="audiences__image"
+                            src="/public-home/images/audiences/futurelang-for-everyone.webp"
+                            alt="Các nhóm học sinh và sinh viên trong môi trường học tập"
+                            width="960"
+                            height="578"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </figure>
+
+                    <div class="audience-accordion" aria-label="Các nhóm người học của FutureLearn">
+                        <details class="audience-accordion__item" name="futurelang-audience" open>
+                            <summary class="audience-accordion__summary">
+                                <span class="audience-accordion__icon" aria-hidden="true">
+                                    <i class="fa-solid fa-child-reaching"></i>
+                                </span>
+                                <span class="audience-accordion__label">Học sinh Mầm non và Tiểu học</span>
+                                <span class="audience-accordion__chevron" aria-hidden="true"></span>
+                            </summary>
+                            <div class="audience-accordion__content">
+                                <ul class="audience-accordion__list">
+                                    <li>Tiếng Anh giao tiếp cho học sinh từ 3–12 tuổi.</li>
+                                    <li>Tiếng Anh theo sách giáo khoa lớp 1–5 của Bộ GD&amp;ĐT.</li>
+                                    <li>Lộ trình Cambridge, TOEFL và IOE.</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="audience-accordion__item" name="futurelang-audience">
+                            <summary class="audience-accordion__summary">
+                                <span class="audience-accordion__icon" aria-hidden="true">
+                                    <i class="fa-solid fa-school"></i>
+                                </span>
+                                <span class="audience-accordion__label">Học sinh Trung học Cơ sở</span>
+                                <span class="audience-accordion__chevron" aria-hidden="true"></span>
+                            </summary>
+                            <div class="audience-accordion__content">
+                                <ul class="audience-accordion__list">
+                                    <li>Giao tiếp 66 ngày, phát âm và ngữ pháp nền tảng.</li>
+                                    <li>Tiếng Anh theo sách giáo khoa lớp 6–9.</li>
+                                    <li>Lộ trình IELTS 5.5 và luyện thi vào lớp 10.</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="audience-accordion__item" name="futurelang-audience">
+                            <summary class="audience-accordion__summary">
+                                <span class="audience-accordion__icon" aria-hidden="true">
+                                    <i class="fa-solid fa-book-open-reader"></i>
+                                </span>
+                                <span class="audience-accordion__label">Học sinh Trung học Phổ thông</span>
+                                <span class="audience-accordion__chevron" aria-hidden="true"></span>
+                            </summary>
+                            <div class="audience-accordion__content">
+                                <ul class="audience-accordion__list">
+                                    <li>Tiếng Anh theo sách giáo khoa lớp 10–12.</li>
+                                    <li>Lộ trình chinh phục IELTS 7.5.</li>
+                                    <li>Ôn luyện cho kỳ thi tốt nghiệp THPT.</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="audience-accordion__item" name="futurelang-audience">
+                            <summary class="audience-accordion__summary">
+                                <span class="audience-accordion__icon" aria-hidden="true">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </span>
+                                <span class="audience-accordion__label">Sinh viên</span>
+                                <span class="audience-accordion__chevron" aria-hidden="true"></span>
+                            </summary>
+                            <div class="audience-accordion__content">
+                                <ul class="audience-accordion__list">
+                                    <li>Giao tiếp 66 ngày, phát âm và ngữ pháp.</li>
+                                    <li>Rèn luyện kỹ năng viết và nói.</li>
+                                    <li>Lộ trình IELTS 5.5–7.5 và TOEIC.</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="audience-accordion__item" name="futurelang-audience">
+                            <summary class="audience-accordion__summary">
+                                <span class="audience-accordion__icon" aria-hidden="true">
+                                    <i class="fa-solid fa-briefcase"></i>
+                                </span>
+                                <span class="audience-accordion__label">Người đi làm</span>
+                                <span class="audience-accordion__chevron" aria-hidden="true"></span>
+                            </summary>
+                            <div class="audience-accordion__content">
+                                <ul class="audience-accordion__list">
+                                    <li>Giao tiếp 66 ngày, phát âm và ngữ pháp ứng dụng.</li>
+                                    <li>Rèn luyện kỹ năng viết và nói trong công việc.</li>
+                                    <li>Lộ trình IELTS 5.5–7.5 và TOEIC.</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="audience-accordion__item" name="futurelang-audience">
+                            <summary class="audience-accordion__summary">
+                                <span class="audience-accordion__icon" aria-hidden="true">
+                                    <i class="fa-solid fa-person-chalkboard"></i>
+                                </span>
+                                <span class="audience-accordion__label">Giáo viên</span>
+                                <span class="audience-accordion__chevron" aria-hidden="true"></span>
+                            </summary>
+                            <div class="audience-accordion__content">
+                                <ul class="audience-accordion__list">
+                                    <li>Phát âm và giao tiếp cho nhiều lứa tuổi.</li>
+                                    <li>Chương trình sách giáo khoa lớp 1–12.</li>
+                                    <li>Cambridge, TOEFL, IOE, IELTS và TOEIC.</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             COMPREHENSIVE TRAINING PROGRAMS
+             ============================================================ -->
+        <section id="training-programs" class="training-programs" aria-labelledby="training-programs-title">
+            <div class="container-xl">
+                <header class="training-programs__header">
+                    <h2 id="training-programs-title" class="training-programs__title">
+                        Chương trình đào tạo toàn diện
+                    </h2>
+                    <p class="training-programs__intro">
+                        Ba nhóm chương trình giúp người học xây nền tảng, tự tin giao tiếp và chinh phục mục tiêu chứng chỉ.
+                    </p>
+                </header>
+
+                <ul class="training-programs__grid">
+                    <li class="training-programs__item">
+                        <article class="training-program-card">
+                            <figure class="training-program-card__media">
+                                <img
+                                    src="/public-home/images/programs/ministry-curriculum.webp"
+                                    alt="Robot FutureLearn giới thiệu bộ sách tiếng Anh phổ thông"
+                                    class="training-program-card__image"
+                                    width="720"
+                                    height="500"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </figure>
+                            <div class="training-program-card__body">
+                                <h3 class="training-program-card__title">Chương trình của Bộ Giáo dục</h3>
+                                <p class="training-program-card__description">
+                                    Nội dung bám sát chương trình tiếng Anh phổ thông, củng cố kiến thức từ lớp 1 đến lớp 12.
+                                </p>
+                            </div>
+                        </article>
+                    </li>
+
+                    <li class="training-programs__item">
+                        <article class="training-program-card">
+                            <figure class="training-program-card__media">
+                                <img
+                                    src="/public-home/images/programs/pronunciation-speaking.webp"
+                                    alt="Học viên luyện phát âm và giao tiếp tiếng Anh cùng robot FutureLearn"
+                                    class="training-program-card__image"
+                                    width="960"
+                                    height="663"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </figure>
+                            <div class="training-program-card__body">
+                                <h3 class="training-program-card__title">Phát âm và Giao tiếp</h3>
+                                <p class="training-program-card__description">
+                                    Rèn phát âm, phản xạ nghe – nói và giao tiếp tự nhiên qua những tình huống gần gũi.
+                                </p>
+                            </div>
+                        </article>
+                    </li>
+
+                    <li class="training-programs__item">
+                        <article class="training-program-card">
+                            <figure class="training-program-card__media">
+                                <img
+                                    src="/public-home/images/programs/language-certificates.webp"
+                                    alt="Robot FutureLearn giới thiệu các chương trình luyện thi chứng chỉ ngoại ngữ"
+                                    class="training-program-card__image"
+                                    width="960"
+                                    height="663"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </figure>
+                            <div class="training-program-card__body">
+                                <h3 class="training-program-card__title">Chứng chỉ ngoại ngữ</h3>
+                                <p class="training-program-card__description">
+                                    Lộ trình Cambridge, IELTS, TOEIC và IOE được thiết kế theo mục tiêu của từng người học.
+                                </p>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             ADVISORS AND TEACHERS
+             ============================================================ -->
+        <section id="teachers" class="teachers" aria-labelledby="teachers-title">
+            <div class="container-xl">
+                <header class="teachers__header">
+                    <h2 id="teachers-title" class="teachers__title">Đội ngũ cố vấn, giáo viên</h2>
+                    <p class="teachers__intro">
+                        Gặp gỡ các chuyên gia trong nước và quốc tế đang đồng hành cùng FutureLearn.
+                    </p>
+                </header>
+
+                <div class="teachers__rail" data-teachers-carousel>
+                    <ul
+                        id="teachers-track"
+                        class="teachers__track"
+                        data-teachers-track
+                        aria-label="Danh sách cố vấn và giáo viên FutureLearn"
+                        tabindex="0"
+                    >
+                        <li class="teachers__item">
+                            <article class="teacher-card">
+                                <figure class="teacher-card__portrait">
+                                    <img
+                                        class="teacher-card__image"
+                                        src="/public-home/images/teachers/alexandra-gilliland.webp"
+                                        alt="Cô Alexandra Gilliland"
+                                        width="500"
+                                        height="500"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </figure>
+                                <div class="teacher-card__body">
+                                    <h3 class="teacher-card__name">Cô Alexandra Gilliland</h3>
+                                    <hr class="teacher-card__divider" />
+                                    <p class="teacher-card__role">Chuyên gia đào tạo tiếng Anh đến từ London, Anh Quốc.</p>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li class="teachers__item">
+                            <article class="teacher-card">
+                                <figure class="teacher-card__portrait">
+                                    <img
+                                        class="teacher-card__image"
+                                        src="/public-home/images/teachers/lydia-jayne-sawyer.webp"
+                                        alt="Cô Lydia Jayne Sawyer"
+                                        width="500"
+                                        height="500"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </figure>
+                                <div class="teacher-card__body">
+                                    <h3 class="teacher-card__name">Lydia Jayne Sawyer</h3>
+                                    <hr class="teacher-card__divider" />
+                                    <p class="teacher-card__role">Chuyên gia đào tạo tiếng Anh đến từ Anh Quốc.</p>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li class="teachers__item">
+                            <article class="teacher-card">
+                                <figure class="teacher-card__portrait">
+                                    <img
+                                        class="teacher-card__image"
+                                        src="/public-home/images/teachers/emily-francis.webp"
+                                        alt="Cô Emily Francis"
+                                        width="500"
+                                        height="500"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </figure>
+                                <div class="teacher-card__body">
+                                    <h3 class="teacher-card__name">Cô Emily Francis</h3>
+                                    <hr class="teacher-card__divider" />
+                                    <p class="teacher-card__role">Chuyên gia đào tạo tiếng Anh đến từ Cambridge, Anh Quốc.</p>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li class="teachers__item">
+                            <article class="teacher-card">
+                                <figure class="teacher-card__portrait">
+                                    <img
+                                        class="teacher-card__image"
+                                        src="/public-home/images/teachers/oliver-william-rance.webp"
+                                        alt="Thầy Oliver William Rance"
+                                        width="500"
+                                        height="500"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </figure>
+                                <div class="teacher-card__body">
+                                    <h3 class="teacher-card__name">Oliver William Rance</h3>
+                                    <hr class="teacher-card__divider" />
+                                    <p class="teacher-card__role">Chuyên gia đào tạo tiếng Anh đến từ Anh Quốc.</p>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li class="teachers__item">
+                            <article class="teacher-card">
+                                <figure class="teacher-card__portrait">
+                                    <img
+                                        class="teacher-card__image"
+                                        src="/public-home/images/teachers/khiem-nguyen.webp"
+                                        alt="Tiến sĩ Khiêm Nguyễn"
+                                        width="500"
+                                        height="500"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </figure>
+                                <div class="teacher-card__body">
+                                    <h3 class="teacher-card__name">Tiến sĩ Khiêm Nguyễn</h3>
+                                    <hr class="teacher-card__divider" />
+                                    <p class="teacher-card__role">
+                                        NLP Trainer, Master Coach ABNLP, ICF Coach; Giám đốc đào tạo NLP Power.
+                                    </p>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li class="teachers__item">
+                            <article class="teacher-card">
+                                <figure class="teacher-card__portrait">
+                                    <img
+                                        class="teacher-card__image teacher-card__image--portrait"
+                                        src="/public-home/images/teachers/vien-ngoc-sang.webp"
+                                        alt="Thầy Viên Ngọc Sang"
+                                        width="741"
+                                        height="900"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </figure>
+                                <div class="teacher-card__body">
+                                    <h3 class="teacher-card__name">Thầy Viên Ngọc Sang</h3>
+                                    <hr class="teacher-card__divider" />
+                                    <p class="teacher-card__role">
+                                        Cố vấn đào tạo cao cấp FutureLearn; Trưởng ban Đào tạo, Hiệp hội DNNVV khu vực phía Nam.
+                                    </p>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li class="teachers__item">
+                            <article class="teacher-card">
+                                <figure class="teacher-card__portrait">
+                                    <img
+                                        class="teacher-card__image"
+                                        src="/public-home/images/teachers/do-duc-tho.webp"
+                                        alt="Ông Đỗ Đức Thọ"
+                                        width="826"
+                                        height="826"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </figure>
+                                <div class="teacher-card__body">
+                                    <h3 class="teacher-card__name">Ông Đỗ Đức Thọ</h3>
+                                    <hr class="teacher-card__divider" />
+                                    <p class="teacher-card__role">
+                                        Phó Viện trưởng Viện Khoa học và Giáo dục Đông Nam Á; Chủ tịch, Tổng giám đốc VEDICO.
+                                    </p>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li class="teachers__item">
+                            <article class="teacher-card">
+                                <figure class="teacher-card__portrait">
+                                    <img
+                                        class="teacher-card__image"
+                                        src="/public-home/images/teachers/nguyen-van-khuong.webp"
+                                        alt="Ông Nguyễn Văn Khương"
+                                        width="500"
+                                        height="500"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </figure>
+                                <div class="teacher-card__body">
+                                    <h3 class="teacher-card__name">Ông Nguyễn Văn Khương</h3>
+                                    <hr class="teacher-card__divider" />
+                                    <p class="teacher-card__role">Viện trưởng Viện Khoa học Giáo dục và Môi trường.</p>
+                                </div>
+                            </article>
+                        </li>
+                    </ul>
+
+                    <div class="teachers__footer">
+                        <p class="teachers__status" aria-live="polite">
+                            <span data-teachers-current>1</span> / 8
+                        </p>
+                        <div class="teachers__controls" aria-label="Điều khiển danh sách giáo viên">
+                            <button
+                                class="teachers__control"
+                                type="button"
+                                data-teachers-previous
+                                aria-controls="teachers-track"
+                                aria-label="Xem giáo viên trước"
+                            >
+                                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                                <span>Trước</span>
+                            </button>
+                            <button
+                                class="teachers__control"
+                                type="button"
+                                data-teachers-next
+                                aria-controls="teachers-track"
+                                aria-label="Xem giáo viên tiếp theo"
+                            >
+                                <span>Tiếp</span>
+                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             ABOUT FUTURELEARN
+             ============================================================ -->
+        <section id="about" class="about-story" aria-labelledby="about-story-title">
+            <div class="container-xl">
+                <div class="about-story__layout">
+                    <div class="about-story__content">
+                        <header class="about-story__header">
+                            <h2 id="about-story-title" class="about-story__title">Về chúng tôi</h2>
+                            <p class="about-story__lead">
+                                <strong>FutureLearn</strong> là trung tâm đào tạo tiếng Anh ứng dụng,
+                                được thành lập ngày <strong>12/09/2015</strong> tại
+                                <strong>TP. Lạng Sơn</strong>.
+                            </p>
+                        </header>
+
+                        <div class="about-story__copy">
+                            <p>
+                                Trung tâm hướng đến việc xây dựng môi trường học tiếng Anh hiện đại,
+                                thân thiện và thực tế, giúp học viên phát triển đồng đều các kỹ năng
+                                <strong>nghe, nói, đọc, viết</strong> và tự tin sử dụng tiếng Anh trong
+                                học tập, công việc và giao tiếp hàng ngày.
+                            </p>
+                            <p>
+                                Với phương pháp học kết hợp giữa kiến thức nền tảng và thực hành,
+                                FutureLearn không ngừng đổi mới chương trình giảng dạy nhằm mang đến
+                                trải nghiệm học tập hiệu quả và phù hợp với từng học viên.
+                            </p>
+                        </div>
+                    </div>
+
+                    <aside class="about-story__milestone" aria-label="Mốc thành lập FutureLearn">
+                        <span class="about-story__milestone-year">2015</span>
+                        <p class="about-story__milestone-date">12 tháng 09</p>
+                        <p class="about-story__milestone-place">
+                            Khởi đầu hành trình<br />tại TP. Lạng Sơn
+                        </p>
+                    </aside>
+                </div>
+
+                <div class="about-story__gallery" aria-label="Không gian học tập tại FutureLearn">
+                    <figure class="about-story__photo about-story__photo--main">
+                        <img
+                            src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&amp;fit=crop&amp;w=1400&amp;q=85"
+                            alt="Giáo viên hướng dẫn học viên trong một lớp học hiện đại"
+                            width="1400"
+                            height="934"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <figcaption>Học qua tương tác và thực hành trong lớp</figcaption>
+                    </figure>
+
+                    <figure class="about-story__photo">
+                        <img
+                            src="https://images.unsplash.com/photo-1762512346988-045f4d5ad2b3?auto=format&amp;fit=crop&amp;w=900&amp;q=85"
+                            alt="Nhóm học viên cùng trao đổi và học tập tại bàn dài"
+                            width="900"
+                            height="600"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <figcaption>Cùng nhau tiến bộ mỗi ngày</figcaption>
+                    </figure>
+
+                    <figure class="about-story__photo">
+                        <img
+                            src="https://images.unsplash.com/photo-1758270705696-ec9caffc73dd?auto=format&amp;fit=crop&amp;w=900&amp;q=85"
+                            alt="Giáo viên trò chuyện và giải đáp câu hỏi cho nhóm học viên"
+                            width="900"
+                            height="600"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <figcaption>Khuyến khích sự tự tin trong giao tiếp</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- jQuery + AOS (init trong main.js) -->
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="/public-home/js/stats.js?v=1.0.0"></script>
+    <script src="/public-home/js/teachers.js?v=1.0.0"></script>
+    <script src="/public-home/js/main.js?v=1.1.2"></script>
+</body>
+</html>

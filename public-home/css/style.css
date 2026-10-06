@@ -1,0 +1,307 @@
+/* ============================================================
+ * FutureLearn — Global stylesheet
+ * Version: v1.0.8
+ * Tokens rút từ style.md ở root
+ * ============================================================ */
+
+:root {
+    /* Brand palette */
+    --primary-blue-1: #007DD3;
+    --primary-blue-2: #0066FF;
+    --secondary-cyan: #71CEFF;
+    --secondary-cyan-bright: #00A6FF;
+    --secondary-cyan-light: rgba(95, 196, 255, 0.12);
+    --gradient-cyan-end: #73CDFF;
+    --accent-orange: #FF8A00;
+    --accent-orange-strong: #FF9900;
+
+    /* Neutrals */
+    --cream: #FFF9EB;
+    --gray-light-2: #F2F2F2;
+    --natural-black-1: #181818;
+    --natural-black-2: #323232;
+    --natural-black-3: #525252;
+    --gray-muted: #747070;
+    --gray-line: #C2C2C2;
+
+    --white: #FFFFFF;
+
+    /* Effects */
+    --shadow-soft: 0 6px 24px rgba(0, 125, 211, 0.08);
+    --shadow-medium: 0 12px 40px rgba(0, 125, 211, 0.14);
+    --shadow-orange: 0 14px 32px rgba(255, 138, 0, 0.28);
+
+    /* Type */
+    --font-display: 'Quicksand', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+
+    /* Radii */
+    --radius-card: 20px;
+    --radius-button: 999px;
+    --radius-input: 20px;
+
+    /* Spacing scale */
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-6: 3rem;
+    --space-8: 4rem;
+
+    /* Layout */
+    --header-height: 84px;
+    --container-max: 1269px;
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================================
+ * Reset nhẹ (Bootstrap đã có, chỉ bổ sung)
+ * ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--natural-black-2);
+    background-color: var(--white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'salt' on, 'liga' off;
+}
+
+img,
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--primary-blue-1);
+    text-decoration: none;
+    transition: color 0.2s var(--ease-out);
+}
+
+a:hover {
+    color: var(--primary-blue-2);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ============================================================
+ * Container override — Bootstrap mặc định 1320px, brand 2 dùng 1269px
+ * ============================================================ */
+.container-xl {
+    max-width: var(--container-max);
+}
+
+/* ============================================================
+ * Capsule button — visual signature của FutureLearn
+ * Giả lập Group-195.svg bằng border-radius + gradient + inset shadow
+ * ============================================================ */
+.capsule-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.65rem 1.5rem;
+    border-radius: var(--radius-button);
+    border: 2px solid transparent;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--white);
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform 0.2s var(--ease-out),
+        box-shadow 0.2s var(--ease-out),
+        filter 0.2s var(--ease-out);
+    white-space: nowrap;
+}
+
+.capsule-btn:focus-visible {
+    outline: 3px solid var(--secondary-cyan-bright);
+    outline-offset: 3px;
+}
+
+.capsule-btn--orange {
+    background: linear-gradient(135deg, #FF9A28 0%, var(--accent-orange) 100%);
+    box-shadow: var(--shadow-orange);
+}
+
+.capsule-btn--orange:hover {
+    color: var(--white);
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.capsule-btn--blue {
+    background: linear-gradient(135deg, var(--primary-blue-1) 0%, var(--primary-blue-2) 100%);
+    box-shadow: 0 14px 32px rgba(0, 102, 255, 0.24);
+}
+
+.capsule-btn--blue:hover {
+    color: var(--white);
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.capsule-btn--cta {
+    padding: 1rem 2.25rem;
+    font-size: 1.125rem;
+    background: linear-gradient(135deg, #FF9A28 0%, var(--accent-orange) 100%);
+    box-shadow: var(--shadow-orange);
+}
+
+.capsule-btn--cta:hover {
+    color: var(--white);
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.capsule-btn i {
+    font-size: 0.9em;
+    transition: transform 0.2s var(--ease-out);
+}
+
+.capsule-btn:hover i {
+    transform: translateX(3px);
+}
+
+/* ============================================================
+ * Capsule button — animated variant
+ * Hiệu ứng "thở" (breathe): nút phình to ↔ thu nhỏ liên tục
+ * để kéo mắt người dùng về CTA chính. Giữ thêm 1 lớp shine
+ * lướt ngang rất nhẹ làm chi tiết phụ. Tôn trọng prefers-reduced-motion.
+ * ============================================================ */
+.capsule-btn--animated {
+    position: relative;
+    overflow: visible;
+    isolation: isolate;
+    transform-origin: center center;
+    /* Tách animation khỏi transition chung của button để transform không bị
+       hover/Bootstrap ghi đè giữa chừng. */
+    transition: filter 0.2s var(--ease-out);
+    animation: capsule-breathe 1.45s cubic-bezier(0.45, 0, 0.55, 1) infinite both;
+    will-change: transform, box-shadow;
+}
+
+.capsule-btn--animated .capsule-btn__label {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+}
+
+/* Shine: vệt sáng lướt ngang — giữ nhưng làm subtle hơn, 1 lần/4s */
+.capsule-btn--animated .capsule-btn__shine {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit;
+    overflow: hidden;
+}
+
+.capsule-btn--animated .capsule-btn__shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        100deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.5) 50%,
+        transparent 70%
+    );
+    transform: translateX(-120%);
+    animation: capsule-shine 4s var(--ease-out) 2s infinite;
+}
+
+/* Pulse ring: dùng pseudo để không thêm DOM, nở vòng cam quanh nút */
+.capsule-btn--animated .capsule-btn__pulse {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    border: 2px solid rgba(255, 138, 0, 0.42);
+    border-radius: inherit;
+    animation: capsule-pulse 1.45s cubic-bezier(0.45, 0, 0.55, 1) infinite both;
+}
+
+/* Hover chỉ tăng độ sáng; nhịp thở vẫn chạy liên tục. */
+.capsule-btn--animated:hover {
+    filter: brightness(1.05);
+}
+
+@keyframes capsule-breathe {
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 14px 32px rgba(255, 138, 0, 0.28);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 20px 42px rgba(255, 138, 0, 0.46);
+    }
+}
+
+@keyframes capsule-pulse {
+    0%,
+    100% {
+        opacity: 0.42;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0;
+        transform: scale(1.18, 1.35);
+    }
+}
+
+@keyframes capsule-shine {
+    0% {
+        transform: translateX(-120%);
+    }
+    60%,
+    100% {
+        transform: translateX(120%);
+    }
+}
+
+/* Visually hidden (a11y) */
+.sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

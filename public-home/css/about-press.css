@@ -1,0 +1,215 @@
+/* ============================================================
+ * FutureLearn — About story
+ * Version: v1.1.0
+ * ============================================================ */
+
+.about-story {
+    position: relative;
+    overflow: hidden;
+    padding-block: 4.75rem 5rem;
+    background:
+        radial-gradient(circle at 92% 8%, rgba(255, 255, 255, 0.72) 0 7rem, transparent 7.1rem),
+        linear-gradient(180deg, #f7fcff 0%, var(--gradient-cyan-end) 100%);
+}
+
+.about-story__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    align-items: end;
+}
+
+.about-story__content {
+    max-width: 48rem;
+}
+
+.about-story__title {
+    margin: 0;
+    color: var(--primary-blue-1);
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 7vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.12;
+    text-wrap: balance;
+}
+
+.about-story__lead {
+    max-width: 44rem;
+    margin: 1.35rem 0 0;
+    color: var(--natural-black-2);
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.8vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.55;
+}
+
+.about-story__lead strong {
+    color: var(--primary-blue-1);
+    font-weight: 700;
+}
+
+.about-story__copy {
+    max-width: 45rem;
+    margin-top: 1.25rem;
+    color: var(--natural-black-3);
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.about-story__copy p {
+    margin: 0;
+}
+
+.about-story__copy p + p {
+    margin-top: 0.85rem;
+}
+
+.about-story__copy strong {
+    color: var(--natural-black-2);
+    font-weight: 700;
+}
+
+.about-story__milestone {
+    position: relative;
+    min-height: 13rem;
+    padding: 1.4rem 1.5rem 1.5rem;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background-color: var(--primary-blue-1);
+    color: var(--white);
+    isolation: isolate;
+}
+
+.about-story__milestone::after {
+    position: absolute;
+    right: -2.5rem;
+    bottom: -3.5rem;
+    z-index: -1;
+    width: 10rem;
+    height: 10rem;
+    border: 2rem solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    content: "";
+}
+
+.about-story__milestone-year {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(4.5rem, 16vw, 7rem);
+    font-weight: 700;
+    letter-spacing: -0.07em;
+    line-height: 0.85;
+}
+
+.about-story__milestone-date {
+    margin: 1rem 0 0;
+    color: var(--accent-orange);
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.about-story__milestone-place {
+    margin: 0.65rem 0 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.about-story__gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.9rem;
+    margin-top: 2.75rem;
+}
+
+.about-story__photo {
+    position: relative;
+    min-height: 15rem;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background-color: var(--secondary-cyan-light);
+}
+
+.about-story__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-story__photo figcaption {
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.8rem;
+    left: 0.8rem;
+    width: fit-content;
+    max-width: calc(100% - 1.6rem);
+    margin: 0;
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.65rem;
+    background-color: rgba(0, 57, 96, 0.82);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.4;
+    backdrop-filter: blur(6px);
+}
+
+@media (min-width: 640px) {
+    .about-story__gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(2, 13rem);
+    }
+
+    .about-story__photo {
+        min-height: 0;
+    }
+
+    .about-story__photo--main {
+        grid-row: 1 / span 2;
+    }
+}
+
+@media (min-width: 768px) {
+    .about-story {
+        padding-block: 5.5rem 6rem;
+    }
+
+    .about-story__layout {
+        grid-template-columns: minmax(0, 2fr) minmax(15rem, 0.75fr);
+        gap: 3rem;
+    }
+
+    .about-story__milestone {
+        min-height: 17rem;
+        padding: 1.75rem;
+    }
+
+    .about-story__gallery {
+        grid-template-columns: minmax(0, 1.55fr) minmax(16rem, 0.85fr);
+        grid-template-rows: repeat(2, 14rem);
+        gap: 1rem;
+        margin-top: 3.5rem;
+    }
+
+    .about-story__photo figcaption {
+        right: 1rem;
+        bottom: 1rem;
+        left: 1rem;
+        max-width: calc(100% - 2rem);
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .about-story__layout {
+        grid-template-columns: minmax(0, 2.15fr) minmax(17rem, 0.7fr);
+        gap: 5rem;
+    }
+
+    .about-story__gallery {
+        grid-template-rows: repeat(2, 15rem);
+    }
+}

@@ -1,0 +1,373 @@
+/* ============================================================
+ * FutureLearn — Home (Header + Hero)
+ * Version: v1.0.0
+ * Mobile-first, dùng min-width để mở rộng
+ * ============================================================ */
+
+/* ============================================================
+ * HEADER / NAV
+ * ============================================================ */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background-color: var(--white);
+    border-bottom: 1px solid rgba(113, 206, 255, 0.35);
+    transition: box-shadow 0.25s var(--ease-out),
+        border-color 0.25s var(--ease-out);
+}
+
+.site-header.is-scrolled {
+    box-shadow: var(--shadow-soft);
+    border-bottom-color: var(--secondary-cyan);
+}
+
+.site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    min-height: var(--header-height);
+    padding-block: 0.75rem;
+}
+
+/* Logo (image) */
+.site-header__logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+.site-header__logo-img {
+    display: block;
+    height: 40px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+    transition: opacity 0.2s var(--ease-out);
+}
+
+.site-header__logo:hover {
+    color: transparent;
+}
+
+.site-header__logo:hover .site-header__logo-img {
+    opacity: 0.85;
+}
+
+/* Nav (desktop hidden until ≥ 992px) */
+.site-header__nav {
+    display: none;
+}
+
+.site-header__menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.site-header__item {
+    position: relative;
+}
+
+.site-header__link {
+    display: inline-block;
+    padding: 0.5rem 0.85rem;
+    color: var(--natural-black-3);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-radius: 6px;
+    transition: color 0.2s var(--ease-out);
+    position: relative;
+}
+
+/* Underline animation — không dùng gradient overlay mặc định */
+.site-header__link::after {
+    content: "";
+    position: absolute;
+    left: 0.85rem;
+    right: 0.85rem;
+    bottom: 0.25rem;
+    height: 2px;
+    background-color: var(--secondary-cyan);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.25s var(--ease-out);
+}
+
+.site-header__link:hover {
+    color: var(--primary-blue-1);
+}
+
+.site-header__link:hover::after,
+.site-header__item.is-active .site-header__link::after {
+    transform: scaleX(1);
+}
+
+.site-header__item.is-active .site-header__link {
+    color: var(--primary-blue-1);
+}
+
+/* CTA group (desktop hidden until ≥ 768px) */
+.site-header__cta {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* Hamburger (mobile) */
+.site-header__hamburger {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--secondary-cyan);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s var(--ease-out);
+}
+
+.site-header__hamburger:hover {
+    background-color: var(--secondary-cyan-light);
+}
+
+.site-header__hamburger-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--primary-blue-1);
+    border-radius: 2px;
+    transition: transform 0.25s var(--ease-out),
+        opacity 0.2s var(--ease-out);
+}
+
+/* Hamburger open state → X */
+.site-header__hamburger[aria-expanded="true"] .site-header__hamburger-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.site-header__hamburger[aria-expanded="true"] .site-header__hamburger-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.site-header__hamburger[aria-expanded="true"] .site-header__hamburger-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile drawer */
+.site-header__drawer {
+    border-top: 1px solid rgba(113, 206, 255, 0.35);
+    padding: var(--space-3) var(--space-3) var(--space-4);
+    background: var(--white);
+}
+
+.site-header__drawer-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.site-header__drawer-list a {
+    display: block;
+    padding: 0.875rem 1rem;
+    color: var(--natural-black-3);
+    font-weight: 500;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition: background-color 0.2s var(--ease-out),
+        color 0.2s var(--ease-out);
+}
+
+.site-header__drawer-list a:hover {
+    background: linear-gradient(180deg,
+        rgba(95, 196, 255, 0) 0%,
+        rgba(95, 196, 255, 0.12) 100%);
+    color: var(--primary-blue-1);
+}
+
+.site-header__drawer-cta {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: var(--space-3);
+}
+
+.site-header__drawer-cta .capsule-btn {
+    flex: 1;
+}
+
+/* Breakpoint ≥ 768px — show CTA group */
+@media (min-width: 768px) {
+    .site-header__cta {
+        display: inline-flex;
+    }
+
+    .site-header__logo-img {
+        height: 44px;
+        max-width: 190px;
+    }
+}
+
+/* Breakpoint ≥ 992px — show full nav, hide hamburger + drawer */
+@media (min-width: 992px) {
+    .site-header__nav {
+        display: block;
+    }
+
+    .site-header__hamburger {
+        display: none;
+    }
+
+    .site-header__drawer {
+        display: none;
+    }
+
+    .site-header__logo-img {
+        height: 48px;
+        max-width: 200px;
+    }
+}
+
+/* ============================================================
+ * HERO
+ * ============================================================ */
+.hero {
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+    /* Gradient nền fallback trong lúc ảnh load — giữ tone xanh đồng bộ */
+    background:
+        radial-gradient(ellipse at 80% -10%, rgba(0, 166, 255, 0.55) 0%, transparent 55%),
+        radial-gradient(ellipse at 0% 100%, rgba(115, 205, 255, 0.45) 0%, transparent 60%),
+        linear-gradient(135deg, #0084DC 0%, var(--primary-blue-1) 45%, #005FB0 100%);
+    isolation: isolate;
+}
+
+/* Decorative floating blobs */
+.hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero__blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.5;
+    animation: hero-float 18s ease-in-out infinite;
+}
+
+.hero__blob--cyan {
+    width: 380px;
+    height: 380px;
+    top: -120px;
+    right: -100px;
+    background: radial-gradient(circle, var(--secondary-cyan) 0%, transparent 70%);
+}
+
+.hero__blob--blue {
+    width: 460px;
+    height: 460px;
+    bottom: -180px;
+    left: -120px;
+    background: radial-gradient(circle, var(--secondary-cyan-bright) 0%, transparent 70%);
+    animation-delay: -6s;
+}
+
+.hero__blob--orange {
+    width: 220px;
+    height: 220px;
+    top: 40%;
+    right: 35%;
+    background: radial-gradient(circle, var(--accent-orange) 0%, transparent 70%);
+    opacity: 0.18;
+    animation-delay: -12s;
+}
+
+/* Hero slider — full-bleed, ảnh chiếm trọn viewport (trừ header) */
+.hero__slider {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    height: calc(100vh - var(--header-height));
+    height: calc(100svh - var(--header-height));
+    overflow: hidden;
+}
+
+.hero__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    will-change: opacity;
+}
+
+.hero__slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+.hero__slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+@keyframes hero-float {
+    0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+        transform: translate3d(20px, -25px, 0) scale(1.08);
+    }
+}
+
+.hero__wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 80px;
+    pointer-events: none;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .hero__wave {
+        height: 100px;
+    }
+}
+
+/* Desktop — slider full-bleed, cao hơn để ảnh hiện rõ */
+@media (min-width: 992px) {
+    .hero__wave {
+        height: 120px;
+    }
+}

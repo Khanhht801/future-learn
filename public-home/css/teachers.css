@@ -1,0 +1,255 @@
+/* ============================================================
+ * FutureLearn — Advisors and teachers
+ * Version: v1.0.0
+ * ============================================================ */
+
+.teachers {
+    padding-block: 4.75rem 5rem;
+    overflow: hidden;
+    background-color: var(--cream);
+}
+
+.teachers__header {
+    max-width: 48rem;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.teachers__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 7vw, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--primary-blue-1);
+    text-wrap: balance;
+}
+
+.teachers__intro {
+    max-width: 42rem;
+    margin: 1rem auto 0;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--natural-black-3);
+}
+
+.teachers__rail {
+    position: relative;
+    margin-top: 2.75rem;
+}
+
+.teachers__track {
+    display: grid;
+    grid-auto-columns: 86%;
+    grid-auto-flow: column;
+    gap: 1rem;
+    margin: 0;
+    padding: 0.25rem 0.1rem 1rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: inline mandatory;
+    scrollbar-color: var(--secondary-cyan) transparent;
+    scrollbar-width: thin;
+    list-style: none;
+}
+
+.teachers__track:focus-visible {
+    outline: 3px solid var(--accent-orange);
+    outline-offset: 0.25rem;
+    border-radius: var(--radius-card);
+}
+
+.teachers__track::-webkit-scrollbar {
+    height: 0.4rem;
+}
+
+.teachers__track::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.teachers__track::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background-color: var(--secondary-cyan);
+}
+
+.teachers__item {
+    min-width: 0;
+    scroll-snap-align: start;
+}
+
+.teacher-card {
+    display: flex;
+    height: 100%;
+    min-height: 28rem;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 1.25rem 1.75rem;
+    border: 1px solid var(--secondary-cyan);
+    border-radius: var(--radius-card);
+    background-color: var(--white);
+    text-align: center;
+}
+
+.teacher-card__portrait {
+    width: min(12.5rem, 100%);
+    aspect-ratio: 1;
+    margin: 0;
+    padding: 0.4rem;
+    overflow: hidden;
+    border: 2px solid var(--secondary-cyan-bright);
+    border-radius: 50%;
+    background-color: var(--secondary-cyan-light);
+}
+
+.teacher-card__image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.teacher-card__image--portrait {
+    object-position: center 16%;
+}
+
+.teacher-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.4rem;
+}
+
+.teacher-card__name {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--natural-black-2);
+    text-wrap: balance;
+}
+
+.teacher-card__divider {
+    width: 2.75rem;
+    height: 2px;
+    margin: 0.9rem auto;
+    border: 0;
+    border-radius: 999px;
+    background-color: var(--accent-orange);
+    opacity: 1;
+}
+
+.teacher-card__role {
+    margin: 0;
+    color: var(--natural-black-3);
+    font-size: 0.96rem;
+    line-height: 1.58;
+}
+
+.teachers__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.teachers__status {
+    min-width: 4rem;
+    margin: 0;
+    color: var(--primary-blue-1);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.teachers__controls {
+    display: flex;
+    gap: 0.65rem;
+}
+
+.teachers__control {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--primary-blue-1);
+    border-radius: 999px;
+    background-color: var(--white);
+    color: var(--primary-blue-1);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 180ms ease, color 180ms ease, opacity 180ms ease;
+}
+
+.teachers__control:hover:not(:disabled) {
+    background-color: var(--primary-blue-1);
+    color: var(--white);
+}
+
+.teachers__control:focus-visible {
+    outline: 3px solid var(--accent-orange);
+    outline-offset: 3px;
+}
+
+.teachers__control:disabled {
+    cursor: not-allowed;
+    opacity: 0.38;
+}
+
+@media (min-width: 576px) {
+    .teachers__track {
+        grid-auto-columns: calc((100% - 1rem) / 2);
+    }
+}
+
+@media (min-width: 768px) {
+    .teachers {
+        padding-block: 5.5rem 6rem;
+    }
+
+    .teachers__intro {
+        font-size: 1.08rem;
+    }
+
+    .teachers__rail {
+        margin-top: 3.5rem;
+    }
+
+    .teachers__track {
+        gap: 1.25rem;
+    }
+
+    .teacher-card {
+        padding-inline: 1.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .teachers__track {
+        grid-auto-columns: calc((100% - 2.5rem) / 3);
+    }
+}
+
+@media (min-width: 1200px) {
+    .teachers__track {
+        grid-auto-columns: calc((100% - 3.75rem) / 4);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .teachers__track {
+        scroll-behavior: auto;
+    }
+
+    .teachers__control {
+        transition: none;
+    }
+}
