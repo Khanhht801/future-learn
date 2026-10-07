@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — Main JS
- * Version: v1.3.0
+ * Version: v1.3.2
  * Concern: khởi tạo AOS, sticky nav shadow, mobile drawer,
  *          smooth scroll cho anchor link và scrollspy.
  * ============================================================ */
@@ -133,6 +133,13 @@
         const $links = $('.site-header__link');
         if (!$items.length) return;
 
+        // Các section này đều thuộc nhóm "Giới thiệu" trên navigation.
+        const navIdBySectionId = {
+            stats: 'about',
+            'why-choose': 'about',
+            audiences: 'about'
+        };
+
         const setActive = function (id) {
             $items.removeClass('is-active');
             $links.each(function () {
@@ -142,13 +149,13 @@
             });
         };
 
-        const sections = $('main section[id]').toArray();
+        const sections = $('main section[id], footer[id]').toArray();
         if (!sections.length) return;
 
         const observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    setActive(entry.target.id);
+                    setActive(navIdBySectionId[entry.target.id] || entry.target.id);
                 }
             });
         }, {
