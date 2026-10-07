@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — Interactive advisors and teachers carousel
- * Version: v1.5.2
+ * Version: v1.5.3
  * ============================================================ */
 (function () {
     'use strict';
@@ -11,7 +11,7 @@
     const previousButton = slider?.querySelector('[data-teachers-prev]');
     const nextButton = slider?.querySelector('[data-teachers-next]');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const autoplayDelay = 3000;
+    const autoplayDelay = 1500;
 
     if (!slider || !viewport || !track || !previousButton || !nextButton) return;
 
