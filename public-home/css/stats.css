@@ -6,7 +6,7 @@
 .stats-strip {
     position: relative;
     overflow: hidden;
-    padding-block: 1.5rem 4.5rem;
+    padding-block: 1.25rem 3.25rem;
     background-color: var(--white);
 }
 
@@ -16,7 +16,7 @@
 
 .stats-strip__title {
     max-width: 52rem;
-    margin: 0 auto 2.75rem;
+    margin: 0 auto 2rem;
     font-family: var(--font-display);
     font-size: clamp(1.65rem, 4.5vw, 2.5rem);
     font-weight: 700;
@@ -112,11 +112,11 @@
 
 @media (min-width: 768px) {
     .stats-strip {
-        padding-block: 2rem 5.5rem;
+        padding-block: 1.5rem 4rem;
     }
 
     .stats-strip__title {
-        margin-bottom: 3.25rem;
+        margin-bottom: 2.5rem;
     }
 
     .stats-strip__list {

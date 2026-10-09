@@ -7,7 +7,7 @@
     position: relative;
     overflow: hidden;
     scroll-margin-top: var(--header-height);
-    padding-block: 3.75rem;
+    padding-block: var(--section-space-y);
     background-color: var(--accent-orange-strong);
 }
 
@@ -177,7 +177,7 @@
 
 @media (max-width: 767.98px) {
     .consultation {
-        padding-block: 2.5rem;
+        padding-block: 2.75rem;
     }
 
     .consultation__visual {
@@ -196,7 +196,7 @@
 
 @media (min-width: 768px) {
     .consultation {
-        padding-block: 3.75rem;
+        padding-block: var(--section-space-y);
     }
 
     .consultation__inner {

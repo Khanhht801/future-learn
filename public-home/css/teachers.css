@@ -4,7 +4,7 @@
  * ============================================================ */
 
 .teachers {
-    padding-block: 4.75rem 5rem;
+    padding-block: var(--section-space-y);
     overflow: hidden;
     background-color: var(--cream);
 }
@@ -37,7 +37,7 @@
     --teachers-gap: 1rem;
     position: relative;
     width: 100%;
-    margin-top: 2.75rem;
+    margin-top: var(--section-content-gap);
 }
 
 .teachers__rail {
@@ -251,7 +251,7 @@
 
 @media (min-width: 768px) {
     .teachers {
-        padding-block: 5.5rem 6rem;
+        padding-block: var(--section-space-y);
     }
 
     .teachers__intro {
@@ -260,7 +260,7 @@
 
     .teachers__carousel {
         --teachers-gap: 1.25rem;
-        margin-top: 3.5rem;
+        margin-top: var(--section-content-gap);
     }
 
     .teacher-card {

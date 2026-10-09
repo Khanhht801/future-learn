@@ -4,7 +4,7 @@
  * ============================================================ */
 
 .training-programs {
-    padding-block: 4.75rem 5rem;
+    padding-block: var(--section-space-y);
     background-color: var(--white);
 }
 
@@ -36,7 +36,7 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
-    margin: 2.75rem 0 0;
+    margin: var(--section-content-gap) 0 0;
     padding: 0;
     list-style: none;
 }
@@ -93,7 +93,7 @@
 
 @media (min-width: 768px) {
     .training-programs {
-        padding-block: 5.5rem 6rem;
+        padding-block: var(--section-space-y);
     }
 
     .training-programs__intro {
@@ -103,7 +103,7 @@
     .training-programs__grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1.5rem;
-        margin-top: 3.5rem;
+        margin-top: var(--section-content-gap);
     }
 
     .training-programs__item:last-child:nth-child(odd) {

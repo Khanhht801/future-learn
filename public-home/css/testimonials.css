@@ -7,7 +7,7 @@
     position: relative;
     overflow: hidden;
     scroll-margin-top: var(--header-height);
-    padding-block: 5rem 5.5rem;
+    padding-block: var(--section-space-y);
     background-color: var(--white);
     isolation: isolate;
 }
@@ -30,7 +30,7 @@
 
 .student-reviews__header {
     position: relative;
-    margin-bottom: 2.75rem;
+    margin-bottom: var(--section-content-gap);
     text-align: center;
 }
 
@@ -218,12 +218,12 @@
 
 @media (max-width: 767.98px) {
     .student-reviews {
-        padding-block: 4rem 4.5rem;
+        padding-block: var(--section-space-y);
     }
 
     .student-reviews__header {
         padding-inline: 1.25rem;
-        margin-bottom: 2rem;
+        margin-bottom: var(--section-content-gap);
     }
 
     .student-reviews__viewport {

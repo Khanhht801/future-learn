@@ -48,6 +48,10 @@
     --space-6: 3rem;
     --space-8: 4rem;
 
+    /* Vertical rhythm: keep sections compact and consistent. */
+    --section-space-y: 3.25rem;
+    --section-content-gap: 2rem;
+
     /* Layout */
     --header-height: 68px;
     --container-max: 1269px;
@@ -145,6 +149,8 @@ section {
 @media (min-width: 768px) {
     :root {
         --header-height: 76px;
+        --section-space-y: 4rem;
+        --section-content-gap: 2.5rem;
     }
 }
 
