@@ -6,16 +6,19 @@ d:\[2.2] Vibe coding\Futurelang\
 ├── style.md                    # Style guide (đã có)
 ├── public-home/
 │   ├── css/
-│   │   ├── style.css?v=1.1.0   # Global token, reset, capsule button
-│   │   ├── home.css?v=1.2.1    # Header + Hero riêng
-│   │   ├── stats.css?v=1.0.0   # Stat strip responsive
-│   │   ├── why-choose.css?v=1.0.2 # Section lý do chọn FutureLearn
-│   │   ├── audiences.css?v=1.1.0 # FutureLearn dành cho ai
-│   │   ├── training-programs.css?v=1.0.0 # Chương trình đào tạo
-│   │   ├── teachers.css?v=1.4.0 # Đội ngũ cố vấn, giáo viên
-│   │   └── about-press.css?v=1.0.0 # Về chúng tôi / Báo chí
+│   │   ├── style.css?v=1.2.1   # Global token, reset, capsule button
+│   │   ├── home.css?v=1.3.3    # Header + Hero riêng
+│   │   ├── stats.css?v=1.1.0   # Stat strip responsive
+│   │   ├── why-choose.css?v=1.1.1 # Section lý do chọn FutureLearn
+│   │   ├── audiences.css?v=1.2.1 # FutureLearn dành cho ai
+│   │   ├── training-programs.css?v=1.1.1 # Chương trình đào tạo
+│   │   ├── teachers.css?v=1.7.1 # Đội ngũ cố vấn, giáo viên
+│   │   ├── about-press.css?v=1.2.1 # Về chúng tôi
+│   │   ├── consultation.css?v=1.1.1 # Form đăng ký tư vấn
+│   │   ├── testimonials.css?v=1.4.2 # Cảm nhận học viên
+│   │   └── footer.css?v=1.1.0 # Footer liên hệ
 │   ├── js/
-│   │   ├── main.js?v=1.2.0     # AOS init, sticky nav, mobile drawer
+│   │   ├── main.js?v=1.4.0     # Sticky nav, mobile drawer, scrollspy
 │   │   ├── stats.js?v=1.0.0    # Counter khi stat strip vào viewport
 │   │   └── teachers.js?v=1.0.0 # Điều khiển carousel giáo viên
 │   └── images/
@@ -31,21 +34,23 @@ d:\[2.2] Vibe coding\Futurelang\
 ## Asset version (cache bust)
 | File | Version |
 |---|---|
-| `style.css` | `v=1.1.0` |
-| `home.css` | `v=1.2.1` |
-| `stats.css` | `v=1.0.0` |
-| `why-choose.css` | `v=1.0.2` |
-| `audiences.css` | `v=1.1.0` |
-| `training-programs.css` | `v=1.0.0` |
-| `teachers.css` | `v=1.4.0` |
-| `about-press.css` | `v=1.0.0` |
-| `testimonials.css` | `v=1.3.0` |
-| `main.js` | `v=1.2.0` |
+| `style.css` | `v=1.2.1` |
+| `home.css` | `v=1.3.3` |
+| `stats.css` | `v=1.1.0` |
+| `why-choose.css` | `v=1.1.1` |
+| `audiences.css` | `v=1.2.1` |
+| `training-programs.css` | `v=1.1.1` |
+| `teachers.css` | `v=1.7.1` |
+| `about-press.css` | `v=1.2.1` |
+| `consultation.css` | `v=1.1.1` |
+| `testimonials.css` | `v=1.4.2` |
+| `footer.css` | `v=1.1.0` |
+| `main.js` | `v=1.4.0` |
 | `stats.js` | `v=1.0.0` |
 | `teachers.js` | `v=1.0.0` |
 
 ## Cách chạy
-Mở `index.html` qua bất kỳ static server nào (ví dụ `npx serve` hoặc Live Server trong VS Code). Hiện đang dùng CDN cho Bootstrap / jQuery / Font Awesome / AOS — khi lên production nên self-host các thư viện này.
+Mở `index.html` qua bất kỳ static server nào (ví dụ `npx serve` hoặc Live Server trong VS Code). Hiện đang dùng CDN cho Bootstrap và Font Awesome — khi lên production nên self-host các thư viện này.
 
 ## Phạm vi task lần này
 Đã code **Nav** + **Hero** + **Stat strip** + **Tại sao nên chọn FutureLearn?** + **FutureLearn dành cho ai?** + **Chương trình đào tạo toàn diện** + **Đội ngũ cố vấn, giáo viên** + **Về chúng tôi / Press** theo `style.md` và yêu cầu UI/UX tương tự `https://www.futurelang.edu.vn/`.

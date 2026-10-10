@@ -1,139 +1,74 @@
 /* ============================================================
  * FutureLearn — Main JS
- * Version: v1.3.2
- * Concern: khởi tạo AOS, sticky nav shadow, mobile drawer,
- *          smooth scroll cho anchor link và scrollspy.
+ * Version: v1.5.0
+ * Concern: sticky nav shadow, mobile drawer, hero carousel and scrollspy.
  * ============================================================ */
-(function ($) {
+(function () {
     'use strict';
 
     const SCROLL_THRESHOLD = 8;
-    const BREAKPOINT_MOBILE = 1199;
+    const DESKTOP_BREAKPOINT = 1200;
+    const HERO_INTERVAL_MS = 3000;
 
-    /**
-     * Khởi tạo AOS — 1 lần duy nhất.
-     * Component khác không tự gọi lại AOS.init().
-     */
-    function initAOS() {
-        if (typeof AOS === 'undefined') return;
-
-        AOS.init({
-            duration: 600,
-            once: true,
-            offset: 80,
-            disable: function () {
-                return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            }
-        });
-    }
-
-    /**
-     * Toggle class is-scrolled cho header khi cuộn trang.
-     */
     function initStickyHeader() {
-        const $header = $('#site-header');
-        if (!$header.length) return;
+        const header = document.querySelector('#site-header');
+        if (!header) return;
 
         const update = function () {
-            const scrolled = window.scrollY > SCROLL_THRESHOLD;
-            $header.toggleClass('is-scrolled', scrolled);
+            header.classList.toggle('is-scrolled', window.scrollY > SCROLL_THRESHOLD);
         };
 
         update();
-        $(window).on('scroll', update, { passive: true });
+        window.addEventListener('scroll', update, { passive: true });
     }
 
-    /**
-     * Mobile drawer — mở/đóng + đóng khi click ra ngoài hoặc nhấn Esc.
-     */
     function initMobileMenu() {
-        const $btn = $('.site-header__hamburger');
-        const $drawer = $('#mobile-menu');
-        if (!$btn.length || !$drawer.length) return;
-
-        const open = function () {
-            $btn.attr('aria-expanded', 'true');
-            $drawer.removeAttr('hidden');
-            $('body').addClass('is-menu-open');
-        };
+        const button = document.querySelector('.site-header__hamburger');
+        const drawer = document.querySelector('#mobile-menu');
+        if (!button || !drawer) return;
 
         const close = function () {
-            $btn.attr('aria-expanded', 'false');
-            $drawer.attr('hidden', '');
-            $('body').removeClass('is-menu-open');
+            button.setAttribute('aria-expanded', 'false');
+            drawer.hidden = true;
         };
 
-        $btn.on('click', function () {
-            const isOpen = $btn.attr('aria-expanded') === 'true';
-            if (isOpen) {
-                close();
-            } else {
-                open();
-            }
+        button.addEventListener('click', function () {
+            const shouldOpen = button.getAttribute('aria-expanded') !== 'true';
+            button.setAttribute('aria-expanded', String(shouldOpen));
+            drawer.hidden = !shouldOpen;
         });
 
-        // Đóng khi click link trong drawer
-        $drawer.find('a').on('click', close);
+        drawer.addEventListener('click', function (event) {
+            if (event.target.closest('a')) close();
+        });
 
-        // Đóng khi click bên ngoài
-        $(document).on('click', function (event) {
-            const $target = $(event.target);
-            if ($target.closest('.site-header__hamburger, #mobile-menu').length) return;
-            if ($btn.attr('aria-expanded') !== 'true') return;
+        document.addEventListener('click', function (event) {
+            if (button.getAttribute('aria-expanded') !== 'true') return;
+            if (event.target.closest('.site-header__hamburger, #mobile-menu')) return;
             close();
         });
 
-        // Đóng khi nhấn Esc
-        $(document).on('keydown', function (event) {
-            if (event.key === 'Escape' && $btn.attr('aria-expanded') === 'true') {
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
                 close();
+                button.focus();
             }
         });
 
-        // Reset state khi resize vượt breakpoint desktop
         let resizeTimer;
-        $(window).on('resize', function () {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function () {
-                if (window.innerWidth > BREAKPOINT_MOBILE) {
-                    close();
-                }
+        window.addEventListener('resize', function () {
+            window.clearTimeout(resizeTimer);
+            resizeTimer = window.setTimeout(function () {
+                if (window.innerWidth >= DESKTOP_BREAKPOINT) close();
             }, 150);
-        });
+        }, { passive: true });
     }
 
-    /**
-     * Smooth scroll cho anchor link trong nav (trừ những link đã được CSS
-     * `scroll-behavior: smooth` xử lý).
-     */
-    function initSmoothScroll() {
-        $('a[href^="#"]').on('click', function (event) {
-            const href = $(this).attr('href');
-            if (!href || href === '#' || href.length < 2) return;
-
-            const $el = $(href);
-            if (!$el.length) return;
-
-            event.preventDefault();
-            const headerHeight = $('#site-header').outerHeight() || 0;
-            const offset = $el.offset().top - headerHeight + 1;
-
-            $('html, body').animate(
-                { scrollTop: offset },
-                { duration: 500, easing: 'swing' }
-            );
-        });
-    }
-
-    /**
-     * Đánh dấu nav item active dựa trên section đang xem (scrollspy).
-     */
     function initScrollSpy() {
-        const $items = $('.site-header__item');
-        const $links = $('.site-header__link');
-        if (!$items.length) return;
+        const items = document.querySelectorAll('.site-header__item');
+        const links = document.querySelectorAll('.site-header__link');
+        if (items.length === 0 || !('IntersectionObserver' in window)) return;
 
-        // Các section này đều thuộc nhóm "Giới thiệu" trên navigation.
         const navIdBySectionId = {
             stats: 'about',
             'why-choose': 'about',
@@ -141,16 +76,19 @@
         };
 
         const setActive = function (id) {
-            $items.removeClass('is-active');
-            $links.each(function () {
-                if ($(this).attr('href') === '#' + id) {
-                    $(this).parent().addClass('is-active');
+            items.forEach(function (item) {
+                item.classList.remove('is-active');
+            });
+
+            links.forEach(function (link) {
+                if (link.getAttribute('href') === '#' + id) {
+                    link.parentElement.classList.add('is-active');
                 }
             });
         };
 
-        const sections = $('main section[id], footer[id]').toArray();
-        if (!sections.length) return;
+        const sections = document.querySelectorAll('main section[id], footer[id]');
+        if (sections.length === 0) return;
 
         const observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
@@ -168,11 +106,62 @@
         });
     }
 
-    $(function () {
-        initAOS();
+    function initHeroCarousel() {
+        const carousel = document.querySelector('[data-hero-carousel]');
+        if (!carousel) return;
+
+        const slides = Array.from(carousel.querySelectorAll('[data-hero-slide]'));
+        if (slides.length < 2) return;
+
+        let currentIndex = Math.max(0, slides.findIndex(function (slide) {
+            return slide.classList.contains('is-active');
+        }));
+        let timerId = null;
+
+        const showSlide = function (nextIndex) {
+            slides.forEach(function (slide, index) {
+                const isActive = index === nextIndex;
+                slide.classList.toggle('is-active', isActive);
+                slide.setAttribute('aria-hidden', String(!isActive));
+                slide.inert = !isActive;
+            });
+            currentIndex = nextIndex;
+        };
+
+        const stop = function () {
+            if (timerId === null) return;
+            window.clearInterval(timerId);
+            timerId = null;
+        };
+
+        const start = function () {
+            stop();
+            timerId = window.setInterval(function () {
+                showSlide((currentIndex + 1) % slides.length);
+            }, HERO_INTERVAL_MS);
+        };
+
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) {
+                stop();
+            } else {
+                start();
+            }
+        });
+
+        start();
+    }
+
+    function init() {
         initStickyHeader();
         initMobileMenu();
-        initSmoothScroll();
+        initHeroCarousel();
         initScrollSpy();
-    });
-})(jQuery);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init, { once: true });
+    } else {
+        init();
+    }
+})();

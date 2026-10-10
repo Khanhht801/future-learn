@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — Student reviews marquee
- * Version: v1.3.0
+ * Version: v1.4.2
  * ============================================================ */
 
 .student-reviews {
@@ -41,7 +41,6 @@
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
     line-height: 1.15;
-    text-transform: uppercase;
     text-wrap: balance;
 }
 
@@ -217,13 +216,8 @@
 }
 
 @media (max-width: 767.98px) {
-    .student-reviews {
-        padding-block: var(--section-space-y);
-    }
-
     .student-reviews__header {
         padding-inline: 1.25rem;
-        margin-bottom: var(--section-content-gap);
     }
 
     .student-reviews__viewport {

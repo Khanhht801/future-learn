@@ -33,19 +33,19 @@
     />
 
     <!-- Project styles -->
-    <link rel="stylesheet" href="./public-home/css/style.css?v=1.2.0" />
-    <link rel="stylesheet" href="./public-home/css/home.css?v=1.3.3" />
+    <link rel="stylesheet" href="./public-home/css/style.css?v=1.2.1" />
+    <link rel="stylesheet" href="./public-home/css/home.css?v=1.4.9" />
     <link rel="stylesheet" href="./public-home/css/stats.css?v=1.1.0" />
-    <link rel="stylesheet" href="./public-home/css/why-choose.css?v=1.1.0" />
-    <link rel="stylesheet" href="./public-home/css/audiences.css?v=1.2.0" />
+    <link rel="stylesheet" href="./public-home/css/why-choose.css?v=1.1.1" />
+    <link rel="stylesheet" href="./public-home/css/audiences.css?v=1.2.1" />
     <link
       rel="stylesheet"
-      href="./public-home/css/training-programs.css?v=1.1.0"
+      href="./public-home/css/training-programs.css?v=1.1.1"
     />
-    <link rel="stylesheet" href="./public-home/css/teachers.css?v=1.7.0" />
-    <link rel="stylesheet" href="./public-home/css/about-press.css?v=1.2.0" />
-    <link rel="stylesheet" href="./public-home/css/consultation.css?v=1.1.0" />
-    <link rel="stylesheet" href="./public-home/css/testimonials.css?v=1.4.0" />
+    <link rel="stylesheet" href="./public-home/css/teachers.css?v=1.7.1" />
+    <link rel="stylesheet" href="./public-home/css/about-press.css?v=1.2.1" />
+    <link rel="stylesheet" href="./public-home/css/consultation.css?v=1.1.1" />
+    <link rel="stylesheet" href="./public-home/css/testimonials.css?v=1.4.2" />
     <link rel="stylesheet" href="./public-home/css/footer.css?v=1.1.0" />
   </head>
   <body>
@@ -167,49 +167,106 @@
       <!-- ============================================================
              HERO
              ============================================================ -->
-      <section id="home" class="hero" aria-label="FutureLearn — Giới thiệu">
-        <div class="hero__inner">
-          <div class="hero__content">
-            <h1 class="hero__title">Giúp trẻ tự tin</h1>
-            <p class="hero__highlight">Chinh phục điểm 9, 10</p>
+      <section
+        id="home"
+        class="hero"
+        data-hero-carousel
+        aria-label="FutureLearn — Giới thiệu"
+        aria-roledescription="carousel"
+      >
+        <div
+          class="hero__slide hero__slide--learning is-active"
+          data-hero-slide
+          aria-hidden="false"
+        >
+          <div class="hero__inner">
+            <div class="hero__content">
+              <h1 class="hero__title">Giúp trẻ tự tin</h1>
+              <p class="hero__highlight">Chinh phục điểm 9, 10</p>
 
-            <ul class="hero__benefits" aria-label="Lợi ích nổi bật">
-              <li>Lộ trình học cá nhân hóa</li>
-              <li>Bài giảng sinh động</li>
-              <li>Đồng hành cùng con</li>
-            </ul>
+              <ul class="hero__benefits" aria-label="Lợi ích nổi bật">
+                <li>Lộ trình học cá nhân hóa</li>
+                <li>Bài giảng sinh động</li>
+                <li>Đồng hành cùng con</li>
+              </ul>
 
-            <a class="hero__cta" href="#training-programs">
-              <span>Khám phá khóa học</span>
-              <span class="hero__cta-icon" aria-hidden="true">
-                <i class="fa-solid fa-arrow-right"></i>
-              </span>
-            </a>
+              <a class="hero__cta" href="#training-programs">
+                <span>Khám phá khóa học</span>
+                <span class="hero__cta-icon" aria-hidden="true">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </span>
+              </a>
+            </div>
+
+            <div
+              class="hero__artwork"
+              role="img"
+              aria-label="Học sinh tự tin trong trang phục tốt nghiệp"
+            >
+              <img
+                src="./public-home/images/heros/caube1.png"
+                alt=""
+                class="hero__character hero__character--student"
+                width="941"
+                height="1672"
+                loading="eager"
+                decoding="async"
+              />
+              <img
+                src="./public-home/images/heros/robot.png"
+                alt=""
+                class="hero__character hero__character--robot"
+                width="612"
+                height="408"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
           </div>
+        </div>
 
-          <div
-            class="hero__artwork"
-            role="img"
-            aria-label="Học sinh tự tin trong trang phục tốt nghiệp"
-          >
-            <img
-              src="./public-home/images/heros/caube1.png"
-              alt=""
-              class="hero__character hero__character--student"
-              width="447"
-              height="558"
-              loading="eager"
-              decoding="async"
-            />
-            <img
-              src="./public-home/images/heros/robot.png"
-              alt=""
-              class="hero__character hero__character--robot"
-              width="612"
-              height="408"
-              loading="eager"
-              decoding="async"
-            />
+        <div
+          class="hero__slide hero__slide--brand"
+          data-hero-slide
+          aria-hidden="true"
+          inert
+        >
+          <div class="hero__inner hero__inner--brand">
+            <div
+              class="hero__brand-artwork"
+              role="img"
+              aria-label="FutureLearn cùng giáo viên và học sinh tốt nghiệp"
+            >
+              <img
+                src="./public-home/images/heros/logo2remove.png"
+                alt=""
+                class="hero__brand-logo"
+                width="2172"
+                height="724"
+                loading="eager"
+                decoding="sync"
+              />
+              <img
+                src="./public-home/images/heros/hvremove.png"
+                alt=""
+                class="hero__brand-people"
+                width="1122"
+                height="1402"
+                loading="eager"
+                decoding="sync"
+              />
+            </div>
+
+            <div class="hero__brand-content">
+              <h2 class="hero__brand-title">Nâng tầm tri thức Việt</h2>
+              <p class="hero__brand-description">
+                Vì 50 triệu người giao tiếp thành thạo tiếng Anh
+              </p>
+              <a class="hero__brand-cta" href="#training-programs">
+                <span>Trải nghiệm ngay!</span>
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -1213,6 +1270,7 @@
           <h2 id="student-reviews-title" class="student-reviews__title">
             Cảm nhận của học viên
           </h2>
+
           <p class="student-reviews__description">
             Những chia sẻ chân thực sau quá trình học và trải nghiệm
             FutureLearn.
@@ -1559,17 +1617,10 @@
       </div>
     </footer>
 
-    <!-- jQuery + AOS (init trong main.js) -->
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="./public-home/js/stats.js?v=1.0.0"></script>
     <script src="./public-home/js/teachers.js?v=1.5.3"></script>
     <script src="./public-home/js/consultation.js?v=1.0.0"></script>
     <script src="./public-home/js/testimonials.js?v=1.2.0"></script>
-    <script src="./public-home/js/main.js?v=1.3.2"></script>
+    <script src="./public-home/js/main.js?v=1.5.0"></script>
   </body>
 </html>

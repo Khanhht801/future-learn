@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — Advisors and teachers
- * Version: v1.6.0
+ * Version: v1.7.1
  * ============================================================ */
 
 .teachers {
@@ -250,17 +250,12 @@
 }
 
 @media (min-width: 768px) {
-    .teachers {
-        padding-block: var(--section-space-y);
-    }
-
     .teachers__intro {
         font-size: 1.08rem;
     }
 
     .teachers__carousel {
         --teachers-gap: 1.25rem;
-        margin-top: var(--section-content-gap);
     }
 
     .teacher-card {

@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — Comprehensive training programs
- * Version: v1.0.0
+ * Version: v1.1.1
  * ============================================================ */
 
 .training-programs {
@@ -92,10 +92,6 @@
 }
 
 @media (min-width: 768px) {
-    .training-programs {
-        padding-block: var(--section-space-y);
-    }
-
     .training-programs__intro {
         font-size: 1.08rem;
     }
@@ -103,7 +99,6 @@
     .training-programs__grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1.5rem;
-        margin-top: var(--section-content-gap);
     }
 
     .training-programs__item:last-child:nth-child(odd) {

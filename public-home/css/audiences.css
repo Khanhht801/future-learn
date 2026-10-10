@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — Audiences
- * Version: v1.1.0
+ * Version: v1.2.1
  * ============================================================ */
 
 .audiences {
@@ -163,13 +163,8 @@
 }
 
 @media (min-width: 768px) {
-  .audiences {
-    padding-block: var(--section-space-y);
-  }
-
   .audiences__layout {
     gap: 2.5rem;
-    margin-top: var(--section-content-gap);
   }
 
   .audience-accordion__summary {
@@ -193,10 +188,6 @@
     top: 6.5rem;
     height: 38rem;
     aspect-ratio: auto;
-  }
-
-  .audiences__image {
-    min-height: 0;
   }
 }
 

@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — Why choose
- * Version: v1.0.2
+ * Version: v1.1.1
  * ============================================================ */
 
 .why-choose {
@@ -364,7 +364,6 @@
 
 @media (min-width: 768px) {
     .why-choose {
-        padding-block: var(--section-space-y);
         border-radius: 3rem 3rem 0 0;
     }
 

@@ -1,6 +1,6 @@
 /* ============================================================
  * FutureLearn — About story
- * Version: v1.1.1
+ * Version: v1.2.1
  * ============================================================ */
 
 .about-story {
@@ -175,10 +175,6 @@
 }
 
 @media (min-width: 768px) {
-    .about-story {
-        padding-block: var(--section-space-y);
-    }
-
     .about-story__layout {
         grid-template-columns: minmax(0, 2fr) minmax(15rem, 0.75fr);
         gap: 3rem;
