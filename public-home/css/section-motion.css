@@ -1,0 +1,121 @@
+/* ============================================================
+ * FutureLearn — orchestrated section motion
+ * Hero is intentionally excluded. JavaScript adds data-motion only
+ * to the content that benefits from an entrance cue.
+ * ============================================================ */
+
+html.motion-enabled main section:not(.hero) [data-motion] {
+  --motion-delay: calc(var(--motion-order, 0) * 70ms);
+  opacity: 0;
+  filter: blur(3px);
+  transition:
+    opacity 680ms var(--ease-out) var(--motion-delay),
+    translate 820ms var(--ease-out) var(--motion-delay),
+    scale 820ms var(--ease-out) var(--motion-delay),
+    rotate 820ms var(--ease-out) var(--motion-delay),
+    filter 680ms var(--ease-out) var(--motion-delay),
+    clip-path 900ms var(--ease-out) var(--motion-delay);
+  will-change: opacity, translate, scale, rotate, filter, clip-path;
+}
+
+html.motion-enabled main section:not(.hero) [data-motion="rise"] {
+  translate: 0 2rem;
+}
+
+html.motion-enabled main section:not(.hero) [data-motion="from-left"] {
+  translate: -2.75rem 0;
+}
+
+html.motion-enabled main section:not(.hero) [data-motion="from-right"] {
+  translate: 2.75rem 0;
+}
+
+html.motion-enabled main section:not(.hero) [data-motion="pop"] {
+  scale: 0.82;
+  translate: 0 1rem;
+}
+
+html.motion-enabled main section:not(.hero) [data-motion="tilt"] {
+  rotate: -1.5deg;
+  scale: 0.94;
+  translate: 0 1.5rem;
+}
+
+html.motion-enabled main section:not(.hero) [data-motion="tilt"]:nth-child(even) {
+  rotate: 1.5deg;
+}
+
+html.motion-enabled main section:not(.hero) [data-motion="wipe"] {
+  clip-path: inset(0 100% 0 0 round var(--radius-card));
+  filter: none;
+  scale: 1.025;
+}
+
+html.motion-enabled main section:not(.hero) [data-motion="focus"] {
+  filter: blur(8px);
+  scale: 0.96;
+}
+
+html.motion-enabled main section:not(.hero) [data-motion].is-motion-visible {
+  opacity: 1;
+  filter: none;
+  translate: 0 0;
+  rotate: 0deg;
+  scale: 1;
+  clip-path: inset(0 0 0 0 round var(--radius-card));
+  will-change: auto;
+}
+
+/* Give the statistic icons a second, short beat after their cards arrive. */
+html.motion-enabled .stats-strip__item[data-motion] .stats-strip__icon {
+  scale: 0.65;
+  rotate: -12deg;
+  transition:
+    scale 520ms var(--ease-out) calc(var(--motion-delay) + 220ms),
+    rotate 520ms var(--ease-out) calc(var(--motion-delay) + 220ms);
+}
+
+html.motion-enabled
+  .stats-strip__item[data-motion].is-motion-visible
+  .stats-strip__icon {
+  scale: 1;
+  rotate: 0deg;
+}
+
+/* Images settle subtly after the gallery/card mask opens. */
+html.motion-enabled [data-motion="wipe"] img {
+  scale: 1.07;
+  transition: scale 1.15s var(--ease-out) var(--motion-delay);
+}
+
+html.motion-enabled [data-motion="wipe"].is-motion-visible img {
+  scale: 1;
+}
+
+@media (max-width: 767.98px) {
+  html.motion-enabled main section:not(.hero) [data-motion] {
+    --motion-delay: calc(var(--motion-order, 0) * 45ms);
+  }
+
+  html.motion-enabled main section:not(.hero) [data-motion="from-left"] {
+    translate: -1.5rem 0;
+  }
+
+  html.motion-enabled main section:not(.hero) [data-motion="from-right"] {
+    translate: 1.5rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.motion-enabled main section:not(.hero) [data-motion],
+  html.motion-enabled main section:not(.hero) [data-motion] img,
+  html.motion-enabled .stats-strip__item[data-motion] .stats-strip__icon {
+    opacity: 1;
+    filter: none;
+    translate: none;
+    rotate: none;
+    scale: 1;
+    clip-path: none;
+    transition: none;
+  }
+}
