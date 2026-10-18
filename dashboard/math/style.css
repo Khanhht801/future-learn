@@ -1,0 +1,660 @@
+.math-main {
+  padding-bottom: 2.5rem;
+}
+
+.math-heading {
+  margin-bottom: 1.35rem;
+}
+
+.math-heading__mark {
+  display: grid;
+  width: 68px;
+  height: 68px;
+  flex: 0 0 68px;
+  border-radius: 22px;
+  background: #eef0ff;
+  place-items: center;
+}
+
+.math-heading__mark img {
+  width: 48px;
+  height: 48px;
+}
+
+.math-dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 292px;
+  align-items: start;
+  gap: 20px;
+}
+
+.math-dashboard-main,
+.math-side {
+  display: grid;
+  min-width: 0;
+  gap: 20px;
+}
+
+.math-hero {
+  position: relative;
+  min-height: 290px;
+  overflow: hidden;
+  padding: 24px;
+  border-radius: 24px;
+  background: #c9c7ff;
+  isolation: isolate;
+}
+
+.math-hero__art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.math-hero__content {
+  width: min(100%, 370px);
+  padding: 24px 26px;
+  border: 1px solid rgb(255 255 255 / 85%);
+  border-radius: 22px;
+  background: rgb(255 255 255 / 94%);
+  box-shadow: 0 6px 24px rgb(31 58 112 / 8%);
+}
+
+.math-hero h2,
+.math-path h2,
+.quick-challenge h2,
+.math-goal h2,
+.lesson-card h2 {
+  color: var(--color-navy);
+  font-family: var(--font-heading);
+}
+
+.math-hero h2 {
+  max-width: 320px;
+  margin: 0;
+  font-size: clamp(26px, 2.3vw, 34px);
+  line-height: 1.14;
+  letter-spacing: -0.035em;
+}
+
+.math-hero p {
+  margin: 10px 0 18px;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.math-path {
+  padding: 20px 24px 22px;
+  overflow: hidden;
+  border: 1px solid rgb(220 228 241 / 55%);
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: 0 4px 16px rgb(64 52 26 / 4%);
+  scroll-margin-top: calc(var(--header-height) + 20px);
+}
+
+.math-path h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+  letter-spacing: -0.025em;
+}
+
+.math-path__track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.math-path__track::before {
+  position: absolute;
+  top: 42px;
+  right: 9%;
+  left: 9%;
+  z-index: 0;
+  border-top: 3px dashed #b9b1f4;
+  content: "";
+}
+
+.path-stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  color: var(--color-text);
+  background: transparent;
+  text-align: center;
+}
+
+button.path-stage {
+  cursor: pointer;
+}
+
+.path-stage__planet {
+  position: relative;
+  display: grid;
+  width: 84px;
+  height: 84px;
+  border: 7px solid #eef1f7;
+  border-radius: 50%;
+  color: var(--color-navy);
+  background: linear-gradient(145deg, #d8def0, #aeb9d8);
+  box-shadow: inset -10px -10px 0 rgb(89 106 149 / 12%);
+  font-family: var(--font-heading);
+  font-size: 25px;
+  font-weight: 700;
+  place-items: center;
+}
+
+.path-stage:nth-child(1) .path-stage__planet {
+  background: linear-gradient(145deg, #9be1c2, #4fb690);
+}
+
+.path-stage:nth-child(2) .path-stage__planet {
+  background: linear-gradient(145deg, #b7e5d2, #63c49c);
+}
+
+.path-stage.is-current .path-stage__planet {
+  border-color: #dad8ff;
+  color: white;
+  background: linear-gradient(145deg, #8e8df4, #4d55d7);
+  box-shadow: 0 8px 18px rgb(77 85 215 / 24%), inset -10px -10px 0 rgb(35 38 140 / 12%);
+}
+
+.path-stage.is-current .path-stage__planet::after {
+  position: absolute;
+  bottom: -16px;
+  width: 0;
+  height: 0;
+  border-right: 8px solid transparent;
+  border-bottom: 0;
+  border-left: 8px solid transparent;
+  border-top: 9px solid var(--color-primary);
+  content: "";
+}
+
+.path-stage__badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  display: grid;
+  width: 27px;
+  height: 27px;
+  border: 3px solid white;
+  border-radius: 50%;
+  color: white;
+  background: #2aaa70;
+  font-size: 14px;
+  place-items: center;
+}
+
+.path-stage.is-locked .path-stage__badge {
+  background: #7381aa;
+}
+
+.path-stage__label {
+  max-width: 120px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.path-stage.is-current .path-stage__label {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.lesson-card {
+  position: relative;
+  min-height: 184px;
+  overflow: hidden;
+  padding: 22px 200px 22px 24px;
+  border: 1px solid rgb(220 228 241 / 55%);
+  border-radius: 22px;
+  background: var(--color-surface);
+  box-shadow: 0 4px 16px rgb(64 52 26 / 4%);
+}
+
+.lesson-card h2 {
+  margin: 0;
+  font-size: 23px;
+  line-height: 1.25;
+}
+
+.lesson-card p {
+  margin: 7px 0 16px;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.lesson-card__open {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  color: white;
+  background: var(--color-primary);
+  cursor: pointer;
+  place-items: center;
+}
+
+.lesson-card__open:hover {
+  background: var(--color-primary-hover);
+}
+
+.lesson-card__open svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.lesson-card__visual {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  display: flex;
+  width: 176px;
+  height: 142px;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+}
+
+.equation-block {
+  display: grid;
+  width: 52px;
+  height: 62px;
+  border-radius: 11px;
+  color: white;
+  background: #4f9ae8;
+  box-shadow: inset -6px -7px 0 rgb(25 74 151 / 12%);
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  place-items: center;
+  transform: rotate(-5deg);
+}
+
+.equation-block:nth-child(2) {
+  align-self: flex-start;
+  color: #814d00;
+  background: #ffd26e;
+  transform: rotate(2deg);
+}
+
+.equation-block:nth-child(3) {
+  background: #ec72aa;
+  transform: rotate(7deg);
+}
+
+.shape {
+  display: block;
+  box-shadow: inset -8px -8px 0 rgb(31 58 112 / 10%);
+}
+
+.shape--triangle {
+  width: 0;
+  height: 0;
+  border-right: 38px solid transparent;
+  border-bottom: 72px solid #57c38c;
+  border-left: 38px solid transparent;
+  filter: drop-shadow(6px 6px 0 rgb(31 58 112 / 8%));
+}
+
+.shape--square {
+  width: 68px;
+  height: 68px;
+  border-radius: 8px;
+  background: #51a8ef;
+}
+
+.shape--circle {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: #f17665;
+}
+
+.quick-challenge,
+.math-goal {
+  border: 1px solid rgb(220 228 241 / 55%);
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: 0 4px 16px rgb(64 52 26 / 4%);
+}
+
+.quick-challenge {
+  padding: 18px 16px 16px;
+}
+
+.quick-challenge header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.quick-challenge h2,
+.math-goal h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.quick-challenge__bolt {
+  color: var(--color-yellow);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.quick-challenge__scene {
+  height: 112px;
+  overflow: hidden;
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(150deg, #8e8ced, #b3a8ff);
+}
+
+.quick-challenge__scene svg {
+  width: 100%;
+  height: 100%;
+}
+
+.quick-cloud {
+  fill: #eeeaff;
+}
+
+.quick-cloud--right {
+  fill: #f8f6ff;
+}
+
+.quick-star {
+  fill: #ffd565;
+  stroke: #f1b72d;
+  stroke-width: 2;
+}
+
+.quick-challenge__scene circle {
+  fill: var(--color-navy);
+}
+
+.quick-smile {
+  fill: none;
+  stroke: var(--color-navy);
+  stroke-linecap: round;
+  stroke-width: 2.5;
+}
+
+.quick-challenge__question {
+  margin: 0;
+  padding: 22px 10px;
+  border-radius: 0 0 18px 18px;
+  color: var(--color-navy);
+  background: #f4f5ff;
+  font-family: var(--font-heading);
+  font-size: 34px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.quick-challenge__answers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.answer-button {
+  min-height: 58px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  color: var(--color-navy);
+  background: white;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.answer-button:hover {
+  border-color: #9dadde;
+  background: var(--color-primary-soft);
+}
+
+.answer-button.is-correct {
+  border-color: #37a974;
+  color: #176b47;
+  background: var(--color-success-soft);
+}
+
+.answer-button.is-wrong {
+  border-color: #e38c82;
+  color: #9b342b;
+  background: #fff0ed;
+}
+
+.quick-challenge__feedback {
+  min-height: 22px;
+  margin: 10px 0 0;
+  color: var(--color-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.math-goal {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px 10px;
+  padding: 18px;
+}
+
+.math-goal__heading {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.math-goal__heading svg {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.5;
+}
+
+.math-goal__heading p {
+  margin: 5px 0 0;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.math-goal__progress {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  align-items: center;
+}
+
+.math-goal__segment {
+  height: 12px;
+  border-radius: 999px;
+  background: var(--color-track);
+}
+
+.math-goal__segment.is-complete {
+  background: var(--color-yellow);
+}
+
+.math-goal__count {
+  color: var(--color-muted);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.math-dialog__summary {
+  margin: 0 0 18px;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 1279.98px) {
+  .math-dashboard-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .math-side {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+@media (max-width: 899.98px) {
+  .lesson-card {
+    padding-right: 150px;
+  }
+
+  .lesson-card__visual {
+    width: 140px;
+    transform: scale(0.86);
+    transform-origin: right bottom;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .math-heading__mark {
+    width: 56px;
+    height: 56px;
+    flex-basis: 56px;
+    border-radius: 18px;
+  }
+
+  .math-heading__mark img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .math-dashboard-grid,
+  .math-dashboard-main,
+  .math-side {
+    gap: 16px;
+  }
+
+  .math-hero {
+    display: flex;
+    min-height: 440px;
+    align-items: flex-end;
+    padding: 16px;
+  }
+
+  .math-hero__art {
+    height: 240px;
+    object-position: 66% top;
+  }
+
+  .math-hero__content {
+    width: 100%;
+    padding: 21px;
+    border-radius: 20px;
+    background: var(--color-surface);
+  }
+
+  .math-hero__content .button {
+    width: 100%;
+  }
+
+  .math-path {
+    padding: 20px 16px;
+  }
+
+  .math-path__track {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .math-path__track::before {
+    top: 34px;
+    bottom: 34px;
+    left: 35px;
+    width: 0;
+    border-top: 0;
+    border-left: 3px dashed #b9b1f4;
+  }
+
+  .path-stage {
+    min-height: 70px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 16px;
+    text-align: left;
+  }
+
+  .path-stage__planet {
+    width: 70px;
+    height: 70px;
+    flex: 0 0 70px;
+    border-width: 6px;
+    font-size: 22px;
+  }
+
+  .path-stage.is-current .path-stage__planet::after {
+    display: none;
+  }
+
+  .path-stage__label {
+    max-width: none;
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .lesson-grid,
+  .math-side {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lesson-card {
+    min-height: 194px;
+    padding: 22px 158px 22px 20px;
+  }
+
+  .lesson-card__visual {
+    right: 8px;
+  }
+}
+
+@media (max-width: 399.98px) {
+  .lesson-card {
+    padding-right: 128px;
+  }
+
+  .lesson-card__visual {
+    width: 126px;
+    transform: scale(0.75);
+  }
+}

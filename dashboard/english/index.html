@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Góc học tập tiếng Anh dành cho học viên FutureLearn."
+    />
+    <meta name="theme-color" content="#fffbed" />
+    <link rel="icon" type="image/png" href="../../favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Roboto:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../shared/layout.css?v=1.0.2" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Đảo tiếng Anh – FutureLearn</title>
+  </head>
+  <body data-dashboard="english">
+    <div data-dashboard-header>
+      <noscript>
+        <a href="../../index.html">Trang chủ</a> ·
+        <a href="../english/">Đảo tiếng Anh</a> ·
+        <a href="../math/">Hành tinh Toán</a>
+      </noscript>
+    </div>
+
+    <main class="dashboard-main" id="main-content">
+      <div class="dashboard-main__inner">
+        <header class="page-heading">
+          <div class="island-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <path
+                class="island-mark__water"
+                d="M8 48c8-6 16-6 24 0 8-6 16-6 24 0-6 9-42 9-48 0Z"
+              />
+              <path
+                class="island-mark__sand"
+                d="M18 44c4-7 24-8 29 0-8 5-21 6-29 0Z"
+              />
+              <path class="island-mark__trunk" d="m31 42 4-22 5 1-3 23-6-2Z" />
+              <path
+                class="island-mark__leaf"
+                d="M36 22c-8-9-16-5-19 0 8-1 13 1 17 5M37 21c3-10 12-11 17-7-7 2-11 5-15 11M36 20c-1-9 5-14 11-13-4 4-6 8-7 14"
+              />
+            </svg>
+          </div>
+          <div>
+            <h1>Đảo tiếng Anh</h1>
+            <p>Khám phá từ mới, tự tin mỗi ngày!</p>
+          </div>
+        </header>
+
+        <section class="journey-banner" aria-labelledby="journey-title">
+          <img
+            class="journey-banner__art"
+            src="./assets/english-island-v2.webp"
+            width="2172"
+            height="724"
+            alt=""
+            fetchpriority="high"
+          />
+          <div class="journey-banner__content">
+            <h2 id="journey-title">Sẵn sàng khám phá?</h2>
+            <p>
+              Cùng những người bạn đáng yêu khám phá thế giới tiếng Anh qua
+              những chủ đề thú vị!
+            </p>
+            <button
+              class="button button--primary"
+              type="button"
+              data-resume-topic
+            >
+              Tiếp tục học
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14m-5-5 5 5-5 5" />
+              </svg>
+            </button>
+          </div>
+        </section>
+
+        <div class="learning-layout">
+          <section class="topics" aria-labelledby="topics-title" id="topics">
+            <header class="section-heading">
+              <h2 id="topics-title">
+                <svg class="sun-icon" viewBox="0 0 32 32" aria-hidden="true">
+                  <circle cx="16" cy="16" r="6" />
+                  <path
+                    d="M16 2v4m0 20v4M2 16h4m20 0h4M6 6l3 3m14 14 3 3M6 26l3-3M23 9l3-3"
+                  />
+                </svg>
+                Chủ đề hôm nay
+              </h2>
+              <button class="text-button" type="button" data-all-topics>
+                Xem tất cả chủ đề
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14m-5-5 5 5-5 5" />
+                </svg>
+              </button>
+            </header>
+            <div class="topic-grid" data-topic-grid></div>
+            <section
+              class="continue-journey"
+              aria-labelledby="continue-journey-title"
+              data-continue-card
+            >
+              <img
+                class="continue-journey__image"
+                src="./assets/topic-animals.webp"
+                alt=""
+                width="720"
+                height="480"
+                loading="lazy"
+                data-continue-image
+              />
+              <div class="continue-journey__content">
+                <h2 id="continue-journey-title">Tiếp tục hành trình</h2>
+                <p class="continue-journey__topic">
+                  <strong data-continue-title>Động vật</strong>
+                  <span aria-hidden="true">·</span>
+                  <span data-continue-count>6/10 từ</span>
+                </p>
+                <p class="continue-journey__note" data-continue-note>
+                  Còn 4 từ nữa để hoàn thành chủ đề Động vật.
+                </p>
+                <progress
+                  value="6"
+                  max="10"
+                  aria-label="Tiến độ chủ đề đang học"
+                  data-continue-progress
+                ></progress>
+              </div>
+              <button
+                class="button button--primary continue-journey__button"
+                type="button"
+                data-continue-journey
+              >
+                Học tiếp
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14m-5-5 5 5-5 5" />
+                </svg>
+              </button>
+            </section>
+            <noscript
+              ><p>
+                Vui lòng bật JavaScript để xem các chủ đề học tập.
+              </p></noscript
+            >
+          </section>
+
+          <aside class="goal-panel" aria-labelledby="goal-title">
+            <div class="goal-panel__heading">
+              <svg class="target-icon" viewBox="0 0 32 32" aria-hidden="true">
+                <circle cx="15" cy="17" r="12" />
+                <circle cx="15" cy="17" r="7" />
+                <path d="m15 17 12-12m-1-3v5h5" />
+              </svg>
+              <div>
+                <h2 id="goal-title">Mục tiêu hôm nay</h2>
+                <p>
+                  Hoàn thành <span data-goal-total>3</span> chủ đề từ vựng tiếng
+                  Anh
+                </p>
+              </div>
+            </div>
+            <div
+              class="goal-ring"
+              role="progressbar"
+              aria-label="Tiến độ mục tiêu hôm nay"
+              aria-valuemin="0"
+              aria-valuemax="3"
+              aria-valuenow="2"
+              data-goal-ring
+            >
+              <svg viewBox="0 0 128 128" aria-hidden="true">
+                <circle class="goal-ring__track" cx="64" cy="64" r="52" />
+                <circle
+                  class="goal-ring__value"
+                  cx="64"
+                  cy="64"
+                  r="52"
+                  pathLength="100"
+                />
+              </svg>
+              <span class="goal-ring__count" aria-hidden="true"
+                ><strong data-goal-completed>2</strong><span>/</span
+                ><span data-goal-total>3</span></span
+              >
+            </div>
+            <p class="goal-panel__progress-note" data-goal-note>
+              Còn 1 chủ đề nữa, cố lên nào!
+            </p>
+            <div class="vocabulary-stat">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M3 5c3-1 6 0 9 2v14c-3-2-6-3-9-2V5Zm18 0c-3-1-6 0-9 2v14c3-2 6-3 9-2V5Z"
+                />
+              </svg>
+              <div>
+                <h3>Từ vựng đã học</h3>
+                <p><strong data-words-learned>24</strong> từ</p>
+              </div>
+            </div>
+            <div class="encouragement">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"
+                />
+              </svg>
+              <p>
+                <strong>Cố lên!</strong
+                ><span>Mỗi từ mới là một bước khám phá thế giới.</span>
+              </p>
+            </div>
+          </aside>
+        </div>
+        <p class="preview-note">
+          Bản xem thử · Điểm sao và tiến độ đang dùng dữ liệu minh họa.
+        </p>
+      </div>
+    </main>
+
+    <template id="topic-card-template">
+      <article class="topic-card">
+        <button class="topic-card__open" type="button">
+          <div class="topic-card__media">
+            <img
+              class="topic-card__image"
+              src=""
+              alt=""
+              width="720"
+              height="480"
+              loading="lazy"
+            />
+            <span class="topic-status"></span>
+          </div>
+          <div class="topic-card__body">
+            <h3></h3>
+            <p class="topic-card__description"></p>
+            <div class="topic-card__progress">
+              <progress value="0" max="10"></progress>
+              <span class="topic-card__count"></span>
+            </div>
+          </div>
+          <span class="topic-card__action"
+            ><span data-topic-action></span
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14m-5-5 5 5-5 5" /></svg
+          ></span>
+        </button>
+      </article>
+    </template>
+
+    <dialog
+      class="topic-dialog"
+      aria-labelledby="topic-dialog-title"
+      data-topic-dialog
+    >
+      <div class="topic-dialog__heading">
+        <h2 id="topic-dialog-title" data-dialog-title></h2>
+        <button
+          class="icon-button"
+          type="button"
+          aria-label="Đóng xem trước chủ đề"
+          data-dialog-close
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+      <div data-dialog-content></div>
+      <form method="dialog">
+        <button class="button button--primary" type="submit">
+          Quay lại đảo
+        </button>
+      </form>
+    </dialog>
+
+    <div data-dashboard-footer></div>
+
+    <script src="./demo-data.js"></script>
+    <script src="../shared/layout.js?v=1.0.2"></script>
+    <script src="./app.js"></script>
+    <script src="../learning-links.js?v=1.0.0"></script>
+  </body>
+</html>

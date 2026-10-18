@@ -1,20 +1,20 @@
 /* ============================================================
  * FutureLearn — Course consultation registration
- * Version: v1.1.1
+ * Version: v1.2.0
  * ============================================================ */
 
 .consultation {
     position: relative;
     overflow: hidden;
     scroll-margin-top: var(--header-height);
-    padding-block: var(--section-space-y);
+    padding-block: clamp(2.25rem, 4vw, 3rem);
     background-color: var(--accent-orange-strong);
 }
 
 .consultation__inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 2.5rem;
+    gap: 1.75rem;
     align-items: center;
 }
 
@@ -50,7 +50,7 @@
 
 .consultation-form {
     width: min(100%, 36rem);
-    margin: 2rem auto 0;
+    margin: 1.35rem auto 0;
     text-align: center;
 }
 
@@ -63,8 +63,8 @@
 .consultation-form select {
     display: block;
     width: 100%;
-    min-height: 3.8125rem;
-    padding: 0.95rem 1.35rem;
+    min-height: 3.4rem;
+    padding: 0.78rem 1.35rem;
     border: 1px solid var(--white);
     border-radius: var(--radius-input);
     outline: none;
@@ -102,8 +102,9 @@
 
 .consultation-form__field--select > i {
     position: absolute;
-    top: 1.45rem;
+    top: 1.7rem;
     right: 1.35rem;
+    translate: 0 -50%;
     color: var(--natural-black-3);
     pointer-events: none;
 }
@@ -128,9 +129,9 @@
     align-items: center;
     justify-content: center;
     width: min(100%, 13.4375rem);
-    min-height: 3.75rem;
-    margin-top: 0.875rem;
-    padding: 0.85rem 1.5rem;
+    min-height: 3.4rem;
+    margin-top: 0.65rem;
+    padding: 0.72rem 1.5rem;
     border: 1px solid var(--primary-blue-1);
     border-radius: 0.5rem;
     background-color: var(--primary-blue-1);
@@ -159,10 +160,14 @@
 
 .consultation-form__status {
     min-height: 1.5rem;
-    margin: 0.85rem 0 0;
+    margin: 0.65rem 0 0;
     color: var(--white);
     font-weight: 600;
     line-height: 1.5;
+}
+
+.consultation-form__status:empty {
+    display: none;
 }
 
 .consultation__visual {
@@ -177,11 +182,12 @@
 
 @media (max-width: 767.98px) {
     .consultation {
-        padding-block: 2.75rem;
+        padding-block: 2.25rem;
     }
 
     .consultation__visual {
         grid-row: 1;
+        width: min(100%, 22rem);
     }
 
     .consultation__content {
@@ -197,7 +203,7 @@
 @media (min-width: 768px) {
     .consultation__inner {
         grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
-        gap: clamp(2rem, 5vw, 5rem);
+        gap: clamp(1.75rem, 4vw, 4rem);
     }
 
     .consultation__visual {

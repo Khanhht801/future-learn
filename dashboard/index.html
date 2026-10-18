@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Góc học tập FutureLearn – học Toán, tiếng Anh và khám phá nhiệm vụ mỗi ngày." />
+    <meta name="theme-color" content="#fffbed" />
+    <link rel="icon" type="image/png" href="../favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./shared/layout.css?v=1.0.2" />
+    <link rel="stylesheet" href="./style.css?v=1.0.1" />
+    <title>Góc học tập – FutureLearn</title>
+  </head>
+  <body class="learning-home" data-dashboard="home">
+    <div data-dashboard-header></div>
+    <main class="dashboard-main" id="main-content">
+      <div class="dashboard-main__inner">
+        <section class="welcome-banner" aria-labelledby="welcome-title">
+          <img class="welcome-banner__art" src="./assets/learning-adventure.webp" width="2172" height="724" alt="" fetchpriority="high" />
+          <div class="welcome-banner__content"><h1 id="welcome-title">Chào An, cùng học nào!</h1><p>Một chút mỗi ngày, khám phá thật nhiều!</p><a class="button button--primary" href="./math/?lesson=addition" data-resume-learning>Tiếp tục học <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></a></div>
+        </section>
+        <div class="home-overview">
+          <section class="subject-grid" aria-label="Thế giới học tập">
+            <a class="subject-card subject-card--math" href="./math/">
+              <div class="subject-card__media"><img src="./math/assets/math-space-hero.webp" width="2172" height="724" alt="Bạn nhỏ du hành giữa các hành tinh trên tên lửa" /></div>
+              <div class="subject-card__body"><div class="subject-card__heading"><h2>Hành tinh Toán</h2><span class="subject-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" /></svg></span></div><p>Khám phá thế giới số học thật thú vị!</p><div class="subject-card__progress"><progress value="0" max="1" aria-label="Tiến độ Hành tinh Toán" data-math-progress></progress><span data-math-count>Khám phá ngay</span></div></div>
+            </a>
+            <a class="subject-card subject-card--english" href="./english/">
+              <div class="subject-card__media"><img src="./english/assets/english-island-v2.webp" width="2172" height="724" alt="Chú vẹt nhiều màu trên hòn đảo tiếng Anh xanh mát" /></div>
+              <div class="subject-card__body"><div class="subject-card__heading"><h2>Đảo tiếng Anh</h2><span class="subject-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" /></svg></span></div><p>Học tiếng Anh qua những cuộc phiêu lưu!</p><div class="subject-card__progress"><progress value="0" max="1" aria-label="Tiến độ từ vựng tiếng Anh" data-english-progress></progress><span data-english-count>Khám phá ngay</span></div></div>
+            </a>
+          </section>
+          <aside class="home-sidebar" aria-label="Mục tiêu và chuỗi ngày học">
+            <section class="daily-goal" aria-labelledby="daily-goal-title">
+              <header class="daily-goal__heading"><h2 id="daily-goal-title"><svg class="home-icon home-icon--target" viewBox="0 0 32 32" aria-hidden="true"><circle cx="15" cy="17" r="12" /><circle cx="15" cy="17" r="7" /><path d="m15 17 12-12m-1-3v5h5" /></svg>Mục tiêu hôm nay</h2><strong data-goal-count>0/3</strong></header>
+              <progress class="daily-goal__progress" value="0" max="3" aria-label="Số nhiệm vụ hoàn thành hôm nay" data-home-goal></progress><ul class="daily-goal__list" data-goal-list></ul>
+            </section>
+            <section class="learning-streak" aria-labelledby="streak-title">
+              <div><h2 id="streak-title"><svg class="home-icon home-icon--flame" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 3c1 7 8 9 8 17a9 9 0 0 1-18 0c0-4 2-7 5-10 0 4 1 5 2 6 3-4 4-8 3-13Z" /><path d="M16 18c-5 5-4 10 0 10s6-5 0-10Z" /></svg>Chuỗi ngày học tập</h2><p class="learning-streak__count" data-streak-count>—</p><p class="learning-streak__note">Cố gắng thêm nữa nhé!</p></div>
+              <svg class="streak-sprout" viewBox="0 0 112 120" aria-hidden="true"><path class="streak-sprout__stem" d="M57 72V42" /><path class="streak-sprout__leaf" d="M56 51C32 52 21 35 23 21c22-1 37 9 33 30Zm2-7c0-23 16-31 34-26 0 18-14 29-34 26Z" /><path class="streak-sprout__ground" d="M9 110c17-13 74-13 95 0Z" /><path class="streak-sprout__body" d="M55 60c30-1 41 51 3 51-43 0-33-50-3-51Z" /><ellipse cx="44" cy="84" rx="3" ry="4" /><ellipse cx="68" cy="84" rx="3" ry="4" /><path class="streak-sprout__smile" d="M51 93q6 6 11-1" /><path class="streak-sprout__sparkle" d="m95 57 3 6 6 3-6 3-3 6-3-6-6-3 6-3Zm-79 5 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z" /></svg>
+            </section>
+          </aside>
+        </div>
+        <section class="daily-tasks" id="daily-tasks" aria-labelledby="tasks-title">
+          <header class="section-heading"><h2 id="tasks-title"><svg class="home-icon home-icon--flag" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 29V3m1 2c7-5 12 5 21 0v15c-9 5-14-5-21 0" /></svg>Nhiệm vụ hôm nay</h2><button class="text-button" type="button" data-all-tasks>Xem tất cả <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></button></header>
+          <div class="task-grid">
+            <article class="task-card task-card--math"><div class="task-art task-art--math" aria-hidden="true"><span>1</span><span>2</span><span>3</span></div><div class="task-card__body"><h3>Luyện 5 phép cộng</h3><p>Hoàn thành 5 bài tập cộng trong Hành tinh Toán.</p><a class="button task-card__action" href="./math/?lesson=addition">Bắt đầu ngay <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></a></div></article>
+            <article class="task-card task-card--english"><div class="task-art task-art--english" aria-hidden="true"><span>Aa</span></div><div class="task-card__body"><h3>Học 5 từ mới</h3><p>Khám phá từ vựng tiếng Anh qua hình ảnh thú vị.</p><a class="button task-card__action" href="./english/?topic=animals">Bắt đầu ngay <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></a></div></article>
+            <article class="task-card task-card--garden"><div class="task-art task-art--garden" aria-hidden="true"><svg viewBox="0 0 80 96"><path d="M40 61V30m0 12C21 44 12 31 15 18c17-1 27 10 25 24Zm1-11c0-17 12-25 27-20 0 15-12 23-27 20Z" /><path class="task-art__pot" d="m17 60 7 30h32l7-30Z" /><path class="task-art__rim" d="M13 58h54v9H13Z" /></svg></div><div class="task-card__body"><h3>Chăm sóc khu vườn</h3><p>Tưới nước, giúp cây lớn lên thật xanh tốt!</p><button class="button task-card__action" type="button" data-open-garden>Khám phá <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></button></div></article>
+          </div>
+        </section>
+        <p class="preview-note" data-demo-note>Bản xem thử · Điểm sao, mục tiêu và chuỗi ngày học đang dùng dữ liệu minh họa.</p>
+        <noscript><p>Hãy bật JavaScript để xem tiến độ và nhiệm vụ. Bạn vẫn có thể chọn Toán hoặc tiếng Anh để khám phá.</p></noscript>
+      </div>
+    </main>
+    <dialog class="topic-dialog home-dialog" aria-labelledby="home-dialog-title" data-home-dialog>
+      <div class="topic-dialog__heading"><h2 id="home-dialog-title" data-home-dialog-title></h2><button class="icon-button" type="button" aria-label="Đóng cửa sổ" data-home-dialog-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button></div>
+      <div data-home-dialog-content></div><form method="dialog"><button class="button button--primary" type="submit">Quay lại Góc học tập</button></form>
+    </dialog>
+    <div data-dashboard-footer></div>
+    <script src="./math/demo-data.js?v=1.0.0"></script>
+    <script src="./english/demo-data.js?v=1.0.0"></script>
+    <script src="./demo-data.js?v=1.0.0"></script>
+    <script src="./shared/layout.js?v=1.0.2"></script>
+    <script src="./app.js?v=1.0.0"></script>
+  </body>
+</html>
