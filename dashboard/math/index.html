@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../shared/layout.css?v=1.0.2" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style.css?v=1.0.1" />
     <title>Hành tinh Toán – FutureLearn</title>
   </head>
   <body data-dashboard="math">
@@ -31,17 +31,17 @@
           <div><h1>Hành tinh Toán</h1><p>Chinh phục từng thử thách nhỏ!</p></div>
         </header>
 
+        <section class="math-hero" aria-labelledby="math-hero-title">
+          <img class="math-hero__art" src="./assets/math-space-hero.webp" width="2172" height="724" alt="" fetchpriority="high" />
+          <div class="math-hero__content">
+            <h2 id="math-hero-title">Cùng khám phá những con số!</h2>
+            <p>Tiếp tục chặng Phép cộng và thu thập thêm sao nhé.</p>
+            <button class="button button--primary" type="button" data-open-lesson="addition">Bắt đầu học <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></button>
+          </div>
+        </section>
+
         <div class="math-dashboard-grid">
           <div class="math-dashboard-main">
-            <section class="math-hero" aria-labelledby="math-hero-title">
-              <img class="math-hero__art" src="./assets/math-space-hero.webp" width="2172" height="724" alt="" fetchpriority="high" />
-              <div class="math-hero__content">
-                <h2 id="math-hero-title">Cùng khám phá những con số!</h2>
-                <p>Tiếp tục chặng Phép cộng và thu thập thêm sao nhé.</p>
-                <button class="button button--primary" type="button" data-open-lesson="addition">Bắt đầu học <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></button>
-              </div>
-            </section>
-
             <section class="math-path" id="math-path" aria-labelledby="math-path-title">
               <h2 id="math-path-title">Hành trình của bạn</h2>
               <div class="math-path__track" data-math-path></div>

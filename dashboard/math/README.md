@@ -8,7 +8,8 @@ môn Toán. Xem [hướng dẫn layout](../README.md).
 
 ## Nội dung
 
-- Banner hành trình không gian với CTA mở bài Phép cộng.
+- Banner hành trình không gian trải ngang phía trên bố cục hai cột, đồng bộ
+  thẻ nội dung và CTA với trang Đảo tiếng Anh; CTA mở bài Phép cộng.
 - Lộ trình 5 chặng, thể hiện trạng thái đã học, đang học và chưa mở khóa.
 - Hai nhóm bài Cộng và trừ, Hình học.
 - Thử thách nhanh có phản hồi đúng/sai và mục tiêu 2/3 bài.
