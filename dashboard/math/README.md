@@ -18,6 +18,9 @@ môn Toán. Xem [hướng dẫn layout](../README.md).
   chặng đã hoàn thành từ dữ liệu lộ trình; nút “Học tiếp” mở bài của chặng đó.
   Thẻ ẩn khi không có chặng đang học tương ứng với một bài học hợp lệ.
 - Thử thách nhanh có phản hồi đúng/sai và mục tiêu 2/3 bài.
+- Trên desktop, thử thách nằm cạnh lộ trình và nhóm bài; “Mục tiêu hôm nay”
+  cùng hàng, cùng chiều cao với “Tiếp tục hành trình”. Tablet dùng thử thách
+  dạng ngang; màn hình hẹp xếp các phần thành một cột.
 - `demo-data.js` là dữ liệu minh họa; thao tác xem trước không thay đổi tiến độ hoặc điểm sao.
 
 ## Minh họa

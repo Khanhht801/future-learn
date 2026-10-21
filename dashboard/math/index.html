@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../shared/layout.css?v=1.0.2" />
-    <link rel="stylesheet" href="./style.css?v=1.0.3" />
+    <link rel="stylesheet" href="./style.css?v=1.0.4" />
     <title>Hành tinh Toán – FutureLearn</title>
   </head>
   <body data-dashboard="math">
@@ -41,43 +41,39 @@
         </section>
 
         <div class="math-dashboard-grid">
-          <div class="math-dashboard-main">
-            <section class="math-path" id="math-path" aria-labelledby="math-path-title">
-              <h2 id="math-path-title">Hành trình của bạn</h2>
-              <div class="math-path__track" data-math-path></div>
-            </section>
+          <section class="math-path" id="math-path" aria-labelledby="math-path-title">
+            <h2 id="math-path-title">Hành trình của bạn</h2>
+            <div class="math-path__track" data-math-path></div>
+          </section>
 
-            <section class="lesson-grid" aria-label="Chủ đề Toán nổi bật" data-lesson-grid></section>
+          <section class="lesson-grid" aria-label="Chủ đề Toán nổi bật" data-lesson-grid></section>
 
-            <section class="math-continue" aria-labelledby="math-continue-title" data-math-continue hidden>
-              <img class="math-continue__image" src="./assets/math-space-hero.webp" width="112" height="112" alt="" loading="lazy" />
-              <div class="math-continue__content">
-                <h2 id="math-continue-title">Tiếp tục hành trình</h2>
-                <p class="math-continue__topic"><strong data-continue-stage></strong></p>
-                <p class="math-continue__note" data-continue-note></p>
-                <progress value="0" max="5" aria-label="Tiến độ hành trình Toán" data-continue-progress></progress>
-              </div>
-              <button class="button button--primary math-continue__button" type="button" data-open-lesson="addition" data-continue-lesson>Học tiếp <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></button>
-            </section>
-          </div>
+          <section class="quick-challenge" aria-labelledby="challenge-title">
+            <header><span class="quick-challenge__bolt" aria-hidden="true">ϟ</span><h2 id="challenge-title">Thử thách nhanh</h2></header>
+            <div class="quick-challenge__scene" aria-hidden="true">
+              <svg viewBox="0 0 240 100"><path class="quick-cloud" d="M0 75c8-20 29-23 42-9 12-32 58-32 70 1 19-18 50-7 50 17H0Z" /><path class="quick-cloud quick-cloud--right" d="M145 89c5-15 24-21 36-9 9-28 50-24 55 9h-91Z" /><path class="quick-star" d="m120 13 10 21 23 3-17 16 4 23-20-11-20 11 4-23-17-16 23-3 10-21Z" /><circle cx="112" cy="45" r="2.5" /><circle cx="128" cy="45" r="2.5" /><path class="quick-smile" d="M112 53c5 6 11 6 16 0" /></svg>
+            </div>
+            <p class="quick-challenge__question"><span data-challenge-left>8</span> + <span data-challenge-right>5</span> = ?</p>
+            <div class="quick-challenge__answers" data-challenge-options></div>
+            <p class="quick-challenge__feedback" aria-live="polite" data-challenge-feedback>Chọn đáp án đúng nhé!</p>
+          </section>
 
-          <aside class="math-side" aria-label="Hoạt động và mục tiêu Toán">
-            <section class="quick-challenge" aria-labelledby="challenge-title">
-              <header><span class="quick-challenge__bolt" aria-hidden="true">ϟ</span><h2 id="challenge-title">Thử thách nhanh</h2></header>
-              <div class="quick-challenge__scene" aria-hidden="true">
-                <svg viewBox="0 0 240 100"><path class="quick-cloud" d="M0 75c8-20 29-23 42-9 12-32 58-32 70 1 19-18 50-7 50 17H0Z" /><path class="quick-cloud quick-cloud--right" d="M145 89c5-15 24-21 36-9 9-28 50-24 55 9h-91Z" /><path class="quick-star" d="m120 13 10 21 23 3-17 16 4 23-20-11-20 11 4-23-17-16 23-3 10-21Z" /><circle cx="112" cy="45" r="2.5" /><circle cx="128" cy="45" r="2.5" /><path class="quick-smile" d="M112 53c5 6 11 6 16 0" /></svg>
-              </div>
-              <p class="quick-challenge__question"><span data-challenge-left>8</span> + <span data-challenge-right>5</span> = ?</p>
-              <div class="quick-challenge__answers" data-challenge-options></div>
-              <p class="quick-challenge__feedback" aria-live="polite" data-challenge-feedback>Chọn đáp án đúng nhé!</p>
-            </section>
+          <section class="math-continue" aria-labelledby="math-continue-title" data-math-continue hidden>
+            <img class="math-continue__image" src="./assets/math-space-hero.webp" width="112" height="112" alt="" loading="lazy" />
+            <div class="math-continue__content">
+              <h2 id="math-continue-title">Tiếp tục hành trình</h2>
+              <p class="math-continue__topic"><strong data-continue-stage></strong></p>
+              <p class="math-continue__note" data-continue-note></p>
+              <progress value="0" max="5" aria-label="Tiến độ hành trình Toán" data-continue-progress></progress>
+            </div>
+            <button class="button button--primary math-continue__button" type="button" data-open-lesson="addition" data-continue-lesson>Học tiếp <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></button>
+          </section>
 
-            <section class="math-goal" aria-labelledby="math-goal-title">
-              <div class="math-goal__heading"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="15" cy="17" r="12" /><circle cx="15" cy="17" r="7" /><path d="m15 17 12-12m-1-3v5h5" /></svg><div><h2 id="math-goal-title">Mục tiêu hôm nay</h2><p>Hoàn thành <span data-goal-total>3</span> bài học bất kỳ</p></div></div>
-              <div class="math-goal__progress" data-goal-progress aria-label="Tiến độ mục tiêu hôm nay"></div>
-              <strong class="math-goal__count"><span data-goal-completed>2</span>/<span data-goal-total>3</span></strong>
-            </section>
-          </aside>
+          <section class="math-goal" aria-labelledby="math-goal-title">
+            <div class="math-goal__heading"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="15" cy="17" r="12" /><circle cx="15" cy="17" r="7" /><path d="m15 17 12-12m-1-3v5h5" /></svg><div><h2 id="math-goal-title">Mục tiêu hôm nay</h2><p>Hoàn thành <span data-goal-total>3</span> bài học bất kỳ</p></div></div>
+            <div class="math-goal__progress" data-goal-progress aria-label="Tiến độ mục tiêu hôm nay"></div>
+            <strong class="math-goal__count"><span data-goal-completed>2</span>/<span data-goal-total>3</span></strong>
+          </section>
         </div>
 
         <p class="preview-note">Bản xem thử · Điểm sao và tiến độ đang dùng dữ liệu minh họa.</p>
