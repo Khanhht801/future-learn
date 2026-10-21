@@ -342,6 +342,88 @@ button.path-stage {
   background: #f17665;
 }
 
+.math-continue {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #e3def8;
+  border-radius: 22px;
+  background: #f3f0fc;
+  box-shadow: 0 4px 16px rgb(64 52 26 / 4%);
+}
+
+.math-continue[hidden] {
+  display: none;
+}
+
+.math-continue__image {
+  width: 112px;
+  height: 112px;
+  border-radius: 14px;
+  object-fit: cover;
+  object-position: 70% center;
+}
+
+.math-continue__content {
+  min-width: 0;
+}
+
+.math-continue h2 {
+  margin: 0;
+  color: var(--color-navy);
+  font-family: var(--font-heading);
+  font-size: 21px;
+  line-height: 1.25;
+}
+
+.math-continue__topic {
+  margin: 5px 0 0;
+  color: var(--color-primary);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.math-continue__note {
+  margin: 4px 0 10px;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.math-continue progress {
+  display: block;
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  color: #8275e8;
+  background: #e2ddf3;
+}
+
+.math-continue progress::-webkit-progress-bar {
+  border-radius: 999px;
+  background: #e2ddf3;
+}
+
+.math-continue progress::-webkit-progress-value {
+  border-radius: 999px;
+  background: #8275e8;
+}
+
+.math-continue progress::-moz-progress-bar {
+  border-radius: 999px;
+  background: #8275e8;
+}
+
+.math-continue__button {
+  min-width: 120px;
+  font-size: 15px;
+}
+
 .quick-challenge,
 .math-goal {
   border: 1px solid rgb(220 228 241 / 55%);
@@ -596,6 +678,25 @@ button.path-stage {
 
   .math-dashboard-grid {
     margin-top: 20px;
+  }
+
+  .math-continue {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .math-continue__image {
+    width: 80px;
+    height: 96px;
+  }
+
+  .math-continue h2 {
+    font-size: 20px;
+  }
+
+  .math-continue__button {
+    grid-column: 1 / -1;
+    width: 100%;
   }
 
   .math-path {

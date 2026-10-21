@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../shared/layout.css?v=1.0.2" />
-    <link rel="stylesheet" href="./style.css?v=1.0.1" />
+    <link rel="stylesheet" href="./style.css?v=1.0.2" />
     <title>Hành tinh Toán – FutureLearn</title>
   </head>
   <body data-dashboard="math">
@@ -48,6 +48,17 @@
             </section>
 
             <section class="lesson-grid" aria-label="Chủ đề Toán nổi bật" data-lesson-grid></section>
+
+            <section class="math-continue" aria-labelledby="math-continue-title" data-math-continue hidden>
+              <img class="math-continue__image" src="./assets/math-space-hero.webp" width="112" height="112" alt="" loading="lazy" />
+              <div class="math-continue__content">
+                <h2 id="math-continue-title">Tiếp tục hành trình</h2>
+                <p class="math-continue__topic"><strong data-continue-stage></strong></p>
+                <p class="math-continue__note" data-continue-note></p>
+                <progress value="0" max="5" aria-label="Tiến độ hành trình Toán" data-continue-progress></progress>
+              </div>
+              <button class="button button--primary math-continue__button" type="button" data-open-lesson="addition" data-continue-lesson>Học tiếp <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></button>
+            </section>
           </div>
 
           <aside class="math-side" aria-label="Hoạt động và mục tiêu Toán">
@@ -83,7 +94,7 @@
 
     <script src="./demo-data.js"></script>
     <script src="../shared/layout.js?v=1.0.2"></script>
-    <script src="./app.js?v=1.0.1"></script>
+    <script src="./app.js?v=1.0.2"></script>
     <script src="../learning-links.js?v=1.0.0"></script>
   </body>
 </html>

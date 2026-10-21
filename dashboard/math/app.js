@@ -86,6 +86,21 @@
     lessonGrid.appendChild(article);
   });
 
+  const continueCard = document.querySelector("[data-math-continue]");
+  const currentStage = data.stages.find(function (stage) {
+    return stage.id === data.currentStageId && stage.state === "current";
+  });
+  if (currentStage && lessonFor(currentStage.id)) {
+    const completed = data.stages.filter(function (stage) { return stage.state === "completed"; }).length;
+    document.querySelector("[data-continue-stage]").textContent = currentStage.title;
+    document.querySelector("[data-continue-note]").textContent = "Đã hoàn thành " + completed + "/" + data.stages.length + " chặng.";
+    const progress = document.querySelector("[data-continue-progress]");
+    progress.max = data.stages.length;
+    progress.value = completed;
+    document.querySelector("[data-continue-lesson]").dataset.openLesson = currentStage.id;
+    continueCard.hidden = false;
+  }
+
   document.querySelectorAll("[data-open-lesson]").forEach(function (button) {
     button.addEventListener("click", function () { openLesson(lessonFor(button.dataset.openLesson)); });
   });

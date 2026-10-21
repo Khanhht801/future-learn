@@ -12,6 +12,9 @@ môn Toán. Xem [hướng dẫn layout](../README.md).
   thẻ nội dung và CTA với trang Đảo tiếng Anh; CTA mở bài Phép cộng.
 - Lộ trình 5 chặng, thể hiện trạng thái đã học, đang học và chưa mở khóa.
 - Hai nhóm bài Cộng và trừ, Hình học.
+- Thẻ “Tiếp tục hành trình” dưới các nhóm bài, hiển thị chặng đang học và số
+  chặng đã hoàn thành từ dữ liệu lộ trình; nút “Học tiếp” mở bài của chặng đó.
+  Thẻ ẩn khi không có chặng đang học tương ứng với một bài học hợp lệ.
 - Thử thách nhanh có phản hồi đúng/sai và mục tiêu 2/3 bài.
 - `demo-data.js` là dữ liệu minh họa; thao tác xem trước không thay đổi tiến độ hoặc điểm sao.
 
