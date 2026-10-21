@@ -249,19 +249,19 @@ img {
 }
 
 .sidebar__toggle {
-  --leaf-turn: -12deg;
-  --leaf-tilt: 0deg;
-  --leaf-scale: 1;
+  --bookmark-fold: 0deg;
+  --bookmark-lift: 0px;
+  --bookmark-scale: 1;
   position: absolute;
   top: 0.75rem;
   right: -24px;
   z-index: 2;
   display: grid;
   width: 48px;
-  height: 48px;
+  height: 56px;
   padding: 0;
   border: 0;
-  border-radius: 50%;
+  border-radius: 10px;
   background: transparent;
   cursor: pointer;
   place-items: center;
@@ -269,38 +269,41 @@ img {
 
 .sidebar__toggle:hover,
 .sidebar__toggle:focus-visible {
-  --leaf-tilt: -6deg;
-  --leaf-scale: 1.08;
+  --bookmark-lift: -3px;
 }
 
 .sidebar__toggle:focus-visible {
-  outline-color: var(--color-green);
+  outline-color: var(--color-primary);
 }
 
 .sidebar__toggle:active {
-  --leaf-scale: 0.94;
+  --bookmark-scale: 0.94;
 }
 
-.sidebar__leaf {
-  width: 42px;
-  height: 42px;
+.sidebar__bookmark {
+  width: 48px;
+  height: 56px;
   overflow: visible;
-  filter: drop-shadow(0 3px 3px rgb(44 122 88 / 18%));
-  transform: rotate(calc(var(--leaf-turn) + var(--leaf-tilt))) scale(var(--leaf-scale));
-  transition: transform 280ms ease, filter 180ms ease;
+  filter: drop-shadow(1px 3px 3px rgb(31 58 112 / 16%));
+  transform: perspective(160px) translateY(var(--bookmark-lift)) rotateY(var(--bookmark-fold)) scale(var(--bookmark-scale));
+  transition: transform 280ms ease;
 }
 
-.sidebar__leaf-body {
-  fill: #4f9637;
+.sidebar__bookmark-loop {
+  fill: #294aa2;
 }
 
-.sidebar__leaf-fold {
-  fill: #83bd51;
+.sidebar__bookmark-body {
+  fill: #6689df;
 }
 
-.sidebar__leaf-veins {
+.sidebar__bookmark-fold {
+  fill: #4269c8;
+}
+
+.sidebar__bookmark-stitch {
   fill: none;
-  stroke: #e4f2bf;
+  stroke: #e0eaff;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.35;
@@ -314,9 +317,9 @@ img {
   width: max-content;
   padding: 6px 10px;
   border-radius: 10px;
-  color: var(--color-green);
+  color: var(--color-primary);
   background: var(--color-surface);
-  box-shadow: 0 3px 12px rgb(44 122 88 / 12%);
+  box-shadow: 0 3px 12px rgb(31 58 112 / 12%);
   font-size: 13px;
   font-weight: 500;
   opacity: 0;
@@ -436,7 +439,7 @@ html.sidebar-is-collapsed .sidebar {
 }
 
 html.sidebar-is-collapsed .sidebar__toggle {
-  --leaf-turn: 168deg;
+  --bookmark-fold: -155deg;
 }
 
 html.sidebar-is-collapsed .sidebar .subject-nav__item {
