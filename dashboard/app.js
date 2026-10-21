@@ -7,7 +7,8 @@
   if (!data || !math || !english) return;
   const destinations = {
     math: "./math/?lesson=" + encodeURIComponent(math.currentStageId),
-    english: "./english/?topic=" + encodeURIComponent(english.resumeTopicId)
+    english: "./english/?topic=" + encodeURIComponent(english.resumeTopicId),
+    badges: "./badges/"
   };
   const resumeKey = "futurelearn-resume-subject";
   const resumeLink = document.querySelector("[data-resume-learning]");
@@ -69,7 +70,7 @@
     openDialog(title, paragraph);
   }
   function showGarden() {
-    showMessage("Khu vườn của bé", "Khu vườn đang được chuẩn bị. Bạn hãy khám phá Hành tinh Toán và Đảo tiếng Anh trong lúc chờ nhé!");
+    location.replace("./badges/");
   }
   document.querySelectorAll("[data-open-garden]").forEach(function (button) { button.addEventListener("click", showGarden); });
   document.querySelectorAll("[data-open-parents]").forEach(function (button) {
@@ -85,13 +86,8 @@
   });
 
   function taskAction(task) {
-    const action = document.createElement(task.subject === "garden" ? "button" : "a");
-    if (task.subject === "garden") {
-      action.type = "button";
-      action.addEventListener("click", showGarden);
-    } else {
-      action.href = destinations[task.subject];
-    }
+    const action = document.createElement("a");
+    action.href = destinations[task.subject];
     return action;
   }
   data.tasks.forEach(function (task) {
@@ -123,10 +119,10 @@
       title.textContent = task.title;
       const status = document.createElement("span");
       status.className = "home-dialog__status";
-      status.textContent = task.subject === "garden" ? "Sắp có" : task.completed ? "Đã hoàn thành · Có thể ôn lại" : "Chưa hoàn thành";
+      status.textContent = task.completed ? "Đã hoàn thành · Có thể ôn lại" : "Chưa hoàn thành";
       const action = taskAction(task);
       action.className = "button task-card__action";
-      action.textContent = task.subject === "garden" ? "Xem khu vườn" : task.completed ? "Ôn lại" : "Bắt đầu ngay";
+      action.textContent = task.subject === "badges" ? "Xem huy hiệu" : task.completed ? "Ôn lại" : "Bắt đầu ngay";
       item.append(title, status, action);
       list.append(item);
     });
@@ -145,7 +141,7 @@
     if (panel === "parents") showMessage("Góc phụ huynh", "Góc phụ huynh đang được chuẩn bị. Điểm sao và tiến độ hiện tại là dữ liệu minh họa.");
     if (panel === "profile") showProfile();
   }
-  // Keep garden and parent previews on this page while supporting shareable links.
+  // Preserve old garden deep links and shareable parent/profile previews.
   document.addEventListener("click", function (event) {
     const link = event.target.closest("a[href]");
     if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;

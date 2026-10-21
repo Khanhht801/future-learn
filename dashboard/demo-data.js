@@ -8,6 +8,6 @@ window.learningDashboardData = {
   tasks: [
     { id: "addition", title: "Luyện 5 phép cộng", subject: "math", completed: true },
     { id: "vocabulary", title: "Học 5 từ mới", subject: "english", completed: true },
-    { id: "garden", title: "Chăm sóc khu vườn", subject: "garden", completed: false }
+    { id: "badges", title: "Khám phá bộ sưu tập huy hiệu", subject: "badges", completed: false }
   ]
 };

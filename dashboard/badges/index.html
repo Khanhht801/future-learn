@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Bộ sưu tập huy hiệu FutureLearn – lưu giữ từng cột mốc học tập đáng tự hào của bé." />
+    <meta name="theme-color" content="#fffbed" />
+    <link rel="icon" type="image/png" href="../../favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../shared/layout.css?v=1.0.2" />
+    <link rel="stylesheet" href="./style.css?v=1.0.0" />
+    <title>Bộ sưu tập huy hiệu – FutureLearn</title>
+  </head>
+  <body class="badge-page" data-dashboard="badges">
+    <div data-dashboard-header></div>
+    <main class="dashboard-main" id="main-content">
+      <div class="dashboard-main__inner">
+        <header class="page-heading">
+          <span class="badge-heading-art"><img src="./assets/diligent.webp" width="64" height="64" alt="" /></span>
+          <div><h1>Bộ sưu tập huy hiệu</h1><p>Sưu tầm huy hiệu, theo dõi thành tích mỗi ngày!</p></div>
+        </header>
+
+        <section class="badge-hero" aria-labelledby="badge-hero-title">
+          <img class="badge-hero__art" src="./assets/hero.webp" width="2172" height="724" alt="Bạn nhỏ vui mừng giơ cao huy hiệu ngôi sao bên tủ trưng bày thành tích" fetchpriority="high" />
+          <div class="badge-hero__content">
+            <h2 id="badge-hero-title">Sẵn sàng chinh phục?</h2>
+            <p>Mở khóa những huy hiệu thú vị khi học tập và hoàn thành các nhiệm vụ. Mỗi huy hiệu là một cột mốc đáng tự hào!</p>
+            <button class="button button--primary" type="button" data-my-badges>Xem huy hiệu của bé <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></button>
+          </div>
+        </section>
+
+        <div class="badge-layout">
+          <section class="badge-collection" id="collection" aria-labelledby="collection-title">
+            <header class="collection-heading">
+              <h2 id="collection-title" tabindex="-1"><svg class="badge-icon badge-icon--star" viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 4 8 9 1.3-6.5 6.3 1.5 9-8-4.2L8 27.6l1.5-9L3 12.3l9-1.3Z" /></svg><span data-collection-title>Huy hiệu nổi bật</span></h2>
+              <button class="collection-link" type="button" data-all-badges>Xem tất cả huy hiệu <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></button>
+            </header>
+            <div class="badge-filters" role="group" aria-label="Lọc bộ sưu tập huy hiệu" data-filters hidden>
+              <button type="button" data-filter="all" aria-pressed="true">Tất cả <span data-total-count></span></button>
+              <button type="button" data-filter="earned" aria-pressed="false">Đã đạt <span data-earned-filter-count></span></button>
+              <button type="button" data-filter="progress" aria-pressed="false">Đang chinh phục</button>
+              <button type="button" data-filter="locked" aria-pressed="false">Chưa mở khóa</button>
+            </div>
+            <p class="sr-only" role="status" data-filter-status></p>
+            <div class="badge-grid" data-badge-grid></div>
+            <div class="badge-empty" data-badge-empty hidden><img src="./assets/diligent.webp" width="88" height="88" alt="" /><h3>Huy hiệu đang chờ bé!</h3><p>Tiếp tục học và hoàn thành nhiệm vụ để nhận huy hiệu đầu tiên nhé.</p><a class="button button--primary" href="../">Cùng học nào</a></div>
+
+            <section class="next-badge" aria-labelledby="next-badge-title" data-next-badge>
+              <h3 id="next-badge-title"><svg class="badge-icon badge-icon--flame" viewBox="0 0 32 32" aria-hidden="true"><path d="M17 3c1 7 8 9 8 17a9 9 0 0 1-18 0c0-4 2-7 5-10 0 4 1 5 2 6 3-4 4-8 3-13Z" /><path d="M16 18c-5 5-4 10 0 10s6-5 0-10Z" /></svg>Huy hiệu gần đạt</h3>
+              <div class="next-badge__body"><img data-next-image width="100" height="100" alt="" /><div class="next-badge__info"><strong data-next-title></strong><p data-next-description></p><progress data-next-progress aria-label="Tiến độ huy hiệu gần đạt"></progress></div><a class="button button--primary" data-next-link>Học tiếp <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" /></svg></a></div>
+            </section>
+          </section>
+
+          <aside class="badge-summary" aria-label="Mục tiêu và thành tích của bé">
+            <section class="achievement-panel" aria-labelledby="goal-title">
+              <h2 id="goal-title"><svg class="badge-icon badge-icon--target" viewBox="0 0 32 32" aria-hidden="true"><circle cx="15" cy="17" r="12" /><circle cx="15" cy="17" r="7" /><path d="m15 17 12-12m-1-3v5h5" /></svg>Mục tiêu hôm nay</h2>
+              <p class="achievement-panel__intro">Hoàn thành <span data-goal-total>3</span> nhiệm vụ<br />để tiến gần huy hiệu mới!</p>
+              <div class="goal-ring" role="progressbar" aria-label="Nhiệm vụ hôm nay" aria-valuemin="0" data-goal-ring><svg viewBox="0 0 132 132" aria-hidden="true"><circle class="goal-ring__track" cx="66" cy="66" r="53" /><circle class="goal-ring__fill" cx="66" cy="66" r="53" pathLength="100" data-goal-circle /></svg><strong data-goal-count>2/3</strong></div>
+              <div class="earned-total"><img src="./assets/diligent.webp" width="40" height="40" alt="" /><div><h3>Huy hiệu đã mở khóa</h3><p><strong data-earned-count>0</strong> huy hiệu</p></div></div>
+              <div class="encouragement"><svg class="badge-icon badge-icon--star" viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 4 8 9 1.3-6.5 6.3 1.5 9-8-4.2L8 27.6l1.5-9L3 12.3l9-1.3Z" /></svg><div><strong>Cố lên!</strong><p data-encouragement></p></div></div>
+            </section>
+            <p class="collection-hint">Mỗi bước nhỏ hôm nay,<br />một thành tích lớn ngày mai.</p>
+          </aside>
+        </div>
+        <p class="preview-note">Bộ sưu tập minh họa. Huy hiệu đã nhận được lưu trên trình duyệt này; chưa kết nối tài khoản học viên.</p>
+        <noscript><p>Bật JavaScript để xem và nhận huy hiệu. <a href="../">Quay lại Góc học tập</a>.</p></noscript>
+      </div>
+    </main>
+
+    <dialog class="topic-dialog badge-dialog" aria-labelledby="badge-dialog-title" aria-describedby="badge-dialog-description" data-badge-dialog>
+      <button class="icon-button badge-dialog__close" type="button" aria-label="Đóng huy hiệu" data-dialog-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
+      <div class="reward-stage"><div class="reward-rays" aria-hidden="true"></div><div class="reward-confetti" aria-hidden="true" data-confetti></div><img class="reward-art" data-dialog-image width="220" height="220" alt="" /></div>
+      <p class="badge-dialog__eyebrow" data-dialog-eyebrow></p>
+      <h2 id="badge-dialog-title" data-dialog-title></h2>
+      <p id="badge-dialog-description" data-dialog-description></p>
+      <div class="badge-dialog__progress" data-dialog-progress-wrap><progress data-dialog-progress aria-label="Tiến độ huy hiệu"></progress><span data-dialog-count></span></div>
+      <div class="badge-dialog__actions"><button class="button button--primary" type="button" data-claim-badge>Nhận huy hiệu</button><a class="button button--primary" data-dialog-learn>Tiếp tục học</a><button class="button button--primary" type="button" data-reward-done>Tuyệt vời!</button><button class="collection-link" type="button" data-replay-reward>Xem lại khoảnh khắc</button></div>
+      <p class="badge-dialog__note" data-dialog-note></p>
+    </dialog>
+    <p class="sr-only" role="status" aria-live="polite" data-reward-announcement></p>
+    <div data-dashboard-footer></div>
+    <script src="../math/demo-data.js?v=1.0.0"></script>
+    <script src="../english/demo-data.js?v=1.0.0"></script>
+    <script src="../demo-data.js?v=1.0.1"></script>
+    <script src="./demo-data.js?v=1.0.0"></script>
+    <script src="../shared/layout.js?v=1.0.3"></script>
+    <script src="./app.js?v=1.0.0"></script>
+  </body>
+</html>

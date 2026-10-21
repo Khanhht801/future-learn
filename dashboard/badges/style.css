@@ -1,0 +1,155 @@
+/* Collection artwork and reward motion inherit the shared learning UI tokens. */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.badge-page [hidden] { display: none !important; }
+.badge-heading-art { display: grid; width: 72px; height: 72px; flex: 0 0 72px; border-radius: 22px; background: #e0f6fc; place-items: center; }
+.badge-heading-art img { width: 57px; height: 57px; object-fit: contain; }
+.badge-hero { position: relative; display: flex; min-height: 258px; align-items: center; padding: 22px 26px; overflow: hidden; border-radius: 24px; background: #b8edff; isolation: isolate; }
+.badge-hero__art { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.badge-hero__content { width: 39%; max-width: 410px; padding: 22px 26px; border: 1px solid rgb(255 255 255 / 80%); border-radius: 24px; background: rgb(255 255 255 / 96%); }
+.badge-hero h2 { margin: 0; color: var(--color-navy); font-family: var(--font-heading); font-size: clamp(23px, 2vw, 29px); line-height: 1.25; }
+.badge-hero p { margin: 10px 0 16px; color: var(--color-muted); line-height: 1.55; }
+.badge-hero .button { width: 100%; padding-inline: 12px; font-size: 16px; }
+.badge-layout { display: grid; grid-template-columns: minmax(0, 1fr) 238px; align-items: start; gap: 18px; margin-top: 20px; }
+.badge-collection { min-width: 0; scroll-margin-top: calc(var(--header-height) + 20px); }
+.collection-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; margin-bottom: 12px; }
+.collection-heading h2, .achievement-panel h2, .next-badge h3 { display: flex; align-items: center; gap: 9px; margin: 0; color: var(--color-navy); font-family: var(--font-heading); font-weight: 700; }
+.collection-heading h2 { font-size: clamp(23px, 2.2vw, 29px); line-height: 1.25; }
+.badge-icon { width: 32px; height: 32px; flex: 0 0 32px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.badge-icon--star { color: #d99500; fill: #ffcf40; }
+.badge-icon--target { color: #1749db; }
+.badge-icon--flame { color: #f57a30; fill: #ff8d42; }
+.badge-icon--flame path + path { stroke: #ffce48; fill: #ffce48; }
+.collection-link { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; gap: 8px; padding: 4px 0; border: 0; border-radius: 6px; color: var(--color-primary); background: transparent; font-size: 14px; font-weight: 600; cursor: pointer; }
+.collection-link:hover { color: var(--color-primary-hover); text-decoration: underline; }
+.collection-link svg { width: 18px; height: 18px; flex: 0 0 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.badge-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.badge-filters button { display: flex; min-height: 44px; align-items: center; gap: 6px; padding: 8px 14px; border: 1px solid var(--color-border); border-radius: 14px; color: var(--color-muted); background: white; font-size: 14px; cursor: pointer; }
+.badge-filters button[aria-pressed="true"] { border-color: var(--color-primary); color: var(--color-primary); background: var(--color-primary-soft); font-weight: 600; }
+.badge-filters span { font-size: 12px; }
+.badge-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.badge-card { position: relative; display: flex; min-width: 0; min-height: 226px; flex-direction: column; align-items: stretch; padding: 12px 15px 14px; border: 1px solid #e8edf4; border-radius: 21px; color: var(--color-navy); background: white; box-shadow: 0 4px 14px rgb(92 75 25 / 3%); text-align: left; cursor: pointer; transition: border-color 160ms, box-shadow 160ms; }
+.badge-card:hover { border-color: #b5c7f1; box-shadow: 0 5px 17px rgb(31 58 112 / 9%); }
+.badge-card__top { display: flex; min-height: 103px; align-items: flex-start; justify-content: space-between; gap: 2px; }
+.badge-card__art { width: 118px; max-width: 54%; height: 108px; margin: -5px 0 0 -5px; object-fit: contain; }
+.badge-card--locked .badge-card__art { filter: grayscale(1); opacity: .65; }
+.badge-status { display: inline-flex; max-width: 120px; align-items: center; justify-content: center; gap: 5px; margin-top: 1px; padding: 6px 8px; border-radius: 12px; color: #2464bc; background: #e5f2ff; font-size: 12px; font-weight: 600; line-height: 1.35; white-space: nowrap; }
+.badge-status svg { width: 15px; height: 15px; flex: 0 0 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.badge-status--earned { color: #16824c; background: #e2f9eb; }
+.badge-status--locked { color: #667893; background: #edf1f6; }
+.badge-status--ready { color: #8a5a00; background: #fff2c9; }
+.badge-card--ready { border-color: #f4d587; }
+.badge-card__name { display: block; margin-top: 3px; font-family: var(--font-heading); font-size: 19px; font-weight: 700; line-height: 1.35; }
+.badge-card__description { display: block; margin-top: 3px; color: var(--color-muted); font-size: 14px; line-height: 1.5; }
+.badge-card__progress { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 14px; }
+.badge-card__count { flex: 0 0 auto; font-size: 12px; font-weight: 600; }
+.badge-page progress { display: block; width: 100%; min-width: 0; height: 10px; overflow: hidden; border: 0; border-radius: 999px; background: var(--color-track); accent-color: #1775f7; }
+.badge-page progress::-webkit-progress-bar { border-radius: 999px; background: var(--color-track); }
+.badge-page progress::-webkit-progress-value { border-radius: 999px; background: #1775f7; }
+.badge-page progress::-moz-progress-bar { border-radius: 999px; background: #1775f7; }
+.badge-card--earned progress { accent-color: #24ac67; }
+.badge-card--earned progress::-webkit-progress-value { background: #24ac67; }
+.badge-card--earned progress::-moz-progress-bar { background: #24ac67; }
+.badge-card--ready progress { accent-color: #e7ad22; }
+.badge-card--ready progress::-webkit-progress-value { background: #e7ad22; }
+.badge-card--ready progress::-moz-progress-bar { background: #e7ad22; }
+.achievement-panel { padding: 22px 18px 17px; border: 1px solid #e8edf4; border-radius: 25px; background: white; box-shadow: 0 5px 18px rgb(92 75 25 / 3%); }
+.achievement-panel h2 { gap: 8px; font-size: 18px; white-space: nowrap; }
+.achievement-panel h2 .badge-icon { width: 28px; height: 28px; flex-basis: 28px; }
+.achievement-panel__intro { margin: 4px 0 10px 36px; color: var(--color-muted); font-size: 14px; }
+.goal-ring { position: relative; width: 144px; height: 144px; margin: 18px auto 22px; }
+.goal-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.goal-ring circle { fill: none; stroke-width: 12; }
+.goal-ring__track { stroke: var(--color-track); }
+.goal-ring__fill { stroke: #2447dc; stroke-linecap: round; stroke-dasharray: 0 100; }
+.goal-ring strong { position: absolute; inset: 0; display: grid; color: var(--color-navy); font-family: var(--font-heading); font-size: 30px; place-items: center; }
+.earned-total { display: flex; align-items: flex-start; gap: 7px; padding-top: 20px; border-top: 1px solid var(--color-border); }
+.earned-total img { width: 37px; height: 40px; object-fit: contain; }
+.earned-total h3 { margin: 0 0 2px; color: var(--color-navy); font-family: var(--font-heading); font-size: 15px; }
+.earned-total p { margin: 0; color: var(--color-navy); font-size: 14px; }
+.earned-total strong { padding-right: 6px; font-family: var(--font-heading); font-size: 40px; line-height: 1.3; }
+.encouragement { display: flex; align-items: center; gap: 10px; margin-top: 18px; padding: 14px 12px; border-radius: 18px; color: var(--color-navy); background: #eaf0ff; }
+.encouragement strong { font-family: var(--font-heading); }
+.encouragement p { margin: 1px 0 0; color: var(--color-muted); font-size: 14px; }
+.collection-hint { margin: 18px 0; color: #7c8a9e; font-family: var(--font-heading); font-size: 14px; text-align: center; }
+.next-badge { margin-top: 12px; padding: 10px 16px 13px; border: 1px solid #e8edf4; border-radius: 21px; background: white; }
+.next-badge h3 { gap: 6px; font-size: 16px; }
+.next-badge .badge-icon { width: 23px; height: 23px; flex-basis: 23px; }
+.next-badge__body { display: flex; align-items: center; gap: 16px; margin-top: 7px; }
+.next-badge__body > img { width: 108px; height: 82px; flex: 0 0 108px; border-radius: 16px; background: #fff8dc; object-fit: contain; }
+.next-badge__info { min-width: 0; flex: 1; }
+.next-badge__info strong { color: var(--color-navy); font-family: var(--font-heading); font-size: 16px; }
+.next-badge__info p { margin: 3px 0 7px; color: var(--color-muted); font-size: 14px; }
+.next-badge__body .button { min-height: 46px; padding: 10px 18px; font-size: 15px; }
+.badge-empty { padding: 30px 18px; border: 1px dashed var(--color-border); border-radius: 21px; background: white; text-align: center; }
+.badge-empty img { margin-inline: auto; object-fit: contain; }
+.badge-empty h3 { color: var(--color-navy); font-family: var(--font-heading); }
+.badge-empty p { color: var(--color-muted); }
+.badge-page .sidebar-journey--trophy { min-height: 220px; max-height: 290px; flex: 0 1 290px; margin-top: 16px; }
+.badge-page .sidebar-journey--trophy img { width: 100%; height: 100%; margin: 0; object-fit: contain; object-position: center bottom; }
+.badge-page .sidebar__footer { margin-top: 12px; }
+.badge-dialog { position: fixed; max-width: 450px; padding: 28px 30px 24px; overflow-x: hidden; text-align: center; }
+.badge-dialog::backdrop { background: rgb(20 42 84 / 54%); backdrop-filter: blur(5px); }
+.badge-dialog__close { position: absolute; top: 12px; right: 12px; z-index: 2; }
+.reward-stage { position: relative; display: grid; width: 240px; max-width: 100%; height: 230px; margin: 0 auto 8px; isolation: isolate; place-items: center; }
+.reward-art { z-index: 1; width: 205px; max-width: 100%; height: 205px; object-fit: contain; }
+.reward-rays { position: absolute; inset: 12px; z-index: -1; border-radius: 50%; background: radial-gradient(circle, #fff1af 0, #fff8da 45%, transparent 70%); opacity: .6; }
+.badge-dialog__eyebrow { margin: 0 0 8px; color: #8a5a00; font-family: var(--font-heading); font-weight: 700; }
+.badge-dialog h2 { font-size: 30px; }
+.badge-dialog > p:not(.badge-dialog__eyebrow) { color: var(--color-muted); }
+.badge-dialog__progress { display: flex; align-items: center; gap: 12px; margin: 20px 0; }
+.badge-dialog__progress span { flex: 0 0 auto; color: var(--color-navy); font-size: 14px; }
+.badge-dialog__actions { display: flex; flex-direction: column; gap: 6px; margin-top: 20px; }
+.badge-dialog__note { margin: 14px 0 0; font-size: 12px; }
+.reward-confetti { position: absolute; inset: 0; pointer-events: none; }
+.reward-confetti i { position: absolute; top: 50%; left: 50%; width: 8px; height: 12px; border-radius: 2px; opacity: 0; background: var(--confetti-color); }
+.is-celebrating .reward-art { animation: badge-arrive 850ms cubic-bezier(.2,.8,.3,1.15) both; }
+.is-celebrating .reward-rays { background: repeating-conic-gradient(from 0deg, #ffe58b55 0deg 12deg, transparent 12deg 30deg); mask-image: radial-gradient(circle, #000 0, #000 40%, transparent 72%); animation: reward-glow 2s ease-out both; }
+.is-celebrating .reward-confetti i { animation: reward-burst 1700ms cubic-bezier(.1,.6,.3,1) var(--confetti-delay) both; }
+@keyframes badge-arrive { 0% { opacity: 0; transform: translateY(35px) scale(.35) rotate(-16deg); } 55% { opacity: 1; transform: translateY(-10px) scale(1.12) rotate(6deg); } 78% { transform: translateY(3px) scale(.96) rotate(-3deg); } 100% { opacity: 1; transform: none; } }
+@keyframes reward-glow { 0% { opacity: 0; transform: scale(.5) rotate(-25deg); } 30% { opacity: 1; } 100% { opacity: .65; transform: scale(1.12) rotate(25deg); } }
+@keyframes reward-burst { 0% { opacity: 0; transform: translate(0, 0) scale(.2); } 8% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--confetti-x), var(--confetti-y)) rotate(var(--confetti-turn)); } }
+@media (min-width: 1650px) { .badge-hero { min-height: 290px; } .badge-card { min-height: 246px; } .badge-card__art { width: 140px; height: 125px; } .badge-card__top { min-height: 125px; } }
+@media (min-width: 768px) and (max-width: 1199.98px) { .badge-layout { grid-template-columns: minmax(0, 1fr) 218px; gap: 14px; } .badge-hero__content { width: 47%; padding: 19px; } .badge-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .collection-heading { align-items: flex-start; } .collection-heading h2 { font-size: 23px; } .collection-link { font-size: 13px; } .achievement-panel { padding-inline: 13px; } }
+@media (max-width: 767.98px) {
+  .badge-page .page-heading { align-items: flex-start; }
+  .badge-heading-art { width: 52px; height: 56px; flex-basis: 52px; border-radius: 17px; }
+  .badge-heading-art img { width: 44px; height: 44px; }
+  .badge-page .page-heading h1 { font-size: clamp(25px, 6.3vw, 36px); line-height: 1.2; }
+  .badge-page .page-heading p { margin-top: 6px; font-size: 14px; }
+  .badge-hero { min-height: 360px; align-items: flex-end; padding: 155px 12px 12px; border-radius: 22px; }
+  .badge-hero__art { height: 210px; object-position: 76% center; }
+  .badge-hero__content { width: 100%; max-width: none; padding: 18px; border-radius: 19px; }
+  .badge-hero h2 { font-size: 24px; }
+  .badge-hero p { margin: 8px 0 14px; font-size: 14px; }
+  .badge-layout { grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 16px; }
+  .collection-heading { flex-wrap: wrap; gap: 0; margin-bottom: 10px; }
+  .collection-heading h2 { gap: 6px; font-size: 23px; }
+  .collection-heading .collection-link { margin-left: auto; }
+  .badge-grid { gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .badge-card { min-height: 253px; padding: 10px 11px 13px; border-radius: 18px; }
+  .badge-card__top { position: relative; min-height: 135px; justify-content: center; padding-top: 27px; }
+  .badge-card__art { width: 110px; max-width: 100%; height: 108px; margin: 0; }
+  .badge-status { position: absolute; top: 0; right: 0; padding: 5px 7px; font-size: 11px; }
+  .badge-card__name { font-size: 17px; }
+  .badge-card__description { font-size: 13px; }
+  .badge-card__progress { flex-wrap: wrap; justify-content: space-between; gap: 5px; padding-top: 12px; }
+  .badge-card__progress progress { flex: 1 1 50px; }
+  .badge-card__count { font-size: 11px; }
+  .next-badge { padding: 12px; }
+  .next-badge__body { flex-wrap: wrap; gap: 10px; }
+  .next-badge__body > img { width: 70px; height: 70px; flex-basis: 70px; }
+  .next-badge__body .button { width: 100%; }
+  .achievement-panel { padding: 20px; }
+  .achievement-panel h2 { font-size: 20px; }
+  .goal-ring { margin-block: 12px; }
+  .earned-total { justify-content: center; }
+  .encouragement { justify-content: center; }
+  .collection-hint { display: none; }
+  .badge-dialog { padding: 22px; }
+  .reward-stage { height: 210px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .badge-page *, .badge-page *::before, .badge-page *::after { scroll-behavior: auto !important; transition: none !important; }
+  .is-celebrating .reward-art, .is-celebrating .reward-rays, .is-celebrating .reward-confetti i { animation: none !important; }
+  .is-celebrating .reward-confetti { display: none; }
+}

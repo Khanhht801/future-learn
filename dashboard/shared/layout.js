@@ -7,7 +7,8 @@
   const pages = {
     home: { path: "./", journey: "#daily-tasks", journeyLabel: "Xem nhiệm vụ hôm nay", data: window.learningDashboardData },
     english: { path: "english/", journey: "#topics", journeyLabel: "Tiếp tục hành trình học hôm nay", data: window.englishDashboardData },
-    math: { path: "math/", journey: "#math-path", journeyLabel: "Xem hành trình Toán hôm nay", data: window.mathDashboardData }
+    math: { path: "math/", journey: "#math-path", journeyLabel: "Xem hành trình Toán hôm nay", data: window.mathDashboardData },
+    badges: { path: "badges/", journey: "#collection", journeyLabel: "Xem bộ sưu tập huy hiệu của bé", data: window.badgeDashboardData }
   };
   const subject = document.body.dataset.dashboard;
   const page = pages[subject];
@@ -22,7 +23,7 @@
     home: svg('<path d="m4 10 8-6 8 6v9a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9Z" />'),
     math: '<img src="' + url("shared/assets/math-planet.svg") + '" width="32" height="32" alt="" />',
     english: svg('<path d="M5.5 20c2.6-2.2 10.4-2.2 13 0H5.5Z" /><path d="m11 18 2-9" /><path d="M13 10C10.7 6.8 7.2 6.5 5.4 8.8c3.1-.3 5.3.6 7.6 2.7M13 10c1.4-3.4 4.8-4.3 7.2-2.2-3.2.3-5.4 1.6-7.2 4M13 9.2c-.2-2.8 1.6-4.9 4.3-5.2-1.6 1.8-2.4 3.7-2.5 6" />'),
-    garden: svg('<path d="M12 20V10m0 3c-4 0-6.5-2.1-6.5-6.3C9.5 6.7 12 8.8 12 13Zm0-3c0-3.8 2.4-5.8 6.5-5.8C18.5 8 16 10 12 10Z" />'),
+    badges: svg('<circle cx="12" cy="8" r="5" /><path d="m8.5 12-2 9 5.5-3 5.5 3-2-9" />'),
     parents: svg('<circle cx="9" cy="8" r="3" /><path d="M3.5 19v-2.2A4.8 4.8 0 0 1 8.3 12h1.4a4.8 4.8 0 0 1 4.8 4.8V19M16 7.5a2.5 2.5 0 0 1 0 5M16 13a4 4 0 0 1 4 4v2" />'),
     account: svg('<circle cx="12" cy="8" r="3.5" /><path d="M5 20a7 7 0 0 1 14 0" />')
   };
@@ -32,7 +33,7 @@
     { id: "home", label: "Góc học tập", shortLabel: "Góc học", path: "./" },
     { id: "math", label: "Hành tinh Toán", shortLabel: "Toán", path: pages.math.path, iconClass: "subject-nav__icon--planet" },
     { id: "english", label: "Đảo tiếng Anh", shortLabel: "Tiếng Anh", path: pages.english.path, iconClass: "subject-nav__icon--island" },
-    { id: "garden", label: "Khu vườn của bé", path: "./?panel=garden", iconClass: "subject-nav__icon--green" },
+    { id: "badges", label: "Bộ sưu tập huy hiệu", shortLabel: "Huy hiệu", path: pages.badges.path },
     { id: "parents", label: "Góc phụ huynh", path: "./?panel=parents" }
   ];
 
@@ -120,8 +121,8 @@
         </svg>
       </button>
       <nav class="subject-nav" aria-label="Môn học">${navigation.slice(0, 4).map(function (item) { return navItem(item, false); }).join("")}</nav>
-      <a class="sidebar-journey" href="${page.journey}" aria-label="${page.journeyLabel}">
-        <img src="${url('shared/assets/learning-garden-sidebar-transparent.png')}" width="725" height="2169" alt="Khu vườn học tập trên đảo với cây xanh, lối đá và thác nước" loading="lazy" />
+      <a class="sidebar-journey${subject === 'badges' ? ' sidebar-journey--trophy' : ''}" href="${page.journey}" aria-label="${page.journeyLabel}">
+        <img src="${url(subject === 'badges' ? 'badges/assets/trophy.webp' : 'shared/assets/learning-garden-sidebar-transparent.png')}" width="${subject === 'badges' ? '512' : '725'}" height="${subject === 'badges' ? '640' : '2169'}" alt="${subject === 'badges' ? 'Chiếc cúp ngôi sao vàng trong khu vườn thành tích' : 'Khu vườn học tập trên đảo với cây xanh, lối đá và thác nước'}" loading="lazy" />
       </a>
       <div class="sidebar__footer">${navItem(navigation[4], false)}</div>
     </aside>
@@ -136,8 +137,7 @@
   `);
   mount(footerHost, `
     <nav class="bottom-nav" aria-label="Điều hướng nhanh trên di động">
-      ${navigation.slice(0, 3).map(function (item) { return navItem(item, true); }).join("")}
-      <button class="bottom-nav__item" type="button" data-open-profile aria-label="Mở tài khoản học viên">${icons.account}<span>Tài khoản</span></button>
+      ${navigation.slice(0, 4).map(function (item) { return navItem(item, true); }).join("")}
     </nav>
   `);
 

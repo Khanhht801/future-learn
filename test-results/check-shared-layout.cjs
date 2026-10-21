@@ -1,4 +1,5 @@
 const assert = require('node:assert/strict');
+const path = require('node:path');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 
 (async function () {
@@ -9,9 +10,10 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
   const page = await context.newPage();
   page.on('pageerror', error => errors.push(error.message));
   page.on('response', response => {
-    if (response.url().startsWith('http://127.0.0.1:4173/') && response.status() >= 400) missing.add(new URL(response.url()).pathname);
+    if (response.url().startsWith(base + '/') && response.status() >= 400) missing.add(new URL(response.url()).pathname);
   });
-  const base = 'http://127.0.0.1:4173';
+  const base = process.env.BASE_URL || 'http://127.0.0.1:4173';
+  const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
 
   async function verifyShell(subject, prefix = '') {
     assert.equal(await page.locator('.app-header').count(), 1);
@@ -33,7 +35,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
     await page.goto(base + '/dashboard/english/');
     await verifyShell('english');
     assert.equal(await page.locator('.topic-card').count(), 3);
-    await page.screenshot({ path: 'test-results/layout-after-desktop.png' });
+    await page.screenshot({ path: path.join(screenshotDirectory, 'layout-after-desktop.png') });
     await page.locator('.topic-card button').first().click();
     assert.equal(await page.locator('[data-topic-dialog]').evaluate(el => el.open), true);
     await page.locator('[data-dialog-close]').click();
@@ -83,7 +85,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(base + '/dashboard/english/');
-    await page.screenshot({ path: 'test-results/layout-after-mobile.png' });
+    await page.screenshot({ path: path.join(screenshotDirectory, 'layout-after-mobile.png') });
     await page.locator('.bottom-nav a[aria-label="Hành tinh Toán"]').click();
     await page.waitForURL('**/dashboard/math/');
     await verifyShell('math');

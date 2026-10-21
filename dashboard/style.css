@@ -8,6 +8,9 @@
   --home-sky: #c4edf5;
 }
 
+.task-art--badges { background: #fff5d7; }
+.task-art--badges img { width: 110px; height: 110px; object-fit: contain; }
+
 .learning-home .subject-nav__item {
   border: 0;
   background-color: transparent;
