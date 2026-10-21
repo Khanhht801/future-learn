@@ -117,7 +117,7 @@
       </button>
       <nav class="subject-nav" aria-label="Môn học">${navigation.slice(0, 4).map(function (item) { return navItem(item, false); }).join("")}</nav>
       <a class="sidebar-journey" href="${page.journey}" aria-label="${page.journeyLabel}">
-        <img src="${url('shared/assets/learning-garden-sidebar.png')}" width="725" height="2170" alt="Khu vườn học tập trên đảo với cây xanh, lối đá và thác nước" loading="lazy" />
+        <img src="${url('shared/assets/learning-garden-sidebar-transparent.png')}" width="725" height="2169" alt="Khu vườn học tập trên đảo với cây xanh, lối đá và thác nước" loading="lazy" />
       </a>
       <div class="sidebar__footer">${navItem(navigation[4], false)}</div>
     </aside>

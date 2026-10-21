@@ -243,7 +243,7 @@ img {
   gap: 0.8rem;
   padding: 1.25rem 0.85rem 1rem;
   border-right: 1px solid rgb(220 228 241 / 78%);
-  background: rgb(255 255 255 / 78%);
+  background: var(--color-surface);
   backdrop-filter: blur(16px);
   transition: width 220ms ease, padding 220ms ease;
 }
@@ -365,18 +365,19 @@ a.subject-nav__item:hover {
   display: block;
   min-height: 210px;
   flex: 1;
+  margin-inline: -0.85rem;
   overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 85%);
-  border-radius: 20px;
-  background: #bfeefe;
-  box-shadow: 0 8px 22px rgb(31 58 112 / 10%);
+  /* Let the transparent canopy meet the white sidebar without a card edge. */
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 36px), transparent);
 }
 
 .sidebar-journey img {
   width: 100%;
-  height: 100%;
+  /* Crop empty sky space while keeping the canopy visible on short screens. */
+  height: calc(100% + var(--sidebar-width) * 0.8);
+  margin-top: calc(var(--sidebar-width) * -0.8);
   object-fit: cover;
-  object-position: center 58%;
+  object-position: center top;
   transition: transform 260ms ease;
 }
 
