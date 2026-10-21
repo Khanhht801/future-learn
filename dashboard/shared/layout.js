@@ -113,11 +113,10 @@
     </header>
     <aside class="sidebar" id="desktop-sidebar" aria-label="Danh mục học tập" data-sidebar>
       <button class="sidebar__toggle" type="button" aria-label="Thu gọn thanh bên" aria-controls="desktop-sidebar" aria-expanded="true" data-sidebar-toggle>
-        <svg class="sidebar__bookmark" viewBox="0 0 48 56" aria-hidden="true">
-          <path class="sidebar__bookmark-loop" d="M12 7H9C6 7 5 10 5 14H14V9Z" />
-          <path class="sidebar__bookmark-body" d="M10 7H33C36 7 38 9 38 12V49L24 41L10 49V12C10 10 9 8 8 7Z" />
-          <path class="sidebar__bookmark-fold" d="M10 7H15V46L10 49V12C10 10 9 8 8 7Z" />
-          <path class="sidebar__bookmark-stitch" d="M19 14H30M19 18H26" />
+        <svg class="sidebar__leaf" viewBox="0 0 48 48" aria-hidden="true">
+          <path class="sidebar__leaf-body" d="M6 10C22 3 40 10 39 30C21 38 7 29 6 10Z" />
+          <path class="sidebar__leaf-fold" d="M6 10C22 3 40 10 39 30C28 22 17 15 6 10Z" />
+          <path class="sidebar__leaf-veins" d="M10 13C22 18 33 25 43 35M21 19L21 12M29 24L33 17M20 19L13 23M29 25L23 29" />
         </svg>
       </button>
       <nav class="subject-nav" aria-label="Môn học">${navigation.slice(0, 4).map(function (item) { return navItem(item, false); }).join("")}</nav>
