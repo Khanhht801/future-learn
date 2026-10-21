@@ -112,8 +112,12 @@
       </div>
     </header>
     <aside class="sidebar" id="desktop-sidebar" aria-label="Danh mục học tập" data-sidebar>
-      <button class="sidebar__toggle" type="button" aria-label="Thu gọn thanh bên" aria-controls="desktop-sidebar" aria-expanded="true" title="Thu gọn thanh bên" data-sidebar-toggle>
-        ${svg('<path d="M19 12H7" /><path d="m11 8-4 4 4 4" />')}
+      <button class="sidebar__toggle" type="button" aria-label="Thu gọn thanh bên" aria-controls="desktop-sidebar" aria-expanded="true" data-sidebar-toggle>
+        <svg class="sidebar__leaf" viewBox="0 0 48 48" aria-hidden="true">
+          <path class="sidebar__leaf-body" d="M6 10C22 3 40 10 39 30C21 38 7 29 6 10Z" />
+          <path class="sidebar__leaf-fold" d="M6 10C22 3 40 10 39 30C28 22 17 15 6 10Z" />
+          <path class="sidebar__leaf-veins" d="M10 13C22 18 33 25 43 35M21 19L21 12M29 24L33 17M20 19L13 23M29 25L23 29" />
+        </svg>
       </button>
       <nav class="subject-nav" aria-label="Môn học">${navigation.slice(0, 4).map(function (item) { return navItem(item, false); }).join("")}</nav>
       <a class="sidebar-journey" href="${page.journey}" aria-label="${page.journeyLabel}">
@@ -151,7 +155,6 @@
     document.documentElement.classList.toggle("sidebar-is-collapsed", collapsed);
     toggle.setAttribute("aria-expanded", String(!collapsed));
     toggle.setAttribute("aria-label", collapsed ? "Mở rộng thanh bên" : "Thu gọn thanh bên");
-    toggle.title = toggle.getAttribute("aria-label");
     if (persist) {
       try { window.localStorage.setItem(storageKey, String(collapsed)); } catch (error) { /* Keep the control usable. */ }
     }
