@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <radialGradient id="surface" cx="0" cy="0" r="1" gradientTransform="translate(40 32) rotate(52) scale(83)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e1d9ce"/><stop offset=".55" stop-color="#a99c91"/><stop offset="1" stop-color="#6c6573"/>
+    </radialGradient>
+    <clipPath id="disc"><circle cx="60" cy="60" r="43"/></clipPath>
+  </defs>
+  <circle cx="60" cy="60" r="43" fill="url(#surface)"/>
+  <g clip-path="url(#disc)">
+    <g fill="#8d827e" stroke="#c6bbb0" stroke-width="3">
+      <circle cx="39" cy="43" r="12"/><circle cx="71" cy="72" r="15"/>
+      <circle cx="83" cy="35" r="8"/><circle cx="32" cy="79" r="7"/>
+      <circle cx="59" cy="25" r="5"/><circle cx="92" cy="64" r="5"/>
+    </g>
+    <path d="M41 36a8 8 0 0 0-8 10m40 16a10 10 0 0 0-11 12" stroke="#746c6d" stroke-width="3" stroke-linecap="round"/>
+    <path d="M88 17c9 35-6 69-40 82 40 10 67-19 61-50Z" fill="#4e495e" opacity=".2"/>
+    <path d="M27 54c2-12 7-21 18-27" stroke="#fff4e5" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+  </g>
+</svg>

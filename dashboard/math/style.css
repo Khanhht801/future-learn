@@ -117,7 +117,7 @@
 
 .math-path__track::before {
   position: absolute;
-  top: 42px;
+  top: 48px;
   right: 9%;
   left: 9%;
   z-index: 0;
@@ -146,37 +146,38 @@ button.path-stage {
 .path-stage__planet {
   position: relative;
   display: grid;
-  width: 84px;
-  height: 84px;
-  border: 7px solid #eef1f7;
-  border-radius: 50%;
-  color: var(--color-navy);
-  background: linear-gradient(145deg, #d8def0, #aeb9d8);
-  box-shadow: inset -10px -10px 0 rgb(89 106 149 / 12%);
-  font-family: var(--font-heading);
-  font-size: 25px;
-  font-weight: 700;
+  width: 96px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  isolation: isolate;
   place-items: center;
 }
 
-.path-stage:nth-child(1) .path-stage__planet {
-  background: linear-gradient(145deg, #9be1c2, #4fb690);
+.path-stage__planet img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 5px 4px rgb(49 50 91 / 12%));
 }
 
-.path-stage:nth-child(2) .path-stage__planet {
-  background: linear-gradient(145deg, #b7e5d2, #63c49c);
+.path-stage.is-current .path-stage__planet::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: 2px solid #c9bfff;
+  border-radius: 50%;
+  background: #f0edff;
+  box-shadow: 0 0 0 5px rgb(227 221 255 / 45%);
+  content: "";
 }
 
-.path-stage.is-current .path-stage__planet {
-  border-color: #dad8ff;
-  color: white;
-  background: linear-gradient(145deg, #8e8df4, #4d55d7);
-  box-shadow: 0 8px 18px rgb(77 85 215 / 24%), inset -10px -10px 0 rgb(35 38 140 / 12%);
+.path-stage.is-locked .path-stage__planet img {
+  filter: saturate(0.65) drop-shadow(0 5px 4px rgb(49 50 91 / 12%));
 }
 
 .path-stage.is-current .path-stage__planet::after {
   position: absolute;
-  bottom: -16px;
+  bottom: -8px;
   width: 0;
   height: 0;
   border-right: 8px solid transparent;
@@ -188,8 +189,8 @@ button.path-stage {
 
 .path-stage__badge {
   position: absolute;
-  top: -3px;
-  right: -3px;
+  top: 3px;
+  right: 0;
   display: grid;
   width: 27px;
   height: 27px;
@@ -205,12 +206,34 @@ button.path-stage {
   background: #7381aa;
 }
 
+.path-stage__badge svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
 .path-stage__label {
   max-width: 120px;
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.35;
+}
+
+.path-stage__name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 15px;
+}
+
+.path-stage__title {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-size: 13px;
 }
 
 .path-stage.is-current .path-stage__label {
@@ -623,6 +646,14 @@ button.path-stage {
 }
 
 @media (max-width: 899.98px) {
+  .path-stage__planet {
+    width: 72px;
+  }
+
+  .math-path__track::before {
+    top: 36px;
+  }
+
   .lesson-card {
     padding-right: 150px;
   }
@@ -709,16 +740,16 @@ button.path-stage {
   }
 
   .math-path__track::before {
-    top: 34px;
-    bottom: 34px;
-    left: 35px;
+    top: 40px;
+    bottom: 40px;
+    left: 40px;
     width: 0;
     border-top: 0;
     border-left: 3px dashed #b9b1f4;
   }
 
   .path-stage {
-    min-height: 70px;
+    min-height: 80px;
     flex-direction: row;
     justify-content: flex-start;
     gap: 16px;
@@ -726,11 +757,9 @@ button.path-stage {
   }
 
   .path-stage__planet {
-    width: 70px;
-    height: 70px;
-    flex: 0 0 70px;
-    border-width: 6px;
-    font-size: 22px;
+    width: 80px;
+    height: 80px;
+    flex: 0 0 80px;
   }
 
   .path-stage.is-current .path-stage__planet::after {

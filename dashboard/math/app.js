@@ -31,23 +31,42 @@
     element.className = "path-stage is-" + stage.state;
     const planet = document.createElement("span");
     planet.className = "path-stage__planet";
-    planet.textContent = stage.number;
+    planet.setAttribute("aria-hidden", "true");
+    const image = document.createElement("img");
+    image.src = "./assets/planet-" + stage.planet + ".svg";
+    image.alt = "";
+    image.width = 96;
+    image.height = 96;
+    planet.appendChild(image);
     if (stage.state === "completed" || stage.state === "locked") {
       const badge = document.createElement("span");
       badge.className = "path-stage__badge";
       badge.setAttribute("aria-hidden", "true");
-      badge.textContent = stage.state === "completed" ? "✓" : "•";
+      if (stage.state === "completed") {
+        badge.textContent = "✓";
+      } else {
+        badge.innerHTML = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></svg>';
+      }
       planet.appendChild(badge);
     }
     const label = document.createElement("span");
     label.className = "path-stage__label";
-    label.textContent = stage.title;
+    const planetName = document.createElement("strong");
+    planetName.className = "path-stage__name";
+    planetName.textContent = stage.planetName;
+    const lessonTitle = document.createElement("span");
+    lessonTitle.className = "path-stage__title";
+    lessonTitle.textContent = stage.title;
+    label.append(planetName, lessonTitle);
     element.append(planet, label);
+    const accessibleLabel = "Chặng " + stage.number + ", " + stage.planetName + ": " + stage.title;
     if (element.tagName === "BUTTON") {
-      element.setAttribute("aria-label", stage.title + (stage.state === "current" ? ", đang học" : ", đã hoàn thành"));
+      element.setAttribute("aria-label", accessibleLabel + (stage.state === "current" ? ", đang học" : ", đã hoàn thành"));
+      if (stage.state === "current") element.setAttribute("aria-current", "step");
       element.addEventListener("click", function () { openLesson(lessonFor(stage.id) || data.lessons[0]); });
     } else {
-      element.setAttribute("aria-label", stage.title + ", chưa mở khóa");
+      element.setAttribute("aria-label", accessibleLabel + ", chưa mở khóa");
+      element.setAttribute("aria-disabled", "true");
     }
     path.appendChild(element);
   });

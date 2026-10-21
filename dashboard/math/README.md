@@ -10,7 +10,9 @@ môn Toán. Xem [hướng dẫn layout](../README.md).
 
 - Banner hành trình không gian trải ngang phía trên bố cục hai cột, đồng bộ
   thẻ nội dung và CTA với trang Đảo tiếng Anh; CTA mở bài Phép cộng.
-- Lộ trình 5 chặng, thể hiện trạng thái đã học, đang học và chưa mở khóa.
+- Lộ trình 5 chặng với minh họa SVG riêng cho Sao Thủy, Sao Kim, Trái Đất,
+  Sao Hỏa và Sao Thổ. Tên hành tinh đi kèm tên bài; dấu tích, quầng sáng và
+  biểu tượng khóa thể hiện trạng thái đã học, đang học và chưa mở khóa.
 - Hai nhóm bài Cộng và trừ, Hình học.
 - Thẻ “Tiếp tục hành trình” dưới các nhóm bài, hiển thị chặng đang học và số
   chặng đã hoàn thành từ dữ liệu lộ trình; nút “Học tiếp” mở bài của chặng đó.
