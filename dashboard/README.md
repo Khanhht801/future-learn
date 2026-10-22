@@ -130,6 +130,8 @@ liên kết đến đúng nội dung học. Biểu đồ đổi giữa 4 và 8 t
 **Xem số liệu** và mô tả cho trình đọc màn hình. Điểm cuối khớp tiến độ môn hiện tại.
 Avatar mở hồ sơ minh họa. Dialog hỗ trợ Escape, giữ focus và trả focus khi đóng.
 Menu di động có mục Góc phụ huynh; đường dẫn hoạt động khi host trong thư mục con.
+Desktop xếp Tiến độ theo môn / Biểu đồ thành một hàng và Hoạt động / Gợi ý thành
+một hàng bên dưới, các card cùng hàng chung chiều cao. Mobile chuyển về một cột.
 
 Kiểm tra bằng `node test-results/check-parents.cjs` với `BASE_URL`,
 `PLAYWRIGHT_MODULE`, `SCREENSHOT_DIR` tương tự các script phía trên.

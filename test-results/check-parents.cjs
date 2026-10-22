@@ -24,7 +24,27 @@ const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
     await page.evaluate(() => document.fonts.ready);
   }
   async function screenshot(name) {
+    await page.locator('.page-heading h1').click();
     await page.screenshot({ path: path.join(screenshotDirectory, name), fullPage: true, animations: 'disabled' });
+  }
+  async function verifyCardLayout(width) {
+    const cards = await page.locator('.parent-columns > section').evaluateAll(elements => elements.map(el => {
+      const rect = el.getBoundingClientRect();
+      return { top: rect.top, bottom: rect.bottom, width: rect.width };
+    }));
+    assert.equal(cards.length, 4);
+    if (width > 900) {
+      for (const [left, right] of [[cards[0], cards[1]], [cards[2], cards[3]]]) {
+        assert.ok(Math.abs(left.top - right.top) < 1, 'Card tops differ at ' + width);
+        assert.ok(Math.abs(left.bottom - right.bottom) < 1, 'Card bottoms differ at ' + width);
+        assert.ok(Math.abs(left.width - right.width) < 1, 'Card widths differ at ' + width);
+      }
+      assert.ok(Math.abs(cards[2].top - cards[1].bottom - 20) < 1, 'Gap below chart at ' + width);
+    } else {
+      for (let index = 1; index < cards.length; index++) {
+        assert.ok(cards[index].top >= cards[index - 1].bottom, 'Stacked cards overlap at ' + width);
+      }
+    }
   }
   try {
     await openReport();
@@ -47,6 +67,7 @@ const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
     assert.match(await page.locator('[data-chart-status]').textContent(), /8 tuần/);
     await page.locator('.chart-data summary').click();
     assert.equal(await page.locator('.chart-data table').isVisible(), true);
+    await verifyCardLayout(1536);
     await page.locator('[data-chart-period]').selectOption('4');
     assert.equal(await page.locator('[data-chart-table] tr').count(), 4);
 
@@ -74,10 +95,15 @@ const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
     // Viewing the report must not create rewards, resume records or progress.
     assert.deepEqual(await page.evaluate(() => Object.keys(localStorage)), []);
 
-    for (const width of [320, 360, 390, 600, 768, 900, 1024, 1280, 1448, 1536]) {
-      await page.setViewportSize({ width, height: 900 });
+    for (const width of [320, 360, 390, 600, 768, 900, 1024, 1280, 1366, 1448, 1536]) {
+      await page.setViewportSize({ width, height: width === 1366 ? 768 : 900 });
       await openReport();
+      await verifyCardLayout(width);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'Page overflow at ' + width);
+      const statRows = await page.locator('.stat-card > strong').evaluateAll(elements => elements.map(el => el.getBoundingClientRect().top));
+      for (const [left, right] of (width > 600 ? [[0, 1], [0, 2], [0, 3]] : [[0, 1], [2, 3]])) {
+        assert.ok(Math.abs(statRows[left] - statRows[right]) < 1, 'Stat numbers misaligned at ' + width);
+      }
       for (const selector of ['.sidebar', '#mobile-drawer', '.bottom-nav']) {
         const current = page.locator(selector + ' [aria-current="page"]');
         assert.equal(await current.count(), 1);
@@ -103,6 +129,7 @@ const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
         assert.equal(await page.locator('[data-topic-dialog]').evaluate(el => el.open), true);
       }
       if (width === 900) await screenshot('parents-tablet.png');
+      if (width === 1366) await screenshot('parents-laptop.png');
     }
 
     // Shared navigation from every existing page, including the mobile drawer.
@@ -153,7 +180,7 @@ const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
     await blocked.close();
     assert.deepEqual(errors, []);
     assert.deepEqual([...missing], []);
-    console.log('PASS: shared subject data, 4/8-week chart and accessible table, report/activity/profile dialogs, keyboard and focus, no progress/reward writes, 320–1536px, navigation from all pages and mobile, legacy redirect, sidebar persistence, prefix hosting, local links, blocked storage and reduced motion.');
+    console.log('PASS: aligned card rows and stats, no excess gap below chart (including expanded data), shared subject data, 4/8-week chart and accessible table, report/activity/profile dialogs, keyboard and focus, no progress/reward writes, 320–1536px including 1366px laptop, navigation from all pages and mobile, legacy redirect, sidebar persistence, prefix hosting, local links, blocked storage and reduced motion.');
   } finally {
     await browser.close();
   }
