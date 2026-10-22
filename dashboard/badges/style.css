@@ -107,12 +107,13 @@
 .reward-confetti i { position: absolute; top: 50%; left: 50%; width: 8px; height: 12px; border-radius: 2px; opacity: 0; background: var(--confetti-color); }
 .is-celebrating .reward-art { animation: badge-arrive 850ms cubic-bezier(.2,.8,.3,1.15) both; }
 .is-celebrating .reward-rays { background: repeating-conic-gradient(from 0deg, #ffe58b55 0deg 12deg, transparent 12deg 30deg); mask-image: radial-gradient(circle, #000 0, #000 40%, transparent 72%); animation: reward-glow 2s ease-out both; }
-.is-celebrating .reward-orbit { opacity: 1; }
-.is-celebrating .reward-orbit::before { animation: reward-orbit-spin 4.5s linear infinite; }
+.is-celebrating .reward-orbit { animation: reward-orbit-flash 1.6s ease-out both; }
+.is-celebrating .reward-orbit::before { animation: reward-orbit-spin 1.6s ease-out both; }
 .is-celebrating .reward-confetti i { animation: reward-burst 1700ms cubic-bezier(.1,.6,.3,1) var(--confetti-delay) both; }
 @keyframes badge-arrive { 0% { opacity: 0; transform: translateY(35px) scale(.35) rotate(-16deg); } 55% { opacity: 1; transform: translateY(-10px) scale(1.12) rotate(6deg); } 78% { transform: translateY(3px) scale(.96) rotate(-3deg); } 100% { opacity: 1; transform: none; } }
 @keyframes reward-glow { 0% { opacity: 0; transform: scale(.5) rotate(-25deg); } 30% { opacity: 1; } 100% { opacity: .65; transform: scale(1.12) rotate(25deg); } }
 @keyframes reward-orbit-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes reward-orbit-flash { 0%, 100% { opacity: 0; } 12%, 65% { opacity: 1; } }
 @keyframes reward-burst { 0% { opacity: 0; transform: translate(0, 0) scale(.2); } 8% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--confetti-x), var(--confetti-y)) rotate(var(--confetti-turn)); } }
 @media (min-width: 1650px) { .badge-layout { --badge-card-height: 246px; } .badge-hero { min-height: 290px; } .badge-card__art { width: 140px; height: 125px; } .badge-card__top { min-height: 125px; } }
 @media (min-width: 768px) and (max-width: 1199.98px) {
@@ -168,7 +169,6 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .badge-page *, .badge-page *::before, .badge-page *::after { scroll-behavior: auto !important; transition: none !important; }
-  .is-celebrating .reward-art, .is-celebrating .reward-rays, .is-celebrating .reward-orbit::before, .is-celebrating .reward-confetti i { animation: none !important; }
-  .is-celebrating .reward-orbit { opacity: .6; }
+  .is-celebrating .reward-art, .is-celebrating .reward-rays, .is-celebrating .reward-orbit, .is-celebrating .reward-orbit::before, .is-celebrating .reward-confetti i { animation: none !important; }
   .is-celebrating .reward-confetti { display: none; }
 }
