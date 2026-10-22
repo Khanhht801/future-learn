@@ -104,8 +104,9 @@ lưu vào khóa `futurelearn-demo-badges-v1`; tải trang hay xem trước bài 
 cộng thành tích. Dữ liệu lưu hỏng hoặc storage bị chặn không làm hỏng trang;
 khi không lưu được, cửa sổ nhận thông báo rõ giới hạn của phiên hiện tại.
 
-Animation nhận thưởng gồm huy hiệu bật lên, tia sáng và pháo giấy một lần; có
-**Xem lại khoảnh khắc** cho huy hiệu đã đạt. `prefers-reduced-motion` tắt animation.
+Animation nhận thưởng gồm huy hiệu bật lên, tia sáng, pháo giấy một lần và dải sáng
+vàng xoay liên tục quanh huy hiệu khi cửa sổ chúc mừng đang mở. **Xem lại khoảnh khắc**
+phát lại hiệu ứng cho huy hiệu đã đạt. `prefers-reduced-motion` giữ dải vàng tĩnh.
 Dialog dùng được bằng bàn phím, Escape để đóng và trả focus về thẻ tương ứng.
 Chưa có đồng bộ tài khoản/API. Prompt và đường dẫn ảnh ở
 [badges/assets/ILLUSTRATIONS.md](badges/assets/ILLUSTRATIONS.md).
