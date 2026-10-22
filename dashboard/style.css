@@ -22,10 +22,6 @@
   background-color: var(--color-primary-soft);
 }
 
-.learning-home .sidebar-journey {
-  display: none;
-}
-
 .learning-home .subject-nav__item:hover {
   background-color: var(--color-primary-soft);
 }

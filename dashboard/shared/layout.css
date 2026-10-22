@@ -427,6 +427,18 @@ a.subject-nav__item:hover {
   transform: scale(1.025);
 }
 
+.sidebar-journey--learning {
+  min-height: 0;
+  mask-image: none;
+}
+
+.sidebar-journey--learning img {
+  height: 100%;
+  margin-top: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
 html.sidebar-is-collapsed {
   --sidebar-width: var(--sidebar-collapsed-width);
 }
@@ -604,6 +616,10 @@ html.sidebar-is-collapsed .subject-nav__item.is-current {
 @media (max-width: 1023.98px) {
   .sidebar-journey {
     min-height: 180px;
+  }
+
+  .sidebar-journey--learning {
+    min-height: 0;
   }
 }
 

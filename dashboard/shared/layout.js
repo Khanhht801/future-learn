@@ -121,8 +121,8 @@
         </svg>
       </button>
       <nav class="subject-nav" aria-label="Môn học">${navigation.slice(0, 4).map(function (item) { return navItem(item, false); }).join("")}</nav>
-      <a class="sidebar-journey${subject === 'badges' ? ' sidebar-journey--trophy' : ''}" href="${page.journey}" aria-label="${page.journeyLabel}">
-        <img src="${url(subject === 'badges' ? 'badges/assets/trophy.webp' : 'shared/assets/learning-garden-sidebar-transparent.png')}" width="${subject === 'badges' ? '512' : '725'}" height="${subject === 'badges' ? '640' : '2169'}" alt="${subject === 'badges' ? 'Chiếc cúp ngôi sao vàng trong khu vườn thành tích' : 'Khu vườn học tập trên đảo với cây xanh, lối đá và thác nước'}" loading="lazy" />
+      <a class="sidebar-journey${subject === 'badges' ? ' sidebar-journey--trophy' : ' sidebar-journey--learning'}" href="${page.journey}" aria-label="${page.journeyLabel}">
+        <img src="${url(subject === 'badges' ? 'badges/assets/trophy.webp' : 'shared/assets/learning-companions.png')}" width="${subject === 'badges' ? '512' : '1122'}" height="${subject === 'badges' ? '640' : '1402'}" alt="${subject === 'badges' ? 'Chiếc cúp ngôi sao vàng trong khu vườn thành tích' : 'Cú xanh đội mũ tốt nghiệp cùng hai bé khám phá cuốn sách, chữ cái và các con số'}" loading="lazy" />
       </a>
       <div class="sidebar__footer">${navItem(navigation[4], false)}</div>
     </aside>
