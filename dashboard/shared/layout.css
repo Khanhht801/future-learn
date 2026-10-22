@@ -432,11 +432,16 @@ a.subject-nav__item:hover {
   mask-image: none;
 }
 
-.sidebar-journey--learning img {
+.sidebar-journey__learning-art {
+  display: block;
+  width: 100%;
   height: 100%;
-  margin-top: 0;
-  object-fit: contain;
-  object-position: center;
+  overflow: hidden;
+  transition: transform 260ms ease;
+}
+
+.sidebar-journey--learning:hover .sidebar-journey__learning-art {
+  transform: scale(1.025);
 }
 
 html.sidebar-is-collapsed {

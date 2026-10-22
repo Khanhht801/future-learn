@@ -5,7 +5,9 @@
 Ảnh do người dùng cung cấp ngày 22/10/2026 với tên `imgsidebar.png`, được
 chuyển nguyên bản vào thư mục tài nguyên dùng chung. PNG RGB, 1122 × 1402 px.
 Minh họa cú xanh đội mũ tốt nghiệp và hai bé bên cuốn sách, dùng cho sidebar
-Góc học tập, Hành tinh Toán và Đảo tiếng Anh. Hiển thị trọn ảnh trên nền trắng.
+Góc học tập, Hành tinh Toán và Đảo tiếng Anh. Khung SVG `viewBox="50 280 1030 920"`
+cắt khoảng trắng quanh minh họa để nhân vật và cuốn sách hiển thị lớn hơn,
+giữ nguyên file PNG và co giãn theo khoảng trống của sidebar.
 Sidebar Huy hiệu tiếp tục dùng `dashboard/badges/assets/trophy.webp`.
 
 ## learning-garden-sidebar-transparent.png

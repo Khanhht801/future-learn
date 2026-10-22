@@ -122,7 +122,11 @@
       </button>
       <nav class="subject-nav" aria-label="Môn học">${navigation.slice(0, 4).map(function (item) { return navItem(item, false); }).join("")}</nav>
       <a class="sidebar-journey${subject === 'badges' ? ' sidebar-journey--trophy' : ' sidebar-journey--learning'}" href="${page.journey}" aria-label="${page.journeyLabel}">
-        <img src="${url(subject === 'badges' ? 'badges/assets/trophy.webp' : 'shared/assets/learning-companions.png')}" width="${subject === 'badges' ? '512' : '1122'}" height="${subject === 'badges' ? '640' : '1402'}" alt="${subject === 'badges' ? 'Chiếc cúp ngôi sao vàng trong khu vườn thành tích' : 'Cú xanh đội mũ tốt nghiệp cùng hai bé khám phá cuốn sách, chữ cái và các con số'}" loading="lazy" />
+        ${subject === 'badges'
+          ? `<img src="${url('badges/assets/trophy.webp')}" width="512" height="640" alt="Chiếc cúp ngôi sao vàng trong khu vườn thành tích" loading="lazy" />`
+          : `<svg class="sidebar-journey__learning-art" viewBox="50 280 1030 920" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Cú xanh đội mũ tốt nghiệp cùng hai bé khám phá cuốn sách, chữ cái và các con số">
+              <image href="${url('shared/assets/learning-companions.png')}" width="1122" height="1402" />
+            </svg>`}
       </a>
       <div class="sidebar__footer">${navItem(navigation[4], false)}</div>
     </aside>
