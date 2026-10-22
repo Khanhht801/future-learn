@@ -126,7 +126,7 @@
   select("[data-goal-ring]").setAttribute("aria-valuemax", goal.total);
   select("[data-goal-ring]").setAttribute("aria-valuenow", goal.completed);
   select("[data-goal-ring]").setAttribute("aria-valuetext", goal.completed + " trên " + goal.total + " nhiệm vụ");
-  select("[data-encouragement]").textContent = goal.completed < goal.total ? "Hoàn thành thêm " + (goal.total - goal.completed) + " nhiệm vụ để tiến gần huy hiệu mới." : "Bé đã hoàn thành mục tiêu hôm nay. Giỏi lắm!";
+  select("[data-encouragement]").textContent = goal.completed < goal.total ? "Chỉ còn " + (goal.total - goal.completed) + " nhiệm vụ nữa thôi!" : "Bé đã hoàn thành mục tiêu hôm nay. Giỏi lắm!";
   select(".profile-button__avatar").textContent = data.learner.initials;
   select("[data-reward-chip]").setAttribute("aria-label", data.stars + " sao minh họa");
   document.querySelectorAll("[data-open-profile]").forEach(function (button) { button.addEventListener("click", function () { location.href = "../?panel=profile"; }); });
