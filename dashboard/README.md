@@ -16,8 +16,9 @@ banner, thẻ Toán/tiếng Anh, mục tiêu, chuỗi ngày học và nhiệm v�
 - **Bộ sưu tập huy hiệu** tại `/dashboard/badges/` thay thế Khu vườn của bé.
   Liên kết cũ `?panel=garden` chuyển đến trang mới. Menu desktop, drawer và bottom
   nav cùng dẫn đến bộ sưu tập; tài khoản vẫn mở từ avatar trên header.
-- Góc phụ huynh và tài khoản mở thông báo đang chuẩn bị qua `?panel=parents`
-  và `?panel=profile`. **Xem tất cả** mở danh sách nhiệm vụ và liên kết đến đúng môn.
+- **Góc phụ huynh** tại `/dashboard/parents/` có báo cáo và tiến độ học tập của con;
+  liên kết cũ `?panel=parents` tự chuyển đến trang này. Tài khoản minh họa mở qua
+  avatar hoặc `?panel=profile`. **Xem tất cả** mở danh sách nhiệm vụ và liên kết đến đúng môn.
 - Ảnh banner, công cụ tạo và prompt cuối được ghi trong
   [assets/ILLUSTRATIONS.md](assets/ILLUSTRATIONS.md).
 
@@ -52,6 +53,11 @@ dashboard/
     app.js          # Bộ lọc, chi tiết, nhận và lưu huy hiệu trên trình duyệt
     demo-data.js    # 12 huy hiệu minh họa, 6 huy hiệu nổi bật
     assets/         # 6 hình huy hiệu, banner và cúp được tạo bằng imagegen
+  parents/
+    index.html      # Tổng quan, tiến độ môn, biểu đồ, hoạt động và gợi ý
+    style.css       # Bố cục báo cáo responsive, dùng token và minh họa có sẵn
+    app.js          # Biểu đồ 4/8 tuần, bảng số liệu, chi tiết và hoạt động
+    demo-data.js    # Báo cáo tuần mẫu, tiến độ môn lấy từ dữ liệu demo chung
 ```
 
 Chạy static server từ thư mục gốc dự án. Không cần framework hoặc bước build.
@@ -60,7 +66,7 @@ Trang chủ dùng layout riêng trong `index.html` và `public-home/`.
 ## Cách ghép layout
 
 - Nạp `../shared/layout.css` trước CSS riêng của môn.
-- Khai báo trang trên body bằng `data-dashboard="home"`, `english`, `math` hoặc `badges`.
+- Khai báo trang trên body bằng `data-dashboard="home"`, `english`, `math`, `badges` hoặc `parents`.
 - Đặt `<div data-dashboard-header></div>` trước nội dung chính và
   `<div data-dashboard-footer></div>` ở cuối nội dung.
 - Giữ một `<main id="main-content" class="dashboard-main">` trong trang.
@@ -75,7 +81,8 @@ Khi tắt JavaScript, các trang vẫn có liên kết điều hướng trong `n
 
 Sửa `navigation` trong `shared/layout.js`: desktop, drawer và bottom nav cùng lấy
 từ một danh sách. Mục có `path` là liên kết; mục chưa có trang giữ trạng thái
-`aria-disabled`. Bottom nav hiển thị Góc học tập, Toán, tiếng Anh và Huy hiệu.
+`aria-disabled`. Bottom nav hiển thị Góc học tập, Toán, tiếng Anh và Huy hiệu;
+riêng trang phụ huynh thay mục Huy hiệu bằng Phụ huynh để thể hiện trang đang mở.
 
 Đối tượng `pages` quản lý đường dẫn từng môn, anchor hành trình và nguồn dữ liệu
 điểm sao. Thuộc tính `data-dashboard` xác định mục đang mở. Sidebar dùng chung
@@ -109,3 +116,20 @@ gốc. Đặt `BASE_URL` trỏ đến server; `PLAYWRIGHT_MODULE` chọn package
 nếu chưa có trong môi trường Node hiện tại. `SCREENSHOT_DIR` tùy chọn đổi nơi lưu
 ảnh kiểm tra. Script kiểm tra bộ lọc, nhận/lưu/xem lại thưởng, điều hướng cũ,
 responsive, bàn phím, storage lỗi và giảm chuyển động. Dự án không có bước build.
+
+## Góc phụ huynh
+
+Trang `/dashboard/parents/` dùng chung header, sidebar, drawer, font và bảng màu
+với các trang học. Tiến độ Toán (chặng), tiếng Anh (từ vựng), sao và chuỗi ngày học
+lấy từ các nguồn demo hiện có. Số bài trong tuần, độ chính xác, lịch sử tiến bộ
+và hoạt động là fixture báo cáo riêng, ghi rõ tuần 19–25/10/2026; chưa kết nối API.
+Không cộng điểm, ghi nhận hoạt động hay thay đổi tiến độ khi mở báo cáo.
+
+**Xem chi tiết** mở tiến độ từng chặng/chủ đề; **Xem tất cả** mở đầy đủ lịch sử,
+liên kết đến đúng nội dung học. Biểu đồ đổi giữa 4 và 8 tuần, có bảng số liệu bằng
+**Xem số liệu** và mô tả cho trình đọc màn hình. Điểm cuối khớp tiến độ môn hiện tại.
+Avatar mở hồ sơ minh họa. Dialog hỗ trợ Escape, giữ focus và trả focus khi đóng.
+Menu di động có mục Góc phụ huynh; đường dẫn hoạt động khi host trong thư mục con.
+
+Kiểm tra bằng `node test-results/check-parents.cjs` với `BASE_URL`,
+`PLAYWRIGHT_MODULE`, `SCREENSHOT_DIR` tương tự các script phía trên.

@@ -16,6 +16,8 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
   const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
 
   async function verifyShell(subject, prefix = '') {
+    // Viewport changes animate the shared content inset; inspect the settled layout.
+    await page.evaluate(() => Promise.all(document.getAnimations().map(animation => animation.finished.catch(() => {}))));
     assert.equal(await page.locator('.app-header').count(), 1);
     assert.equal(await page.locator('.sidebar').count(), 1);
     assert.equal(await page.locator('#mobile-drawer').count(), 1);

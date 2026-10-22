@@ -75,7 +75,7 @@
   document.querySelectorAll("[data-open-garden]").forEach(function (button) { button.addEventListener("click", showGarden); });
   document.querySelectorAll("[data-open-parents]").forEach(function (button) {
     button.addEventListener("click", function () {
-      showMessage("Góc phụ huynh", "Góc phụ huynh đang được chuẩn bị. Điểm sao và tiến độ hiện tại là dữ liệu minh họa, chưa phải kết quả học tập của bé.");
+      location.assign("./parents/");
     });
   });
   function showProfile() {
@@ -138,10 +138,10 @@
   function openPanel() {
     const panel = new URLSearchParams(location.search).get("panel");
     if (panel === "garden") showGarden();
-    if (panel === "parents") showMessage("Góc phụ huynh", "Góc phụ huynh đang được chuẩn bị. Điểm sao và tiến độ hiện tại là dữ liệu minh họa.");
+    if (panel === "parents") location.replace("./parents/");
     if (panel === "profile") showProfile();
   }
-  // Preserve old garden deep links and shareable parent/profile previews.
+  // Preserve legacy garden/parent links and shareable profile previews.
   document.addEventListener("click", function (event) {
     const link = event.target.closest("a[href]");
     if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;

@@ -8,7 +8,8 @@
     home: { path: "./", journey: "#daily-tasks", journeyLabel: "Xem nhiệm vụ hôm nay", data: window.learningDashboardData },
     english: { path: "english/", journey: "#topics", journeyLabel: "Tiếp tục hành trình học hôm nay", data: window.englishDashboardData },
     math: { path: "math/", journey: "#math-path", journeyLabel: "Xem hành trình Toán hôm nay", data: window.mathDashboardData },
-    badges: { path: "badges/", journey: "#collection", journeyLabel: "Xem bộ sưu tập huy hiệu của bé", data: window.badgeDashboardData }
+    badges: { path: "badges/", journey: "#collection", journeyLabel: "Xem bộ sưu tập huy hiệu của bé", data: window.badgeDashboardData },
+    parents: { path: "parents/", journey: "#subject-progress", journeyLabel: "Xem tiến độ học tập của con", data: window.parentDashboardData }
   };
   const subject = document.body.dataset.dashboard;
   const page = pages[subject];
@@ -34,7 +35,7 @@
     { id: "math", label: "Hành tinh Toán", shortLabel: "Toán", path: pages.math.path, iconClass: "subject-nav__icon--planet" },
     { id: "english", label: "Đảo tiếng Anh", shortLabel: "Tiếng Anh", path: pages.english.path, iconClass: "subject-nav__icon--island" },
     { id: "badges", label: "Bộ sưu tập huy hiệu", shortLabel: "Huy hiệu", path: pages.badges.path },
-    { id: "parents", label: "Góc phụ huynh", path: "./?panel=parents" }
+    { id: "parents", label: "Góc phụ huynh", shortLabel: "Phụ huynh", path: pages.parents.path }
   ];
 
   function navItem(item, bottom) {
@@ -141,7 +142,7 @@
   `);
   mount(footerHost, `
     <nav class="bottom-nav" aria-label="Điều hướng nhanh trên di động">
-      ${navigation.slice(0, 4).map(function (item) { return navItem(item, true); }).join("")}
+      ${(subject === "parents" ? navigation.filter(function (item) { return item.id !== "badges"; }) : navigation.slice(0, 4)).map(function (item) { return navItem(item, true); }).join("")}
     </nav>
   `);
 

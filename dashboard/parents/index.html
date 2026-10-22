@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Góc phụ huynh FutureLearn – cùng con theo dõi tiến độ, nhìn lại thành tích và xây dựng thói quen học tập mỗi ngày." />
+    <meta name="theme-color" content="#fffbed" />
+    <link rel="icon" type="image/png" href="../../favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../shared/layout.css?v=1.0.4" />
+    <link rel="stylesheet" href="./style.css?v=1.0.0" />
+    <title>Góc phụ huynh – FutureLearn</title>
+  </head>
+  <body class="parents-page" data-dashboard="parents">
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="icon-family" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3" /><path d="M3.5 20v-3a5 5 0 0 1 10 0v3M16 5.5a3 3 0 0 1 0 6M16 13a4.5 4.5 0 0 1 4.5 4.5V20" /></symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24"><path d="M12 6C9 4 5 4 3 5v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-2-1-6-1-9 1Zm0 0v14M6 8h3M6 11h3m6-3h3m-3 3h3" /></symbol>
+      <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M3 4v17h19M7 16v-5h3v5Zm6 0V6h3v10Zm6 0V2h3v14Z" /></symbol>
+      <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="11" cy="13" r="9" /><circle cx="11" cy="13" r="5" /><path d="m11 13 9-10m-1-2v4h4" /></symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4m8-4v4M7 14h2m2 0h2m2 0h2M7 17h2m2 0h2" /></symbol>
+      <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z" /></symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 6v6l4 2" /></symbol>
+      <symbol id="icon-bulb" viewBox="0 0 24 24"><path d="M8 16c0-3-3-3.5-3-7a7 7 0 0 1 14 0c0 3.5-3 4-3 7ZM8 19h8m-6 3h4M12 5v4" /></symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5" /></symbol>
+      <symbol id="icon-math" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" /><path d="M7 6h10M7 11h2m6 0h2M7 15h2m6 0h2M7 19h2m6 0h2" /></symbol>
+      <symbol id="icon-island" viewBox="0 0 24 24"><path d="M3 21c3-4 15-4 18 0ZM11 18l2-9M13 10C9 4 5 6 3 9c4-1 6 0 10 3M13 10c1-5 5-6 8-3-4 0-6 2-8 5M13 9c-1-4 1-6 4-7-2 3-2 6-2 8" /></symbol>
+    </svg>
+    <div data-dashboard-header></div>
+    <main class="dashboard-main" id="main-content">
+      <div class="dashboard-main__inner">
+        <header class="page-heading">
+          <span class="parents-heading-icon"><svg class="parent-icon" aria-hidden="true"><use href="#icon-family" /></svg></span>
+          <div><h1>Góc phụ huynh</h1><p>Đồng hành cùng con trên hành trình học tập</p></div>
+        </header>
+
+        <section class="parent-overview" aria-label="Tổng quan học tập của con">
+          <article class="learner-card parent-panel">
+            <div class="learner-card__profile">
+              <svg class="learner-avatar" viewBox="150 610 365 400" role="img" aria-label="Ảnh đại diện minh họa của An"><image href="../shared/assets/learning-companions.png" width="1122" height="1402" /></svg>
+              <div><h2 data-learner-name>Nguyễn An</h2><p data-learner-week></p></div>
+            </div>
+            <span class="learner-status"><svg class="parent-icon" aria-hidden="true"><use href="#icon-chart" /></svg>Đang tiến bộ</span>
+            <div class="learner-card__message"><p data-week-message></p><p>Cùng con giữ thói quen học tập tốt nhé!</p></div>
+            <svg class="learner-card__art" viewBox="50 280 1030 920" aria-hidden="true"><image href="../shared/assets/learning-companions.png" width="1122" height="1402" /></svg>
+          </article>
+          <article class="stat-card parent-panel">
+            <span class="stat-icon stat-icon--blue"><svg class="parent-icon" aria-hidden="true"><use href="#icon-book" /></svg></span>
+            <strong data-week-completed></strong><h2>Bài học trong tuần</h2>
+            <progress data-week-progress aria-label="Bài học hoàn thành trong tuần"></progress>
+          </article>
+          <article class="stat-card parent-panel">
+            <span class="stat-icon stat-icon--coral"><svg class="parent-icon" aria-hidden="true"><use href="#icon-target" /></svg></span>
+            <strong data-accuracy></strong><h2>Độ chính xác</h2>
+            <progress class="progress--green" data-accuracy-progress aria-label="Độ chính xác trong tuần" max="100"></progress>
+          </article>
+          <article class="stat-card parent-panel">
+            <span class="stat-icon stat-icon--blue"><svg class="parent-icon" aria-hidden="true"><use href="#icon-calendar" /></svg></span>
+            <strong data-streak></strong><h2>Học liên tiếp</h2>
+            <p class="stat-caption">Mỗi ngày một chút</p>
+          </article>
+          <article class="stat-card parent-panel">
+            <span class="stat-icon stat-icon--gold"><svg class="parent-icon" aria-hidden="true"><use href="#icon-star" /></svg></span>
+            <strong data-parent-stars></strong><h2>Sao tích lũy</h2>
+            <a class="stat-reward-link" href="../badges/">Xem huy hiệu <span aria-hidden="true">›</span></a>
+          </article>
+        </section>
+
+        <div class="parent-columns">
+          <div class="parent-column">
+            <section class="parent-panel subject-panel" id="subject-progress" aria-labelledby="subject-title">
+              <header class="panel-heading"><h2 id="subject-title"><svg class="parent-icon" aria-hidden="true"><use href="#icon-chart" /></svg>Tiến độ theo môn học</h2><button class="parent-link" type="button" data-open-progress>Xem chi tiết <svg class="parent-icon" aria-hidden="true"><use href="#icon-arrow" /></svg></button></header>
+              <div class="subject-progress-list" data-subject-progress></div>
+            </section>
+
+            <section class="parent-panel chart-panel" aria-labelledby="chart-title">
+              <header class="panel-heading"><h2 id="chart-title"><svg class="parent-icon" aria-hidden="true"><use href="#icon-chart" /></svg>Biểu đồ tiến bộ</h2><label class="chart-period"><span class="sr-only">Khoảng thời gian biểu đồ</span><select data-chart-period><option value="4">4 tuần gần đây</option><option value="8">8 tuần gần đây</option></select></label></header>
+              <div class="chart-legend" aria-hidden="true"><span><i class="legend-dot legend-dot--math"></i>Toán</span><span><i class="legend-dot legend-dot--english"></i>Tiếng Anh</span></div>
+              <figure class="progress-chart"><svg viewBox="0 0 560 215" role="img" aria-labelledby="progress-chart-title progress-chart-description" data-progress-chart></svg><figcaption class="sr-only" id="progress-chart-description" data-chart-description></figcaption></figure>
+              <details class="chart-data"><summary>Xem số liệu</summary><div class="chart-table-wrap"><table><caption class="sr-only">Tỷ lệ hoàn thành theo tuần</caption><thead><tr><th scope="col">Tuần</th><th scope="col">Toán</th><th scope="col">Tiếng Anh</th></tr></thead><tbody data-chart-table></tbody></table></div></details>
+              <p class="sr-only" role="status" data-chart-status></p>
+            </section>
+          </div>
+
+          <div class="parent-column">
+            <section class="parent-panel activity-panel" aria-labelledby="activity-title">
+              <header class="panel-heading"><h2 id="activity-title"><svg class="parent-icon" aria-hidden="true"><use href="#icon-clock" /></svg>Hoạt động gần đây</h2><button class="parent-link" type="button" data-open-activities>Xem tất cả <svg class="parent-icon" aria-hidden="true"><use href="#icon-arrow" /></svg></button></header>
+              <ol class="activity-list" data-recent-activities></ol>
+            </section>
+
+            <section class="parent-panel tips-panel" aria-labelledby="tips-title">
+              <header class="panel-heading"><h2 id="tips-title"><svg class="parent-icon tips-icon" aria-hidden="true"><use href="#icon-bulb" /></svg>Nhận xét &amp; gợi ý cho phụ huynh</h2></header>
+              <div class="parent-tip"><img src="../badges/assets/vocabulary.webp" width="96" height="96" alt="" loading="lazy" /><div class="parent-tip__bubble"><p>An đang tiến bộ qua từng chặng Toán và đã bắt đầu làm quen với phép cộng. Với tiếng Anh, con đã khám phá từ vựng về Động vật và Trái cây.</p><p>Ba mẹ có thể dành <strong>5–10 phút mỗi ngày</strong> cùng con ôn lại từ đã học qua đồ vật, tranh ảnh nhé!</p></div></div>
+              <a class="parent-link tip-action" href="../english/?topic=animals">Cùng con ôn từ vựng <svg class="parent-icon" aria-hidden="true"><use href="#icon-arrow" /></svg></a>
+            </section>
+          </div>
+        </div>
+        <p class="preview-note">Dữ liệu minh họa · Báo cáo tuần 19/10 – 25/10/2026. Chưa kết nối tài khoản học viên.</p>
+        <noscript><p>Bật JavaScript để xem báo cáo. <a href="../">Góc học tập</a> · <a href="../math/">Hành tinh Toán</a> · <a href="../english/">Đảo tiếng Anh</a></p></noscript>
+      </div>
+    </main>
+    <dialog class="topic-dialog parent-dialog" aria-labelledby="parent-dialog-title" data-parent-dialog>
+      <div class="topic-dialog__heading"><h2 id="parent-dialog-title" data-dialog-title></h2><button class="icon-button" type="button" aria-label="Đóng cửa sổ" data-dialog-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button></div>
+      <div data-dialog-content></div>
+    </dialog>
+    <div data-dashboard-footer></div>
+    <script src="../math/demo-data.js?v=1.0.0"></script>
+    <script src="../english/demo-data.js?v=1.0.0"></script>
+    <script src="../demo-data.js?v=1.0.1"></script>
+    <script src="./demo-data.js?v=1.0.0"></script>
+    <script src="../shared/layout.js?v=1.0.6"></script>
+    <script src="./app.js?v=1.0.0"></script>
+  </body>
+</html>
