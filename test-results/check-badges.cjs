@@ -18,6 +18,12 @@ const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
   }
   track(page);
   const badge = id => page.locator('[data-badge-id="' + id + '"]');
+  async function showAllBadges() {
+    const viewport = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.locator('[data-all-badges]').click();
+    await page.setViewportSize(viewport);
+  }
   try {
     await page.goto(base + '/dashboard/badges/');
     await page.locator('[data-badge-id="first-steps"]').waitFor();
@@ -60,7 +66,7 @@ const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
     assert.equal(await page.locator('[data-earned-count]').textContent(), '3');
     await page.keyboard.press('Escape');
 
-    await page.locator('[data-all-badges]').click();
+    await showAllBadges();
     assert.equal(await page.locator('.badge-card').count(), 12);
     await page.locator('[data-filter="earned"]').click();
     assert.equal(await page.locator('.badge-card').count(), 3);
@@ -121,7 +127,7 @@ const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
     await page.goto(base + '/preview/dashboard/badges/');
     assert.equal(new URL(await page.locator('.sidebar [aria-current="page"]').getAttribute('href')).pathname, '/preview/dashboard/badges/');
     assert.equal(await page.locator('.badge-hero__art').evaluate(el => el.complete && el.naturalWidth > 0), true);
-    await page.locator('[data-all-badges]').click();
+    await showAllBadges();
     await page.locator('.badge-card').last().scrollIntoViewIfNeeded();
     await page.waitForFunction(() => [...document.querySelectorAll('.badge-card__art')].every(el => el.complete && el.naturalWidth > 0));
 
