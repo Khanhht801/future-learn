@@ -105,8 +105,9 @@ cộng thành tích. Dữ liệu lưu hỏng hoặc storage bị chặn không l
 khi không lưu được, cửa sổ nhận thông báo rõ giới hạn của phiên hiện tại.
 
 Animation nhận thưởng gồm huy hiệu bật lên, tia sáng, pháo giấy một lần và dải sáng
-vàng lóe lên, chạy một vòng rồi mờ tắt trong 1,6 giây. **Xem lại khoảnh khắc**
-phát lại hiệu ứng cho huy hiệu đã đạt. `prefers-reduced-motion` tắt animation.
+vàng lóe lên, chạy một vòng rồi mờ tắt trong 1,6 giây. Hiệu ứng tự phát khi mở
+huy hiệu đã đạt hoặc nhận huy hiệu mới; **Xem lại khoảnh khắc** phát lại theo yêu cầu.
+Mở lại huy hiệu không cộng thêm thành tích. `prefers-reduced-motion` tắt animation.
 Dialog dùng được bằng bàn phím, Escape để đóng và trả focus về thẻ tương ứng.
 Chưa có đồng bộ tài khoản/API. Prompt và đường dẫn ảnh ở
 [badges/assets/ILLUSTRATIONS.md](badges/assets/ILLUSTRATIONS.md).

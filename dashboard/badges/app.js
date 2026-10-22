@@ -163,7 +163,7 @@
         return fragment;
       });
       select("[data-confetti]").replaceChildren(...fragments);
-      // Restart the one-shot animation only after a claim or an explicit replay.
+      // Start one celebration when opening an earned badge, claiming or replaying.
       void dialog.offsetWidth;
       dialog.classList.add("is-celebrating");
       select("[data-reward-done]").focus();
@@ -177,7 +177,11 @@
     returnFocus = card;
     renderDialog(false);
     dialog.showModal();
-    (state(activeBadge) === "ready" ? select("[data-claim-badge]") : select("[data-dialog-close]")).focus();
+    if (state(activeBadge) === "earned") {
+      renderDialog(true);
+    } else {
+      (state(activeBadge) === "ready" ? select("[data-claim-badge]") : select("[data-dialog-close]")).focus();
+    }
   });
 
   select("[data-claim-badge]").addEventListener("click", function () {

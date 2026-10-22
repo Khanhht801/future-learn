@@ -62,6 +62,8 @@ const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
     assert.equal(await page.locator('.is-celebrating').count(), 0);
     await badge('first-steps').click();
     assert.equal(await page.locator('[data-claim-badge]').isVisible(), false);
+    assert.equal(await page.locator('[data-badge-dialog]').evaluate(el => el.classList.contains('is-celebrating')), true);
+    assert.equal(await page.locator('[data-dialog-eyebrow]').textContent(), 'Chúc mừng bé!');
     await page.locator('[data-replay-reward]').click();
     assert.equal(await page.locator('[data-earned-count]').textContent(), '3');
     await page.keyboard.press('Escape');
