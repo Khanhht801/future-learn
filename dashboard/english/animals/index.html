@@ -30,6 +30,8 @@
     <div data-dashboard-header></div>
     <main class="dashboard-main" id="main-content">
       <div class="dashboard-main__inner">
+        <div class="animal-layout">
+          <div class="lesson-column">
         <nav class="lesson-breadcrumb" aria-label="Đường dẫn"><a href="../">Đảo tiếng Anh</a><span aria-hidden="true"> / </span><span aria-current="page">Động vật</span></nav>
         <h1 class="lesson-title">Thế giới động vật</h1>
         <section class="topic-summary" aria-labelledby="topic-progress-title">
@@ -42,8 +44,6 @@
           <button type="button" data-mode="practice" disabled><svg class="lesson-icon" aria-hidden="true"><use href="#icon-game" /></svg><span>2. Luyện tập</span><svg class="lock-icon" data-lock aria-label="Chưa mở khóa"><use href="#icon-lock" /></svg></button>
           <button type="button" data-mode="quiz" disabled><svg class="lesson-icon" aria-hidden="true"><use href="#icon-cup" /></svg><span>3. Kiểm tra</span><svg class="lock-icon" data-lock aria-label="Chưa mở khóa"><use href="#icon-lock" /></svg></button>
         </nav>
-        <div class="animal-layout">
-          <div class="lesson-column">
             <section class="flashcard" aria-label="Thẻ từ vựng">
               <div data-learning>
                 <div class="word-content" aria-live="polite" aria-atomic="true">
@@ -78,7 +78,7 @@
                 <button type="button" class="button button--primary" data-question-next hidden>Câu tiếp theo</button>
               </div>
             </section>
-            <section class="word-library" aria-labelledby="words-title"><h2 id="words-title">Các từ trong chủ đề</h2><div class="word-carousel"><div id="topic-words" class="word-grid" data-word-grid></div><button type="button" class="word-scroll-next" data-scroll-words aria-label="Xem các từ tiếp theo" aria-controls="topic-words"><svg aria-hidden="true"><use href="#icon-arrow" /></svg></button></div></section>
+
           </div>
           <aside>
             <section class="next-activities">
@@ -92,6 +92,7 @@
             <p class="local-note">Tiến độ và sao của bài này được lưu trên trình duyệt hiện tại.</p>
           </aside>
         </div>
+        <section class="word-library" aria-labelledby="words-title"><h2 id="words-title">Các từ trong chủ đề</h2><div class="word-carousel"><div id="topic-words" class="word-grid" data-word-grid></div><button type="button" class="word-scroll-next" data-scroll-words aria-label="Xem các từ tiếp theo" aria-controls="topic-words"><svg aria-hidden="true"><use href="#icon-arrow" /></svg></button></div></section>
         <p class="lesson-notice" role="status" data-notice></p>
         <noscript>Vui lòng bật JavaScript để học từ và lưu tiến độ.</noscript>
       </div>
