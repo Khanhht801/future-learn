@@ -289,3 +289,7 @@ button:disabled { cursor: not-allowed; }
 /* Keep the vocabulary shelf snug around its tiles. */
 .word-library { padding-bottom: 10px; }
 .word-tile img { display: block; }
+
+/* End the page close to the shelf; reserve notice space only when needed. */
+.dashboard-main { padding-bottom: 12px; }
+.lesson-notice:empty { display: none; }
