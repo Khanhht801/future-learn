@@ -258,3 +258,17 @@ button:disabled { cursor: not-allowed; }
   .topic-summary .summary-note { grid-column: 1; grid-row: 2; text-align: left; }
   .topic-summary .reward { grid-column: 1 / -1; grid-row: 3; margin-top: 8px; }
 }
+
+/* Wide lesson cards pair the artwork with a readable text column. */
+@media (min-width: 1000px) {
+  .flashcard { container-type: inline-size; }
+  .word-content { display: grid; grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); grid-template-rows: 1fr auto auto 1fr; column-gap: 20px; align-items: center; text-align: left; }
+  .animal-illustration { grid-column: 1; grid-row: 1 / -1; width: 100%; height: clamp(160px, calc(100svh - 360px), 360px); margin: 0; }
+  .word-title { grid-column: 2; grid-row: 2; display: flex; align-items: flex-start; gap: 10px; margin: 0 0 16px; min-width: 0; }
+  .word-definition { min-width: 0; }
+  .word-definition h2 { font-size: clamp(28px, 6cqw, 56px); }
+  .pronunciation { font-size: clamp(28px, 6cqw, 56px); flex: 0 0 auto; }
+  .speaker { width: 40px; height: 40px; }
+  .example { grid-column: 2; grid-row: 3; width: 100%; min-width: 0; justify-content: flex-start; gap: 10px; padding: 10px 12px; font-size: clamp(16px, 2.5cqw, 21px); }
+  .example span { min-width: 0; overflow-wrap: anywhere; }
+}
