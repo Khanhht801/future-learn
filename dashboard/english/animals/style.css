@@ -7,16 +7,7 @@
   padding: 16px 26px 20px;
   overflow: hidden;
   border-radius: 24px;
-  background: #7aceef;
-}
-.animal-banner::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset: 0 0 0 auto;
-  width: min(60%, 480px);
-  background: url('./assets/animals-banner.webp') right center / cover no-repeat;
-  mask-image: linear-gradient(to right, transparent, black 12%);
+  background: url('./assets/animals-banner.webp') center / cover no-repeat;
 }
 .animal-banner nav { display: flex; gap: 12px; align-items: center; font-size: 14px; }
 .animal-banner nav a { color: #2447c6; }

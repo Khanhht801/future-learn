@@ -42,7 +42,7 @@ Chạy `node test-results/check-english-animals.cjs`: kiểm tra 10 tài nguyên
 
 ## Điều chỉnh theo ảnh mẫu (25/10/2026)
 
-- Banner có tranh vẹt và bảng Animals mới, hiển thị đủ nhân vật; nền trời xanh, không có lớp phủ trắng. Chỉ làm mềm mép tranh bên phải để nối với màu trời.
+- Banner dùng trực tiếp ảnh `animals-banner.webp` trên toàn bộ diện tích, không có nền màu phủ, lớp phủ trắng hay hiệu ứng mask chuyển màu.
 - Bỏ thanh “Đã học 0/10” trong thẻ học, giữ vòng tiến độ bên phải. Có 10 chấm chọn từ độc lập với số từ đã học.
 - Tab Học từ mới / Luyện tập / Kiểm tra có icon sách / game / cúp. Tất cả nút hoạt động chưa đủ 10 từ đều bị khóa; icon khóa ẩn sau khi đủ điều kiện.
 - Nút loa căn giữa icon bằng grid, đặt cạnh tên từ và có chú thích “Bấm để nghe”. Từ chính trong câu ví dụ dùng chữ đậm màu xanh.
