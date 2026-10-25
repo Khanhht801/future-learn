@@ -155,7 +155,7 @@ button:disabled { cursor: not-allowed; }
 }
 
 /* Keep the progress card vertical and align it with the top of the page. */
-.dashboard-main__inner { display: grid; grid-template-columns: minmax(0, 1fr) 300px; column-gap: 18px; align-items: start; }
+.dashboard-main__inner { display: grid; grid-template-columns: minmax(0, 1fr) 300px; grid-template-rows: max-content max-content max-content max-content max-content max-content minmax(0, 1fr) auto; column-gap: 18px; align-items: start; }
 .lesson-breadcrumb { grid-column: 1; grid-row: 1; }
 .lesson-title { grid-column: 1; grid-row: 2; }
 .lesson-steps { grid-column: 1; grid-row: 3; }
