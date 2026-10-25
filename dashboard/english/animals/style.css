@@ -3,11 +3,12 @@
 .lesson-breadcrumb { display: flex; gap: 12px; align-items: center; font-size: 14px; }
 .lesson-breadcrumb a { color: #2447c6; }
 .lesson-title { margin: 8px 0 0; color: #142959; font: 700 28px/1.2 var(--font-heading); letter-spacing: -.025em; }
-.lesson-steps { display: flex; gap: 12px; margin: 18px 0; }
+.lesson-steps { display: grid; grid-template-columns: repeat(3, minmax(max-content, 1fr)); gap: 12px; margin: 18px 0; overflow-x: auto; }
 .lesson-steps button {
   display: inline-flex;
   min-width: 0;
   min-height: 48px;
+  white-space: nowrap;
   align-items: center;
   justify-content: center;
   gap: 12px;
@@ -119,7 +120,7 @@ button:disabled { cursor: not-allowed; }
 @media (max-width: 800px) {
   .animal-layout { grid-template-columns: 1fr; }
   .local-note { margin: 14px 0 0; }
-  .lesson-steps button { flex: 1; flex-wrap: wrap; gap: 6px; padding: 10px 8px; font-size: 15px; }
+  .lesson-steps button { flex: 1; gap: 6px; padding: 10px 8px; font-size: 15px; }
   .lesson-icon { width: 22px; height: 22px; }
 }
 @media (max-width: 600px) {
@@ -129,7 +130,7 @@ button:disabled { cursor: not-allowed; }
   .animal-ring strong { width: 56px; height: 56px; font-size: 20px; }
   .lesson-steps { gap: 7px; margin-block: 14px; }
   .lesson-steps button { font-size: 14px; }
-  .lesson-steps button>span { flex-basis: 100%; }
+  .lesson-steps button>span { flex-basis: auto; }
   .lesson-steps .lock-icon { width: 15px; height: 15px; }
   .flashcard { padding: 10px 12px 14px; }
   .animal-illustration { height: 220px; }
