@@ -44,7 +44,7 @@
 .word-definition { grid-column: 2; }
 .word-definition h2 { margin: 0; color: #122858; font: 700 clamp(46px, 4.6vw, 64px)/1.12 var(--font-heading); letter-spacing: -.025em; }
 .translation { margin: 4px 0 0; color: #142959; font-size: 22px; font-weight: 600; line-height: 1.35; }
-.pronunciation { display: grid; justify-items: center; justify-self: start; gap: 7px; padding-top: 0; }
+.pronunciation { display: grid; height: 1.12em; align-content: center; justify-items: center; justify-self: start; font-size: clamp(46px, 4.6vw, 64px); }
 .speaker { display: inline-grid; width: 44px; height: 44px; flex: 0 0 44px; padding: 0; border: 0; border-radius: 50%; background: var(--color-primary); color: white; cursor: pointer; place-items: center; }
 .speaker svg { width: 24px; height: 24px; }
 .speaker:hover { background: var(--color-primary-hover); }
@@ -136,6 +136,7 @@ button:disabled { cursor: not-allowed; }
   .animal-illustration { height: 220px; }
   .word-title { gap: 12px; }
   .word-definition h2 { font-size: 48px; }
+  .pronunciation { font-size: 48px; }
   .translation { font-size: 20px; }
   .speaker { width: 40px; height: 40px; flex-basis: 40px; }
   .speaker svg { width: 22px; height: 22px; }
