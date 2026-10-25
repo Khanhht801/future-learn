@@ -16,7 +16,6 @@
   $('[data-answer-action]').onclick = dismissAnswer;
   answerDialog.addEventListener('cancel', event => { event.preventDefault(); dismissAnswer(); });
   const wordGrid = $('[data-word-grid]');
-  let drag = null, dragged = false;
   const scrollWords = $('[data-scroll-words]');
   function updateScrollArrow() {
     scrollWords.disabled = wordGrid.scrollLeft + wordGrid.clientWidth >= wordGrid.scrollWidth - 1;
@@ -27,38 +26,43 @@
   wordGrid.addEventListener('scroll', updateScrollArrow);
   window.addEventListener('resize', updateScrollArrow);
 
-  wordGrid.addEventListener('pointerdown', event => {
-    if (event.pointerType !== 'mouse' || event.button !== 0) return;
-    dragged = false;
-    drag = { id: event.pointerId, x: event.clientX, scrollLeft: wordGrid.scrollLeft };
-  });
-  wordGrid.addEventListener('pointermove', event => {
-    if (!drag || event.pointerId !== drag.id) return;
-    const distance = event.clientX - drag.x;
-    if (!dragged && Math.abs(distance) < 6) return;
-    if (!dragged) {
-      dragged = true;
-      wordGrid.setPointerCapture(drag.id);
-      wordGrid.classList.add('is-dragging');
-    }
-    event.preventDefault();
-    wordGrid.scrollLeft = drag.scrollLeft - distance;
-  });
-  function endDrag(event) {
-    if (!drag || event.pointerId !== drag.id) return;
-    const id = drag.id;
-    drag = null;
-    wordGrid.classList.remove('is-dragging');
-    if (wordGrid.hasPointerCapture(id)) wordGrid.releasePointerCapture(id);
-  }
-  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(type => wordGrid.addEventListener(type, endDrag));
-  wordGrid.addEventListener('click', event => {
-    if (dragged && event.detail !== 0) {
+  function enableMouseDrag(scroller) {
+    let drag = null, dragged = false;
+    scroller.addEventListener('pointerdown', event => {
+      if (event.pointerType !== 'mouse' || event.button !== 0) return;
+      dragged = false;
+      drag = { id: event.pointerId, x: event.clientX, scrollLeft: scroller.scrollLeft };
+    });
+    scroller.addEventListener('pointermove', event => {
+      if (!drag || event.pointerId !== drag.id) return;
+      const distance = event.clientX - drag.x;
+      if (!dragged && Math.abs(distance) < 6) return;
+      if (!dragged) {
+        dragged = true;
+        scroller.setPointerCapture(drag.id);
+        scroller.classList.add('is-dragging');
+      }
       event.preventDefault();
-      event.stopImmediatePropagation();
+      scroller.scrollLeft = drag.scrollLeft - distance;
+    });
+    function endDrag(event) {
+      if (!drag || event.pointerId !== drag.id) return;
+      const id = drag.id;
+      drag = null;
+      scroller.classList.remove('is-dragging');
+      if (scroller.hasPointerCapture(id)) scroller.releasePointerCapture(id);
     }
-  }, true);
-  wordGrid.addEventListener('dragstart', event => event.preventDefault());
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(type => scroller.addEventListener(type, endDrag));
+    scroller.addEventListener('click', event => {
+      if (dragged && event.detail !== 0) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
+    }, true);
+    scroller.addEventListener('dragstart', event => event.preventDefault());
+  }
+  enableMouseDrag(wordGrid);
+  enableMouseDrag($('.lesson-steps'));
   function notice(message) { $('[data-notice]').textContent = message; }
   function stopSpeech() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); $('[data-speak]').classList.remove('is-speaking'); }
   function save() { state.current = words[index].id; if (!window.animalProgress.save(state)) notice('Không thể lưu trên trình duyệt này. Tiến độ chỉ được giữ trong lần học hiện tại.'); }

@@ -303,3 +303,7 @@ button:disabled { cursor: not-allowed; }
   .lesson-steps { display: flex; flex-wrap: nowrap; width: 100%; min-width: 0; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; touch-action: pan-x pan-y; scroll-padding-inline: 4px; padding-block: 3px; }
   .lesson-steps button { flex: 0 0 auto; }
 }
+
+.lesson-steps { cursor: grab; user-select: none; }
+.lesson-steps button { cursor: inherit; }
+.lesson-steps.is-dragging, .lesson-steps.is-dragging button { cursor: grabbing; }
