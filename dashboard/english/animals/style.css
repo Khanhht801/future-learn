@@ -224,3 +224,37 @@ button:disabled { cursor: not-allowed; }
 @media (max-width: 800px) {
   .animal-layout { min-height: calc(100vh - var(--header-height) - 1.25rem); min-height: calc(100svh - var(--header-height) - 1.25rem); align-content: start; }
 }
+
+/* Fit the learning controls above the fold on shorter desktop windows. */
+@media (min-width: 801px) and (max-height: 850px) {
+  .dashboard-main { padding-top: calc(var(--header-height) + 16px); }
+  .animal-layout { min-height: calc(100svh - var(--header-height) - 16px); }
+  .lesson-title { font-size: 26px; }
+  .lesson-steps { margin: 10px 0; }
+  .lesson-steps button { min-height: 44px; padding-block: 8px; }
+  .animal-illustration { height: clamp(64px, calc(100svh - 480px), 280px); }
+  .word-title { margin-bottom: 8px; gap: 12px; }
+  .word-definition h2, .pronunciation { font-size: 42px; }
+  .translation { font-size: 18px; }
+  .example { min-height: 40px; padding-block: 6px; font-size: 18px; }
+  .word-controls { margin-top: 4px; }
+  .word-controls .button { min-height: 40px; padding: 8px 12px; }
+  .topic-summary, .next-activities { padding: 12px; }
+  .topic-summary h2, .next-activities h2 { font-size: 18px; margin-bottom: 8px; }
+  .topic-summary .animal-ring { width: 112px; height: 112px; margin: 4px auto; }
+  .topic-summary .animal-ring strong { width: 88px; height: 88px; font-size: 26px; }
+  .topic-summary .summary-note { margin: 4px 0 8px; }
+  .reward { min-height: 38px; padding: 4px 6px; font-size: 14px; }
+  .reward > svg { width: 28px; height: 28px; flex-basis: 28px; }
+  .activity-link { min-height: 42px; margin-top: 6px; padding: 6px 8px; font-size: 14px; }
+  .activity-icon { width: 24px; height: 24px; }
+  .practice-button { min-height: 40px; margin-top: 8px; padding-block: 8px; }
+}
+@media (min-width: 801px) and (max-height: 650px) {
+  .topic-summary { grid-template-columns: minmax(0, 1fr) 64px; column-gap: 8px; }
+  .topic-summary h2 { grid-column: 1; grid-row: 1; padding: 0; }
+  .topic-summary .animal-ring { grid-column: 2; grid-row: 1 / 3; width: 64px; height: 64px; margin: 0; }
+  .topic-summary .animal-ring strong { width: 48px; height: 48px; font-size: 18px; }
+  .topic-summary .summary-note { grid-column: 1; grid-row: 2; text-align: left; }
+  .topic-summary .reward { grid-column: 1 / -1; grid-row: 3; margin-top: 8px; }
+}
