@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../shared/layout.css?v=1.0.4" />
     <link rel="stylesheet" href="./style.css?v=2" />
+    <link rel="stylesheet" href="./completion.css?v=1" />
   </head>
   <body data-dashboard="english">
     <svg class="icon-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
@@ -57,6 +58,17 @@
                   <button type="button" class="button button--secondary" data-prev><svg class="arrow-back" aria-hidden="true"><use href="#icon-arrow" /></svg>Quay lại</button>
                   <div class="word-dots" role="group" aria-label="Chọn từ vựng" data-word-dots></div>
                   <button type="button" class="button button--primary" data-next><span>Tiếp theo</span><svg aria-hidden="true"><use href="#icon-arrow" /></svg></button>
+                </div>
+              </div>
+              <div class="lesson-completion" data-completion hidden aria-labelledby="completion-title">
+                <svg class="completion-star" aria-hidden="true"><use href="#icon-star" /></svg>
+                <h2 id="completion-title" tabindex="-1">Chúc mừng bé!</h2>
+                <p>Bé đã khám phá đủ 10 từ về động vật.</p>
+                <p class="completion-reward">+20 sao cho bài học này</p>
+                <p>Luyện nghe và chọn hình để nhớ các bạn động vật lâu hơn nhé!</p>
+                <div class="completion-actions">
+                  <button type="button" class="button button--primary" data-completion-practice>Luyện tập ngay</button>
+                  <button type="button" class="button button--secondary" data-completion-review>Ôn lại 10 từ</button>
                 </div>
               </div>
               <div data-exercise hidden>

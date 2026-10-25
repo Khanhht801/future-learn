@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 function element() {
-  return { listeners:{}, scrollLeft:0, addEventListener(type, listener){this.listeners[type]=listener}, setPointerCapture(id){this.captured=id}, hasPointerCapture(id){return this.captured===id}, releasePointerCapture(){this.captured=null}, hidden:false, disabled:false, dataset:{}, children:[], textContent:'', querySelector(){if(!this.lock)this.lock=element();return this.lock}, classList:{add(){},remove(){},toggle(){}}, style:{setProperty(){}}, toggleAttribute(k,v){this[k]=v}, setAttribute(k,v){this[k]=v},removeAttribute(k){delete this[k]},append(...items){this.children.push(...items)},replaceChildren(...items){this.children=items},querySelectorAll(){return this.children} };
+  return { focus(){this.focused=true}, listeners:{}, scrollLeft:0, addEventListener(type, listener){this.listeners[type]=listener}, setPointerCapture(id){this.captured=id}, hasPointerCapture(id){return this.captured===id}, releasePointerCapture(){this.captured=null}, hidden:false, disabled:false, dataset:{}, children:[], textContent:'', querySelector(){if(!this.lock)this.lock=element();return this.lock}, classList:{add(){},remove(){},toggle(){}}, style:{setProperty(){}}, toggleAttribute(k,v){this[k]=v}, setAttribute(k,v){this[k]=v},removeAttribute(k){delete this[k]},append(...items){this.children.push(...items)},replaceChildren(...items){this.children=items},querySelectorAll(){return this.children} };
 }
 let stored = null;
 function boot(blocked=false) {
@@ -56,7 +56,10 @@ for(let i=0;i<8;i++)app.$('[data-next]').onclick();
 assert.equal(JSON.parse(stored).learned.length,10);assert.equal(JSON.parse(stored).rewarded,true);
 assert.equal(app.$('[data-start-practice]').disabled,false);
 assert.equal(app.modes[1].querySelector('[data-lock]').hidden,true);
-app.$('[data-start-practice]').onclick();
+assert.equal(app.$('[data-completion]').hidden,false);
+assert.equal(app.$('#completion-title').focused,true);
+app.$('[data-completion-practice]').onclick();
+assert.equal(app.$('[data-completion]').hidden,true);
 assert.equal(app.$('[data-learning]').hidden,true);
 app.$('[data-question-next]').onclick();
 assert.match(app.$('[data-question]').textContent,/1\/10/);
@@ -91,3 +94,16 @@ app=boot(true);app.$('[data-next]').onclick();assert.match(app.$('[data-notice]'
 for(const word of app.context.animalWords){assert.ok(fs.existsSync('dashboard/english/animals/'+word.image));assert.ok(!word.vi.includes('?'))}
 console.log('PASS: 10 assets, navigation without credit, unique learned words, resume, completion/reward, practice, speech, corrupt/blocked storage.');
 
+
+// Completing out of order must show the same milestone.
+stored=JSON.stringify({learned:['cat','bird','fish','rabbit','lion','elephant','monkey','tiger','duck'],current:'dog'});
+app=boot();app.$('[data-next]').onclick();
+assert.equal(app.$('[data-completion]').hidden,false);
+assert.equal(JSON.parse(stored).learned.length,10);
+app.$('[data-completion-review]').onclick();
+assert.equal(app.$('[data-word]').textContent,'Dog');
+assert.equal(app.$('[data-completion]').hidden,true);
+app.$('[data-next]').onclick();
+assert.equal(app.$('[data-completion]').hidden,true,'review must not repeat celebration');
+app=boot();assert.notEqual(app.$('[data-learning]').hidden,true,'reload returns to words');
+console.log('PASS: completion milestone, focus, practice/review transitions and out-of-order completion.');

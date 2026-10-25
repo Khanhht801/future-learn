@@ -108,6 +108,7 @@
     if (next !== 'learn' && state.learned.length < 10) return;
     if (next === mode && next !== 'learn' && exerciseStarted && questionIndex < words.length) return;
     stopSpeech(); mode = next;
+    $('[data-completion]').hidden = true;
     $('[data-learning]').hidden = mode !== 'learn'; $('[data-exercise]').hidden = mode === 'learn';
     document.querySelectorAll('[data-mode]').forEach(button => { button.classList.toggle('is-active', button.dataset.mode === mode); if (button.dataset.mode === mode) button.setAttribute('aria-current','step'); else button.removeAttribute('aria-current'); });
     if (mode === 'learn') render(); else { exerciseStarted = true; questionIndex = 0; score = 0; renderQuestion(); }
@@ -150,8 +151,17 @@
   $('[data-prev]').onclick = () => { stopSpeech(); if (index > 0) index--; save(); render(); };
   $('[data-next]').onclick = () => {
     stopSpeech();
+    const wasComplete = state.learned.length === words.length;
     if (!state.learned.includes(words[index].id)) state.learned.push(words[index].id);
     if (state.learned.length === 10 && !state.rewarded) { state.rewarded = true; notice('Tuyệt vời! Bạn đã học đủ 10 từ và nhận 20 sao cho bài này.'); }
+    if (!wasComplete && state.learned.length === words.length) {
+      save(); render();
+      $('[data-learning]').hidden = true;
+      $('[data-exercise]').hidden = true;
+      $('[data-completion]').hidden = false;
+      $('#completion-title').focus();
+      return;
+    }
     if (index < 9) index++;
     else if (state.learned.length < 10) { index = words.findIndex(word => !state.learned.includes(word.id)); notice('Cùng học nốt những từ còn lại nhé!'); }
     else { save(); render(); setMode('practice'); return; }
@@ -160,6 +170,13 @@
   document.querySelectorAll('[data-mode]').forEach(button => button.onclick = () => setMode(button.dataset.mode));
   document.querySelectorAll('[data-activity-mode]').forEach(button => button.onclick = () => setMode(button.dataset.activityMode));
   $('[data-start-practice]').onclick = () => setMode('practice');
+  $('[data-completion-practice]').onclick = () => {
+    setMode('practice');
+    $('[data-exercise-speak]').focus();
+  };
+  $('[data-completion-review]').onclick = () => {
+    index = 0; setMode('learn'); save(); $('[data-speak]').focus();
+  };
   window.addEventListener('pagehide', stopSpeech);
   window.addEventListener('storage', event => {
     if (event.key !== window.animalProgress.key && event.key !== null) return;

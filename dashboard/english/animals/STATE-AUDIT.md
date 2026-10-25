@@ -2,6 +2,7 @@
 
 - Số từ đã học đếm ID duy nhất được xác nhận bằng nút Tiếp theo. Chọn thẻ, nghe phát âm và quay lại không tăng tiến độ. Đây là xác nhận xem từ, chưa phải đánh giá thuộc từ.
 - Đủ 10 từ mở luyện tập/kiểm tra. Thưởng 20 sao ghi một lần trong dữ liệu bài học, chưa kết nối ví sao chung.
+- Khi lần đầu xác nhận đủ 10 từ (kể cả học không theo thứ tự), thẻ từ chuyển sang màn chúc mừng có sao và hai lựa chọn: Luyện tập ngay / Ôn lại 10 từ. Tiêu đề nhận focus; không tự chuyển sang câu hỏi. Ôn lại và tải lại không lặp màn chúc mừng hay cộng thưởng lần nữa. Hiệu ứng ngôi sao tôn trọng thiết lập giảm chuyển động.
 - Kết quả hoàn tất gần nhất của từng hoạt động lưu tại `results.practice` / `results.quiz`, gồm `score` (0–10) và `completedAt` (ISO). Kết quả hiển thị ở phần mở khóa khi quay về học từ hoặc tải lại. Lượt chưa hoàn tất không được ghi thành kết quả; tải lại sẽ bắt đầu lượt mới.
 - Bấm tab hoạt động đang làm giữ nguyên câu và đáp án. Không thể chuyển câu khi chưa trả lời hoặc ghi kết quả lặp sau khi hoàn tất.
 - Sự kiện storage cập nhật trang bài học khi tab khác đổi/xóa dữ liệu; đưa về học từ để tránh tiếp tục lượt dựa trên tiến độ cũ. Không có đồng bộ máy chủ hoặc bảo đảm ghi đồng thời giữa nhiều tab.

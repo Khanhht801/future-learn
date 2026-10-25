@@ -1,0 +1,11 @@
+.lesson-completion { text-align: center; padding: 40px 16px; }
+.lesson-completion[hidden] { display: none; }
+.completion-star { display: block; width: 120px; height: 120px; margin: 0 auto 20px; animation: completion-pop .5s ease-out; }
+.lesson-completion h2 { font-family: Quicksand, sans-serif; font-size: clamp(28px, 5vw, 40px); margin: 0 0 16px; color: #287c45; }
+.lesson-completion p { max-width: 44ch; margin: 12px auto; line-height: 1.6; }
+.completion-reward { color: #895c00; font-weight: 700; }
+.completion-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.completion-actions .button { min-height: 48px; }
+@keyframes completion-pop { from { transform: scale(.65) rotate(-15deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }
+@media (max-width: 420px) { .completion-actions { flex-direction: column; } }
+@media (prefers-reduced-motion: reduce) { .completion-star { animation: none; } }
