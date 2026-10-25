@@ -293,3 +293,7 @@ button:disabled { cursor: not-allowed; }
 /* End the page close to the shelf; reserve notice space only when needed. */
 .dashboard-main { padding-bottom: 12px; }
 .lesson-notice:empty { display: none; }
+
+/* Let the shelf follow the lesson instead of reserving an empty viewport. */
+.animal-layout { min-height: 0; }
+.word-library { margin-top: 12px; }
