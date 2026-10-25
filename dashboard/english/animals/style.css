@@ -297,3 +297,9 @@ button:disabled { cursor: not-allowed; }
 /* Let the shelf follow the lesson instead of reserving an empty viewport. */
 .animal-layout { min-height: 0; }
 .word-library { margin-top: 12px; }
+
+/* Keep every lesson step reachable with a native horizontal swipe. */
+@media (max-width: 800px) {
+  .lesson-steps { display: flex; flex-wrap: nowrap; width: 100%; min-width: 0; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; touch-action: pan-x pan-y; scroll-padding-inline: 4px; padding-block: 3px; }
+  .lesson-steps button { flex: 0 0 auto; }
+}
