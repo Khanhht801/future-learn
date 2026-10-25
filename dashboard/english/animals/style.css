@@ -285,3 +285,7 @@ button:disabled { cursor: not-allowed; }
   .next-activities h2, .next-activities .activity-link { margin: 0; }
   .next-activities .practice-button { margin-top: auto; }
 }
+
+/* Keep the vocabulary shelf snug around its tiles. */
+.word-library { padding-bottom: 10px; }
+.word-tile img { display: block; }
