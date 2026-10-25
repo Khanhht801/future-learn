@@ -5,6 +5,7 @@
   const $ = selector => document.querySelector(selector);
   let index = Math.max(0, words.findIndex(word => word.id === state.current));
   let mode = 'learn', questionIndex = 0, score = 0, answered = false;
+  let exerciseStarted = false;
   function notice(message) { $('[data-notice]').textContent = message; }
   function stopSpeech() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); $('[data-speak]').classList.remove('is-speaking'); }
   function save() { state.current = words[index].id; if (!window.animalProgress.save(state)) notice('Không thể lưu trên trình duyệt này. Tiến độ chỉ được giữ trong lần học hiện tại.'); }
@@ -40,6 +41,9 @@
     rewardAmount.textContent = '+20 sao';
     $('[data-reward]').replaceChildren(rewardAmount, document.createTextNode(state.rewarded ? ' đã nhận' : ' khi hoàn thành'));
     $('[data-unlock]').textContent = count === 10 ? 'Đã mở luyện tập và kiểm tra!' : 'Học đủ 10 từ để mở';
+    for (const [activity, label] of [['practice', 'Luyện tập'], ['quiz', 'Kiểm tra']]) {
+      if (state.results[activity]) $('[data-unlock]').textContent += ' ' + label + ' lần gần nhất: ' + state.results[activity].score + '/10.';
+    }
     document.querySelectorAll('[data-mode="practice"], [data-mode="quiz"], [data-start-practice], [data-activity-mode]').forEach(button => {
       button.disabled = count < 10;
       button.querySelector('[data-lock]').toggleAttribute('hidden', count === 10);
@@ -68,10 +72,11 @@
   }
   function setMode(next) {
     if (next !== 'learn' && state.learned.length < 10) return;
+    if (next === mode && next !== 'learn' && exerciseStarted && questionIndex < words.length) return;
     stopSpeech(); mode = next;
     $('[data-learning]').hidden = mode !== 'learn'; $('[data-exercise]').hidden = mode === 'learn';
     document.querySelectorAll('[data-mode]').forEach(button => { button.classList.toggle('is-active', button.dataset.mode === mode); if (button.dataset.mode === mode) button.setAttribute('aria-current','step'); else button.removeAttribute('aria-current'); });
-    if (mode === 'learn') render(); else { questionIndex = 0; score = 0; renderQuestion(); }
+    if (mode === 'learn') render(); else { exerciseStarted = true; questionIndex = 0; score = 0; renderQuestion(); }
   }
   function renderQuestion() {
     answered = false;
@@ -96,9 +101,15 @@
     });
   }
   $('[data-question-next]').onclick = () => {
+    if (mode === 'learn' || !answered || questionIndex >= words.length) return;
+    answered = false;
     stopSpeech();
     if (++questionIndex < 10) renderQuestion();
-    else { $('[data-question]').textContent = 'Hoàn thành!'; $('[data-answers]').replaceChildren(); $('[data-feedback]').textContent = 'Bạn trả lời đúng ' + score + '/10 câu. Chọn bước phía trên để học hoặc chơi lại.'; $('[data-question-next]').hidden = true; $('[data-exercise-speak]').hidden = true; }
+    else {
+      state.results[mode] = { score, completedAt: new Date().toISOString() };
+      save();
+      $('[data-question]').textContent = 'Hoàn thành!'; $('[data-answers]').replaceChildren(); $('[data-feedback]').textContent = 'Bạn trả lời đúng ' + score + '/10 câu. Chọn bước phía trên để học hoặc chơi lại.'; $('[data-question-next]').hidden = true; $('[data-exercise-speak]').hidden = true;
+    }
   };
   $('[data-exercise-speak]').onclick = () => { if (questionIndex < 10) speak(words[questionIndex].en); };
   $('[data-speak]').onclick = () => speak(words[index].en);
@@ -116,5 +127,12 @@
   document.querySelectorAll('[data-activity-mode]').forEach(button => button.onclick = () => setMode(button.dataset.activityMode));
   $('[data-start-practice]').onclick = () => setMode('practice');
   window.addEventListener('pagehide', stopSpeech);
+  window.addEventListener('storage', event => {
+    if (event.key !== window.animalProgress.key && event.key !== null) return;
+    Object.assign(state, window.animalProgress.read());
+    index = Math.max(0, words.findIndex(word => word.id === state.current));
+    setMode('learn');
+    notice('Tiến độ đã thay đổi ở tab khác. Đã cập nhật; hãy chọn bước để tiếp tục.');
+  });
   render();
 })();
