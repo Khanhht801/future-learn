@@ -1,0 +1,62 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "date": "2026-10-25",
+  "export": "WebP, 640px animals / 1920px banner, quality 88; original PNG retained in generated_images",
+  "assets": [
+    {
+      "id": "dog",
+      "prompt": "Use case: illustration-story. Generate one finished raster illustration for a Vietnamese children's English vocabulary flashcard in the FutureLearn website. Subject: one adorable brown and white beagle puppy, sitting, full body, front three-quarter view, big expressive glossy dark eyes, fluffy ears, happy friendly smile. Match polished children's storybook game art: softly painted 2D cartoon, rounded proportions, bright natural colors, detailed soft fur, subtle shaded volume, no heavy outlines, NOT flat vector or SVG geometric art, NOT photoreal. Composition: centered puppy on a tiny pale green grassy mound, a few little leaves, soft mint-green oval watercolor backdrop, clean pure white surrounding background. Animal fills most of square with comfortable margins, suitable for both large flashcard and small thumbnail. No text, no labels, no border, no watermark. Return the generated asset for integration into a local project.",
+      "source": "exec-dcc7ceb2-2db9-4f36-b6f2-9f71e771f7a2.png"
+    },
+    {
+      "id": "cat",
+      "prompt": "Use case: illustration-story. Asset type: individual animal flashcard illustration for FutureLearn, a children's English learning game. Primary subject: an adorable orange tabby kitten with cream muzzle and chest, fluffy striped tail, sitting. Style: polished warm hand-painted 2D storybook game art, rounded baby proportions, big expressive glossy brown eyes with catchlights, cheerful friendly smile, subtle gouache shading, fluffy natural texture and softly modeled volume. Match a premium children's animal vocabulary app. Composition: centered single animal, full body, front three-quarter view, large and clearly recognizable, small pale-green grassy mound, a few delicate leaves, softly feathered mint-green oval watercolor backdrop surrounded by pure white. Bright soft daylight, controlled cheerful colors, simple clean silhouette. Keep comfortable small margins, animal occupies 75 percent of image, square format. No text, no labels, no letters, no border, no watermark, no other animals. NOT flat vector, NOT SVG, NOT geometric shapes, NOT photorealistic. Generate one finished raster illustration.",
+      "source": "exec-3940ef00-0311-44b0-9364-26e5028d68ba.png"
+    },
+    {
+      "id": "bird",
+      "prompt": "Use case: illustration-story. Asset type: individual animal flashcard illustration for FutureLearn, a children's English learning game. Primary subject: an adorable small sky-blue songbird with darker blue wings, tiny orange beak, perched on little feet with wings slightly lifted. Style: polished warm hand-painted 2D storybook game art, rounded baby proportions, big expressive glossy brown eyes with catchlights, cheerful friendly smile, subtle gouache shading, fluffy natural texture and softly modeled volume. Match a premium children's animal vocabulary app. Composition: centered single animal, full body, front three-quarter view, large and clearly recognizable, small pale-green grassy mound, a few delicate leaves, softly feathered mint-green oval watercolor backdrop surrounded by pure white. Bright soft daylight, controlled cheerful colors, simple clean silhouette. Keep comfortable small margins, animal occupies 75 percent of image, square format. No text, no labels, no letters, no border, no watermark, no other animals. NOT flat vector, NOT SVG, NOT geometric shapes, NOT photorealistic. Generate one finished raster illustration.",
+      "source": "exec-a54f60ac-0bbf-41e2-8418-ee01e8f17ab1.png"
+    },
+    {
+      "id": "fish",
+      "prompt": "Children's picture book illustration for an animal vocabulary flashcard. An orange and white clownfish swimming above a small green seaweed sprig. One animal only, whole body visible, centered, rounded friendly proportions, expressive brown eyes, soft painterly 2D storybook style, gentle bright daylight, mint green watercolor oval behind the animal, white surrounding background, square composition. No words or letters, no watermark, no frame. This is a standalone educational animal illustration.",
+      "source": "exec-4b84ce80-71ff-4ab2-85ee-9e59e380baa3.png"
+    },
+    {
+      "id": "rabbit",
+      "prompt": "Use case: illustration-story. Asset type: individual animal flashcard illustration for FutureLearn, a children's English learning game. Primary subject: an adorable fluffy white rabbit with pink inner ears, big upright ears, tiny pink nose, sitting. Style: polished warm hand-painted 2D storybook game art, rounded baby proportions, big expressive glossy brown eyes with catchlights, cheerful friendly smile, subtle gouache shading, fluffy natural texture and softly modeled volume. Match a premium children's animal vocabulary app. Composition: centered single animal, full body, front three-quarter view, large and clearly recognizable, small pale-green grassy mound, a few delicate leaves, softly feathered mint-green oval watercolor backdrop surrounded by pure white. Bright soft daylight, controlled cheerful colors, simple clean silhouette. Keep comfortable small margins, animal occupies 75 percent of image, square format. No text, no labels, no letters, no border, no watermark, no other animals. NOT flat vector, NOT SVG, NOT geometric shapes, NOT photorealistic. Generate one finished raster illustration.",
+      "source": "exec-1ebe8a53-5b8f-4aae-a6e8-217eb588af9e.png"
+    },
+    {
+      "id": "lion",
+      "prompt": "Children's picture book illustration for an animal vocabulary flashcard. A friendly golden lion with a fluffy caramel mane and a rounded cream muzzle, sitting on a little grassy mound. One animal only, whole body visible, centered, rounded friendly proportions, expressive brown eyes, soft painterly 2D storybook style, gentle bright daylight, mint green watercolor oval behind the animal, white surrounding background, square composition. No words or letters, no watermark, no frame. This is a standalone educational animal illustration.",
+      "source": "exec-0d788745-49c5-4b34-ab6d-fd6e862449ac.png"
+    },
+    {
+      "id": "elephant",
+      "prompt": "Use case: illustration-story. Asset type: individual animal flashcard illustration for FutureLearn, a children's English learning game. Primary subject: an adorable light blue-gray baby elephant with large soft ears and gently curled trunk, standing. Style: polished warm hand-painted 2D storybook game art, rounded baby proportions, big expressive glossy brown eyes with catchlights, cheerful friendly smile, subtle gouache shading, fluffy natural texture and softly modeled volume. Match a premium children's animal vocabulary app. Composition: centered single animal, full body, front three-quarter view, large and clearly recognizable, small pale-green grassy mound, a few delicate leaves, softly feathered mint-green oval watercolor backdrop surrounded by pure white. Bright soft daylight, controlled cheerful colors, simple clean silhouette. Keep comfortable small margins, animal occupies 75 percent of image, square format. No text, no labels, no letters, no border, no watermark, no other animals. NOT flat vector, NOT SVG, NOT geometric shapes, NOT photorealistic. Generate one finished raster illustration.",
+      "source": "exec-e5fc2add-1862-4057-a3ea-2be0122e90e0.png"
+    },
+    {
+      "id": "monkey",
+      "prompt": "Use case: illustration-story. Asset type: individual animal flashcard illustration for FutureLearn, a children's English learning game. Primary subject: an adorable warm brown baby monkey with cream face and belly, round ears and curled tail, sitting. Style: polished warm hand-painted 2D storybook game art, rounded baby proportions, big expressive glossy brown eyes with catchlights, cheerful friendly smile, subtle gouache shading, fluffy natural texture and softly modeled volume. Match a premium children's animal vocabulary app. Composition: centered single animal, full body, front three-quarter view, large and clearly recognizable, small pale-green grassy mound, a few delicate leaves, softly feathered mint-green oval watercolor backdrop surrounded by pure white. Bright soft daylight, controlled cheerful colors, simple clean silhouette. Keep comfortable small margins, animal occupies 75 percent of image, square format. No text, no labels, no letters, no border, no watermark, no other animals. NOT flat vector, NOT SVG, NOT geometric shapes, NOT photorealistic. Generate one finished raster illustration.",
+      "source": "exec-c3dc306c-123c-4181-af92-8282e56e5734.png"
+    },
+    {
+      "id": "tiger",
+      "prompt": "Use case: illustration-story. Asset type: individual animal flashcard illustration for FutureLearn, a children's English learning game. Primary subject: an adorable orange baby tiger with dark brown stripes, cream muzzle and belly, round ears, sitting. Style: polished warm hand-painted 2D storybook game art, rounded baby proportions, big expressive glossy brown eyes with catchlights, cheerful friendly smile, subtle gouache shading, fluffy natural texture and softly modeled volume. Match a premium children's animal vocabulary app. Composition: centered single animal, full body, front three-quarter view, large and clearly recognizable, small pale-green grassy mound, a few delicate leaves, softly feathered mint-green oval watercolor backdrop surrounded by pure white. Bright soft daylight, controlled cheerful colors, simple clean silhouette. Keep comfortable small margins, animal occupies 75 percent of image, square format. No text, no labels, no letters, no border, no watermark, no other animals. NOT flat vector, NOT SVG, NOT geometric shapes, NOT photorealistic. Generate one finished raster illustration.",
+      "source": "exec-b58d76c1-485c-49bf-85b8-faca1db731c7.png"
+    },
+    {
+      "id": "duck",
+      "prompt": "Use case: illustration-story. Asset type: individual animal flashcard illustration for FutureLearn, a children's English learning game. Primary subject: an adorable fluffy yellow duckling with orange bill and orange webbed feet, standing. Style: polished warm hand-painted 2D storybook game art, rounded baby proportions, big expressive glossy brown eyes with catchlights, cheerful friendly smile, subtle gouache shading, fluffy natural texture and softly modeled volume. Match a premium children's animal vocabulary app. Composition: centered single animal, full body, front three-quarter view, large and clearly recognizable, small pale-green grassy mound, a few delicate leaves, softly feathered mint-green oval watercolor backdrop surrounded by pure white. Bright soft daylight, controlled cheerful colors, simple clean silhouette. Keep comfortable small margins, animal occupies 75 percent of image, square format. No text, no labels, no letters, no border, no watermark, no other animals. NOT flat vector, NOT SVG, NOT geometric shapes, NOT photorealistic. Generate one finished raster illustration.",
+      "source": "exec-5bab2c64-69ad-44c8-8a74-3531fdd7efce.png"
+    },
+    {
+      "id": "banner",
+      "prompt": "Use case: illustration-story. Asset type: a wide shallow panoramic header banner 6:1 for FutureLearn children's English Animals vocabulary page. Polished warm hand-painted 2D storybook educational game illustration, soft rounded shapes, bright cheerful controlled colors, subtle gouache shading. Composition: left 60 percent is calm naturally pale aqua-blue open sky with only a few very soft clouds and low foliage at the bottom, providing clear space for dark blue HTML heading text; this pale sky is an integral part of the scene, NO white overlay, NO rectangular white panel, NO UI card. On the right third, an adorable smiling red-orange parrot with yellow cheeks and blue wing feathers perched on a wooden branch, big glossy friendly eyes; lush tropical jungle green leaves framing the right edge and top right, a few muted green paw prints in the sky near the parrot. Small rustic wooden sign on the branch reading exactly 'Animals'. Gentle grassy leafy bottom edge, sunlit, welcoming. Keep the left and central open sky uncluttered. Full bleed landscape, no frame, no watermark, no other letters or text. The illustration itself is a continuous scene without foggy mask or white gradient.",
+      "source": "exec-2bc64f88-ac86-48c0-b47e-8f3e8f5fe9ae.png"
+    }
+  ]
+}

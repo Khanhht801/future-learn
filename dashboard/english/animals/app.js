@@ -25,22 +25,28 @@
     const word = words[index], count = state.learned.length;
     $('[data-word]').textContent = word.en;
     $('[data-translation]').textContent = word.vi;
-    $('[data-example]').textContent = word.example;
+    const exampleParts = word.example.split(word.id);
+    const highlightedWord = document.createElement('strong');
+    highlightedWord.textContent = word.id;
+    $('[data-example]').replaceChildren(document.createTextNode(exampleParts[0]), highlightedWord, document.createTextNode(exampleParts.slice(1).join(word.id)));
     $('[data-animal-image]').src = word.image; $('[data-animal-image]').alt = 'Hình minh họa ' + word.vi.toLowerCase();
     $('[data-speak]').setAttribute('aria-label', 'Nghe phát âm ' + word.en);
-    $('[data-count]').textContent = 'Đã học ' + count + '/10';
-    $('progress').value = count; $('[data-percent]').textContent = count * 10 + '%';
     $('.animal-ring').style.setProperty('--percent', count * 10 + '%');
     $('.animal-ring').setAttribute('aria-valuenow', count);
     $('[data-ring-count]').textContent = count + '/10';
     $('[data-summary]').textContent = 'Đã học ' + count + ' từ';
-    $('[data-position]').textContent = (index + 1) + ' / 10';
     $('[data-prev]').disabled = index === 0;
-    $('[data-next]').textContent = index === 9 ? (count === 10 ? 'Luyện tập →' : 'Đã học · Hoàn thành') : (state.learned.includes(word.id) ? 'Từ tiếp theo →' : 'Đã học · Từ tiếp theo →');
-    $('[data-reward]').textContent = state.rewarded ? '★ Đã nhận 20 sao cho bài này' : 'Hoàn thành 10 từ để nhận 20 sao';
+    const rewardAmount = document.createElement('strong');
+    rewardAmount.textContent = '+20 sao';
+    $('[data-reward]').replaceChildren(rewardAmount, document.createTextNode(state.rewarded ? ' đã nhận' : ' khi hoàn thành'));
     $('[data-unlock]').textContent = count === 10 ? 'Đã mở luyện tập và kiểm tra!' : 'Học đủ 10 từ để mở';
-    document.querySelectorAll('[data-mode="practice"], [data-mode="quiz"], [data-start-practice]').forEach(button => button.disabled = count < 10);
+    document.querySelectorAll('[data-mode="practice"], [data-mode="quiz"], [data-start-practice], [data-activity-mode]').forEach(button => {
+      button.disabled = count < 10;
+      button.querySelector('[data-lock]').toggleAttribute('hidden', count === 10);
+      button.title = count < 10 ? 'Học đủ 10 từ để mở' : '';
+    });
     const grid = $('[data-word-grid]'); grid.replaceChildren();
+    const dots = $('[data-word-dots]'); dots.replaceChildren();
     words.forEach((item, i) => {
       const button = document.createElement('button'); button.type = 'button'; button.className = 'word-tile';
       button.setAttribute('aria-current', String(i === index));
@@ -50,8 +56,14 @@
       const meaning = document.createElement('small'); meaning.textContent = item.vi;
       button.append(image, name, meaning);
       if (state.learned.includes(item.id)) { const check = document.createElement('span'); check.className = 'learned-check'; check.textContent = '✓'; button.append(check); }
-      button.onclick = () => { stopSpeech(); index = i; setMode('learn'); save(); };
+      const selectWord = () => { stopSpeech(); index = i; setMode('learn'); save(); };
+      button.onclick = selectWord;
       grid.append(button);
+      const dot = document.createElement('button'); dot.type = 'button'; dot.className = 'word-dot';
+      dot.setAttribute('aria-current', String(i === index));
+      dot.setAttribute('aria-label', 'Từ ' + (i + 1) + ': ' + item.en);
+      dot.onclick = selectWord;
+      dots.append(dot);
     });
   }
   function setMode(next) {
@@ -101,6 +113,7 @@
     save(); render();
   };
   document.querySelectorAll('[data-mode]').forEach(button => button.onclick = () => setMode(button.dataset.mode));
+  document.querySelectorAll('[data-activity-mode]').forEach(button => button.onclick = () => setMode(button.dataset.activityMode));
   $('[data-start-practice]').onclick = () => setMode('practice');
   window.addEventListener('pagehide', stopSpeech);
   render();
