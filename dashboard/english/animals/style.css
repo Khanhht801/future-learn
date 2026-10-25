@@ -3,7 +3,8 @@
 .lesson-breadcrumb { display: flex; gap: 12px; align-items: center; font-size: 14px; }
 .lesson-breadcrumb a { color: #2447c6; }
 .lesson-title { margin: 8px 0 0; color: #142959; font: 700 28px/1.2 var(--font-heading); letter-spacing: -.025em; }
-.lesson-steps { display: grid; grid-template-columns: repeat(3, minmax(max-content, 1fr)); gap: 12px; margin: 18px 0; overflow-x: auto; }
+.lesson-steps { display: grid; grid-template-columns: repeat(3, minmax(max-content, 1fr)); gap: 12px; margin: 18px 0; overflow-x: auto; scrollbar-width: none; }
+.lesson-steps::-webkit-scrollbar { display: none; }
 .lesson-steps button {
   display: inline-flex;
   min-width: 0;
