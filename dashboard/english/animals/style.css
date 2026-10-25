@@ -1,18 +1,8 @@
 ﻿/* Animal vocabulary lesson: shared shell, storybook artwork and focused controls. */
 .icon-definitions { position: absolute; width: 0; height: 0; overflow: hidden; }
-.animal-banner {
-  position: relative;
-  isolation: isolate;
-  min-height: 154px;
-  padding: 16px 26px 20px;
-  overflow: hidden;
-  border-radius: 24px;
-  background: url('./assets/animals-banner.webp') center / cover no-repeat;
-}
-.animal-banner nav { display: flex; gap: 12px; align-items: center; font-size: 14px; }
-.animal-banner nav a { color: #2447c6; }
-.animal-banner h1 { margin: 10px 0 4px; color: #142959; font: 700 clamp(28px, 3vw, 44px)/1.2 var(--font-heading); letter-spacing: -.025em; }
-.animal-banner p { margin: 0; color: #526888; font-size: 18px; font-weight: 600; max-width: 65%; }
+.lesson-breadcrumb { display: flex; gap: 12px; align-items: center; font-size: 14px; }
+.lesson-breadcrumb a { color: #2447c6; }
+.lesson-title { margin: 8px 0 0; color: #142959; font: 700 28px/1.2 var(--font-heading); letter-spacing: -.025em; }
 .lesson-steps { display: flex; gap: 12px; margin: 18px 0; }
 .lesson-steps button {
   display: inline-flex;
@@ -132,12 +122,8 @@ button:disabled { cursor: not-allowed; }
   .local-note { grid-column: 1 / -1; margin: 0; }
   .lesson-steps button { flex: 1; flex-wrap: wrap; gap: 6px; padding: 10px 8px; font-size: 15px; }
   .lesson-icon { width: 22px; height: 22px; }
-  .animal-banner p { max-width: 68%; font-size: 16px; }
 }
 @media (max-width: 600px) {
-  .animal-banner { padding: 14px 16px; }
-  .animal-banner h1 { max-width: 72%; font-size: 28px; }
-  .animal-banner p { max-width: 65%; font-size: 15px; }
   .lesson-steps { gap: 7px; margin-block: 14px; }
   .lesson-steps button { font-size: 14px; }
   .lesson-steps button>span { flex-basis: 100%; }

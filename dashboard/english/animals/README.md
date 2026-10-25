@@ -42,11 +42,11 @@ Chạy `node test-results/check-english-animals.cjs`: kiểm tra 10 tài nguyên
 
 ## Điều chỉnh theo ảnh mẫu (25/10/2026)
 
-- Banner dùng trực tiếp ảnh `animals-banner.webp` trên toàn bộ diện tích, không có nền màu phủ, lớp phủ trắng hay hiệu ứng mask chuyển màu.
+- Đã bỏ banner và lời giới thiệu, chỉ giữ đường dẫn cùng tiêu đề trang gọn phía trên các bước học.
 - Bỏ thanh “Đã học 0/10” trong thẻ học, giữ vòng tiến độ bên phải. Có 10 chấm chọn từ độc lập với số từ đã học.
 - Tab Học từ mới / Luyện tập / Kiểm tra có icon sách / game / cúp. Tất cả nút hoạt động chưa đủ 10 từ đều bị khóa; icon khóa ẩn sau khi đủ điều kiện.
 - Nút loa căn giữa icon bằng grid, đặt cạnh tên từ và có chú thích “Bấm để nghe”. Từ chính trong câu ví dụ dùng chữ đậm màu xanh.
 - Nút chuyển từ luôn ghi “Tiếp theo”; thao tác vẫn đánh dấu từ hiện tại đã học. Ô thưởng có hình sao và “+20 sao khi hoàn thành”, đổi sang “+20 sao đã nhận” khi hoàn tất.
-- 10 ảnh động vật thay SVG cũ; cùng dùng cho thẻ chính, thư viện và lựa chọn luyện tập. Ảnh ở `assets/*.webp`, banner ở `assets/animals-banner.webp`. Prompt cuối cùng, tên file nguồn và công cụ tạo ảnh được lưu trong `assets/generation-sources.json`. Dùng imagegen tích hợp, không dùng CLI/API fallback. PNG nguồn được giữ lại trong generated_images, bản WebP được xuất tối ưu cho web.
+- 10 ảnh động vật thay SVG cũ; cùng dùng cho thẻ chính, thư viện và lựa chọn luyện tập. Ảnh ở `assets/*.webp`. Ảnh banner cũ được giữ trong tài nguyên nhưng không còn tải trên trang. Prompt cuối cùng, tên file nguồn và công cụ tạo ảnh được lưu trong `assets/generation-sources.json`. Dùng imagegen tích hợp, không dùng CLI/API fallback. PNG nguồn được giữ lại trong generated_images, bản WebP được xuất tối ưu cho web.
 
 Kiểm tra bổ sung: `node test-results/check-english-animals-browser.cjs` với Playwright (có thể chỉ định đường dẫn module qua `PLAYWRIGHT_MODULE`). Đã chạy Chromium ở 1586, 1280, 820, 390 và 320px: không tràn ngang; 10 ảnh tải được; kiểm tra khóa/mở khóa, tô nổi từ, nhãn Tiếp theo, căn giữa icon loa, lưu tiến độ và liên kết về đảo. Có ảnh chụp desktop/tablet/mobile trong `test-results/english-animals-*.png`. Lời gọi phát âm được mock để kiểm tra từ và ngôn ngữ; chưa nghe giọng hệ thống bằng tai.
