@@ -2,6 +2,11 @@
   "use strict";
 
   const data = window.englishDashboardData;
+  const animalState = window.animalProgress && window.animalProgress.read();
+  if (animalState) {
+    const animals = data.topics.find(topic => topic.id === 'animals');
+    if (animals) animals.completed = animalState.learned.length;
+  }
   const grid = document.querySelector("[data-topic-grid]");
   const template = document.querySelector("#topic-card-template");
   const dialog = document.querySelector("[data-topic-dialog]");
@@ -37,6 +42,7 @@
   }
 
   function previewTopic(topic) {
+    if (topic.id === "animals") { window.location.href = "./animals/"; return; }
     dialogContent.replaceChildren();
     const description = document.createElement("p");
     description.className = "topic-dialog__description";
