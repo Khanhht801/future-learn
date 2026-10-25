@@ -272,3 +272,16 @@ button:disabled { cursor: not-allowed; }
   .example { grid-column: 2; grid-row: 3; width: 100%; min-width: 0; justify-content: flex-start; gap: 10px; padding: 10px 12px; font-size: clamp(16px, 2.5cqw, 21px); }
   .example span { min-width: 0; overflow-wrap: anywhere; }
 }
+
+/* A shared grid row aligns both column bottoms as their content changes. */
+@media (min-width: 801px) {
+  .animal-layout { align-content: start; align-items: stretch; }
+  .lesson-column { display: flex; flex-direction: column; }
+  .lesson-column > .flashcard { flex: 1; display: flex; flex-direction: column; }
+  .flashcard > [data-learning] { flex: 1; display: flex; flex-direction: column; }
+  .word-content { flex: 1; }
+  .animal-layout aside { display: flex; flex-direction: column; }
+  .next-activities { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .next-activities h2, .next-activities .activity-link { margin: 0; }
+  .next-activities .practice-button { margin-top: auto; }
+}
