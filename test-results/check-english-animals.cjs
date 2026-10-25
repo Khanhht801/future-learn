@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 function element() {
-  return { hidden:false, disabled:false, dataset:{}, children:[], textContent:'', querySelector(){if(!this.lock)this.lock=element();return this.lock}, classList:{add(){},remove(){},toggle(){}}, style:{setProperty(){}}, toggleAttribute(k,v){this[k]=v}, setAttribute(k,v){this[k]=v},removeAttribute(k){delete this[k]},append(...items){this.children.push(...items)},replaceChildren(...items){this.children=items},querySelectorAll(){return this.children} };
+  return { listeners:{}, scrollLeft:0, addEventListener(type, listener){this.listeners[type]=listener}, setPointerCapture(id){this.captured=id}, hasPointerCapture(id){return this.captured===id}, releasePointerCapture(){this.captured=null}, hidden:false, disabled:false, dataset:{}, children:[], textContent:'', querySelector(){if(!this.lock)this.lock=element();return this.lock}, classList:{add(){},remove(){},toggle(){}}, style:{setProperty(){}}, toggleAttribute(k,v){this[k]=v}, setAttribute(k,v){this[k]=v},removeAttribute(k){delete this[k]},append(...items){this.children.push(...items)},replaceChildren(...items){this.children=items},querySelectorAll(){return this.children} };
 }
 let stored = null;
 function boot(blocked=false) {
@@ -18,6 +18,29 @@ function boot(blocked=false) {
 let app=boot();
 assert.equal(app.$('[data-ring-count]').textContent,'0/10');
 assert.equal(app.$('[data-word-grid]').children.length,10);
+const grid = app.$('[data-word-grid]');
+const pointer = (clientX, extra={}) => ({pointerType:'mouse',button:0,pointerId:1,clientX,preventDefault(){},...extra});
+grid.listeners.pointerdown(pointer(200));
+grid.listeners.pointermove(pointer(197));
+assert.equal(grid.scrollLeft,0,'small movement remains a click');
+grid.listeners.pointermove(pointer(120));
+assert.equal(grid.scrollLeft,80,'drag scrolls the cards');
+grid.listeners.pointerup(pointer(120));
+assert.equal(grid.captured,null,'release pointer after drag');
+let suppressed=false;
+grid.listeners.click({detail:1,preventDefault(){},stopImmediatePropagation(){suppressed=true}});
+assert.equal(suppressed,true,'drag must not select a word');
+suppressed=false;
+grid.listeners.click({detail:0,preventDefault(){},stopImmediatePropagation(){suppressed=true}});
+assert.equal(suppressed,false,'keyboard activation still works');
+grid.listeners.pointerdown(pointer(120));
+grid.listeners.pointerup(pointer(120));
+grid.listeners.click({detail:1,preventDefault(){},stopImmediatePropagation(){suppressed=true}});
+assert.equal(suppressed,false,'regular clicks still work after dragging');
+grid.listeners.pointerdown(pointer(200,{pointerType:'touch'}));
+grid.listeners.pointermove(pointer(100,{pointerType:'touch'}));
+assert.equal(grid.scrollLeft,80,'touch uses native scrolling');
+
 assert.equal(app.$('[data-word-dots]').children.length,10);
 assert.equal(app.$('[data-example]').children[1].textContent,'dog');
 assert.equal(app.modes[1].querySelector('[data-lock]').hidden,false);
