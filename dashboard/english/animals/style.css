@@ -152,3 +152,37 @@ button:disabled { cursor: not-allowed; }
 @media (prefers-reduced-motion: reduce) {
   .speaker, .word-controls .button { transition: none; }
 }
+
+/* Keep the progress card vertical and align it with the top of the page. */
+.dashboard-main__inner { display: grid; grid-template-columns: minmax(0, 1fr) 300px; column-gap: 18px; align-items: start; }
+.lesson-breadcrumb { grid-column: 1; grid-row: 1; }
+.lesson-title { grid-column: 1; grid-row: 2; }
+.lesson-steps { grid-column: 1; grid-row: 3; }
+.animal-layout, .animal-layout aside { display: contents; }
+.lesson-column { grid-column: 1; grid-row: 4 / 8; }
+.topic-summary { display: grid; grid-template-columns: minmax(0, 1fr); grid-column: 2; grid-row: 1 / 5; gap: 0; margin-top: 0; padding: 18px 16px 12px; }
+.topic-summary__heading { display: contents; }
+.topic-summary h2 { grid-row: 1; margin: 0 0 12px; padding-left: 6px; }
+.topic-summary .animal-ring { grid-row: 2; width: 164px; height: 164px; margin: 8px auto; }
+.topic-summary .animal-ring strong { width: 128px; height: 128px; font-size: 32px; }
+.topic-summary .summary-note { grid-row: 3; margin: 4px 0 12px; text-align: center; }
+.topic-summary .reward { grid-row: 4; grid-column: 1; }
+.next-activities { grid-column: 2; grid-row: 5; margin-top: 14px; }
+.local-note { grid-column: 2; grid-row: 6; }
+.lesson-notice, .dashboard-main__inner>noscript { grid-column: 1 / -1; grid-row: 8; }
+@media (min-width: 1440px) {
+  .dashboard-main__inner { grid-template-columns: minmax(0, 1fr) 330px; }
+}
+@media (max-width: 1199px) and (min-width: 801px) {
+  .dashboard-main__inner { grid-template-columns: minmax(0, 1fr) 260px; column-gap: 14px; }
+  .lesson-steps button { flex: 1; padding-inline: 8px; }
+}
+@media (max-width: 800px) {
+  .dashboard-main__inner { display: block; }
+  .animal-layout { display: grid; }
+  .animal-layout aside { display: grid; }
+  .lesson-column { grid-column: auto; grid-row: auto; }
+  .topic-summary, .next-activities, .local-note { grid-column: auto; grid-row: auto; }
+  .next-activities { margin-top: 0; }
+  .local-note { grid-column: 1 / -1; }
+}
