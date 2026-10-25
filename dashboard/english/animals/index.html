@@ -96,6 +96,12 @@
         <noscript>Vui lòng bật JavaScript để học từ và lưu tiến độ.</noscript>
       </div>
     </main>
+    <dialog class="answer-dialog" data-answer-dialog aria-labelledby="answer-dialog-title" aria-describedby="answer-dialog-message">
+      <div class="answer-dialog__symbol" data-answer-symbol aria-hidden="true"></div>
+      <h2 id="answer-dialog-title" data-answer-title></h2>
+      <p id="answer-dialog-message" data-answer-message></p>
+      <button type="button" class="button button--primary" data-answer-action>Chọn lại</button>
+    </dialog>
     <div data-dashboard-footer></div>
     <script src="./words.js?v=2"></script><script src="./progress.js"></script><script src="../../shared/layout.js?v=1.0.6"></script><script src="./app.js?v=2"></script>
   </body>

@@ -6,6 +6,15 @@
   let index = Math.max(0, words.findIndex(word => word.id === state.current));
   let mode = 'learn', questionIndex = 0, score = 0, answered = false;
   let exerciseStarted = false;
+  let attempted = false, feedbackChoice = null;
+  const answerDialog = $('[data-answer-dialog]');
+  function dismissAnswer() {
+    answerDialog.close();
+    if (answered) $('[data-question-next]').onclick();
+    else if (feedbackChoice) { feedbackChoice.classList.remove('incorrect'); feedbackChoice.focus(); }
+  }
+  $('[data-answer-action]').onclick = dismissAnswer;
+  answerDialog.addEventListener('cancel', event => { event.preventDefault(); dismissAnswer(); });
   const wordGrid = $('[data-word-grid]');
   let drag = null, dragged = false;
   const scrollWords = $('[data-scroll-words]');
@@ -119,13 +128,14 @@
     if (next !== 'learn' && state.learned.length < 10) return;
     if (next === mode && next !== 'learn' && exerciseStarted && questionIndex < words.length) return;
     stopSpeech(); mode = next;
+    if (answerDialog.open) answerDialog.close();
     $('[data-completion]').hidden = true;
     $('[data-learning]').hidden = mode !== 'learn'; $('[data-exercise]').hidden = mode === 'learn';
     document.querySelectorAll('[data-mode]').forEach(button => { button.classList.toggle('is-active', button.dataset.mode === mode); if (button.dataset.mode === mode) button.setAttribute('aria-current','step'); else button.removeAttribute('aria-current'); });
     if (mode === 'learn') render(); else { exerciseStarted = true; questionIndex = 0; score = 0; renderQuestion(); }
   }
   function renderQuestion() {
-    answered = false;
+    answered = false; attempted = false;
     $('[data-question-next]').hidden = true; $('[data-feedback]').textContent = '';
     $('[data-exercise-speak]').hidden = false;
     const target = words[questionIndex];
@@ -136,8 +146,26 @@
       const button = document.createElement('button'); button.type = 'button';
       if (mode === 'practice') { const img = document.createElement('img'); img.src = word.image; img.alt = word.vi; button.append(img); } else button.textContent = word.vi;
       button.onclick = () => {
-        if (answered) return; answered = true;
-        const correct = word.id === target.id; if (correct) score++;
+        if (answered || answerDialog.open) return;
+        const correct = word.id === target.id;
+        if (mode === 'practice') {
+          stopSpeech();
+          if (correct && !attempted) score++;
+          attempted = true; answered = correct; feedbackChoice = button;
+          if (correct) host.querySelectorAll('button').forEach(item => item.disabled = true);
+          button.classList.add(correct ? 'correct' : 'incorrect');
+          answerDialog.dataset.correct = String(correct);
+          $('[data-answer-symbol]').textContent = correct ? '✓' : '↻';
+          $('[data-answer-title]').textContent = correct ? 'Đúng rồi! Giỏi lắm!' : 'Chưa đúng rồi!';
+          $('[data-answer-message]').textContent = correct ? target.en + ' – ' + target.vi : 'Bé nghe lại và chọn một hình khác nhé!';
+          $('[data-answer-action]').textContent = correct ? (questionIndex === 9 ? 'Xem kết quả' : 'Câu tiếp theo') : 'Chọn lại';
+          $('[data-question-next]').hidden = true;
+          answerDialog.showModal();
+          $('[data-answer-action]').focus();
+          return;
+        }
+        answered = true;
+        if (correct) score++;
         button.classList.add(correct ? 'correct' : 'incorrect');
         host.querySelectorAll('button').forEach(item => item.disabled = true);
         $('[data-feedback]').textContent = (correct ? 'Đúng rồi! ' : 'Đáp án đúng: ') + target.en + ' – ' + target.vi;
@@ -154,8 +182,9 @@
     else {
       state.results[mode] = { score, completedAt: new Date().toISOString() };
       save();
-      $('[data-question]').textContent = 'Hoàn thành!'; $('[data-answers]').replaceChildren(); $('[data-feedback]').textContent = 'Bạn trả lời đúng ' + score + '/10 câu. Chọn bước phía trên để học hoặc chơi lại.'; $('[data-question-next]').hidden = true; $('[data-exercise-speak]').hidden = true;
+      $('[data-question]').textContent = 'Hoàn thành!'; $('[data-answers]').replaceChildren(); $('[data-feedback]').textContent = (mode === 'practice' ? 'Bé đã luyện đủ 10 từ! Trả lời đúng ngay lần đầu: ' : 'Bạn trả lời đúng ') + score + '/10 câu. Chọn bước phía trên để học hoặc chơi lại.'; $('[data-question-next]').hidden = true; $('[data-exercise-speak]').hidden = true;
     }
+    if (questionIndex < words.length) $('[data-exercise-speak]').focus();
   };
   $('[data-exercise-speak]').onclick = () => { if (questionIndex < 10) speak(words[questionIndex].en); };
   $('[data-speak]').onclick = () => speak(words[index].en);

@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 function element() {
-  return { focus(){this.focused=true}, listeners:{}, scrollLeft:0, addEventListener(type, listener){this.listeners[type]=listener}, setPointerCapture(id){this.captured=id}, hasPointerCapture(id){return this.captured===id}, releasePointerCapture(){this.captured=null}, hidden:false, disabled:false, dataset:{}, children:[], textContent:'', querySelector(){if(!this.lock)this.lock=element();return this.lock}, classList:{add(){},remove(){},toggle(){}}, style:{setProperty(){}}, toggleAttribute(k,v){this[k]=v}, setAttribute(k,v){this[k]=v},removeAttribute(k){delete this[k]},append(...items){this.children.push(...items)},replaceChildren(...items){this.children=items},querySelectorAll(){return this.children} };
+  return { showModal(){this.open=true}, close(){this.open=false}, focus(){this.focused=true}, listeners:{}, scrollLeft:0, addEventListener(type, listener){this.listeners[type]=listener}, setPointerCapture(id){this.captured=id}, hasPointerCapture(id){return this.captured===id}, releasePointerCapture(){this.captured=null}, hidden:false, disabled:false, dataset:{}, children:[], textContent:'', querySelector(){if(!this.lock)this.lock=element();return this.lock}, classList:{add(){},remove(){},toggle(){}}, style:{setProperty(){}}, toggleAttribute(k,v){this[k]=v}, setAttribute(k,v){this[k]=v},removeAttribute(k){delete this[k]},append(...items){this.children.push(...items)},replaceChildren(...items){this.children=items},querySelectorAll(){return this.children} };
 }
 let stored = null;
 function boot(blocked=false) {
@@ -78,15 +78,30 @@ assert.equal(app.$('[data-completion]').hidden,true);
 assert.equal(app.$('[data-learning]').hidden,true);
 app.$('[data-question-next]').onclick();
 assert.match(app.$('[data-question]').textContent,/1\/10/);
-app.$('[data-answers]').children[0].onclick();
-const feedback = app.$('[data-feedback]').textContent;
-app.modes[1].onclick();
-assert.equal(app.$('[data-feedback]').textContent,feedback,'active tab must preserve the answer');
+const choose = (id) => app.$('[data-answers]').children.find(button => button.children[0].alt === app.context.animalWords.find(word => word.id===id).vi);
+choose('cat').onclick();
+assert.equal(app.$('[data-answer-dialog]').open,true);
+assert.equal(app.$('[data-answer-dialog]').dataset.correct,'false');
+assert.equal(app.$('[data-feedback]').textContent,'');
 app.$('[data-question-next]').onclick();
+assert.match(app.$('[data-question]').textContent,/1\/10/,'wrong answer cannot advance');
+let cancelPrevented=false;
+app.$('[data-answer-dialog]').listeners.cancel({preventDefault(){cancelPrevented=true}});
+assert.equal(cancelPrevented,true);
+assert.equal(app.$('[data-answer-dialog]').open,false);
+assert.equal(choose('dog').disabled,false);
+choose('dog').onclick();
+assert.equal(app.$('[data-answer-dialog]').dataset.correct,'true');
+app.modes[1].onclick();
+assert.equal(app.$('[data-answer-dialog]').open,true,'active tab preserves feedback');
+app.$('[data-answer-action]').onclick();
 app.$('[data-question-next]').onclick();
 assert.match(app.$('[data-question]').textContent,/2\/10/,'cannot skip an unanswered question');
-for(let i=1;i<10;i++) {app.$('[data-answers]').children[0].onclick();app.$('[data-question-next]').onclick();}
-assert.equal(app.$('[data-question]').textContent,'Hoàn thành!');
+for(let i=1;i<10;i++) {
+  choose(app.context.animalWords[i].id).onclick();
+  app.$('[data-answer-action]').onclick();
+}
+assert.equal(JSON.parse(stored).results.practice.score,9,'retry does not count as correct first attempt');
 assert.ok(Number.isInteger(JSON.parse(stored).results.practice.score));
 const finished = stored;
 app.$('[data-question-next]').onclick();

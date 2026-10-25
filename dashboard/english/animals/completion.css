@@ -9,3 +9,10 @@
 @keyframes completion-pop { from { transform: scale(.65) rotate(-15deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }
 @media (max-width: 420px) { .completion-actions { flex-direction: column; } }
 @media (prefers-reduced-motion: reduce) { .completion-star { animation: none; } }
+.answer-dialog { width: min(420px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); box-sizing: border-box; overflow: auto; padding: 32px 24px; border: 0; border-radius: 24px; text-align: center; color: #334155; box-shadow: 0 16px 64px #173a3133; }
+.answer-dialog::backdrop { background: #16352b88; }
+.answer-dialog__symbol { display: grid; place-items: center; width: 76px; height: 76px; margin: 0 auto 16px; border-radius: 50%; background: #fff0db; color: #995e00; font-size: 44px; font-weight: 700; }
+.answer-dialog[data-correct="true"] .answer-dialog__symbol { background: #e2f5e8; color: #287c45; }
+.answer-dialog h2 { font-family: Quicksand, sans-serif; font-size: 26px; margin: 0 0 12px; }
+.answer-dialog p { line-height: 1.6; margin: 0 0 24px; }
+.answer-dialog .button { min-height: 48px; margin-inline: auto; }
