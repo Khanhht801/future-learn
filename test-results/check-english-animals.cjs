@@ -107,7 +107,7 @@ const finished = stored;
 app.$('[data-question-next]').onclick();
 assert.equal(stored,finished,'completed result cannot be submitted twice');
 app=boot();
-assert.match(app.$('[data-unlock]').textContent,/Luyện tập lần gần nhất: \d+\/10/);
+assert.equal(JSON.parse(stored).results.practice.score,9,'practice result persists after reload');
 app.modes[0].onclick();app.$('[data-speak]').onclick();assert.equal(app.context.spoken.lang,'en-US');
 assert.equal(JSON.parse(stored).learned.length,10);
 stored=JSON.stringify({learned:[],current:'cat',rewarded:true,results:{quiz:{score:10,completedAt:new Date().toISOString()}}});

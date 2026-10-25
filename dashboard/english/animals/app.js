@@ -93,10 +93,6 @@
     const rewardAmount = document.createElement('strong');
     rewardAmount.textContent = '+20 sao';
     $('[data-reward]').replaceChildren(rewardAmount, document.createTextNode(state.rewarded ? ' đã nhận' : ' khi hoàn thành'));
-    $('[data-unlock]').textContent = count === 10 ? 'Đã mở luyện tập và kiểm tra!' : 'Học đủ 10 từ để mở';
-    for (const [activity, label] of [['practice', 'Luyện tập'], ['quiz', 'Kiểm tra']]) {
-      if (state.results[activity]) $('[data-unlock]').textContent += ' ' + label + ' lần gần nhất: ' + state.results[activity].score + '/10.';
-    }
     document.querySelectorAll('[data-mode="practice"], [data-mode="quiz"], [data-start-practice], [data-activity-mode]').forEach(button => {
       button.disabled = count < 10;
       button.querySelector('[data-lock]').toggleAttribute('hidden', count === 10);
