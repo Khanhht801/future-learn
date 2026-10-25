@@ -202,3 +202,19 @@ button:disabled { cursor: not-allowed; }
   .lesson-column > .flashcard { grid-column: 1; grid-row: 4 / 7; min-width: 0; }
   .word-library { grid-column: 1 / -1; grid-row: 7; min-width: 0; }
 }
+
+/* Keep heading spacing independent of sidebar card heights. */
+@media (min-width: 801px) {
+  .dashboard-main__inner { grid-template-rows: max-content max-content max-content auto auto auto auto auto; column-gap: 14px; }
+  .lesson-breadcrumb, .lesson-title, .lesson-steps { grid-column: 1 / -1; }
+  .lesson-steps { margin: 14px 0; }
+  .topic-summary { grid-row: 4; }
+  .next-activities { grid-row: 5; margin-top: 12px; }
+  .lesson-column > .flashcard { grid-row: 4 / 6; align-self: stretch; display: flex; flex-direction: column; }
+  .flashcard > [data-learning] { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .local-note { grid-column: 1 / -1; grid-row: 7; margin: 8px 0 0; padding: 0; }
+  .word-library { grid-row: 6; margin-top: 12px; }
+}
+@media (min-width: 601px) and (max-width: 800px) {
+  .animal-layout aside { align-items: start; }
+}
