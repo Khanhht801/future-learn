@@ -218,3 +218,9 @@ button:disabled { cursor: not-allowed; }
   .animal-layout aside { display: grid; align-items: start; }
   .next-activities { margin-top: 0; }
 }
+
+/* Keep the vocabulary shelf below the first screen without stretching cards. */
+.animal-layout { min-height: calc(100vh - var(--header-height) - 2rem); min-height: calc(100svh - var(--header-height) - 2rem); }
+@media (max-width: 800px) {
+  .animal-layout { min-height: calc(100vh - var(--header-height) - 1.25rem); min-height: calc(100svh - var(--header-height) - 1.25rem); align-content: start; }
+}
