@@ -31,6 +31,11 @@
       <div class="dashboard-main__inner">
         <nav class="lesson-breadcrumb" aria-label="Đường dẫn"><a href="../">Đảo tiếng Anh</a><span aria-hidden="true"> / </span><span aria-current="page">Động vật</span></nav>
         <h1 class="lesson-title">Thế giới động vật</h1>
+        <section class="topic-summary" aria-labelledby="topic-progress-title">
+          <div class="topic-summary__heading"><h2 id="topic-progress-title">Tiến độ chủ đề</h2><p class="summary-note" data-summary>Đã học 0 từ</p></div>
+          <div class="animal-ring" role="progressbar" aria-label="Tiến độ học từ" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><strong data-ring-count>0/10</strong></div>
+          <p class="reward"><svg aria-hidden="true"><use href="#icon-star" /></svg><span data-reward><strong>+20 sao</strong> khi hoàn thành</span></p>
+        </section>
         <nav class="lesson-steps" aria-label="Các bước học">
           <button type="button" class="is-active" data-mode="learn" aria-current="step"><svg class="lesson-icon" aria-hidden="true"><use href="#icon-book" /></svg><span>1. Học từ mới</span></button>
           <button type="button" data-mode="practice" disabled><svg class="lesson-icon" aria-hidden="true"><use href="#icon-game" /></svg><span>2. Luyện tập</span><svg class="lock-icon" data-lock aria-label="Chưa mở khóa"><use href="#icon-lock" /></svg></button>
@@ -64,12 +69,6 @@
             <section class="word-library" aria-labelledby="words-title"><h2 id="words-title">Các từ trong chủ đề</h2><div class="word-grid" data-word-grid></div></section>
           </div>
           <aside>
-            <section class="topic-summary">
-              <h2>Tiến độ chủ đề</h2>
-              <div class="animal-ring" role="progressbar" aria-label="Tiến độ học từ" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><strong data-ring-count>0/10</strong></div>
-              <p class="summary-note" data-summary>Đã học 0 từ</p>
-              <p class="reward"><svg aria-hidden="true"><use href="#icon-star" /></svg><span data-reward><strong>+20 sao</strong> khi hoàn thành</span></p>
-            </section>
             <section class="next-activities">
               <h2>Sau khi học từ mới</h2>
               <button type="button" class="activity-link" data-activity-mode="practice" disabled><svg class="activity-icon activity-icon--game" aria-hidden="true"><use href="#icon-game" /></svg><span>Nghe và chọn hình</span><svg class="lock-icon" data-lock aria-label="Chưa mở khóa"><use href="#icon-lock" /></svg><span class="activity-chevron" aria-hidden="true">›</span></button>

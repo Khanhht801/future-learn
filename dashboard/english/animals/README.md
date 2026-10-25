@@ -43,7 +43,7 @@ Chạy `node test-results/check-english-animals.cjs`: kiểm tra 10 tài nguyên
 ## Điều chỉnh theo ảnh mẫu (25/10/2026)
 
 - Đã bỏ banner và lời giới thiệu, chỉ giữ đường dẫn cùng tiêu đề trang gọn phía trên các bước học.
-- Bỏ thanh “Đã học 0/10” trong thẻ học, giữ vòng tiến độ bên phải. Có 10 chấm chọn từ độc lập với số từ đã học.
+- Bỏ thanh “Đã học 0/10” trong thẻ học. Tiến độ chủ đề được đặt phía trên các bước học, gồm vòng tiến độ, số từ đã học và thưởng sao trong một hàng gọn; trên mobile ô thưởng xuống dòng. Có 10 chấm chọn từ độc lập với số từ đã học.
 - Tab Học từ mới / Luyện tập / Kiểm tra có icon sách / game / cúp. Tất cả nút hoạt động chưa đủ 10 từ đều bị khóa; icon khóa ẩn sau khi đủ điều kiện.
 - Nút loa căn giữa icon bằng grid, đặt cạnh tên từ và có chú thích “Bấm để nghe”. Từ chính trong câu ví dụ dùng chữ đậm màu xanh.
 - Nút chuyển từ luôn ghi “Tiếp theo”; thao tác vẫn đánh dấu từ hiện tại đã học. Ô thưởng có hình sao và “+20 sao khi hoàn thành”, đổi sang “+20 sao đã nhận” khi hoàn tất.
