@@ -8,6 +8,16 @@
   let exerciseStarted = false;
   const wordGrid = $('[data-word-grid]');
   let drag = null, dragged = false;
+  const scrollWords = $('[data-scroll-words]');
+  function updateScrollArrow() {
+    scrollWords.disabled = wordGrid.scrollLeft + wordGrid.clientWidth >= wordGrid.scrollWidth - 1;
+  }
+  scrollWords.onclick = () => {
+    wordGrid.scrollBy({ left: wordGrid.clientWidth * .8, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  };
+  wordGrid.addEventListener('scroll', updateScrollArrow);
+  window.addEventListener('resize', updateScrollArrow);
+
   wordGrid.addEventListener('pointerdown', event => {
     if (event.pointerType !== 'mouse' || event.button !== 0) return;
     dragged = false;
@@ -103,6 +113,7 @@
       dot.onclick = selectWord;
       dots.append(dot);
     });
+    updateScrollArrow();
   }
   function setMode(next) {
     if (next !== 'learn' && state.learned.length < 10) return;

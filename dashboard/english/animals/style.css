@@ -189,3 +189,16 @@ button:disabled { cursor: not-allowed; }
   .next-activities { margin-top: 0; }
   .local-note { grid-column: 1 / -1; }
 }
+
+/* Let the vocabulary shelf use both columns below the lesson and sidebar. */
+.word-carousel { display: grid; grid-template-columns: minmax(0, 1fr) 40px; align-items: center; gap: 12px; }
+.word-carousel .word-grid { grid-auto-columns: clamp(110px, 10vw, 140px); }
+.word-scroll-next { display: grid; width: 40px; height: 40px; padding: 8px; border: 1px solid #d6e2fb; border-radius: 50%; background: #edf5ff; color: #2447c6; cursor: pointer; place-items: center; }
+.word-scroll-next svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.word-scroll-next:hover { background: #dceaff; }
+.word-scroll-next:disabled { opacity: .4; cursor: default; }
+@media (min-width: 801px) {
+  .lesson-column { display: contents; }
+  .lesson-column > .flashcard { grid-column: 1; grid-row: 4 / 7; min-width: 0; }
+  .word-library { grid-column: 1 / -1; grid-row: 7; min-width: 0; }
+}

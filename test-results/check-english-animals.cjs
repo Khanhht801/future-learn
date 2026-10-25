@@ -40,6 +40,21 @@ assert.equal(suppressed,false,'regular clicks still work after dragging');
 grid.listeners.pointerdown(pointer(200,{pointerType:'touch'}));
 grid.listeners.pointermove(pointer(100,{pointerType:'touch'}));
 assert.equal(grid.scrollLeft,80,'touch uses native scrolling');
+grid.clientWidth=500; grid.scrollWidth=1000; grid.scrollLeft=0;
+grid.listeners.scroll();
+assert.equal(app.$('[data-scroll-words]').disabled,false,'arrow enabled while more words remain');
+let scrollRequest;
+grid.scrollBy = options => { scrollRequest=options; };
+app.context.matchMedia = () => ({matches:false});
+app.$('[data-scroll-words]').onclick();
+assert.equal(scrollRequest.left,400,'arrow scrolls by most of the visible shelf');
+assert.equal(scrollRequest.behavior,'smooth');
+app.context.matchMedia = () => ({matches:true});
+app.$('[data-scroll-words]').onclick();
+assert.equal(scrollRequest.behavior,'instant','respects reduced motion');
+grid.scrollLeft=500; grid.listeners.scroll();
+assert.equal(app.$('[data-scroll-words]').disabled,true,'arrow disabled at end');
+
 
 assert.equal(app.$('[data-word-dots]').children.length,10);
 assert.equal(app.$('[data-example]').children[1].textContent,'dog');
