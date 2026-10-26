@@ -35,7 +35,13 @@ Dữ liệu này chỉ ghi nhận bé đã xác nhận xem từ, không khẳng 
 
 Dùng `SpeechSynthesisUtterance(word.en)` và `speechSynthesis.speak()`, đặt `lang = 'en-US'`, tốc độ `0.8`. Thống nhất tiếng Anh Mỹ: chọn giọng `en-US` nếu có; nếu chưa có, để trình duyệt chọn theo `lang = 'en-US'`, không chủ động chọn giọng tiếng Anh vùng khác. Mỗi lần bấm hoặc chuyển từ hủy âm cũ bằng `cancel()` để tránh xếp hàng. Không cần API key, tải MP3 hay cache âm thanh. Giọng đọc và khả năng dùng offline phụ thuộc hệ điều hành/trình duyệt; có thông báo khi không hỗ trợ hoặc lỗi. Nếu cần giọng đồng nhất, có thể bổ sung 10 file MP3 được cấp quyền và phát bằng `Audio`.
 
-## Kiểm tra
+## Card toàn màn hình
+
+Nút góc trên bên phải card dùng Fullscreen API để phóng to chính card hiện tại. Bấm lại hoặc Esc để thoát; giữ nguyên từ, tiến độ và chế độ bài học. Hộp phản hồi bài tập nằm trong card để vẫn xuất hiện trong toàn màn hình. Nếu API không hỗ trợ hoặc bị từ chối, dùng lớp phủ kín cửa sổ, khóa cuộn và vô hiệu hóa phần bên ngoài bằng `inert`; hỗ trợ Esc và giữ vòng Tab trong card. Khi thoát trả focus về phần tử trước đó.
+
+Kiểm tra trình duyệt: `node test-results/check-animal-fullscreen.cjs` (cần Playwright và Microsoft Edge, có thể đặt `PLAYWRIGHT_MODULE`). Bao gồm API thật, API bị từ chối, thoát/vào lại, giữ tiến độ, hộp phản hồi và các chiều rộng 1280/820/390/320px.
+
+## Kiểm tra bài học
 
 Chạy `node test-results/check-english-animals.cjs`: kiểm tra 10 tài nguyên, chọn thẻ không tăng tiến độ, chống trùng, khôi phục tiến độ, hoàn thành và thưởng, lượt luyện tập, lời gọi phát âm, dữ liệu hỏng và lỗi lưu. Kiểm tra cú pháp 4 file JS bằng `node --check`, và `git diff --check`.
 

@@ -10,7 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../shared/layout.css?v=1.0.4" />
-    <link rel="stylesheet" href="./style.css?v=4" />
+    <link rel="stylesheet" href="./style.css?v=5" />
+    <link rel="stylesheet" href="./fullscreen.css?v=1" />
     <link rel="stylesheet" href="./completion.css?v=1" />
   </head>
   <body data-dashboard="english">
@@ -40,6 +41,7 @@
           <button type="button" data-mode="quiz" disabled><svg class="lesson-icon" aria-hidden="true"><use href="#icon-cup" /></svg><span>3. Kiểm tra</span><svg class="lock-icon" data-lock aria-label="Chưa mở khóa"><use href="#icon-lock" /></svg></button>
         </nav>
             <section class="flashcard" aria-label="Thẻ từ vựng">
+              <button type="button" class="fullscreen-toggle" data-fullscreen aria-label="Phóng to toàn màn hình" aria-pressed="false" title="Toàn màn hình"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="fullscreen-expand" d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/><path class="fullscreen-collapse" d="M3 8h5V3m8 0v5h5M8 21v-5H3m18 0h-5v5"/></svg></button>
               <div data-learning>
                 <div class="word-content" aria-live="polite" aria-atomic="true">
                   <img class="animal-illustration" data-animal-image width="360" height="290" alt="" fetchpriority="high" />
@@ -103,6 +105,6 @@
       <button type="button" class="button button--primary" data-answer-action>Chọn lại</button>
     </dialog>
     <div data-dashboard-footer></div>
-    <script src="./words.js?v=2"></script><script src="./progress.js"></script><script src="../../shared/layout.js?v=1.0.6"></script><script src="./app.js?v=4"></script>
+    <script src="./words.js?v=2"></script><script src="./progress.js"></script><script src="../../shared/layout.js?v=1.0.6"></script><script src="./app.js?v=4"></script><script src="./fullscreen.js?v=1"></script>
   </body>
 </html>
