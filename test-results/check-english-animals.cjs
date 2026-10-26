@@ -102,7 +102,7 @@ for(let i=1;i<10;i++) {
   app.$('[data-answer-action]').onclick();
 }
 assert.equal(JSON.parse(stored).results.practice.score,9,'retry does not count as correct first attempt');
-assert.equal(app.$('[data-feedback]').textContent,'Bé đã luyện tập 10 từ mới');
+assert.equal(app.$('[data-feedback]').textContent,'Bé đã luyện tập 10 từ mới!');
 assert.equal(app.$('[data-practice-celebration]').hidden,false);
 assert.ok(Number.isInteger(JSON.parse(stored).results.practice.score));
 const finished = stored;

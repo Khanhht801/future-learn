@@ -43,7 +43,7 @@ Kiểm tra trình duyệt: `node test-results/check-animal-fullscreen.cjs` (cầ
 
 ## Kiểm tra bài học
 
-Kết thúc luyện tập hiển thị “Hoàn thành!” và “Bé đã luyện tập 10 từ mới”, kèm ngôi sao bật lên và giấy màu tỏa ra một lần. Điểm vẫn được lưu nội bộ. Hiệu ứng tắt khi bật `prefers-reduced-motion`; bắt đầu lượt mới sẽ ẩn phần chúc mừng. Kết quả kiểm tra vẫn hiển thị điểm như trước.
+Kết thúc luyện tập hiển thị “Hoàn thành!” và “Bé đã luyện tập 10 từ mới!”, kèm ngôi sao bật lên và giấy màu tỏa ra một lần. Điểm vẫn được lưu nội bộ. Hiệu ứng tắt khi bật `prefers-reduced-motion`; bắt đầu lượt mới sẽ ẩn phần chúc mừng. Kết quả kiểm tra vẫn hiển thị điểm như trước.
 
 Toàn màn hình cũng phóng lớn màn chúc mừng, ngôi sao, nút hành động, câu hỏi, lựa chọn hình/nghĩa, hộp phản hồi và kết quả cuối lượt. Các màn này căn giữa trong khung tối đa 1200px; cỡ chữ và ảnh dùng `clamp()` theo kích thước màn hình, hộp thoại giữ giới hạn chiều cao và cho phép cuộn trên điện thoại. Các quy tắc chỉ áp dụng trong `.is-expanded`.
 

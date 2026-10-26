@@ -186,7 +186,7 @@
       save();
       $('[data-question]').textContent = 'Hoàn thành!';
       $('[data-answers]').replaceChildren();
-      $('[data-feedback]').textContent = mode === 'practice' ? 'Bé đã luyện tập 10 từ mới' : 'Bạn trả lời đúng ' + score + '/10 câu. Chọn bước phía trên để học hoặc chơi lại.';
+      $('[data-feedback]').textContent = mode === 'practice' ? 'Bé đã luyện tập 10 từ mới!' : 'Bạn trả lời đúng ' + score + '/10 câu. Chọn bước phía trên để học hoặc chơi lại.';
       if (mode === 'practice') {
         $('[data-practice-celebration]').hidden = false;
         $('[data-exercise]').classList.add('practice-result');
