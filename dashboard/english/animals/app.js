@@ -72,7 +72,7 @@
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'en-US'; utterance.rate = 0.8;
     const voices = speechSynthesis.getVoices();
-    const voice = voices.find(v => v.lang === 'en-US') || voices.find(v => v.lang.startsWith('en'));
+    const voice = voices.find(v => v.lang.replace('_', '-').toLowerCase() === 'en-us');
     if (voice) utterance.voice = voice;
     utterance.onstart = () => { $('[data-speak]').classList.add('is-speaking'); notice('Đang phát âm: ' + text); };
     utterance.onend = () => { $('[data-speak]').classList.remove('is-speaking'); notice('Bấm loa để nghe lại.'); };

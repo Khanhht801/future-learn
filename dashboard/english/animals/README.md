@@ -33,7 +33,7 @@ Dữ liệu này chỉ ghi nhận bé đã xác nhận xem từ, không khẳng 
 
 ## Cách đơn giản để phát âm
 
-Dùng `SpeechSynthesisUtterance(word.en)` và `speechSynthesis.speak()`, đặt `lang = 'en-US'`, tốc độ `0.8`. Ưu tiên giọng `en-US`, rồi giọng tiếng Anh có sẵn. Mỗi lần bấm hoặc chuyển từ hủy âm cũ bằng `cancel()` để tránh xếp hàng. Không cần API key, tải MP3 hay cache âm thanh. Giọng đọc và khả năng dùng offline phụ thuộc hệ điều hành/trình duyệt; có thông báo khi không hỗ trợ hoặc lỗi. Nếu cần giọng đồng nhất, có thể bổ sung 10 file MP3 được cấp quyền và phát bằng `Audio`.
+Dùng `SpeechSynthesisUtterance(word.en)` và `speechSynthesis.speak()`, đặt `lang = 'en-US'`, tốc độ `0.8`. Thống nhất tiếng Anh Mỹ: chọn giọng `en-US` nếu có; nếu chưa có, để trình duyệt chọn theo `lang = 'en-US'`, không chủ động chọn giọng tiếng Anh vùng khác. Mỗi lần bấm hoặc chuyển từ hủy âm cũ bằng `cancel()` để tránh xếp hàng. Không cần API key, tải MP3 hay cache âm thanh. Giọng đọc và khả năng dùng offline phụ thuộc hệ điều hành/trình duyệt; có thông báo khi không hỗ trợ hoặc lỗi. Nếu cần giọng đồng nhất, có thể bổ sung 10 file MP3 được cấp quyền và phát bằng `Audio`.
 
 ## Kiểm tra
 
