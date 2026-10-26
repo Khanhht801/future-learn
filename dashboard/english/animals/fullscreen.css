@@ -24,6 +24,12 @@
 .flashcard.is-expanded .word-controls .button { min-height: 52px; padding: 12px 20px; font-size: 20px; }
 .flashcard.is-expanded .word-controls { margin-top: 24px; }
 .flashcard.is-expanded > [data-exercise], .flashcard.is-expanded > [data-completion] { max-width: 1000px; margin: auto; }
+@media (min-width: 1000px) {
+  .flashcard.is-expanded .word-content { width: 100%; max-width: 1520px; margin-inline: auto; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(32px, 4vw, 80px); text-align: center; }
+  .flashcard.is-expanded .animal-illustration { justify-self: center; margin-inline: auto; }
+  .flashcard.is-expanded .word-title { justify-content: center; }
+  .flashcard.is-expanded .example { justify-self: center; justify-content: center; max-width: 640px; }
+}
 @media (max-width: 600px) {
   .flashcard.is-expanded { padding: 64px 16px 20px; }
   .flashcard.is-expanded .animal-illustration { width: min(88vw, 400px); height: min(42vh, 380px); }
