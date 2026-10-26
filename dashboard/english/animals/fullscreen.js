@@ -11,6 +11,7 @@
   function sync() {
     const expanded = fallback || document.fullscreenElement === card;
     card.classList.toggle('is-expanded', expanded);
+    button.hidden = expanded && !fallback;
     button.setAttribute('aria-pressed', String(expanded));
     button.setAttribute('aria-label', expanded ? 'Thoát toàn màn hình' : 'Phóng to toàn màn hình');
     button.title = expanded ? 'Thu nhỏ (Esc)' : 'Toàn màn hình';
@@ -43,7 +44,7 @@
       if (document.fullscreenElement === card) { await document.exitFullscreen(); return; }
       previousFocus = document.activeElement;
       if (card.requestFullscreen && document.fullscreenEnabled !== false) {
-        try { await card.requestFullscreen(); sync(); button.focus({ preventScroll: true }); return; }
+        try { await card.requestFullscreen(); sync(); card.querySelector('[data-speak]').focus({ preventScroll: true }); return; }
         catch (_) { /* Use a viewport overlay if native fullscreen is denied. */ }
       }
       setFallback(true);

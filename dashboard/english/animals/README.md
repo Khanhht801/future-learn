@@ -37,9 +37,9 @@ Dùng `SpeechSynthesisUtterance(word.en)` và `speechSynthesis.speak()`, đặt 
 
 ## Card toàn màn hình
 
-Nút góc trên bên phải card dùng Fullscreen API để phóng to chính card hiện tại. Bấm lại hoặc Esc để thoát; giữ nguyên từ, tiến độ và chế độ bài học. Hộp phản hồi bài tập nằm trong card để vẫn xuất hiện trong toàn màn hình. Nếu API không hỗ trợ hoặc bị từ chối, dùng lớp phủ kín cửa sổ, khóa cuộn và vô hiệu hóa phần bên ngoài bằng `inert`; hỗ trợ Esc và giữ vòng Tab trong card. Khi thoát trả focus về phần tử trước đó.
+Nút góc trên bên phải card dùng Fullscreen API để phóng to chính card hiện tại. Khi vào toàn màn hình thật, ẩn nút này và chuyển focus tới nút nghe; thoát bằng Esc hoặc điều khiển trình duyệt. Giữ nguyên từ, tiến độ và chế độ bài học. Ảnh tăng tối đa 720 × 680px, chữ từ vựng tối đa 112px, nghĩa 40px và ví dụ 38px; khung nội dung mở rộng tới 1600px để tận dụng màn hình lớn. Bố cục điện thoại có kích thước riêng để giữ nội dung dễ đọc. Hộp phản hồi bài tập nằm trong card để vẫn xuất hiện trong toàn màn hình. Nếu API không hỗ trợ hoặc bị từ chối, dùng lớp phủ kín cửa sổ, khóa cuộn và vô hiệu hóa phần bên ngoài bằng `inert`; hỗ trợ Esc và giữ vòng Tab trong card. Chỉ chế độ dự phòng giữ nút chữ “Thoát”, không dùng biểu tượng thu nhỏ, để thiết bị cảm ứng có đường thoát. Khi thoát trả focus về phần tử trước đó.
 
-Kiểm tra trình duyệt: `node test-results/check-animal-fullscreen.cjs` (cần Playwright và Microsoft Edge, có thể đặt `PLAYWRIGHT_MODULE`). Bao gồm API thật, API bị từ chối, thoát/vào lại, giữ tiến độ, hộp phản hồi và các chiều rộng 1280/820/390/320px.
+Kiểm tra trình duyệt: `node test-results/check-animal-fullscreen.cjs` (cần Playwright và Microsoft Edge, có thể đặt `PLAYWRIGHT_MODULE`). Bao gồm API thật, API bị từ chối, thoát/vào lại, giữ tiến độ, hộp phản hồi, nút thoát theo chế độ và các chiều rộng 1920/1280/820/390/320px.
 
 ## Kiểm tra bài học
 
