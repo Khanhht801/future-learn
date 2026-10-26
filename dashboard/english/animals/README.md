@@ -43,6 +43,27 @@ Kết quả thành công được cache 30 ngày trong localStorage và dùng l�
 
 Kiểm tra bổ sung: `node test-results/check-animal-phonetics.cjs` kiểm tra chọn US, cache, gộp yêu cầu, dữ liệu lỗi và lỗi mạng/lưu trữ.
 
+### Rà soát phiên âm (26/10/2026)
+
+`ɹ` là ký hiệu IPA hợp lệ cho âm approximant tiếng Anh, không phải lỗi chính tả. Giao diện dùng quy ước từ điển cho người học: đổi `ɹ` thành `r` cả khi nhận API và đọc cache cũ. Ví dụ rabbit hiển thị `/ˈræbɪt/`, tương ứng Cambridge `/ˈræb.ɪt/` và Oxford `/ˈræbɪt/`; dấu chấm chỉ ranh giới âm tiết. Không tự đổi các nguyên âm Mỹ `ɝ`, `ɚ`, `ɛ` hoặc thêm dấu dài vì các từ điển có quy ước phiên âm khác nhau.
+
+Đã gọi lại API cho cả 10 từ; kết quả US và cách hiển thị sau chuẩn hóa:
+
+| Từ | IPA hiển thị | Kết quả API |
+|---|---|---|
+| Dog | — | 404, không có dữ liệu để hiển thị |
+| Cat | — | 404, không có dữ liệu để hiển thị |
+| Bird | /bɝd/ | Có US |
+| Fish | — | 404, không có dữ liệu để hiển thị |
+| Rabbit | /ˈræbɪt/ | Có US; nguồn ghi /ˈɹæbɪt/ |
+| Lion | /ˈlaɪən/ | Có US |
+| Elephant | /ˈɛləfənt/ | Có US |
+| Monkey | /ˈmʌŋki/ | Có US |
+| Tiger | /ˈtaɪɡɚ/ | Có US |
+| Duck | /dʌk/ | Có US |
+
+Nguồn đối chiếu ký hiệu: [IPA chart](https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_TI/IPA_charts_TI.html), [Cambridge rabbit](https://dictionary.cambridge.org/us/pronunciation/english/rabbit), [Oxford rabbit](https://www.oxfordlearnersdictionaries.com/us/definition/english/rabbit_1), [quy ước Cambridge](https://dictionary.cambridge.org/help/phonetics.html). Bảng ghi nhận kết quả API lúc kiểm tra, không thay thế nguồn dữ liệu runtime hoặc thêm phiên âm tĩnh.
+
 ## Kiểm tra bài học
 
 Chạy `node test-results/check-english-animals.cjs`: kiểm tra 10 tài nguyên, chọn thẻ không tăng tiến độ, chống trùng, khôi phục tiến độ, hoàn thành và thưởng, lượt luyện tập, lời gọi phát âm, dữ liệu hỏng và lỗi lưu. Kiểm tra cú pháp 4 file JS bằng `node --check`, và `git diff --check`.

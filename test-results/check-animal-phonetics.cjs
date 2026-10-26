@@ -32,5 +32,21 @@ const response = phonetics => ({ ok: true, json: async () => [{ phonetics }] });
   assert.equal(await boot(async () => { throw Error('offline'); }).get('bird'), '', 'network errors');
   assert.equal(await boot(async () => ({ok: true, json: async () => ({message: 'invalid'})})).get('bird'), '', 'invalid data');
   assert.equal(await boot(async () => response([{text: 'bɝd', audio: 'bird-us.mp3'}]), '{bad', true).get('bird'), '/bɝd/', 'corrupt or blocked storage');
+  const reviewed = {
+    bird: ['/bɝd/', '/bɝd/'],
+    rabbit: ['/ˈɹæbɪt/', '/ˈræbɪt/'],
+    lion: ['/ˈlaɪən/', '/ˈlaɪən/'],
+    elephant: ['/ˈɛləfənt/', '/ˈɛləfənt/'],
+    monkey: ['/ˈmʌŋki/', '/ˈmʌŋki/'],
+    tiger: ['/ˈtaɪɡɚ/', '/ˈtaɪɡɚ/'],
+    duck: ['/dʌk/', '/dʌk/']
+  };
+  for (const [word, [raw, expected]] of Object.entries(reviewed)) {
+    const result = boot(async () => response([{ text: raw, audio: `${word}-us.mp3` }]));
+    assert.equal(await result.get(word), expected, word + ': reviewed US transcription');
+  }
+  const oldCache = JSON.stringify({ rabbit: { text: '/ˈɹæbɪt/', at: Date.now() } });
+  assert.equal(await boot(() => { throw Error('cache should avoid request'); }, oldCache).get('rabbit'), '/ˈræbɪt/', 'normalize existing cache');
+  console.log('PASS: reviewed US IPA fixtures and learner notation for new and cached results');
   console.log('PASS: US IPA selection, concurrent requests, cache, API failures and blocked storage');
 })().catch(error => { console.error(error); process.exitCode = 1; });
