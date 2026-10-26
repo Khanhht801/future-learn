@@ -1,7 +1,8 @@
 ﻿(function () {
   'use strict';
-  const words = window.animalWords;
-  const state = window.animalProgress.read();
+  const words = window.lessonWords || window.animalWords;
+  const progress = window.lessonProgress || window.animalProgress;
+  const state = progress.read();
   const $ = selector => document.querySelector(selector);
   let index = Math.max(0, words.findIndex(word => word.id === state.current));
   let mode = 'learn', questionIndex = 0, score = 0, answered = false;
@@ -65,7 +66,7 @@
   enableMouseDrag($('.lesson-steps'));
   function notice(message) { $('[data-notice]').textContent = message; }
   function stopSpeech() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); $('[data-speak]').classList.remove('is-speaking'); }
-  function save() { state.current = words[index].id; if (!window.animalProgress.save(state)) notice('Không thể lưu trên trình duyệt này. Tiến độ chỉ được giữ trong lần học hiện tại.'); }
+  function save() { state.current = words[index].id; if (!progress.save(state)) notice('Không thể lưu trên trình duyệt này. Tiến độ chỉ được giữ trong lần học hiện tại.'); }
   function speak(text) {
     if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) { notice('Trình duyệt chưa hỗ trợ phát âm. Hãy thử Chrome, Edge hoặc Safari.'); return; }
     stopSpeech();
@@ -258,8 +259,8 @@
   };
   window.addEventListener('pagehide', stopSpeech);
   window.addEventListener('storage', event => {
-    if (event.key !== window.animalProgress.key && event.key !== null) return;
-    Object.assign(state, window.animalProgress.read());
+    if (event.key !== progress.key && event.key !== null) return;
+    Object.assign(state, progress.read());
     index = Math.max(0, words.findIndex(word => word.id === state.current));
     setMode('learn');
     notice('Tiến độ đã thay đổi ở tab khác. Đã cập nhật; hãy chọn bước để tiếp tục.');

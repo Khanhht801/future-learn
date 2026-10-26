@@ -55,7 +55,7 @@ Kết quả kiểm tra hiển thị “Bé đã đạt X điểm!” với các 
 | 6–7 | Chúc mừng, ngôi sao và giấy màu | Vẫn còn một vài từ chưa nhớ, bé cần cố gắng hơn nữa nhé! | Luyện tập lại |
 | 0–5 | Mặt mếu lắc nhẹ và giọt nước mắt, một lần | Bé cần cố gắng hơn nữa nhé! | Luyện tập lại |
 
-“Luyện tập lại” mở lượt luyện tập mới từ câu 1 và giữ toàn màn hình. “Sang chủ đề mới” dẫn tới `../#topics` để chọn chủ đề hiện có; các chủ đề ngoài động vật hiện là bản xem trước. Khi bắt đầu câu mới, xóa trạng thái kết quả và ẩn mọi hiệu ứng/hành động cũ. `prefers-reduced-motion` tắt cả hiệu ứng vui và buồn.
+“Luyện tập lại” mở lượt luyện tập mới từ câu 1 và giữ toàn màn hình. “Sang chủ đề mới” dẫn tới `../#topics` để chọn chủ đề hiện có; Trái cây cũng có bài học đầy đủ, Màu sắc hiện là bản xem trước. Khi bắt đầu câu mới, xóa trạng thái kết quả và ẩn mọi hiệu ứng/hành động cũ. `prefers-reduced-motion` tắt cả hiệu ứng vui và buồn.
 
 `node test-results/check-english-animals.cjs` kiểm tra đủ 11 mức điểm và reset trạng thái. `node test-results/check-animal-quiz-results.cjs` kiểm tra trên Edge ở 1920px và 320px: tất cả điểm số, nút theo mức điểm, điều hướng chủ đề/luyện lại, không tràn ngang, toàn màn hình và giảm chuyển động (cần Playwright; hỗ trợ `PLAYWRIGHT_MODULE`, `BASE_URL`, `QUIZ_SCREENSHOT_DIR`).
 

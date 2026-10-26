@@ -12,12 +12,12 @@ chỉ chứa phần riêng của tiếng Anh. Xem [hướng dẫn layout](../REA
 - Ba chủ đề Động vật, Trái cây, Màu sắc, có trạng thái và thanh tiến độ.
 - Thẻ “Tiếp tục hành trình” lấy chủ đề đang học từ `resumeTopicId`, hiển thị tiến độ và mở lại đúng chủ đề.
 - Panel mục tiêu hàng ngày, vòng tiến độ, số từ đã học và lời động viên.
-- Các card và CTA mở xem trước từ vựng; chưa phải lesson player hoặc game.
+- Động vật và Trái cây mở bài học đầy đủ với 10 từ, phát âm, luyện tập và kiểm tra; Màu sắc mở xem trước từ vựng.
 - Desktop hiển thị chủ đề và mục tiêu cạnh nhau; tablet đưa mục tiêu xuống dưới; mobile xếp một cột.
 
 ## Dữ liệu
 
-`demo-data.js` là nguồn dữ liệu mẫu duy nhất cho 120 sao, tiến độ chủ đề, 24 từ và mục tiêu 2/3. Không có API, lưu trữ điểm hoặc tự cộng tiến độ. Thao tác xem trước không thay đổi dữ liệu.
+`demo-data.js` cung cấp dữ liệu mẫu cho 120 sao, 24 từ và mục tiêu 2/3. Tiến độ Động vật và Trái cây lấy từ localStorage riêng của mỗi chủ đề; bài học lưu từ đã học và kết quả luyện tập, kiểm tra trên trình duyệt. Các số liệu tổng hợp vẫn là dữ liệu mẫu, chưa kết nối API. Thao tác xem trước Màu sắc không thay đổi dữ liệu.
 
 Khi có API, thay `window.englishDashboardData` theo cùng cấu trúc và đặt `isDemo: false` chỉ khi dữ liệu thực đã được kết nối. `resumeTopicId` xác định chủ đề mà nút “Tiếp tục học” mở.
 
