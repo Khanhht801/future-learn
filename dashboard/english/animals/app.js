@@ -135,6 +135,7 @@
     if (mode === 'learn') render(); else { exerciseStarted = true; questionIndex = 0; score = 0; renderQuestion(); }
   }
   function renderQuestion() {
+    $('[data-practice-quiz]').hidden = true;
     $('[data-practice-celebration]').hidden = true;
     $('[data-exercise]').classList.remove('practice-result');
     answered = false; attempted = false;
@@ -190,6 +191,7 @@
       if (mode === 'practice') {
         $('[data-practice-celebration]').hidden = false;
         $('[data-exercise]').classList.add('practice-result');
+        $('[data-practice-quiz]').hidden = false;
       }
       $('[data-question-next]').hidden = true; $('[data-exercise-speak]').hidden = true;
     }
@@ -219,6 +221,10 @@
   document.querySelectorAll('[data-mode]').forEach(button => button.onclick = () => setMode(button.dataset.mode));
   document.querySelectorAll('[data-activity-mode]').forEach(button => button.onclick = () => setMode(button.dataset.activityMode));
   $('[data-start-practice]').onclick = () => setMode('practice');
+  $('[data-practice-quiz]').onclick = () => {
+    setMode('quiz');
+    $('[data-exercise-speak]').focus();
+  };
   $('[data-completion-practice]').onclick = () => {
     setMode('practice');
     $('[data-exercise-speak]').focus();
