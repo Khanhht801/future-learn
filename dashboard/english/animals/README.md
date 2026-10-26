@@ -43,6 +43,8 @@ Kiểm tra trình duyệt: `node test-results/check-animal-fullscreen.cjs` (cầ
 
 ## Kiểm tra bài học
 
+Toàn màn hình cũng phóng lớn màn chúc mừng, ngôi sao, nút hành động, câu hỏi, lựa chọn hình/nghĩa, hộp phản hồi và kết quả cuối lượt. Các màn này căn giữa trong khung tối đa 1200px; cỡ chữ và ảnh dùng `clamp()` theo kích thước màn hình, hộp thoại giữ giới hạn chiều cao và cho phép cuộn trên điện thoại. Các quy tắc chỉ áp dụng trong `.is-expanded`.
+
 Chạy `node test-results/check-english-animals.cjs`: kiểm tra 10 tài nguyên, chọn thẻ không tăng tiến độ, chống trùng, khôi phục tiến độ, hoàn thành và thưởng, lượt luyện tập, lời gọi phát âm, dữ liệu hỏng và lỗi lưu. Kiểm tra cú pháp 4 file JS bằng `node --check`, và `git diff --check`.
 
 
