@@ -1,5 +1,10 @@
 # Quy tắc làm việc
 
+## Xuống dòng nội dung giao diện
+
+- Khi màn hình và vùng nội dung còn đủ chiều rộng, giữ các câu mô tả, khích lệ và kết quả trên một dòng; không đặt giới hạn chiều rộng theo ký tự làm câu xuống dòng sớm hoặc rơi một vài từ xuống dưới. Áp dụng cho các phần giao diện bổ sung về sau.
+- Trên màn hình hẹp, vẫn cho phép xuống dòng tự nhiên để tránh tràn ngang; không ép `white-space: nowrap` cho câu dài trên mọi kích thước màn hình.
+
 ## Tự động commit sau khi hoàn thành mỗi công việc
 
 - Sau khi hoàn thành mỗi công việc có thay đổi file trong dự án (tạo hoặc sửa trang, sửa lỗi, refactor, cập nhật tài liệu, cấu hình hoặc rule), thực hiện các kiểm tra phù hợp rồi tự động tạo một Git commit riêng trước khi chuyển sang công việc tiếp theo hoặc báo hoàn tất. Không cần hỏi lại người dùng. Nếu công việc không làm thay đổi file, không tạo commit rỗng.

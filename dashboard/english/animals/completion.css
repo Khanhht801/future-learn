@@ -2,7 +2,7 @@
 .lesson-completion[hidden] { display: none; }
 .completion-star { display: block; width: 120px; height: 120px; margin: 0 auto 20px; animation: completion-pop .5s ease-out; }
 .lesson-completion h2 { font-family: Quicksand, sans-serif; font-size: clamp(28px, 5vw, 40px); margin: 0 0 16px; color: #287c45; }
-.lesson-completion p { max-width: 44ch; margin: 12px auto; line-height: 1.6; }
+.lesson-completion p { max-width: 100%; margin: 12px auto; line-height: 1.6; text-wrap: pretty; }
 .completion-reward { color: #895c00; font-weight: 700; }
 .completion-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .completion-actions .button { min-height: 48px; }
@@ -39,7 +39,7 @@
 .quiz-sad-face svg { display: block; width: 100%; height: 100%; animation: quiz-gentle-sway 1.6s ease-in-out both; }
 .quiz-tear { animation: quiz-tear-drop 1.6s .2s ease-out both; }
 .practice-result[data-result-mood="sad"] [data-question] { color: #52739d; }
-.quiz-encouragement { max-width: 44ch; margin: 8px auto 20px; font-size: 20px; line-height: 1.5; }
+.quiz-encouragement { max-width: 100%; margin: 8px auto 20px; font-size: 20px; line-height: 1.5; text-wrap: pretty; }
 .quiz-result-actions { margin-top: 16px; }
 .flashcard.is-expanded .quiz-sad-face { width: clamp(160px, 20vh, 220px); height: clamp(160px, 20vh, 220px); }
 .flashcard.is-expanded .quiz-encouragement { font-size: clamp(20px, 2vw, 30px); }

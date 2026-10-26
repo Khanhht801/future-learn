@@ -26,6 +26,9 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4175';
         assert.equal(await page.locator('[data-quiz-sad]').isVisible(), score < 6);
         assert.equal(await page.locator('[data-practice-celebration]').isVisible(), score >= 6);
         assert.equal(await page.locator('[data-quiz-encouragement]').isVisible(), score < 8);
+        if (width === 1920 && score < 8) {
+          assert.equal(await page.locator('[data-quiz-encouragement]').evaluate(el => el.getBoundingClientRect().height <= parseFloat(getComputedStyle(el).lineHeight) + 1), true, 'encouragement stays on one line when space permits');
+        }
         assert.equal(await page.locator('[data-quiz-new-topic]').isVisible(), score >= 8);
         assert.equal(await page.locator('.flashcard').evaluate(el => el.scrollWidth <= el.clientWidth), true);
         assert.equal(await page.locator('[data-quiz-retry]').isVisible(), true);
