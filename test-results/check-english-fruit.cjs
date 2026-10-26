@@ -61,6 +61,7 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4175';
     await page.reload();
     assert.equal(await page.locator('[data-ring-count]').textContent(), '10/10');
     await page.locator('[data-fullscreen]').click();
+    await page.waitForFunction(() => document.querySelector('.flashcard').classList.contains('is-expanded'));
     assert.equal(await page.locator('.flashcard').evaluate(card => card.classList.contains('is-expanded')), true);
     await page.keyboard.press('Escape');
     await page.goto(base + '/dashboard/english/');
