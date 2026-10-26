@@ -16,3 +16,21 @@
 .answer-dialog h2 { font-family: Quicksand, sans-serif; font-size: 26px; margin: 0 0 12px; }
 .answer-dialog p { line-height: 1.6; margin: 0 0 24px; }
 .answer-dialog .button { min-height: 48px; margin-inline: auto; }
+.practice-result { text-align: center; padding-block: 32px; }
+.practice-result [data-question] { color: #287c45; }
+.practice-result .answer-grid { display: none; }
+.practice-celebration { position: relative; width: 140px; height: 140px; margin: 24px auto 32px; }
+.practice-celebration[hidden] { display: none; }
+.practice-celebration svg { display: block; width: 100%; height: 100%; animation: practice-star-pop .8s cubic-bezier(.2,.8,.3,1.2) both; }
+.practice-celebration i { --angle: 0deg; position: absolute; top: 50%; left: 50%; width: 10px; height: 16px; border-radius: 3px; background: #ffbd32; pointer-events: none; opacity: 0; animation: practice-confetti 1.6s .15s ease-out both; }
+.practice-celebration i:nth-of-type(2) { --angle: 45deg; background: #4285ff; }
+.practice-celebration i:nth-of-type(3) { --angle: 90deg; background: #45bb7d; }
+.practice-celebration i:nth-of-type(4) { --angle: 135deg; background: #ff879c; }
+.practice-celebration i:nth-of-type(5) { --angle: 180deg; }
+.practice-celebration i:nth-of-type(6) { --angle: 225deg; background: #4285ff; }
+.practice-celebration i:nth-of-type(7) { --angle: 270deg; background: #45bb7d; }
+.practice-celebration i:nth-of-type(8) { --angle: 315deg; background: #ff879c; }
+.flashcard.is-expanded .practice-celebration { width: clamp(140px, 18vh, 200px); height: clamp(140px, 18vh, 200px); }
+@keyframes practice-star-pop { from { opacity: 0; transform: scale(.5) rotate(-18deg); } 65% { opacity: 1; transform: scale(1.12) rotate(5deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+@keyframes practice-confetti { from { opacity: 0; transform: rotate(var(--angle)) translateY(-25px) rotate(0); } 25% { opacity: 1; } to { opacity: 0; transform: rotate(var(--angle)) translateY(-140px) rotate(160deg); } }
+@media (prefers-reduced-motion: reduce) { .practice-celebration svg { animation: none; } .practice-celebration i { display: none; animation: none; } }

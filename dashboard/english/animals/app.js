@@ -135,6 +135,8 @@
     if (mode === 'learn') render(); else { exerciseStarted = true; questionIndex = 0; score = 0; renderQuestion(); }
   }
   function renderQuestion() {
+    $('[data-practice-celebration]').hidden = true;
+    $('[data-exercise]').classList.remove('practice-result');
     answered = false; attempted = false;
     $('[data-question-next]').hidden = true; $('[data-feedback]').textContent = '';
     $('[data-exercise-speak]').hidden = false;
@@ -182,7 +184,14 @@
     else {
       state.results[mode] = { score, completedAt: new Date().toISOString() };
       save();
-      $('[data-question]').textContent = 'Hoàn thành!'; $('[data-answers]').replaceChildren(); $('[data-feedback]').textContent = (mode === 'practice' ? 'Bé đã luyện đủ 10 từ! Trả lời đúng ngay lần đầu: ' : 'Bạn trả lời đúng ') + score + '/10 câu. Chọn bước phía trên để học hoặc chơi lại.'; $('[data-question-next]').hidden = true; $('[data-exercise-speak]').hidden = true;
+      $('[data-question]').textContent = 'Hoàn thành!';
+      $('[data-answers]').replaceChildren();
+      $('[data-feedback]').textContent = mode === 'practice' ? 'Bé đã luyện tập 10 từ mới' : 'Bạn trả lời đúng ' + score + '/10 câu. Chọn bước phía trên để học hoặc chơi lại.';
+      if (mode === 'practice') {
+        $('[data-practice-celebration]').hidden = false;
+        $('[data-exercise]').classList.add('practice-result');
+      }
+      $('[data-question-next]').hidden = true; $('[data-exercise-speak]').hidden = true;
     }
     if (questionIndex < words.length) $('[data-exercise-speak]').focus();
   };
