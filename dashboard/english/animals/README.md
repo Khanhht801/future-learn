@@ -35,7 +35,15 @@ Dữ liệu này chỉ ghi nhận bé đã xác nhận xem từ, không khẳng 
 
 Dùng `SpeechSynthesisUtterance(word.en)` và `speechSynthesis.speak()`, đặt `lang = 'en-US'`, tốc độ `0.8`. Thống nhất tiếng Anh Mỹ: chọn giọng `en-US` nếu có; nếu chưa có, để trình duyệt chọn theo `lang = 'en-US'`, không chủ động chọn giọng tiếng Anh vùng khác. Mỗi lần bấm hoặc chuyển từ hủy âm cũ bằng `cancel()` để tránh xếp hàng. Không cần API key, tải MP3 hay cache âm thanh. Giọng đọc và khả năng dùng offline phụ thuộc hệ điều hành/trình duyệt; có thông báo khi không hỗ trợ hoặc lỗi. Nếu cần giọng đồng nhất, có thể bổ sung 10 file MP3 được cấp quyền và phát bằng `Audio`.
 
-## Kiểm tra
+## Phiên âm IPA trên card
+
+`phonetics.js` dùng `fetch()` gọi Free Dictionary API (`https://dictionaryapi.dev/`) khi mở từ, hiển thị IPA trước nghĩa tiếng Việt (ví dụ `/bɝd/ · Con chim`). Chỉ chọn mục `phonetics` có phiên âm và đường dẫn audio kết thúc bằng `-us.mp3` để khớp giọng Mỹ; đây là quy ước tên file đang dùng của nguồn API, không phải trường locale chính thức. Không lấy phiên âm vùng khác khi thiếu bản US. Không tải/phát audio của API; nút nghe vẫn dùng `speechSynthesis` với `en-US`.
+
+Kết quả thành công được cache 30 ngày trong localStorage và dùng lại trong phiên nếu không lưu được. Các yêu cầu đồng thời cho cùng từ được gộp lại; timeout 8 giây. Nếu API lỗi, trả 404 hoặc thiếu IPA US thì giữ nghĩa tiếng Việt, ẩn phiên âm và thử lại khi mở từ sau đó. Kết quả đến muộn không ghi sang card từ khác. Nguồn bên ngoài có thể thiếu dữ liệu (khi kiểm tra, dog/cat/fish trả 404); không bảo đảm mọi từ đều có IPA.
+
+Kiểm tra bổ sung: `node test-results/check-animal-phonetics.cjs` kiểm tra chọn US, cache, gộp yêu cầu, dữ liệu lỗi và lỗi mạng/lưu trữ.
+
+## Kiểm tra bài học
 
 Chạy `node test-results/check-english-animals.cjs`: kiểm tra 10 tài nguyên, chọn thẻ không tăng tiến độ, chống trùng, khôi phục tiến độ, hoàn thành và thưởng, lượt luyện tập, lời gọi phát âm, dữ liệu hỏng và lỗi lưu. Kiểm tra cú pháp 4 file JS bằng `node --check`, và `git diff --check`.
 

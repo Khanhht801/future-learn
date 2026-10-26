@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../shared/layout.css?v=1.0.4" />
-    <link rel="stylesheet" href="./style.css?v=2" />
+    <link rel="stylesheet" href="./style.css?v=3" />
     <link rel="stylesheet" href="./completion.css?v=1" />
   </head>
   <body data-dashboard="english">
@@ -44,7 +44,7 @@
                 <div class="word-content" aria-live="polite" aria-atomic="true">
                   <img class="animal-illustration" data-animal-image width="360" height="290" alt="" fetchpriority="high" />
                   <div class="word-title">
-                    <div class="word-definition"><h2 data-word></h2><p class="translation" data-translation></p></div>
+                    <div class="word-definition"><h2 data-word></h2><p class="translation"><span class="word-ipa" data-ipa lang="en-US" hidden></span><span data-translation></span></p></div>
                     <div class="pronunciation"><button type="button" class="speaker" aria-label="Nghe phát âm" data-speak><svg aria-hidden="true"><use href="#icon-volume" /></svg></button></div>
                   </div>
                   <p class="example"><svg aria-hidden="true"><use href="#icon-chat" /></svg><span data-example></span></p>
@@ -103,6 +103,6 @@
       <button type="button" class="button button--primary" data-answer-action>Chọn lại</button>
     </dialog>
     <div data-dashboard-footer></div>
-    <script src="./words.js?v=2"></script><script src="./progress.js"></script><script src="../../shared/layout.js?v=1.0.6"></script><script src="./app.js?v=2"></script>
+    <script src="./words.js?v=2"></script><script src="./progress.js"></script><script src="./phonetics.js?v=1"></script><script src="../../shared/layout.js?v=1.0.6"></script><script src="./app.js?v=3"></script>
   </body>
 </html>
