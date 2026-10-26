@@ -44,7 +44,6 @@
 .word-definition { grid-column: 2; }
 .word-definition h2 { margin: 0; color: #122858; font: 700 clamp(46px, 4.6vw, 64px)/1.12 var(--font-heading); letter-spacing: -.025em; }
 .translation { margin: 4px 0 0; color: #142959; font-size: 22px; font-weight: 600; line-height: 1.35; }
-.word-ipa { font-family: "Roboto", "Segoe UI", sans-serif; font-weight: 400; color: #526485; }
 .pronunciation { display: grid; height: 1.12em; align-content: center; justify-items: center; justify-self: start; font-size: clamp(46px, 4.6vw, 64px); }
 .speaker { display: inline-grid; width: 44px; height: 44px; flex: 0 0 44px; padding: 0; border: 0; border-radius: 50%; background: var(--color-primary); color: white; cursor: pointer; place-items: center; }
 .speaker svg { width: 24px; height: 24px; }

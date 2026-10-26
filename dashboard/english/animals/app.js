@@ -83,13 +83,6 @@
     const word = words[index], count = state.learned.length;
     $('[data-word]').textContent = word.en;
     $('[data-translation]').textContent = word.vi;
-    const ipa = $('[data-ipa]');
-    ipa.textContent = ''; ipa.hidden = true;
-    window.animalPhonetics.getUS(word.en).then(text => {
-      if (words[index].id !== word.id) return;
-      ipa.textContent = text ? text + ' · ' : '';
-      ipa.hidden = !text;
-    });
     const exampleParts = word.example.split(word.id);
     const highlightedWord = document.createElement('strong');
     highlightedWord.textContent = word.id;

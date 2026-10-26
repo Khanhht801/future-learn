@@ -5,17 +5,14 @@ function element() {
   return { showModal(){this.open=true}, close(){this.open=false}, focus(){this.focused=true}, listeners:{}, scrollLeft:0, addEventListener(type, listener){this.listeners[type]=listener}, setPointerCapture(id){this.captured=id}, hasPointerCapture(id){return this.captured===id}, releasePointerCapture(){this.captured=null}, hidden:false, disabled:false, dataset:{}, children:[], textContent:'', querySelector(){if(!this.lock)this.lock=element();return this.lock}, classList:{add(){},remove(){},toggle(){}}, style:{setProperty(){}}, toggleAttribute(k,v){this[k]=v}, setAttribute(k,v){this[k]=v},removeAttribute(k){delete this[k]},append(...items){this.children.push(...items)},replaceChildren(...items){this.children=items},querySelectorAll(){return this.children} };
 }
 let stored = null;
-function boot(blocked=false, getUS=null) {
+function boot(blocked=false) {
   const elements = new Map();
   const listeners = {};
   const modes = ['learn','practice','quiz'].map(mode => {const e=element();e.dataset.mode=mode;return e});
   const document = {querySelector(s){if(!elements.has(s))elements.set(s,element());return elements.get(s)},createElement:element,createTextNode(text){return {textContent:text}},querySelectorAll(s){return s==='[data-activity-mode]'? []:s==='[data-mode]'? modes:[modes[1],modes[2],this.querySelector('[data-start-practice]')]}};
   const context = {document, localStorage:{getItem(){return stored},setItem(k,v){if(blocked)throw Error('blocked');stored=v}},SpeechSynthesisUtterance:function(text){this.text=text},speechSynthesis:{getVoices(){return [{lang:'en-US'}]},cancel(){},speak(u){context.spoken=u}},addEventListener(type, listener){listeners[type]=listener}};
   context.window=context;vm.createContext(context);
-  for(const file of ['words.js','progress.js','phonetics.js','app.js']) {
-    if (file === 'app.js' && getUS) context.animalPhonetics.getUS = getUS;
-    vm.runInContext(fs.readFileSync('dashboard/english/animals/'+file,'utf8'),context);
-  }
+  for(const file of ['words.js','progress.js','app.js'])vm.runInContext(fs.readFileSync('dashboard/english/animals/'+file,'utf8'),context);
   return {context,listeners,$:s=>document.querySelector(s),modes};
 }
 let app=boot();
@@ -140,26 +137,3 @@ app.$('[data-next]').onclick();
 assert.equal(app.$('[data-completion]').hidden,true,'review must not repeat celebration');
 app=boot();assert.notEqual(app.$('[data-learning]').hidden,true,'reload returns to words');
 console.log('PASS: completion milestone, focus, practice/review transitions and out-of-order completion.');
-
-(async () => {
-  stored = null;
-  const pending = new Map();
-  const lesson = boot(false, word => new Promise(resolve => pending.set(word, resolve)));
-  assert.equal(lesson.$('[data-ipa]').hidden, true);
-  lesson.$('[data-word-dots]').children[2].onclick();
-  pending.get('Dog')('/dɑɡ/');
-  await Promise.resolve();
-  assert.equal(lesson.$('[data-ipa]').textContent, '', 'late Dog result must not appear on Bird');
-  pending.get('Bird')('/bɝd/');
-  await Promise.resolve();
-  assert.equal(lesson.$('[data-ipa]').textContent, '/bɝd/ · ');
-  assert.equal(lesson.$('[data-translation]').textContent, 'Con chim');
-  assert.equal(lesson.$('[data-ipa]').hidden, false);
-  lesson.$('[data-word-dots]').children[1].onclick();
-  assert.equal(lesson.$('[data-ipa]').hidden, true, 'clear IPA when changing cards');
-  pending.get('Cat')('');
-  await Promise.resolve();
-  assert.equal(lesson.$('[data-ipa]').hidden, true);
-  assert.equal(lesson.$('[data-translation]').textContent, 'Con mèo');
-  console.log('PASS: card IPA display, stale responses and missing IPA fallback.');
-})().catch(error => { console.error(error); process.exitCode = 1; });
