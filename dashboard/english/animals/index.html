@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../shared/layout.css?v=1.0.4" />
     <link rel="stylesheet" href="./style.css?v=5" />
     <link rel="stylesheet" href="./fullscreen.css?v=5" />
-    <link rel="stylesheet" href="./completion.css?v=2" />
+    <link rel="stylesheet" href="./completion.css?v=3" />
   </head>
   <body data-dashboard="english">
     <svg class="icon-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
@@ -70,9 +70,15 @@
               </div>
               <div data-exercise hidden>
                 <div class="practice-celebration" data-practice-celebration hidden aria-hidden="true"><svg viewBox="0 0 40 40"><use href="#icon-star" /></svg><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="quiz-sad-face" data-quiz-sad hidden aria-hidden="true"><svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="66" fill="#e5efff" stroke="#91b2e8" stroke-width="4"/><path d="m43 62 16-6m42 0 16 6" fill="none" stroke="#52739d" stroke-width="5" stroke-linecap="round"/><circle cx="56" cy="75" r="6" fill="#52739d"/><circle cx="104" cy="75" r="6" fill="#52739d"/><path d="M60 112q20-22 40 0" fill="none" stroke="#52739d" stroke-width="5" stroke-linecap="round"/><path class="quiz-tear" d="M115 82q-16 20 0 20t0-20" fill="#73b8ee"/></svg></div>
                 <h2 data-question></h2>
                 <button type="button" class="button button--secondary" data-exercise-speak><svg aria-hidden="true"><use href="#icon-volume" /></svg>Nghe từ cần chọn</button>
                 <div class="answer-grid" data-answers></div><p data-feedback role="status"></p>
+                <p class="quiz-encouragement" data-quiz-encouragement hidden></p>
+                <div class="completion-actions quiz-result-actions" data-quiz-actions hidden>
+                  <button type="button" class="button button--primary" data-quiz-retry>Luyện tập lại</button>
+                  <a class="button button--secondary" href="../#topics" data-quiz-new-topic hidden>Sang chủ đề mới<svg aria-hidden="true"><use href="#icon-arrow" /></svg></a>
+                </div>
                 <button type="button" class="button button--primary" data-practice-quiz hidden>Làm bài kiểm tra<svg aria-hidden="true"><use href="#icon-arrow" /></svg></button>
                 <button type="button" class="button button--primary" data-question-next hidden>Câu tiếp theo</button>
               </div>
@@ -107,6 +113,6 @@
       <button type="button" class="button button--primary" data-answer-action>Chọn lại</button>
     </dialog>
     <div data-dashboard-footer></div>
-    <script src="./words.js?v=2"></script><script src="./progress.js"></script><script src="../../shared/layout.js?v=1.0.6"></script><script src="./app.js?v=7"></script><script src="./fullscreen.js?v=2"></script>
+    <script src="./words.js?v=2"></script><script src="./progress.js"></script><script src="../../shared/layout.js?v=1.0.6"></script><script src="./app.js?v=8"></script><script src="./fullscreen.js?v=2"></script>
   </body>
 </html>

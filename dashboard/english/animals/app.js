@@ -135,6 +135,11 @@
     if (mode === 'learn') render(); else { exerciseStarted = true; questionIndex = 0; score = 0; renderQuestion(); }
   }
   function renderQuestion() {
+    $('[data-quiz-sad]').hidden = true;
+    $('[data-quiz-actions]').hidden = true;
+    $('[data-quiz-new-topic]').hidden = true;
+    $('[data-quiz-encouragement]').hidden = true;
+    delete $('[data-exercise]').dataset.resultMood;
     $('[data-practice-quiz]').hidden = true;
     $('[data-practice-celebration]').hidden = true;
     $('[data-exercise]').classList.remove('practice-result');
@@ -185,13 +190,28 @@
     else {
       state.results[mode] = { score, completedAt: new Date().toISOString() };
       save();
-      $('[data-question]').textContent = 'Hoàn thành!';
       $('[data-answers]').replaceChildren();
-      $('[data-feedback]').textContent = mode === 'practice' ? 'Bé đã luyện tập 10 từ mới!' : 'Bạn trả lời đúng ' + score + '/10 câu. Chọn bước phía trên để học hoặc chơi lại.';
       if (mode === 'practice') {
+        $('[data-question]').textContent = 'Hoàn thành!';
+        $('[data-feedback]').textContent = 'Bé đã luyện tập 10 từ mới!';
         $('[data-practice-celebration]').hidden = false;
         $('[data-exercise]').classList.add('practice-result');
         $('[data-practice-quiz]').hidden = false;
+      } else {
+        const happy = score >= 6;
+        $('[data-exercise]').classList.add('practice-result');
+        $('[data-exercise]').dataset.resultMood = happy ? 'happy' : 'sad';
+        $('[data-question]').textContent = happy ? 'Chúc mừng bé!' : 'Cùng cố gắng nhé!';
+        $('[data-feedback]').textContent = 'Bé đã đạt ' + score + ' điểm!';
+        $('[data-practice-celebration]').hidden = !happy;
+        $('[data-quiz-sad]').hidden = happy;
+        const encouragement = $('[data-quiz-encouragement]');
+        encouragement.textContent = score >= 6 ? 'Vẫn còn một vài từ chưa nhớ, bé cần cố gắng hơn nữa nhé!' : 'Bé cần cố gắng hơn nữa nhé!';
+        encouragement.hidden = score >= 8;
+        $('[data-quiz-actions]').hidden = false;
+        $('[data-quiz-new-topic]').hidden = score < 8;
+        $('[data-question]').setAttribute('tabindex', '-1');
+        $('[data-question]').focus();
       }
       $('[data-question-next]').hidden = true; $('[data-exercise-speak]').hidden = true;
     }
@@ -221,6 +241,10 @@
   document.querySelectorAll('[data-mode]').forEach(button => button.onclick = () => setMode(button.dataset.mode));
   document.querySelectorAll('[data-activity-mode]').forEach(button => button.onclick = () => setMode(button.dataset.activityMode));
   $('[data-start-practice]').onclick = () => setMode('practice');
+  $('[data-quiz-retry]').onclick = () => {
+    setMode('practice');
+    $('[data-exercise-speak]').focus();
+  };
   $('[data-practice-quiz]').onclick = () => {
     setMode('quiz');
     $('[data-exercise-speak]').focus();

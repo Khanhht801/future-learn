@@ -34,3 +34,15 @@
 @keyframes practice-star-pop { from { opacity: 0; transform: scale(.5) rotate(-18deg); } 65% { opacity: 1; transform: scale(1.12) rotate(5deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
 @keyframes practice-confetti { from { opacity: 0; transform: rotate(var(--angle)) translateY(-25px) rotate(0); } 25% { opacity: 1; } to { opacity: 0; transform: rotate(var(--angle)) translateY(-140px) rotate(160deg); } }
 @media (prefers-reduced-motion: reduce) { .practice-celebration svg { animation: none; } .practice-celebration i { display: none; animation: none; } }
+.quiz-sad-face { width: 160px; height: 160px; margin: 24px auto 32px; }
+.quiz-sad-face[hidden], .quiz-result-actions[hidden], .quiz-result-actions [hidden] { display: none; }
+.quiz-sad-face svg { display: block; width: 100%; height: 100%; animation: quiz-gentle-sway 1.6s ease-in-out both; }
+.quiz-tear { animation: quiz-tear-drop 1.6s .2s ease-out both; }
+.practice-result[data-result-mood="sad"] [data-question] { color: #52739d; }
+.quiz-encouragement { max-width: 44ch; margin: 8px auto 20px; font-size: 20px; line-height: 1.5; }
+.quiz-result-actions { margin-top: 16px; }
+.flashcard.is-expanded .quiz-sad-face { width: clamp(160px, 20vh, 220px); height: clamp(160px, 20vh, 220px); }
+.flashcard.is-expanded .quiz-encouragement { font-size: clamp(20px, 2vw, 30px); }
+@keyframes quiz-gentle-sway { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-6deg); } 65% { transform: rotate(5deg); } }
+@keyframes quiz-tear-drop { from { opacity: 0; transform: translateY(-4px); } 30% { opacity: 1; } to { opacity: .65; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) { .quiz-sad-face svg, .quiz-tear { animation: none; } }

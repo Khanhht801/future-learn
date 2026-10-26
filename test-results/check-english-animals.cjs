@@ -145,3 +145,33 @@ app.$('[data-next]').onclick();
 assert.equal(app.$('[data-completion]').hidden,true,'review must not repeat celebration');
 app=boot();assert.notEqual(app.$('[data-learning]').hidden,true,'reload returns to words');
 console.log('PASS: completion milestone, focus, practice/review transitions and out-of-order completion.');
+
+for (let expected = 0; expected <= 10; expected++) {
+  stored = JSON.stringify({learned:['dog','cat','bird','fish','rabbit','lion','elephant','monkey','tiger','duck'],current:'dog',rewarded:true});
+  const quiz = boot();
+  quiz.modes[2].onclick();
+  for (let i = 0; i < 10; i++) {
+    const target = quiz.context.animalWords[i].vi;
+    const options = quiz.$('[data-answers]').children;
+    options.find(option => (option.textContent === target) === (i < expected)).onclick();
+    quiz.$('[data-question-next]').onclick();
+  }
+  assert.equal(JSON.parse(stored).results.quiz.score, expected);
+  assert.equal(quiz.$('[data-feedback]').textContent, `Bé đã đạt ${expected} điểm!`);
+  assert.equal(quiz.$('[data-exercise]').dataset.resultMood, expected >= 6 ? 'happy' : 'sad');
+  assert.equal(quiz.$('[data-question]').textContent, expected >= 6 ? 'Chúc mừng bé!' : 'Cùng cố gắng nhé!');
+  assert.equal(quiz.$('[data-practice-celebration]').hidden, expected < 6);
+  assert.equal(quiz.$('[data-quiz-sad]').hidden, expected >= 6);
+  assert.equal(quiz.$('[data-quiz-actions]').hidden, false);
+  assert.equal(quiz.$('[data-quiz-new-topic]').hidden, expected < 8);
+  assert.equal(quiz.$('[data-quiz-encouragement]').hidden, expected >= 8);
+  if (expected < 8) assert.equal(quiz.$('[data-quiz-encouragement]').textContent, expected >= 6 ? 'Vẫn còn một vài từ chưa nhớ, bé cần cố gắng hơn nữa nhé!' : 'Bé cần cố gắng hơn nữa nhé!');
+  assert.equal(quiz.$('[data-practice-quiz]').hidden, true);
+  quiz.$('[data-quiz-retry]').onclick();
+  assert.match(quiz.$('[data-question]').textContent, /Nghe và chọn hình.*1\/10/);
+  assert.equal(quiz.$('[data-quiz-actions]').hidden, true);
+  assert.equal(quiz.$('[data-quiz-sad]').hidden, true);
+  assert.equal(quiz.$('[data-practice-celebration]').hidden, true);
+  assert.equal(quiz.$('[data-exercise]').dataset.resultMood, undefined);
+}
+console.log('PASS: all quiz scores 0–10, outcome copy, mood, actions and practice restart.');

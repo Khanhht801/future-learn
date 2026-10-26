@@ -45,7 +45,19 @@ Kiểm tra trình duyệt: `node test-results/check-animal-fullscreen.cjs` (cầ
 
 Sau khi hoàn thành luyện tập, nút “Làm bài kiểm tra” chuyển trực tiếp sang câu đầu tiên của phần kiểm tra, giữ chế độ toàn màn hình và đưa focus tới nút nghe. Nút này chỉ hiện ở màn kết thúc luyện tập.
 
-Kết thúc luyện tập hiển thị “Hoàn thành!” và “Bé đã luyện tập 10 từ mới!”, kèm ngôi sao bật lên và giấy màu tỏa ra một lần. Điểm vẫn được lưu nội bộ. Hiệu ứng tắt khi bật `prefers-reduced-motion`; bắt đầu lượt mới sẽ ẩn phần chúc mừng. Kết quả kiểm tra vẫn hiển thị điểm như trước.
+Kết thúc luyện tập hiển thị “Hoàn thành!” và “Bé đã luyện tập 10 từ mới!”, kèm ngôi sao bật lên và giấy màu tỏa ra một lần. Điểm vẫn được lưu nội bộ. Hiệu ứng tắt khi bật `prefers-reduced-motion`; bắt đầu lượt mới sẽ ẩn phần chúc mừng.
+
+Kết quả kiểm tra hiển thị “Bé đã đạt X điểm!” với các trạng thái:
+
+| Điểm | Biểu cảm / hiệu ứng | Lời khích lệ | Hành động |
+|---|---|---|---|
+| 8–10 | Chúc mừng, ngôi sao và giấy màu | — | Luyện tập lại; Sang chủ đề mới |
+| 6–7 | Chúc mừng, ngôi sao và giấy màu | Vẫn còn một vài từ chưa nhớ, bé cần cố gắng hơn nữa nhé! | Luyện tập lại |
+| 0–5 | Mặt mếu lắc nhẹ và giọt nước mắt, một lần | Bé cần cố gắng hơn nữa nhé! | Luyện tập lại |
+
+“Luyện tập lại” mở lượt luyện tập mới từ câu 1 và giữ toàn màn hình. “Sang chủ đề mới” dẫn tới `../#topics` để chọn chủ đề hiện có; các chủ đề ngoài động vật hiện là bản xem trước. Khi bắt đầu câu mới, xóa trạng thái kết quả và ẩn mọi hiệu ứng/hành động cũ. `prefers-reduced-motion` tắt cả hiệu ứng vui và buồn.
+
+`node test-results/check-english-animals.cjs` kiểm tra đủ 11 mức điểm và reset trạng thái. `node test-results/check-animal-quiz-results.cjs` kiểm tra trên Edge ở 1920px và 320px: tất cả điểm số, nút theo mức điểm, điều hướng chủ đề/luyện lại, không tràn ngang, toàn màn hình và giảm chuyển động (cần Playwright; hỗ trợ `PLAYWRIGHT_MODULE`, `BASE_URL`, `QUIZ_SCREENSHOT_DIR`).
 
 Toàn màn hình cũng phóng lớn màn chúc mừng, ngôi sao, nút hành động, câu hỏi, lựa chọn hình/nghĩa, hộp phản hồi và kết quả cuối lượt. Các màn này căn giữa trong khung tối đa 1200px; cỡ chữ và ảnh dùng `clamp()` theo kích thước màn hình, hộp thoại giữ giới hạn chiều cao và cho phép cuộn trên điện thoại. Các quy tắc chỉ áp dụng trong `.is-expanded`.
 
