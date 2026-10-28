@@ -240,8 +240,8 @@ img {
   display: flex;
   width: var(--sidebar-width);
   flex-direction: column;
-  gap: 0.8rem;
-  padding: 1.25rem 0.85rem 1rem;
+  gap: 0.5rem;
+  padding: 1rem 0.85rem 0.75rem;
   border-right: 1px solid rgb(220 228 241 / 78%);
   background: var(--color-surface);
   backdrop-filter: blur(16px);
@@ -336,6 +336,15 @@ img {
   gap: 0.45rem;
 }
 
+.sidebar .subject-nav {
+  gap: 0.25rem;
+}
+
+.sidebar .subject-nav__item {
+  min-height: 48px;
+  padding-block: 0.35rem;
+}
+
 .subject-nav__item {
   display: flex;
   min-height: 58px;
@@ -398,7 +407,7 @@ a.subject-nav__item:hover {
 
 .sidebar__footer {
   margin-top: auto;
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   border-top: 1px solid var(--color-border);
 }
 
