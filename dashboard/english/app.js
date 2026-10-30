@@ -2,7 +2,7 @@
   "use strict";
 
   const data = window.englishDashboardData;
-  for (const [id, progress] of [['animals', window.animalProgress], ['fruit', window.fruitProgress]]) {
+  for (const [id, progress] of [['animals', window.animalProgress], ['fruit', window.fruitProgress], ['colors', window.colorProgress]]) {
     const topic = data.topics.find(item => item.id === id);
     if (topic && progress) topic.completed = progress.read().learned.length;
   }
@@ -41,7 +41,7 @@
   }
 
   function previewTopic(topic) {
-    if (["animals", "fruit"].includes(topic.id)) { window.location.href = "./" + topic.id + "/"; return; }
+    if (["animals", "fruit", "colors"].includes(topic.id)) { window.location.href = "./" + topic.id + "/"; return; }
     dialogContent.replaceChildren();
     const description = document.createElement("p");
     description.className = "topic-dialog__description";
@@ -67,7 +67,7 @@
     const status = fragment.querySelector(".topic-status");
     const state = statusFor(topic);
     card.id = "topic-" + topic.id;
-    button.setAttribute("aria-label", (["animals", "fruit"].includes(topic.id) ? "Học chủ đề " : "Xem trước chủ đề ") + topic.title + ", " + topic.completed + "/" + topic.total + " từ");
+    button.setAttribute("aria-label", (["animals", "fruit", "colors"].includes(topic.id) ? "Học chủ đề " : "Xem trước chủ đề ") + topic.title + ", " + topic.completed + "/" + topic.total + " từ");
     image.src = topic.image;
     fragment.querySelector("h3").textContent = topic.title;
     fragment.querySelector(".topic-card__description").textContent = topic.description;
