@@ -4,11 +4,11 @@
   const titles = ['Tô hình theo số', 'Chọn nhóm có số lượng tương ứng', 'Điền số còn thiếu', 'So sánh các số', 'Sắp xếp các số', 'Thử thách Sao Thủy'];
   const hints = ['Bấm vào ngôi sao để tô màu. Bấm lại để bỏ màu. Đếm đủ số sao bằng số ở trên nhé!', 'Đếm từng ngôi sao trong mỗi nhóm, rồi chọn nhóm có số lượng đúng.', 'Đọc dãy số từ trái sang phải. Số nào nằm ở ô còn thiếu?', 'Đếm hoặc đọc hai số. Chọn dấu lớn hơn, bé hơn hoặc bằng nhau.', 'Bấm lần lượt các số từ bé đến lớn. Bấm số đã chọn để bỏ chọn.', 'Vận dụng những điều vừa học. Cứ bình tĩnh đếm từng ngôi sao nhé!'];
   const coloringShapes = [
-    { name: 'ngôi sao', color: '#ffd25a', outline: '#cb8b00', svg: '<path stroke-linejoin="round" d="m16 2 4.3 8.7 9.6 1.4-7 6.8 1.7 9.6-8.6-4.6-8.6 4.6 1.7-9.6-7-6.8 9.6-1.4Z"/>' },
-    { name: 'hình tròn', color: '#91caff', outline: '#1e63c6', svg: '<circle cx="16" cy="16" r="13"/>' },
-    { name: 'bông hoa', color: '#f6a9c2', outline: '#af466e', svg: '<path d="M16 8C9-3 1 7 8 13C-3 15 2 27 12 23C12 34 24 32 23 22C34 25 35 12 24 12C29 3 18-2 16 8Z"/><circle class="flower-center" cx="16" cy="16" r="4"/>' },
-    { name: 'hình trái tim', color: '#f2a095', outline: '#bd5344', svg: '<path stroke-linejoin="round" d="M16 28 4 16C-4 6 9-2 16 8C23-2 36 6 28 16Z"/>' },
-    { name: 'hình vuông', color: '#b8a5ef', outline: '#7960b1', svg: '<rect x="4" y="4" width="24" height="24" rx="3"/>' }
+    { name: 'ngôi sao', image: './assets/chibi-star.webp' },
+    { name: 'hình tròn', image: './assets/chibi-circle.webp' },
+    { name: 'bông hoa', image: './assets/chibi-flower.webp' },
+    { name: 'hình trái tim', image: './assets/chibi-heart.webp' },
+    { name: 'hình vuông', image: './assets/chibi-square.webp' }
   ];
   const $ = id => document.getElementById(id);
   let scores = [0, 0, 0, 0, 0, 0];
@@ -57,11 +57,15 @@
       $('hint').textContent = 'Bấm vào ' + shape.name + ' để tô màu. Bấm lại để bỏ màu. Đếm đủ số hình bằng số ở trên nhé!';
       selection = 0;
       const grid = document.createElement('div'); grid.className = 'star-grid'; grid.setAttribute('role', 'group'); grid.setAttribute('aria-label', 'Chọn các ' + shape.name + ' để tô màu');
-      grid.style.setProperty('--shape-color', shape.color); grid.style.setProperty('--shape-outline', shape.outline);
-      document.querySelector('.hint-stars').innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true">' + shape.svg + '</svg>';
+      const hintExample = document.querySelector('.hint-stars');
+      hintExample.replaceChildren();
+      for (let i = 0; i < 5; i++) {
+        const image = document.createElement('img'); image.src = shape.image; image.alt = ''; image.width = 48; image.height = 48;
+        image.className = 'hint-shape' + (i < 3 ? ' is-colored' : ''); hintExample.append(image);
+      }
       for (let i = 0; i < 10; i++) {
         const b = document.createElement('button'); b.type = 'button'; b.className = 'star-button'; b.setAttribute('aria-label', shape.name + ' ' + (i + 1)); b.setAttribute('aria-pressed', 'false');
-        b.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true">' + shape.svg + '</svg>';
+        const image = document.createElement('img'); image.src = shape.image; image.alt = ''; image.width = 96; image.height = 96; image.draggable = false; b.append(image);
         b.addEventListener('click', () => {
           if (checked) return;
           const active = b.getAttribute('aria-pressed') === 'true'; b.setAttribute('aria-pressed', String(!active)); selection += active ? -1 : 1;

@@ -47,3 +47,9 @@ môn Toán. Xem [hướng dẫn layout](../README.md).
 Nhiệm vụ đầu dùng lần lượt ngôi sao, hình tròn, bông hoa, trái tim và hình vuông. Tiêu đề, hướng dẫn, bộ đếm và nhãn hỗ trợ đọc màn hình cập nhật theo từng hình; mỗi hình có màu tô riêng. Tiến độ đã lưu được giữ nguyên.
 
 Đã kiểm tra bằng Chromium/Playwright: cả năm hình, tô/bỏ màu, câu số 0, đáp án, mở khóa, lưu tiến độ và không tràn ngang ở 390px; không có lỗi JavaScript.
+
+### Minh họa chibi
+
+Bài tô màu dùng năm ảnh chibi nền trong suốt, tạo bằng imagegen tích hợp: sao vàng, tròn xanh, hoa hồng, tim hồng và vuông tím. Các ảnh WebP 256px nằm tại `mercury/assets/`; prompt đầy đủ ghi trong `mercury/assets/README.md`. Trạng thái chưa tô hiển thị xám, bấm vào hiện màu gốc; ô gợi ý dùng cùng bộ hình.
+
+Đã xem ảnh desktop và mobile; kiểm tra Chromium/Playwright cho đủ năm ảnh, tải ảnh thành công, đổi màu/bỏ màu, nhãn và gợi ý, câu số 0, đáp án, mở khóa và lưu tiến độ; màn hình 390px không tràn ngang, không có lỗi JavaScript. Đã kiểm tra cú pháp JavaScript và Git diff.
