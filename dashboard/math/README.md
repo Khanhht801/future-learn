@@ -41,3 +41,9 @@ môn Toán. Xem [hướng dẫn layout](../README.md).
 
 - Đã kiểm tra bằng Chromium/Playwright: điều hướng từ Sao Thủy, trả lời đúng toàn bộ 30 câu, phản hồi sai, khóa/mở khóa nhiệm vụ, lưu và khôi phục tiến độ, chuẩn hóa dữ liệu lưu không hợp lệ.
 - Đã chụp và xem bố cục desktop 1536px; kiểm tra màn hình 390px không tràn ngang và không có lỗi JavaScript.
+
+### Các hình trong bài tô màu
+
+Nhiệm vụ đầu dùng lần lượt ngôi sao, hình tròn, bông hoa, trái tim và hình vuông. Tiêu đề, hướng dẫn, bộ đếm và nhãn hỗ trợ đọc màn hình cập nhật theo từng hình; mỗi hình có màu tô riêng. Tiến độ đã lưu được giữ nguyên.
+
+Đã kiểm tra bằng Chromium/Playwright: cả năm hình, tô/bỏ màu, câu số 0, đáp án, mở khóa, lưu tiến độ và không tràn ngang ở 390px; không có lỗi JavaScript.

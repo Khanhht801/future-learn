@@ -1,8 +1,15 @@
 ﻿(function () {
   'use strict';
   const key = 'futurelearn.math.mercury.v1';
-  const titles = ['Tô sao theo số', 'Chọn nhóm có số lượng tương ứng', 'Điền số còn thiếu', 'So sánh các số', 'Sắp xếp các số', 'Thử thách Sao Thủy'];
+  const titles = ['Tô hình theo số', 'Chọn nhóm có số lượng tương ứng', 'Điền số còn thiếu', 'So sánh các số', 'Sắp xếp các số', 'Thử thách Sao Thủy'];
   const hints = ['Bấm vào ngôi sao để tô màu. Bấm lại để bỏ màu. Đếm đủ số sao bằng số ở trên nhé!', 'Đếm từng ngôi sao trong mỗi nhóm, rồi chọn nhóm có số lượng đúng.', 'Đọc dãy số từ trái sang phải. Số nào nằm ở ô còn thiếu?', 'Đếm hoặc đọc hai số. Chọn dấu lớn hơn, bé hơn hoặc bằng nhau.', 'Bấm lần lượt các số từ bé đến lớn. Bấm số đã chọn để bỏ chọn.', 'Vận dụng những điều vừa học. Cứ bình tĩnh đếm từng ngôi sao nhé!'];
+  const coloringShapes = [
+    { name: 'ngôi sao', color: '#ffd25a', outline: '#cb8b00', svg: '<path stroke-linejoin="round" d="m16 2 4.3 8.7 9.6 1.4-7 6.8 1.7 9.6-8.6-4.6-8.6 4.6 1.7-9.6-7-6.8 9.6-1.4Z"/>' },
+    { name: 'hình tròn', color: '#91caff', outline: '#1e63c6', svg: '<circle cx="16" cy="16" r="13"/>' },
+    { name: 'bông hoa', color: '#f6a9c2', outline: '#af466e', svg: '<path d="M16 8C9-3 1 7 8 13C-3 15 2 27 12 23C12 34 24 32 23 22C34 25 35 12 24 12C29 3 18-2 16 8Z"/><circle class="flower-center" cx="16" cy="16" r="4"/>' },
+    { name: 'hình trái tim', color: '#f2a095', outline: '#bd5344', svg: '<path stroke-linejoin="round" d="M16 28 4 16C-4 6 9-2 16 8C23-2 36 6 28 16Z"/>' },
+    { name: 'hình vuông', color: '#b8a5ef', outline: '#7960b1', svg: '<rect x="4" y="4" width="24" height="24" rx="3"/>' }
+  ];
   const $ = id => document.getElementById(id);
   let scores = [0, 0, 0, 0, 0, 0];
   try { const saved = JSON.parse(localStorage.getItem(key)); if (Array.isArray(saved) && saved.length === 6) { scores = saved.map(n => Number.isInteger(n) && n >= 0 && n <= 5 ? n : 0); for (let i = 1; i < 6; i++) if (scores[i - 1] < 5) scores[i] = 0; } } catch (_) { /* Storage is optional. */ }
@@ -38,16 +45,31 @@
   function render() {
     checked = false; finished = false; selection = null; ordered = [];
     renderNav(); $('mission-label').textContent = 'Nhiệm vụ ' + (mission + 1) + '/6'; $('question-count').textContent = 'Câu ' + (question + 1) + '/5'; $('hint').textContent = hints[type()];
+    document.querySelector('.hint-stars').textContent = '★ ★ ★ ☆ ☆';
     $('feedback').textContent = ''; $('feedback').className = 'feedback'; $('check').textContent = 'Kiểm tra'; $('activity').replaceChildren(); $('instruction').textContent = '';
     const t = type(), n = target(), area = $('activity');
     const heading = ['Hãy tô màu số ngôi sao tương ứng với số:', 'Nhóm nào có đúng số ngôi sao?', 'Điền số còn thiếu', 'Chọn dấu thích hợp', 'Sắp xếp các số từ bé đến lớn'];
     $('exercise-title').textContent = heading[t];
     if (t === 0 || t === 1) { const targetCard = document.createElement('div'); targetCard.className = 'target-number'; targetCard.textContent = n; area.append(targetCard); }
     if (t === 0) {
-      selection = 0; const grid = document.createElement('div'); grid.className = 'star-grid'; grid.setAttribute('role', 'group'); grid.setAttribute('aria-label', 'Chọn các ngôi sao để tô màu');
-      for (let i = 0; i < 10; i++) { const b = document.createElement('button'); b.type = 'button'; b.className = 'star-button'; b.setAttribute('aria-label', 'Ngôi sao ' + (i + 1)); b.setAttribute('aria-pressed', 'false'); b.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><path stroke-linejoin="round" d="m16 2 4.3 8.7 9.6 1.4-7 6.8 1.7 9.6-8.6-4.6-8.6 4.6 1.7-9.6-7-6.8 9.6-1.4Z"/></svg>'; b.addEventListener('click', () => { if (checked) return; const active = b.getAttribute('aria-pressed') === 'true'; b.setAttribute('aria-pressed', String(!active)); selection += active ? -1 : 1; $('selected-count').textContent = 'Đã tô ' + selection + ' ngôi sao'; $('feedback').textContent = ''; }); grid.append(b); }
-      const count = document.createElement('p'); count.id = 'selected-count'; count.className = 'selection-count'; count.textContent = 'Đã tô 0 ngôi sao'; area.append(grid, count);
-      $('instruction').textContent = n === 0 ? 'Số 0 nghĩa là không có ngôi sao nào được tô màu.' : 'Chạm vào từng ngôi sao để tô màu nhé!';
+      const shape = coloringShapes[question];
+      $('exercise-title').textContent = 'Hãy tô màu số ' + shape.name + ' tương ứng với số:';
+      $('hint').textContent = 'Bấm vào ' + shape.name + ' để tô màu. Bấm lại để bỏ màu. Đếm đủ số hình bằng số ở trên nhé!';
+      selection = 0;
+      const grid = document.createElement('div'); grid.className = 'star-grid'; grid.setAttribute('role', 'group'); grid.setAttribute('aria-label', 'Chọn các ' + shape.name + ' để tô màu');
+      grid.style.setProperty('--shape-color', shape.color); grid.style.setProperty('--shape-outline', shape.outline);
+      document.querySelector('.hint-stars').innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true">' + shape.svg + '</svg>';
+      for (let i = 0; i < 10; i++) {
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'star-button'; b.setAttribute('aria-label', shape.name + ' ' + (i + 1)); b.setAttribute('aria-pressed', 'false');
+        b.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true">' + shape.svg + '</svg>';
+        b.addEventListener('click', () => {
+          if (checked) return;
+          const active = b.getAttribute('aria-pressed') === 'true'; b.setAttribute('aria-pressed', String(!active)); selection += active ? -1 : 1;
+          $('selected-count').textContent = 'Đã tô ' + selection + ' ' + shape.name; $('feedback').textContent = '';
+        }); grid.append(b);
+      }
+      const count = document.createElement('p'); count.id = 'selected-count'; count.className = 'selection-count'; count.textContent = 'Đã tô 0 ' + shape.name; area.append(grid, count);
+      $('instruction').textContent = n === 0 ? 'Số 0 nghĩa là không có ' + shape.name + ' nào được tô màu.' : 'Chạm vào từng ' + shape.name + ' để tô màu nhé!';
     } else {
       const options = document.createElement('div'); options.className = 'answer-options';
       if (t === 1) { [n, (n + 2) % 11, (n + 5) % 11].sort((a,b) => a-b).forEach(v => { const b = choice(v === 0 ? 'Không có ngôi sao' : '★'.repeat(v), v, 'group-choice'); b.setAttribute('aria-label', v + ' ngôi sao'); options.append(b); }); }
