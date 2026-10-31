@@ -32,7 +32,7 @@ môn Toán. Xem [hướng dẫn layout](../README.md).
 ## Sao Thủy — Làm quen với con số
 
 - Mở tại `/dashboard/math/mercury/` hoặc bấm Sao Thủy trong lộ trình.
-- Sáu nhiệm vụ trong phạm vi 0–10, mỗi nhiệm vụ có 10 câu: tô sao, chọn nhóm, điền số, so sánh, sắp xếp và thử thách tổng hợp.
+- Sáu nhiệm vụ trong phạm vi 0–10, mỗi nhiệm vụ có 10 câu: tô hình, chọn nhóm, hoàn thiện dãy số, so sánh, sắp xếp và thử thách tổng hợp.
 - Hoàn thành nhiệm vụ trước để mở nhiệm vụ tiếp theo; có thể ôn lại bài đã hoàn thành.
 - Tiến độ lưu riêng bằng `futurelearn.math.mercury.v3` trong localStorage, có kiểm tra dữ liệu khi đọc. Không thay đổi sao và dữ liệu demo toàn dashboard.
 - Dùng chung điều hướng và bảng màu hiện tại. Trên điện thoại, danh sách nhiệm vụ cuộn ngang, bài tập và gợi ý xếp một cột.
@@ -82,3 +82,11 @@ Sáu nhiệm vụ hiện có tổng cộng 60 câu. Bổ sung dữ liệu chọn
 Tiến độ mới lưu tại `futurelearn.math.mercury.v3`. Đọc và chuyển cả v1/v2: bài đã hoàn thành theo số câu cũ giữ trạng thái hoàn thành, bài đang học giữ số câu đã làm. Không làm mất các bài đã mở khóa hợp lệ.
 
 Kiểm tra Chromium/Playwright: giải cả 60 câu dựa trên nội dung hiển thị, chấm đáp án, không mở khóa trước câu 10, tải lại sau câu 6 ở cả sáu nhiệm vụ, hoàn thành toàn hành trình, chuyển v1/v2 và xử lý dữ liệu sai; không lỗi JavaScript. Kiểm tra câu chọn nhóm có 8/9/10 hình không tràn ngang ở 320/390/768/1024/1536px. Đã chạy `node --check` và `git diff --check`.
+
+### Hoàn thiện dãy số bằng kéo thả
+
+- Đổi nhiệm vụ Điền số còn thiếu thành Hoàn thiện dãy số. Mỗi câu có dãy 5 số liên tiếp trong phạm vi 0–10, một ô trống và 3 số lựa chọn; 10 câu thay đổi vị trí ô trống, gồm cả đầu/cuối dãy.
+- Kéo số bằng chuột, bút hoặc cảm ứng vào ô trống để chấm ngay. Sai cho thử lại, không cộng tiến độ; đúng khóa đáp án, lưu tiến độ và hiện Câu tiếp theo hoặc Nhiệm vụ tiếp theo. Không hiển thị nút Kiểm tra cho dạng bài này.
+- Có cách thao tác thay thế: chọn số rồi bấm/nhấn Enter vào ô trống. Hủy kéo hoặc thả ra ngoài dọn hình kéo; đổi nhiệm vụ cũng dọn trạng thái đang kéo.
+- Giao diện theo ảnh tham chiếu: 5 ô số xanh nhạt, ô trống viền đứt, 3 thẻ số xanh/tím, ô gợi ý đếm thứ tự và robot. Dùng cùng tương tác cho bài dãy số trong thử thách cuối.
+- Kiểm tra Chromium/Playwright: đủ 10 câu, kéo chuột và cảm ứng thực tế, bàn phím, thả sai/ngoài, chấm ngay, dọn hình kéo, lưu/tải lại, mở khóa, thử thách cuối và bố cục 320–1536px. Đã kiểm tra hồi quy toàn bộ 60 câu, chuyển tiến độ v1/v2 và dữ liệu sai; không lỗi JavaScript. Đã xem ảnh desktop/mobile, chạy `node --check` và `git diff --check`.

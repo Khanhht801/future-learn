@@ -4,8 +4,8 @@
   if (journeyLink) journeyLink.href = '../#math-path';
   const key = 'futurelearn.math.mercury.v3';
   const questionTotals = [10, 10, 10, 10, 10, 10];
-  const titles = ['Tô hình theo số', 'Chọn nhóm có số lượng tương ứng', 'Điền số còn thiếu', 'So sánh các số', 'Sắp xếp các số', 'Thử thách Sao Thủy'];
-  const hints = ['Bấm vào ngôi sao để tô màu. Bấm lại để bỏ màu. Đếm đủ số sao bằng số ở trên nhé!', 'Đếm từng ngôi sao trong mỗi nhóm, rồi chọn nhóm có số lượng đúng.', 'Đọc dãy số từ trái sang phải. Số nào nằm ở ô còn thiếu?', 'Đếm hoặc đọc hai số. Chọn dấu lớn hơn, bé hơn hoặc bằng nhau.', 'Bấm lần lượt các số từ bé đến lớn. Bấm số đã chọn để bỏ chọn.', 'Vận dụng những điều vừa học. Cứ bình tĩnh đếm từng ngôi sao nhé!'];
+  const titles = ['Tô hình theo số', 'Chọn nhóm có số lượng tương ứng', 'Hoàn thiện dãy số', 'So sánh các số', 'Sắp xếp các số', 'Thử thách Sao Thủy'];
+  const hints = ['Bấm vào ngôi sao để tô màu. Bấm lại để bỏ màu. Đếm đủ số sao bằng số ở trên nhé!', 'Đếm từng ngôi sao trong mỗi nhóm, rồi chọn nhóm có số lượng đúng.', 'Quan sát thứ tự các số. Kéo số thích hợp vào ô trống để hoàn thiện dãy số.', 'Đếm hoặc đọc hai số. Chọn dấu lớn hơn, bé hơn hoặc bằng nhau.', 'Bấm lần lượt các số từ bé đến lớn. Bấm số đã chọn để bỏ chọn.', 'Vận dụng những điều vừa học. Cứ bình tĩnh đếm từng ngôi sao nhé!'];
   const coloringShapes = [
     { name: 'ngôi sao', image: './assets/chibi-star.webp' },
     { name: 'hình tròn', image: './assets/chibi-circle.webp' },
@@ -31,7 +31,13 @@
     { target: 10, counts: [9, 10, 8] }
   ];
   const coloringTargets = [7, 3, 0, 10, 5, 2, 8, 4, 9, 6];
-  const missingStarts = [0, 3, 6, 8, 1, 2, 4, 5, 7, 0];
+  const sequenceQuestions = [
+    { start: 2, blank: 2 }, { start: 0, blank: 1 },
+    { start: 4, blank: 3 }, { start: 1, blank: 0 },
+    { start: 6, blank: 4 }, { start: 3, blank: 1 },
+    { start: 5, blank: 2 }, { start: 0, blank: 4 },
+    { start: 2, blank: 0 }, { start: 4, blank: 3 }
+  ];
   const comparisonPairs = [[2,5],[7,3],[4,4],[0,1],[10,8],[6,9],[8,2],[0,0],[9,10],[5,1]];
   const sortingSets = [[3,1,2],[5,0,2],[8,6,7],[10,8,9],[4,2,3],[6,1,4],[9,3,0],[7,5,2],[10,6,1],[8,4,0]];
   const $ = id => document.getElementById(id);
@@ -65,7 +71,7 @@
       const status = document.createElement('span'); status.className = 'mission-status'; status.textContent = button.disabled ? '🔒' : scores[i] === questionTotals[i] ? '✓' : scores[i] + '/' + questionTotals[i];
       const icon = document.createElement('span'); icon.className = 'mission-icon'; icon.setAttribute('aria-hidden', 'true');
       if (i === 0) { const image = document.createElement('img'); image.src = './assets/chibi-star.webp'; image.alt = ''; image.width = 36; image.height = 36; icon.append(image); }
-      else icon.textContent = ['','💎','🧊','≶','🔢','🏆'][i];
+      else icon.textContent = ['','💎','🧩','≶','🔢','🏆'][i];
       button.append(number, icon, label, status); button.addEventListener('click', () => { mission = i; question = scores[i] === questionTotals[i] ? 0 : scores[i]; render(); }); $('missions').append(button);
     });
     $('score').textContent = scores[mission] + '/' + questionTotals[mission]; $('mission-progress').max = questionTotals[mission]; $('mission-progress').value = scores[mission];
@@ -83,17 +89,22 @@
       $('feedback').textContent = '';
     }); return button;
   }
+  let cancelNumberDrag = null;
   function render() {
+    if (cancelNumberDrag) cancelNumberDrag();
     checked = false; finished = false; selection = null; ordered = [];
     renderNav(); $('mission-label').textContent = 'Nhiệm vụ ' + (mission + 1) + '/6'; $('question-count').textContent = 'Câu ' + (question + 1) + '/' + questionTotals[mission]; $('hint').textContent = hints[type()];
     document.querySelector('.hint-stars').textContent = '★ ★ ★ ☆ ☆';
     $('feedback').textContent = ''; $('feedback').className = 'feedback'; $('check').textContent = 'Kiểm tra'; $('activity').replaceChildren(); $('instruction').textContent = '';
     const t = type(), n = target(), area = $('activity');
-    const heading = ['Hãy tô màu số ngôi sao tương ứng với số:', 'Hãy chọn nhóm có số lượng tương ứng với số:', 'Điền số còn thiếu', 'Chọn dấu thích hợp', 'Sắp xếp các số từ bé đến lớn'];
+    const heading = ['Hãy tô màu số ngôi sao tương ứng với số:', 'Hãy chọn nhóm có số lượng tương ứng với số:', 'Hoàn thiện dãy số', 'Chọn dấu thích hợp', 'Sắp xếp các số từ bé đến lớn'];
     $('exercise-title').textContent = heading[t];
     document.querySelector('.exercise-panel').classList.toggle('is-group-exercise', t === 1);
     document.querySelector('.hint-panel').classList.toggle('is-group-hint', t === 1);
-    $('group-hint-robot').hidden = t !== 1;
+    document.querySelector('.exercise-panel').classList.toggle('is-sequence-exercise', t === 2);
+    document.querySelector('.hint-panel').classList.toggle('is-sequence-hint', t === 2);
+    $('group-hint-robot').hidden = t !== 1 && t !== 2;
+    $('check').hidden = t === 2;
     if (t === 0 || t === 1) { const targetCard = document.createElement('div'); targetCard.className = 'target-number'; targetCard.textContent = n; area.append(targetCard); }
     if (t === 0) {
       const shape = coloringShapes[(mission === 5 ? Math.floor(question / 5) : question) % coloringShapes.length];
@@ -140,16 +151,99 @@
         ['Đếm số hình trong từng nhóm.', 'Chọn nhóm có số lượng bằng với số ở trên.', 'Sau đó bấm Kiểm tra.'].forEach(text => { const item = document.createElement('li'); item.textContent = text; steps.append(item); });
         $('hint').replaceChildren(steps);
       }
-      if (t === 2) { const start = missingStarts[question]; const seq = document.createElement('p'); seq.className = 'number-sequence'; seq.textContent = start + '   ·   ?   ·   ' + (start + 2); area.append(seq); [start, start + 1, start + 2].forEach(v => options.append(choice(v, v))); }
+      if (t === 2) {
+        renderSequence(area, options);
+      }
       if (t === 3) { const [a,b] = comparisonPairs[question]; const seq = document.createElement('p'); seq.className = 'number-sequence'; seq.textContent = a + '   ?   ' + b; area.append(seq); ['<','=','>'].forEach(v => { const button = choice(v,v); button.setAttribute('aria-label', {'<':'Bé hơn','=':'Bằng nhau','>':'Lớn hơn'}[v]); options.append(button); }); }
       if (t === 4) { sortingSets[question].forEach(v => options.append(choice(v,v))); const result = document.createElement('p'); result.id = 'sort-answer'; result.className = 'sort-answer'; result.setAttribute('aria-live','polite'); result.textContent = '…'; area.append(result); $('instruction').textContent = 'Bấm các số theo thứ tự. Bấm lại để bỏ chọn.'; }
       area.append(options);
     }
   }
+  function renderSequence(area, options) {
+    const item = sequenceQuestions[question], answer = item.start + item.blank;
+    $('exercise-title').textContent = 'Hãy hoàn thiện dãy số:';
+    $('instruction').textContent = 'Kéo số thích hợp vào ô trống nhé!';
+    const row = document.createElement('div'); row.className = 'sequence-row'; row.setAttribute('role', 'group'); row.setAttribute('aria-label', 'Dãy số tăng dần, mỗi số hơn số trước 1 đơn vị');
+    let drop;
+    for (let i = 0; i < 5; i++) {
+      const box = document.createElement(i === item.blank ? 'button' : 'span'); box.className = 'sequence-box';
+      if (i === item.blank) {
+        drop = box; box.type = 'button'; box.classList.add('sequence-drop'); box.textContent = '?';
+        box.setAttribute('aria-label', 'Ô trống ở vị trí ' + (i + 1) + '. Chọn một số rồi nhấn vào đây để điền.');
+      } else box.textContent = item.start + i;
+      row.append(box);
+    }
+    area.append(row); options.classList.add('sequence-options'); options.setAttribute('role', 'group'); options.setAttribute('aria-label', 'Các số có thể kéo vào ô trống');
+    const values = [(answer + 8) % 11, answer, (answer + 3) % 11];
+    const buttons = [];
+    function submit(value) {
+      if (checked) return;
+      selection = value;
+      if (value !== answer) {
+        drop.classList.add('is-wrong'); drop.textContent = '?';
+        $('feedback').className = 'feedback'; $('feedback').textContent = 'Chưa đúng rồi. Bé đếm lần lượt các số và thử lại nhé!';
+        buttons.forEach(button => button.setAttribute('aria-pressed', 'false')); selection = null;
+        return;
+      }
+      drop.classList.remove('is-wrong', 'is-over'); drop.classList.add('is-filled'); drop.textContent = value;
+      drop.setAttribute('aria-label', 'Đã điền đúng số ' + value); drop.disabled = true;
+      buttons.forEach(button => { button.disabled = true; button.setAttribute('aria-pressed', String(Number(button.textContent) === value)); });
+      acceptAnswer(); $('check').focus({ preventScroll: true });
+    }
+    drop.addEventListener('click', () => {
+      if (selection === null) { $('feedback').textContent = 'Bé chọn một số rồi bấm vào ô trống nhé!'; return; }
+      submit(selection);
+    });
+    values.forEach(value => {
+      const button = document.createElement('button'); button.type = 'button'; button.className = 'number-tile'; button.textContent = value; button.setAttribute('aria-pressed', 'false');
+      button.setAttribute('aria-label', 'Số ' + value + '. Kéo vào ô trống hoặc nhấn để chọn.');
+      let pointer = null, ghost = null, moved = false, suppressClick = false, originX = 0, originY = 0;
+      const cleanup = () => {
+        if (ghost) ghost.remove(); ghost = null; drop.classList.remove('is-over'); button.classList.remove('is-dragging');
+        const id = pointer; pointer = null;
+        if (id !== null && button.hasPointerCapture(id)) button.releasePointerCapture(id);
+        if (cancelNumberDrag === cleanup) cancelNumberDrag = null;
+      };
+      const inside = event => { const rect = drop.getBoundingClientRect(); return event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom; };
+      button.addEventListener('pointerdown', event => {
+        if (checked || !event.isPrimary || event.button !== 0) return;
+        if (cancelNumberDrag) cancelNumberDrag();
+        suppressClick = false; moved = false; pointer = event.pointerId; originX = event.clientX; originY = event.clientY;
+        button.setPointerCapture(pointer); cancelNumberDrag = cleanup;
+      });
+      button.addEventListener('pointermove', event => {
+        if (event.pointerId !== pointer) return;
+        if (!moved && Math.hypot(event.clientX - originX, event.clientY - originY) < 6) return;
+        moved = true;
+        if (!ghost) { ghost = document.createElement('div'); ghost.className = 'number-drag-ghost'; ghost.textContent = value; ghost.setAttribute('aria-hidden', 'true'); document.body.append(ghost); button.classList.add('is-dragging'); }
+        ghost.style.left = event.clientX + 'px'; ghost.style.top = event.clientY + 'px'; drop.classList.toggle('is-over', inside(event));
+      });
+      button.addEventListener('pointerup', event => {
+        if (event.pointerId !== pointer) return;
+        const dropped = moved && inside(event); suppressClick = moved; cleanup();
+        if (moved) setTimeout(() => { suppressClick = false; }, 0);
+        if (dropped) submit(value);
+      });
+      button.addEventListener('pointercancel', () => { suppressClick = true; cleanup(); });
+      button.addEventListener('lostpointercapture', cleanup);
+      button.addEventListener('click', () => {
+        if (suppressClick) { suppressClick = false; return; }
+        if (checked) return;
+        selection = value; buttons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+        drop.classList.remove('is-wrong'); $('feedback').textContent = 'Bấm vào ô trống để điền số đã chọn.';
+      });
+      buttons.push(button); options.append(button);
+    });
+    const alternate = document.createElement('p'); alternate.className = 'sequence-alternative'; alternate.textContent = 'Bé cũng có thể chọn một số rồi bấm vào ô trống.'; area.append(alternate);
+    const example = document.querySelector('.hint-stars'); example.replaceChildren();
+    for (let i = 1; i <= 5; i++) { const number = document.createElement('span'); number.className = 'sequence-hint-number' + (i === 4 ? ' is-highlighted' : ''); number.textContent = i; example.append(number); }
+    const list = document.createElement('ul'); list.className = 'group-hint-steps';
+    ['Quan sát thứ tự các số trong dãy.', 'Các số tăng dần thêm 1 đơn vị.', 'Kéo số thích hợp vào ô trống. Bé sẽ biết kết quả ngay!'].forEach(text => { const li = document.createElement('li'); li.textContent = text; list.append(li); }); $('hint').replaceChildren(list);
+  }
   function correct() {
     switch (type()) {
       case 0: case 1: return selection === target();
-      case 2: return selection === missingStarts[question] + 1;
+      case 2: return selection === sequenceQuestions[question].start + sequenceQuestions[question].blank;
       case 3: { const [a,b] = comparisonPairs[question]; return selection === (a < b ? '<' : a > b ? '>' : '='); }
       case 4: return ordered.join(',') === [...sortingSets[question]].sort((a,b) => a-b).join(',');
     }
@@ -158,9 +252,13 @@
     if (finished) { if (mission < 5) { mission++; question = scores[mission] === questionTotals[mission] ? 0 : scores[mission]; } else { mission = 0; question = 0; } render(); $('exercise-title').focus(); return; }
     if (checked) { question++; render(); $('exercise-title').focus(); return; }
     if (!correct()) { $('feedback').className = 'feedback'; $('feedback').textContent = selection === null && type() !== 4 ? (type() === 1 ? 'Bé hãy chọn một nhóm hình nhé!' : 'Bé hãy chọn một đáp án nhé!') : 'Chưa đúng rồi. Bé xem gợi ý và thử lại nhé!'; return; }
+    acceptAnswer();
+  });
+  function acceptAnswer() {
+    $('check').hidden = false;
     checked = true; scores[mission] = Math.max(scores[mission], question + 1); save(); renderNav(); $('feedback').className = 'feedback is-success';
     if (question === questionTotals[mission] - 1) { finished = true; $('feedback').textContent = mission === 5 ? 'Tuyệt vời! Bé đã chinh phục cả 6 nhiệm vụ Sao Thủy! 🏆' : 'Giỏi lắm! Bé đã hoàn thành nhiệm vụ này! ★'; $('check').textContent = mission === 5 ? 'Ôn tập từ đầu' : 'Nhiệm vụ tiếp theo'; }
     else { $('feedback').textContent = 'Chính xác! Bé làm tốt lắm! ★'; $('check').textContent = 'Câu tiếp theo'; }
-  });
+  }
   question = scores[mission] === questionTotals[mission] ? 0 : scores[mission]; render();
 })();
