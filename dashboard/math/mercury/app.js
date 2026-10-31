@@ -1,5 +1,10 @@
 ﻿(function () {
   'use strict';
+  const journeyLink = document.querySelector('.sidebar-journey--learning');
+  if (journeyLink) {
+    const image = document.createElement('img'); image.src = './assets/mercury-banner.webp'; image.alt = 'Phi hành gia và robot khám phá Sao Thủy'; image.className = 'mercury-sidebar-art';
+    journeyLink.replaceChildren(image); journeyLink.href = '../#math-path';
+  }
   const key = 'futurelearn.math.mercury.v1';
   const titles = ['Tô hình theo số', 'Chọn nhóm có số lượng tương ứng', 'Điền số còn thiếu', 'So sánh các số', 'Sắp xếp các số', 'Thử thách Sao Thủy'];
   const hints = ['Bấm vào ngôi sao để tô màu. Bấm lại để bỏ màu. Đếm đủ số sao bằng số ở trên nhé!', 'Đếm từng ngôi sao trong mỗi nhóm, rồi chọn nhóm có số lượng đúng.', 'Đọc dãy số từ trái sang phải. Số nào nằm ở ô còn thiếu?', 'Đếm hoặc đọc hai số. Chọn dấu lớn hơn, bé hơn hoặc bằng nhau.', 'Bấm lần lượt các số từ bé đến lớn. Bấm số đã chọn để bỏ chọn.', 'Vận dụng những điều vừa học. Cứ bình tĩnh đếm từng ngôi sao nhé!'];
@@ -24,8 +29,11 @@
       if (i === mission) button.setAttribute('aria-current', 'step');
       const number = document.createElement('span'); number.className = 'mission-number'; number.textContent = i + 1;
       const label = document.createElement('span'); label.textContent = title;
-      const status = document.createElement('span'); status.className = 'mission-status'; status.textContent = button.disabled ? 'Khóa' : scores[i] === 5 ? '✓' : scores[i] + '/5';
-      button.append(number, label, status); button.addEventListener('click', () => { mission = i; question = scores[i] === 5 ? 0 : scores[i]; render(); }); $('missions').append(button);
+      const status = document.createElement('span'); status.className = 'mission-status'; status.textContent = button.disabled ? '🔒' : scores[i] === 5 ? '✓' : scores[i] + '/5';
+      const icon = document.createElement('span'); icon.className = 'mission-icon'; icon.setAttribute('aria-hidden', 'true');
+      if (i === 0) { const image = document.createElement('img'); image.src = './assets/chibi-star.webp'; image.alt = ''; image.width = 36; image.height = 36; icon.append(image); }
+      else icon.textContent = ['','💎','🧊','≶','🔢','🏆'][i];
+      button.append(number, icon, label, status); button.addEventListener('click', () => { mission = i; question = scores[i] === 5 ? 0 : scores[i]; render(); }); $('missions').append(button);
     });
     $('score').textContent = scores[mission] + '/5'; $('mission-progress').value = scores[mission];
     $('progress-note').textContent = scores[mission] === 5 ? 'Đã hoàn thành! Bé có thể chơi lại để ôn tập.' : 'Hoàn thành 5 câu để mở khóa nhiệm vụ tiếp theo nhé!';

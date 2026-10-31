@@ -71,3 +71,107 @@ h1,h2,.mission-number,.target-number { font-family:var(--font-heading); color:va
 .hint-shape { width:calc((100% - 8px)/5); max-width:48px; height:auto; filter:grayscale(1); opacity:.55; }
 .hint-shape.is-colored { filter:none; opacity:1; }
 @media(prefers-reduced-motion:reduce) { .star-button img { transition:none; } }
+
+/* Sao Thủy: bảng màu không gian xanh sáng theo mẫu tham chiếu. */
+:root {
+  --color-primary:#1460ff;
+  --color-primary-hover:#104fd6;
+  --color-primary-soft:#e5eeff;
+  --color-navy:#111e68;
+  --color-text:#203c88;
+  --color-muted:#546ca5;
+  --color-canvas:#eff7ff;
+  --color-border:#dfebff;
+  --shadow-1:0 3px 12px rgb(70 119 206 / 8%);
+}
+body { background:#eff7ff; }
+.app-header { background:#f8fbff; border-color:#e3ecff; }
+.sidebar { background:linear-gradient(180deg,#f8fbff,#f2f7ff); border-color:#e3ecff; }
+.subject-nav__item.is-current { background:#e3edff; color:#1458ee; }
+.mercury-main { padding-top:calc(var(--header-height) + 18px); padding-inline:calc(var(--sidebar-width) + 20px) 20px; }
+.breadcrumbs { margin-bottom:14px; color:#314c99; font-size:15px; flex-wrap:wrap; }
+.mercury-hero { display:block; min-height:248px; padding:0; background:#657be2; border-radius:20px; margin-bottom:20px; }
+.mercury-hero::after { content:none; }
+.mercury-hero__art { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.mercury-hero__intro { position:absolute; left:24%; top:25%; width:24%; height:52%; display:flex; flex-direction:column; justify-content:center; gap:10px; text-align:center; color:#783808; }
+.mercury-hero h1 { color:#813507; font-size:clamp(26px,2.8vw,44px); line-height:1.1; text-shadow:0 1px #fff6db; }
+.mercury-hero .mercury-hero__subtitle { color:#713109; font:700 clamp(12px,1.05vw,18px)/1.4 var(--font-heading); margin:0; }
+.journey-goals { position:absolute; right:20px; top:50%; transform:translateY(-50%); width:29%; padding:20px; border-radius:20px; background:#fffffff2; box-shadow:0 6px 20px #243b861a; }
+.journey-goals h2 { display:flex; align-items:center; gap:8px; font-size:18px; }
+.journey-goals h2 span { font-size:26px; }
+.journey-goals ul { font-size:14px; }
+.journey-goals li { display:flex; align-items:flex-start; margin:10px 0 0; }
+.journey-goals li::before { color:#ffc238; font-size:23px; line-height:1; text-shadow:0 1px #c98a19; flex-shrink:0; }
+.learning-layout { grid-template-columns:270px minmax(0,1fr) 250px; gap:16px; }
+.mission-panel,.exercise-panel,.support-panel { border-color:#e8f0ff; background:#ffffffeb; box-shadow:0 3px 12px #5489ce0f; }
+.mission-panel { padding:18px 10px; }
+.mission-panel h2 { font-size:19px; }
+.mission-button { grid-template-columns:32px 36px minmax(0,1fr) auto; gap:8px; position:relative; padding:13px 8px; border-radius:15px; }
+.mission-button::before { content:''; position:absolute; left:23px; top:50%; height:100%; width:3px; background:#e0e9ff; z-index:0; }
+.mission-button:last-child::before { content:none; }
+.mission-number { position:relative; z-index:1; background:#e2ecff; color:#122f82; }
+.mission-icon { display:grid; place-items:center; font-size:29px; line-height:1; }
+.mission-icon img { width:36px; height:36px; object-fit:contain; }
+.mission-button:disabled { color:#38549a; }
+.mission-button.is-current { background:#e4edff; color:#1458ee; box-shadow:none; }
+.is-current .mission-number { background:linear-gradient(#24c3ff,#1164ff); box-shadow:0 2px 5px #2874fd35,inset 0 1px 2px #ffffffaa; }
+.exercise-panel { background:radial-gradient(ellipse at 12% 0%,#e6efff80,transparent 42%),radial-gradient(ellipse at 100% 8%,#ebe6ff80,transparent 36%),#ffffff; padding:18px 24px 26px; }
+.mission-chip { background:#e9edff; color:#3049ac; box-shadow:0 2px 6px #5978ef18; }
+.exercise-panel h2 { color:#111e68; margin-top:24px; }
+.target-number { width:150px; min-height:108px; background:linear-gradient(145deg,#fff3c6,#ffe49a); border-color:#ffdc7b; border-bottom-color:#ffd070; box-shadow:inset 0 2px 3px #ffffff99,0 3px 8px #e6ba4d18; color:#11246d; }
+.check-button { min-width:280px; min-height:56px; background:linear-gradient(110deg,#159dff,#1459ff); border:1px solid #1672ff; box-shadow:inset 0 2px 1px #ffffff55,0 3px 5px #155ce52a; border-radius:32px; font-size:19px; }
+.check-button:hover { background:linear-gradient(110deg,#1089ef,#104edb); }
+.support-panel { padding:22px 16px; }
+.support-panel h2 { font-size:18px; color:#111e68; }
+.support-panel progress { appearance:none; display:block; height:16px; border:0; border-radius:20px; overflow:hidden; background:#dfe9ff; }
+.support-panel progress::-webkit-progress-bar { background:#dfe9ff; border-radius:20px; }
+.support-panel progress::-webkit-progress-value { background:#2875ff; border-radius:20px; }
+.support-panel progress::-moz-progress-bar { background:#2875ff; border-radius:20px; }
+.hint-stars { background:#eff5ff; border-radius:18px; }
+@media(min-width:1500px) { .learning-layout { grid-template-columns:280px minmax(0,1fr) 260px; } }
+@media(max-width:1250px) { .learning-layout { grid-template-columns:235px minmax(0,1fr); } .learning-support { grid-column:1/-1; display:grid; grid-template-columns:1fr 1fr; gap:16px; } .journey-goals { width:30%; padding:14px; right:14px; } .journey-goals h2 { font-size:16px; } .journey-goals ul { font-size:13px; } }
+@media(max-width:767.98px) { .mercury-main { padding:calc(var(--header-height) + 16px) 16px 28px; } }
+@media(max-width:700px) {
+  .mercury-hero { min-height:0; padding:0; background:#e8edff; }
+  .mercury-hero__art { position:relative; height:200px; object-fit:cover; object-position:35% center; }
+  .mercury-hero__intro { left:12px; top:12px; width:auto; height:auto; padding:9px 14px; background:#fff3d9f5; border:2px solid #edbd6b; border-radius:12px; gap:4px; box-shadow:0 3px 8px #6847181c; }
+  .mercury-hero h1 { font-size:25px; }
+  .mercury-hero .mercury-hero__subtitle { font-size:12px; }
+  .journey-goals { position:relative; top:auto; right:auto; width:auto; transform:none; margin:12px; padding:14px; }
+  .journey-goals h2 { font-size:18px; }
+  .journey-goals ul { font-size:14px; }
+  .learning-layout { grid-template-columns:minmax(0,1fr); }
+  .mission-button { flex-basis:205px; grid-template-columns:28px 30px minmax(0,1fr); gap:7px; padding:12px 8px; }
+  .mission-button::before { content:none; }
+  .mission-icon img { width:30px; height:30px; }
+  .mission-icon { font-size:25px; }
+  .exercise-panel { padding:18px 16px 24px; }
+  .check-button { min-width:0; }
+  .learning-support { grid-column:auto; grid-template-columns:1fr; gap:0; }
+}
+@media(min-width:701px) {
+  .mercury-hero__intro { left:22%; top:0; width:25%; height:100%; }
+  .mercury-hero h1 { position:absolute; top:24%; width:100%; }
+  .mercury-hero .mercury-hero__subtitle { position:absolute; top:56%; width:100%; }
+}
+@media(min-width:1251px) { .journey-goals { width:26.5%; right:16px; } }
+.mercury-sidebar-art { display:block; width:100%; height:280px; object-fit:cover; object-position:58% center; border-radius:18px; }
+.sidebar-journey--learning:has(.mercury-sidebar-art) { padding:0; overflow:hidden; min-height:0; background:#e9efff; }
+@media(prefers-reduced-motion:reduce) { .mercury-main { transition:none; } }
+.sidebar-journey .mercury-sidebar-art { height:100%; margin-top:0; object-position:56% center; }
+@media(min-width:701px) and (max-width:1100px) {
+  .mercury-hero { min-height:0; background:#e8edff; }
+  .mercury-hero__art { position:relative; height:200px; object-position:35% center; }
+  .mercury-hero__intro { left:12px; top:12px; width:auto; height:auto; padding:9px 14px; background:#fff3d9f5; border:2px solid #edbd6b; border-radius:12px; gap:4px; }
+  .mercury-hero h1 { position:static; font-size:25px; }
+  .mercury-hero .mercury-hero__subtitle { position:static; font-size:12px; }
+  .journey-goals { position:relative; top:auto; right:auto; width:auto; transform:none; margin:12px; padding:14px; }
+}
+@media(min-width:701px) and (max-width:1050px) {
+  .learning-layout { grid-template-columns:minmax(0,1fr); }
+  #missions { display:flex; overflow-x:auto; gap:8px; padding:3px; }
+  .mission-button { flex:0 0 220px; grid-template-columns:32px 36px minmax(0,1fr); }
+  .mission-button::before { content:none; }
+  .mission-status { display:none; }
+  .learning-support { grid-column:1/-1; grid-template-columns:minmax(0,1fr); }
+}

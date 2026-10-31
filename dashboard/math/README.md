@@ -53,3 +53,10 @@ Nhiệm vụ đầu dùng lần lượt ngôi sao, hình tròn, bông hoa, trái
 Bài tô màu dùng năm ảnh chibi nền trong suốt, tạo bằng imagegen tích hợp: sao vàng, tròn xanh, hoa hồng, tim hồng và vuông tím. Các ảnh WebP 256px nằm tại `mercury/assets/`; prompt đầy đủ ghi trong `mercury/assets/README.md`. Trạng thái chưa tô hiển thị xám, bấm vào hiện màu gốc; ô gợi ý dùng cùng bộ hình.
 
 Đã xem ảnh desktop và mobile; kiểm tra Chromium/Playwright cho đủ năm ảnh, tải ảnh thành công, đổi màu/bỏ màu, nhãn và gợi ý, câu số 0, đáp án, mở khóa và lưu tiến độ; màn hình 390px không tràn ngang, không có lỗi JavaScript. Đã kiểm tra cú pháp JavaScript và Git diff.
+
+### Màu sắc và banner theo mẫu
+
+- Riêng trang Sao Thủy dùng nền xanh nhạt, chữ navy, trạng thái đang học xanh dương, nút xanh sáng và thẻ số vàng; các trang khác giữ bảng màu riêng.
+- Banner chibi Sao Thủy, phi hành gia và robot có biển gỗ với tiêu đề HTML; khung mục tiêu đặt bên phải trên desktop và phía dưới trên màn hình nhỏ.
+- Sidebar dùng lại minh họa banner và liên kết về lộ trình; nhiệm vụ có icon và đường nối theo thứ tự.
+- Đã xem ảnh desktop/mobile, kiểm tra banner tải thành công và không tràn ngang ở 320, 390, 768, 1024, 1366, 1536px. Đã kiểm tra lại cả năm hình, tô/bỏ màu, đáp án, mở khóa và lưu tiến độ bằng Chromium/Playwright, không có lỗi JavaScript.
