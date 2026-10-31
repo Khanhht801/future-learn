@@ -32,9 +32,9 @@ môn Toán. Xem [hướng dẫn layout](../README.md).
 ## Sao Thủy — Làm quen với con số
 
 - Mở tại `/dashboard/math/mercury/` hoặc bấm Sao Thủy trong lộ trình.
-- Sáu nhiệm vụ, mỗi nhiệm vụ có 5 câu trong phạm vi 0–10: tô sao, chọn nhóm, điền số, so sánh, sắp xếp và thử thách tổng hợp.
+- Sáu nhiệm vụ trong phạm vi 0–10: tô hình có 10 câu, các nhiệm vụ còn lại có 5 câu: tô sao, chọn nhóm, điền số, so sánh, sắp xếp và thử thách tổng hợp.
 - Hoàn thành nhiệm vụ trước để mở nhiệm vụ tiếp theo; có thể ôn lại bài đã hoàn thành.
-- Tiến độ lưu riêng bằng `futurelearn.math.mercury.v1` trong localStorage, có kiểm tra dữ liệu khi đọc. Không thay đổi sao và dữ liệu demo toàn dashboard.
+- Tiến độ lưu riêng bằng `futurelearn.math.mercury.v2` trong localStorage, có kiểm tra dữ liệu khi đọc. Không thay đổi sao và dữ liệu demo toàn dashboard.
 - Dùng chung điều hướng và bảng màu hiện tại. Trên điện thoại, danh sách nhiệm vụ cuộn ngang, bài tập và gợi ý xếp một cột.
 
 ### Kiểm tra triển khai
@@ -60,3 +60,10 @@ Bài tô màu dùng năm ảnh chibi nền trong suốt, tạo bằng imagegen t
 - Banner chibi Sao Thủy, phi hành gia và robot có biển gỗ với tiêu đề HTML; khung mục tiêu đặt bên phải trên desktop và phía dưới trên màn hình nhỏ.
 - Sidebar dùng lại minh họa banner và liên kết về lộ trình; nhiệm vụ có icon và đường nối theo thứ tự.
 - Đã xem ảnh desktop/mobile, kiểm tra banner tải thành công và không tràn ngang ở 320, 390, 768, 1024, 1366, 1536px. Đã kiểm tra lại cả năm hình, tô/bỏ màu, đáp án, mở khóa và lưu tiến độ bằng Chromium/Playwright, không có lỗi JavaScript.
+
+
+### Tăng bài tô hình lên 10 câu
+
+Nhiệm vụ đầu có 10 câu với 5 loại hình chibi luân phiên; các nhiệm vụ khác giữ 5 câu. Tiến độ, bộ đếm và mở khóa dùng số câu riêng của từng nhiệm vụ. Dữ liệu v1 được chuyển khi đọc: bài tô hình đã hoàn thành giữ trạng thái hoàn thành; bài đang học giữ số câu đã làm. Dữ liệu mới lưu ở `futurelearn.math.mercury.v2`.
+
+Đã kiểm tra Chromium/Playwright: đủ 10 câu, khóa đến câu cuối, tải lại sau câu 6, mở bài tiếp theo với 5 câu, chơi lại và chuyển tiến độ cũ cả trường hợp đã hoàn thành và đang học; không lỗi JavaScript. Đã chạy `node --check` và `git diff --check`.

@@ -5,7 +5,8 @@
     const image = document.createElement('img'); image.src = './assets/mercury-banner.webp?v=2'; image.alt = 'Phi hành gia và robot khám phá Sao Thủy'; image.className = 'mercury-sidebar-art';
     journeyLink.replaceChildren(image); journeyLink.href = '../#math-path';
   }
-  const key = 'futurelearn.math.mercury.v1';
+  const key = 'futurelearn.math.mercury.v2';
+  const questionTotals = [10, 5, 5, 5, 5, 5];
   const titles = ['Tô hình theo số', 'Chọn nhóm có số lượng tương ứng', 'Điền số còn thiếu', 'So sánh các số', 'Sắp xếp các số', 'Thử thách Sao Thủy'];
   const hints = ['Bấm vào ngôi sao để tô màu. Bấm lại để bỏ màu. Đếm đủ số sao bằng số ở trên nhé!', 'Đếm từng ngôi sao trong mỗi nhóm, rồi chọn nhóm có số lượng đúng.', 'Đọc dãy số từ trái sang phải. Số nào nằm ở ô còn thiếu?', 'Đếm hoặc đọc hai số. Chọn dấu lớn hơn, bé hơn hoặc bằng nhau.', 'Bấm lần lượt các số từ bé đến lớn. Bấm số đã chọn để bỏ chọn.', 'Vận dụng những điều vừa học. Cứ bình tĩnh đếm từng ngôi sao nhé!'];
   const coloringShapes = [
@@ -17,30 +18,42 @@
   ];
   const $ = id => document.getElementById(id);
   let scores = [0, 0, 0, 0, 0, 0];
-  try { const saved = JSON.parse(localStorage.getItem(key)); if (Array.isArray(saved) && saved.length === 6) { scores = saved.map(n => Number.isInteger(n) && n >= 0 && n <= 5 ? n : 0); for (let i = 1; i < 6; i++) if (scores[i - 1] < 5) scores[i] = 0; } } catch (_) { /* Storage is optional. */ }
-  let mission = Math.max(0, scores.findIndex(n => n < 5));
+  try {
+    const current = localStorage.getItem(key);
+    const saved = JSON.parse(current === null ? localStorage.getItem('futurelearn.math.mercury.v1') : current);
+    if (Array.isArray(saved) && saved.length === questionTotals.length) {
+      scores = saved.map((n, i) => {
+        const limit = current === null ? 5 : questionTotals[i];
+        if (!Number.isInteger(n) || n < 0 || n > limit) return 0;
+        // Keep previously completed missions unlocked when upgrading from five questions.
+        return current === null && i === 0 && n === 5 ? questionTotals[0] : n;
+      });
+      for (let i = 1; i < scores.length; i++) if (scores[i - 1] < questionTotals[i - 1]) scores[i] = 0;
+    }
+  } catch (_) { /* Storage is optional. */ }
+  let mission = Math.max(0, scores.findIndex((n, i) => n < questionTotals[i]));
   let question = 0, selection = null, ordered = [], checked = false, finished = false;
   function save() { try { localStorage.setItem(key, JSON.stringify(scores)); } catch (_) { $('storage-note').textContent = 'Trình duyệt chưa lưu được tiến độ. Bé vẫn có thể tiếp tục học trong lượt này.'; } }
   function renderNav() {
     $('missions').replaceChildren();
     titles.forEach((title, i) => {
       const button = document.createElement('button'); button.type = 'button'; button.className = 'mission-button' + (i === mission ? ' is-current' : '');
-      button.disabled = i > 0 && scores[i - 1] < 5;
+      button.disabled = i > 0 && scores[i - 1] < questionTotals[i - 1];
       if (i === mission) button.setAttribute('aria-current', 'step');
       const number = document.createElement('span'); number.className = 'mission-number'; number.textContent = i + 1;
       const label = document.createElement('span'); label.textContent = title;
-      const status = document.createElement('span'); status.className = 'mission-status'; status.textContent = button.disabled ? '🔒' : scores[i] === 5 ? '✓' : scores[i] + '/5';
+      const status = document.createElement('span'); status.className = 'mission-status'; status.textContent = button.disabled ? '🔒' : scores[i] === questionTotals[i] ? '✓' : scores[i] + '/' + questionTotals[i];
       const icon = document.createElement('span'); icon.className = 'mission-icon'; icon.setAttribute('aria-hidden', 'true');
       if (i === 0) { const image = document.createElement('img'); image.src = './assets/chibi-star.webp'; image.alt = ''; image.width = 36; image.height = 36; icon.append(image); }
       else icon.textContent = ['','💎','🧊','≶','🔢','🏆'][i];
-      button.append(number, icon, label, status); button.addEventListener('click', () => { mission = i; question = scores[i] === 5 ? 0 : scores[i]; render(); }); $('missions').append(button);
+      button.append(number, icon, label, status); button.addEventListener('click', () => { mission = i; question = scores[i] === questionTotals[i] ? 0 : scores[i]; render(); }); $('missions').append(button);
     });
-    $('score').textContent = scores[mission] + '/5'; $('mission-progress').value = scores[mission];
-    $('progress-note').textContent = scores[mission] === 5 ? 'Đã hoàn thành! Bé có thể chơi lại để ôn tập.' : 'Hoàn thành 5 câu để mở khóa nhiệm vụ tiếp theo nhé!';
-    $('journey-count').textContent = 'Đã hoàn thành ' + scores.filter(n => n === 5).length + '/6 nhiệm vụ';
+    $('score').textContent = scores[mission] + '/' + questionTotals[mission]; $('mission-progress').max = questionTotals[mission]; $('mission-progress').value = scores[mission];
+    $('progress-note').textContent = scores[mission] === questionTotals[mission] ? 'Đã hoàn thành! Bé có thể chơi lại để ôn tập.' : 'Hoàn thành ' + questionTotals[mission] + ' câu để mở khóa nhiệm vụ tiếp theo nhé!';
+    $('journey-count').textContent = 'Đã hoàn thành ' + scores.filter((n, i) => n === questionTotals[i]).length + '/6 nhiệm vụ';
   }
   function type() { return mission === 5 ? [0, 1, 2, 3, 4][question] : mission; }
-  function target() { return [7, 3, 0, 10, 5][question]; }
+  function target() { return (mission === 0 ? [7, 3, 0, 10, 5, 2, 8, 4, 9, 6] : [7, 3, 0, 10, 5])[question]; }
   function choice(label, value, className) {
     const button = document.createElement('button'); button.type = 'button'; button.className = 'choice-button ' + (className || ''); button.textContent = label; button.setAttribute('aria-pressed', 'false');
     button.addEventListener('click', () => {
@@ -52,7 +65,7 @@
   }
   function render() {
     checked = false; finished = false; selection = null; ordered = [];
-    renderNav(); $('mission-label').textContent = 'Nhiệm vụ ' + (mission + 1) + '/6'; $('question-count').textContent = 'Câu ' + (question + 1) + '/5'; $('hint').textContent = hints[type()];
+    renderNav(); $('mission-label').textContent = 'Nhiệm vụ ' + (mission + 1) + '/6'; $('question-count').textContent = 'Câu ' + (question + 1) + '/' + questionTotals[mission]; $('hint').textContent = hints[type()];
     document.querySelector('.hint-stars').textContent = '★ ★ ★ ☆ ☆';
     $('feedback').textContent = ''; $('feedback').className = 'feedback'; $('check').textContent = 'Kiểm tra'; $('activity').replaceChildren(); $('instruction').textContent = '';
     const t = type(), n = target(), area = $('activity');
@@ -60,7 +73,7 @@
     $('exercise-title').textContent = heading[t];
     if (t === 0 || t === 1) { const targetCard = document.createElement('div'); targetCard.className = 'target-number'; targetCard.textContent = n; area.append(targetCard); }
     if (t === 0) {
-      const shape = coloringShapes[question];
+      const shape = coloringShapes[question % coloringShapes.length];
       $('exercise-title').textContent = 'Hãy tô màu số ' + shape.name + ' tương ứng với số:';
       $('hint').textContent = 'Bấm vào ' + shape.name + ' để tô màu. Bấm lại để bỏ màu. Đếm đủ số hình bằng số ở trên nhé!';
       selection = 0;
@@ -100,12 +113,12 @@
     }
   }
   $('check').addEventListener('click', () => {
-    if (finished) { if (mission < 5) { mission++; question = scores[mission] === 5 ? 0 : scores[mission]; } else { mission = 0; question = 0; } render(); $('exercise-title').focus(); return; }
+    if (finished) { if (mission < 5) { mission++; question = scores[mission] === questionTotals[mission] ? 0 : scores[mission]; } else { mission = 0; question = 0; } render(); $('exercise-title').focus(); return; }
     if (checked) { question++; render(); $('exercise-title').focus(); return; }
     if (!correct()) { $('feedback').className = 'feedback'; $('feedback').textContent = selection === null && type() !== 4 ? 'Bé hãy chọn một đáp án nhé!' : 'Chưa đúng rồi. Bé xem gợi ý và thử lại nhé!'; return; }
     checked = true; scores[mission] = Math.max(scores[mission], question + 1); save(); renderNav(); $('feedback').className = 'feedback is-success';
-    if (question === 4) { finished = true; $('feedback').textContent = mission === 5 ? 'Tuyệt vời! Bé đã chinh phục cả 6 nhiệm vụ Sao Thủy! 🏆' : 'Giỏi lắm! Bé đã hoàn thành nhiệm vụ này! ★'; $('check').textContent = mission === 5 ? 'Ôn tập từ đầu' : 'Nhiệm vụ tiếp theo'; }
+    if (question === questionTotals[mission] - 1) { finished = true; $('feedback').textContent = mission === 5 ? 'Tuyệt vời! Bé đã chinh phục cả 6 nhiệm vụ Sao Thủy! 🏆' : 'Giỏi lắm! Bé đã hoàn thành nhiệm vụ này! ★'; $('check').textContent = mission === 5 ? 'Ôn tập từ đầu' : 'Nhiệm vụ tiếp theo'; }
     else { $('feedback').textContent = 'Chính xác! Bé làm tốt lắm! ★'; $('check').textContent = 'Câu tiếp theo'; }
   });
-  question = scores[mission] === 5 ? 0 : scores[mission]; render();
+  question = scores[mission] === questionTotals[mission] ? 0 : scores[mission]; render();
 })();
