@@ -1,10 +1,7 @@
 ﻿(function () {
   'use strict';
   const journeyLink = document.querySelector('.sidebar-journey--learning');
-  if (journeyLink) {
-    const image = document.createElement('img'); image.src = './assets/mercury-banner.webp?v=2'; image.alt = 'Phi hành gia và robot khám phá Sao Thủy'; image.className = 'mercury-sidebar-art';
-    journeyLink.replaceChildren(image); journeyLink.href = '../#math-path';
-  }
+  if (journeyLink) journeyLink.href = '../#math-path';
   const key = 'futurelearn.math.mercury.v2';
   const questionTotals = [10, 5, 5, 5, 5, 5];
   const titles = ['Tô hình theo số', 'Chọn nhóm có số lượng tương ứng', 'Điền số còn thiếu', 'So sánh các số', 'Sắp xếp các số', 'Thử thách Sao Thủy'];

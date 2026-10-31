@@ -20,7 +20,7 @@ Use case: stylized-concept. Asset type: one isolated educational game counting t
 
 ## Banner Sao Thủy
 
-`mercury-banner.webp` được tạo bằng imagegen tích hợp, tối ưu thành WebP 1920 × 640. Ảnh dùng cho banner và cắt theo khung dọc để minh họa sidebar. Chữ trên biển là HTML để rõ nét và truy cập được bằng trình đọc màn hình.
+`mercury-banner.webp` được tạo bằng imagegen tích hợp, tối ưu thành WebP 1920 × 640. Ảnh dùng riêng cho banner; sidebar giữ minh họa học tập chung của dashboard. Chữ trên biển là HTML để rõ nét và truy cập được bằng trình đọc màn hình.
 
 Prompt cuối:
 
@@ -30,7 +30,7 @@ Use case: illustration-story. Asset type: panoramic hero banner artwork for a Vi
 
 ### Phiên bản màu xanh trời – cam đào
 
-Đã tạo lại banner bằng imagegen ở chế độ chỉnh sửa ảnh gốc, giữ bố cục để chữ HTML vẫn khớp biển gỗ. Dùng nền xanh trời sáng, Sao Thủy cam đào, đá màu cát và biển gỗ vàng kem; giảm nền navy/tím đậm. File hiện tại: `mercury-banner.webp` (WebP 1920 × 640), dùng chung cho hero và sidebar. URL ảnh có phiên bản để trình duyệt tải bản mới.
+Đã tạo lại banner bằng imagegen ở chế độ chỉnh sửa ảnh gốc, giữ bố cục để chữ HTML vẫn khớp biển gỗ. Dùng nền xanh trời sáng, Sao Thủy cam đào, đá màu cát và biển gỗ vàng kem; giảm nền navy/tím đậm. File hiện tại: `mercury-banner.webp` (WebP 1920 × 640), dùng riêng cho hero. URL ảnh có phiên bản để trình duyệt tải bản mới.
 
 Prompt chỉnh sửa cuối:
 

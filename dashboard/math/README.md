@@ -58,7 +58,7 @@ Bài tô màu dùng năm ảnh chibi nền trong suốt, tạo bằng imagegen t
 
 - Riêng trang Sao Thủy dùng nền xanh nhạt, chữ navy, trạng thái đang học xanh dương, nút xanh sáng và thẻ số vàng; các trang khác giữ bảng màu riêng.
 - Banner chibi Sao Thủy, phi hành gia và robot có biển gỗ với tiêu đề HTML; khung mục tiêu đặt bên phải trên desktop và phía dưới trên màn hình nhỏ.
-- Sidebar dùng lại minh họa banner và liên kết về lộ trình; nhiệm vụ có icon và đường nối theo thứ tự.
+- Sidebar giữ minh họa học tập chung và liên kết về lộ trình; nhiệm vụ có icon và đường nối theo thứ tự.
 - Đã xem ảnh desktop/mobile, kiểm tra banner tải thành công và không tràn ngang ở 320, 390, 768, 1024, 1366, 1536px. Đã kiểm tra lại cả năm hình, tô/bỏ màu, đáp án, mở khóa và lưu tiến độ bằng Chromium/Playwright, không có lỗi JavaScript.
 
 
