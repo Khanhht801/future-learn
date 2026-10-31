@@ -32,9 +32,9 @@ môn Toán. Xem [hướng dẫn layout](../README.md).
 ## Sao Thủy — Làm quen với con số
 
 - Mở tại `/dashboard/math/mercury/` hoặc bấm Sao Thủy trong lộ trình.
-- Sáu nhiệm vụ trong phạm vi 0–10: tô hình có 10 câu, các nhiệm vụ còn lại có 5 câu: tô sao, chọn nhóm, điền số, so sánh, sắp xếp và thử thách tổng hợp.
+- Sáu nhiệm vụ trong phạm vi 0–10, mỗi nhiệm vụ có 10 câu: tô sao, chọn nhóm, điền số, so sánh, sắp xếp và thử thách tổng hợp.
 - Hoàn thành nhiệm vụ trước để mở nhiệm vụ tiếp theo; có thể ôn lại bài đã hoàn thành.
-- Tiến độ lưu riêng bằng `futurelearn.math.mercury.v2` trong localStorage, có kiểm tra dữ liệu khi đọc. Không thay đổi sao và dữ liệu demo toàn dashboard.
+- Tiến độ lưu riêng bằng `futurelearn.math.mercury.v3` trong localStorage, có kiểm tra dữ liệu khi đọc. Không thay đổi sao và dữ liệu demo toàn dashboard.
 - Dùng chung điều hướng và bảng màu hiện tại. Trên điện thoại, danh sách nhiệm vụ cuộn ngang, bài tập và gợi ý xếp một cột.
 
 ### Kiểm tra triển khai
@@ -74,3 +74,11 @@ Nhiệm vụ đầu có 10 câu với 5 loại hình chibi luân phiên; các nh
 - Mỗi thẻ là một nút có nhãn đọc màn hình, hỗ trợ bàn phím và trạng thái đã chọn. Bé chọn thẻ rồi bấm Kiểm tra; phản hồi sai không cộng tiến độ. Sau khi đúng, khóa lựa chọn đến câu tiếp theo.
 - Ô gợi ý có hình minh họa, ba bước hướng dẫn và robot; giao diện được khôi phục khi chuyển sang loại bài khác. Bài chọn nhóm trong thử thách cuối dùng cùng trải nghiệm.
 - Đã kiểm tra Chromium/Playwright: ba thẻ, số hình/ảnh tải đúng, đủ năm câu, chọn duy nhất bằng bàn phím, phản hồi thiếu/sai, khóa sau khi đúng, lưu/tải lại, mở khóa và thử thách cuối. Đã kiểm tra bài tô hình 10 câu, xem ảnh desktop/mobile, kiểm tra 320/390/768/1024/1536px không tràn ngang, không lỗi JavaScript; `node --check` và `git diff --check` đạt.
+
+### Tất cả nhiệm vụ đều có 10 câu
+
+Sáu nhiệm vụ hiện có tổng cộng 60 câu. Bổ sung dữ liệu chọn nhóm, điền số, so sánh và sắp xếp; thử thách cuối gồm hai lượt của năm dạng bài. Nội dung vẫn trong phạm vi 0–10. Bộ đếm, tiến độ và mở khóa đều dùng mốc 10 câu.
+
+Tiến độ mới lưu tại `futurelearn.math.mercury.v3`. Đọc và chuyển cả v1/v2: bài đã hoàn thành theo số câu cũ giữ trạng thái hoàn thành, bài đang học giữ số câu đã làm. Không làm mất các bài đã mở khóa hợp lệ.
+
+Kiểm tra Chromium/Playwright: giải cả 60 câu dựa trên nội dung hiển thị, chấm đáp án, không mở khóa trước câu 10, tải lại sau câu 6 ở cả sáu nhiệm vụ, hoàn thành toàn hành trình, chuyển v1/v2 và xử lý dữ liệu sai; không lỗi JavaScript. Kiểm tra câu chọn nhóm có 8/9/10 hình không tràn ngang ở 320/390/768/1024/1536px. Đã chạy `node --check` và `git diff --check`.

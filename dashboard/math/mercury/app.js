@@ -2,8 +2,8 @@
   'use strict';
   const journeyLink = document.querySelector('.sidebar-journey--learning');
   if (journeyLink) journeyLink.href = '../#math-path';
-  const key = 'futurelearn.math.mercury.v2';
-  const questionTotals = [10, 5, 5, 5, 5, 5];
+  const key = 'futurelearn.math.mercury.v3';
+  const questionTotals = [10, 10, 10, 10, 10, 10];
   const titles = ['Tô hình theo số', 'Chọn nhóm có số lượng tương ứng', 'Điền số còn thiếu', 'So sánh các số', 'Sắp xếp các số', 'Thử thách Sao Thủy'];
   const hints = ['Bấm vào ngôi sao để tô màu. Bấm lại để bỏ màu. Đếm đủ số sao bằng số ở trên nhé!', 'Đếm từng ngôi sao trong mỗi nhóm, rồi chọn nhóm có số lượng đúng.', 'Đọc dãy số từ trái sang phải. Số nào nằm ở ô còn thiếu?', 'Đếm hoặc đọc hai số. Chọn dấu lớn hơn, bé hơn hoặc bằng nhau.', 'Bấm lần lượt các số từ bé đến lớn. Bấm số đã chọn để bỏ chọn.', 'Vận dụng những điều vừa học. Cứ bình tĩnh đếm từng ngôi sao nhé!'];
   const coloringShapes = [
@@ -23,19 +23,30 @@
     { target: 2, counts: [2, 1, 3] },
     { target: 6, counts: [5, 7, 6] },
     { target: 3, counts: [4, 3, 2] },
-    { target: 5, counts: [5, 6, 4] }
+    { target: 5, counts: [5, 6, 4] },
+    { target: 8, counts: [7, 8, 9] },
+    { target: 1, counts: [2, 3, 1] },
+    { target: 7, counts: [7, 6, 8] },
+    { target: 9, counts: [8, 10, 9] },
+    { target: 10, counts: [9, 10, 8] }
   ];
+  const coloringTargets = [7, 3, 0, 10, 5, 2, 8, 4, 9, 6];
+  const missingStarts = [0, 3, 6, 8, 1, 2, 4, 5, 7, 0];
+  const comparisonPairs = [[2,5],[7,3],[4,4],[0,1],[10,8],[6,9],[8,2],[0,0],[9,10],[5,1]];
+  const sortingSets = [[3,1,2],[5,0,2],[8,6,7],[10,8,9],[4,2,3],[6,1,4],[9,3,0],[7,5,2],[10,6,1],[8,4,0]];
   const $ = id => document.getElementById(id);
   let scores = [0, 0, 0, 0, 0, 0];
   try {
     const current = localStorage.getItem(key);
-    const saved = JSON.parse(current === null ? localStorage.getItem('futurelearn.math.mercury.v1') : current);
+    const previous = current === null ? localStorage.getItem('futurelearn.math.mercury.v2') : null;
+    const legacy = current === null && previous === null;
+    const saved = JSON.parse(current !== null ? current : previous !== null ? previous : localStorage.getItem('futurelearn.math.mercury.v1'));
     if (Array.isArray(saved) && saved.length === questionTotals.length) {
       scores = saved.map((n, i) => {
-        const limit = current === null ? 5 : questionTotals[i];
+        const limit = current !== null ? questionTotals[i] : legacy || i !== 0 ? 5 : 10;
         if (!Number.isInteger(n) || n < 0 || n > limit) return 0;
-        // Keep previously completed missions unlocked when upgrading from five questions.
-        return current === null && i === 0 && n === 5 ? questionTotals[0] : n;
+        // Preserve completion and unlocked missions from either earlier question-count version.
+        return current === null && n === limit ? questionTotals[i] : n;
       });
       for (let i = 1; i < scores.length; i++) if (scores[i - 1] < questionTotals[i - 1]) scores[i] = 0;
     }
@@ -61,8 +72,8 @@
     $('progress-note').textContent = scores[mission] === questionTotals[mission] ? 'Đã hoàn thành! Bé có thể chơi lại để ôn tập.' : 'Hoàn thành ' + questionTotals[mission] + ' câu để mở khóa nhiệm vụ tiếp theo nhé!';
     $('journey-count').textContent = 'Đã hoàn thành ' + scores.filter((n, i) => n === questionTotals[i]).length + '/6 nhiệm vụ';
   }
-  function type() { return mission === 5 ? [0, 1, 2, 3, 4][question] : mission; }
-  function target() { if (type() === 1) return groupQuestions[question].target; return (mission === 0 ? [7, 3, 0, 10, 5, 2, 8, 4, 9, 6] : [7, 3, 0, 10, 5])[question]; }
+  function type() { return mission === 5 ? question % 5 : mission; }
+  function target() { if (type() === 1) return groupQuestions[question].target; return coloringTargets[question]; }
   function choice(label, value, className) {
     const button = document.createElement('button'); button.type = 'button'; button.className = 'choice-button ' + (className || ''); button.textContent = label; button.setAttribute('aria-pressed', 'false');
     button.addEventListener('click', () => {
@@ -85,7 +96,7 @@
     $('group-hint-robot').hidden = t !== 1;
     if (t === 0 || t === 1) { const targetCard = document.createElement('div'); targetCard.className = 'target-number'; targetCard.textContent = n; area.append(targetCard); }
     if (t === 0) {
-      const shape = coloringShapes[question % coloringShapes.length];
+      const shape = coloringShapes[(mission === 5 ? Math.floor(question / 5) : question) % coloringShapes.length];
       $('exercise-title').textContent = 'Hãy tô màu số ' + shape.name + ' tương ứng với số:';
       $('hint').textContent = 'Bấm vào ' + shape.name + ' để tô màu. Bấm lại để bỏ màu. Đếm đủ số hình bằng số ở trên nhé!';
       selection = 0;
@@ -129,18 +140,18 @@
         ['Đếm số hình trong từng nhóm.', 'Chọn nhóm có số lượng bằng với số ở trên.', 'Sau đó bấm Kiểm tra.'].forEach(text => { const item = document.createElement('li'); item.textContent = text; steps.append(item); });
         $('hint').replaceChildren(steps);
       }
-      if (t === 2) { const start = [0, 3, 6, 8, 1][question]; const seq = document.createElement('p'); seq.className = 'number-sequence'; seq.textContent = start + '   ·   ?   ·   ' + (start + 2); area.append(seq); [start, start + 1, start + 2].forEach(v => options.append(choice(v, v))); }
-      if (t === 3) { const pairs = [[2,5],[7,3],[4,4],[0,1],[10,8]], [a,b] = pairs[question]; const seq = document.createElement('p'); seq.className = 'number-sequence'; seq.textContent = a + '   ?   ' + b; area.append(seq); ['<','=','>'].forEach(v => { const button = choice(v,v); button.setAttribute('aria-label', {'<':'Bé hơn','=':'Bằng nhau','>':'Lớn hơn'}[v]); options.append(button); }); }
-      if (t === 4) { const sets = [[3,1,2],[5,0,2],[8,6,7],[10,8,9],[4,2,3]]; sets[question].forEach(v => options.append(choice(v,v))); const result = document.createElement('p'); result.id = 'sort-answer'; result.className = 'sort-answer'; result.setAttribute('aria-live','polite'); result.textContent = '…'; area.append(result); $('instruction').textContent = 'Bấm các số theo thứ tự. Bấm lại để bỏ chọn.'; }
+      if (t === 2) { const start = missingStarts[question]; const seq = document.createElement('p'); seq.className = 'number-sequence'; seq.textContent = start + '   ·   ?   ·   ' + (start + 2); area.append(seq); [start, start + 1, start + 2].forEach(v => options.append(choice(v, v))); }
+      if (t === 3) { const [a,b] = comparisonPairs[question]; const seq = document.createElement('p'); seq.className = 'number-sequence'; seq.textContent = a + '   ?   ' + b; area.append(seq); ['<','=','>'].forEach(v => { const button = choice(v,v); button.setAttribute('aria-label', {'<':'Bé hơn','=':'Bằng nhau','>':'Lớn hơn'}[v]); options.append(button); }); }
+      if (t === 4) { sortingSets[question].forEach(v => options.append(choice(v,v))); const result = document.createElement('p'); result.id = 'sort-answer'; result.className = 'sort-answer'; result.setAttribute('aria-live','polite'); result.textContent = '…'; area.append(result); $('instruction').textContent = 'Bấm các số theo thứ tự. Bấm lại để bỏ chọn.'; }
       area.append(options);
     }
   }
   function correct() {
     switch (type()) {
       case 0: case 1: return selection === target();
-      case 2: return selection === [0,3,6,8,1][question] + 1;
-      case 3: return selection === ['<','>','=','<','>'][question];
-      case 4: return ordered.join(',') === [[1,2,3],[0,2,5],[6,7,8],[8,9,10],[2,3,4]][question].join(',');
+      case 2: return selection === missingStarts[question] + 1;
+      case 3: { const [a,b] = comparisonPairs[question]; return selection === (a < b ? '<' : a > b ? '>' : '='); }
+      case 4: return ordered.join(',') === [...sortingSets[question]].sort((a,b) => a-b).join(',');
     }
   }
   $('check').addEventListener('click', () => {
