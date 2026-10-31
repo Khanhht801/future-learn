@@ -39,3 +39,26 @@ Use case: lighting-weather / style-transfer. Edit target: the supplied existing 
 ```
 
 Kiểm tra: ảnh tải thành công, tiêu đề nằm trong banner, không tràn ngang ở 320/390/768/1024/1366/1536px và không có lỗi JavaScript trên Chromium/Playwright; đã xem bố cục desktop. Đã kiểm tra cú pháp JavaScript và Git diff.
+
+
+## Bộ hình cho nhiệm vụ chọn nhóm
+
+Tạo bằng imagegen tích hợp, nền trong suốt; tối ưu WebP 256 × 256, giữ alpha. Ngôi sao dùng lại `chibi-star.webp`. Ảnh mới: `chibi-crystal.webp`, `chibi-planet.webp`, `chibi-robot.webp`.
+
+### crystal
+
+```text
+Use case: stylized-concept. Asset type: a single isolated transparent children's educational counting game token. Premium polished chibi 2D storybook game art, soft dimensional shading, clean rounded outline, cheerful bright pastel sky-blue and warm orange website palette, clear recognizable silhouette at 64px. Front view, centered, whole object visible, equal padding, true transparent background. No lettering, no numbers, no logos, no border frame, no separate sparkles, no ground, no cast shadow. Subject: one small cluster of purple and lavender faceted crystals, one tall central pointed gem and two short side gems, glossy soft violet highlights. No face, no limbs. A single cluster counts as one object.
+```
+
+### planet
+
+```text
+Use case: stylized-concept. Asset type: a single isolated transparent children's educational counting game token. Premium polished chibi 2D storybook game art, soft dimensional shading, clean rounded outline, cheerful bright pastel sky-blue and warm orange website palette, clear recognizable silhouette at 64px. Front view, centered, whole object visible, equal padding, true transparent background. No lettering, no numbers, no logos, no border frame, no separate sparkles, no ground, no cast shadow. Subject: one cute small turquoise blue planet with mint-green land patches and a pink-lavender orbit ring tilted diagonally. Soft glossy storybook finish, no face, no limbs. One planet only.
+```
+
+### robot
+
+```text
+Use case: stylized-concept. Asset type: a single isolated transparent children's educational counting game token. Premium polished chibi 2D storybook game art, soft dimensional shading, clean rounded outline, cheerful bright pastel sky-blue and warm orange website palette, clear recognizable silhouette at 64px. Front view, centered, whole object visible, equal padding, true transparent background. No lettering, no numbers, no logos, no border frame, no separate sparkles, no ground, no cast shadow. Subject: one adorable friendly white and sky-blue chibi helper robot with a rounded rectangular head, shiny navy face screen, happy cyan curved eyes, small antenna, compact body, one hand raised with index finger pointing up in a teaching gesture. Three-quarter front view. Full body, no other objects.
+```

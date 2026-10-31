@@ -13,6 +13,18 @@
     { name: 'hình trái tim', image: './assets/chibi-heart.webp' },
     { name: 'hình vuông', image: './assets/chibi-square.webp' }
   ];
+  const groupObjects = [
+    { name: 'ngôi sao', image: './assets/chibi-star.webp' },
+    { name: 'cụm pha lê', image: './assets/chibi-crystal.webp' },
+    { name: 'hành tinh', image: './assets/chibi-planet.webp' }
+  ];
+  const groupQuestions = [
+    { target: 4, counts: [3, 4, 5] },
+    { target: 2, counts: [2, 1, 3] },
+    { target: 6, counts: [5, 7, 6] },
+    { target: 3, counts: [4, 3, 2] },
+    { target: 5, counts: [5, 6, 4] }
+  ];
   const $ = id => document.getElementById(id);
   let scores = [0, 0, 0, 0, 0, 0];
   try {
@@ -50,7 +62,7 @@
     $('journey-count').textContent = 'Đã hoàn thành ' + scores.filter((n, i) => n === questionTotals[i]).length + '/6 nhiệm vụ';
   }
   function type() { return mission === 5 ? [0, 1, 2, 3, 4][question] : mission; }
-  function target() { return (mission === 0 ? [7, 3, 0, 10, 5, 2, 8, 4, 9, 6] : [7, 3, 0, 10, 5])[question]; }
+  function target() { if (type() === 1) return groupQuestions[question].target; return (mission === 0 ? [7, 3, 0, 10, 5, 2, 8, 4, 9, 6] : [7, 3, 0, 10, 5])[question]; }
   function choice(label, value, className) {
     const button = document.createElement('button'); button.type = 'button'; button.className = 'choice-button ' + (className || ''); button.textContent = label; button.setAttribute('aria-pressed', 'false');
     button.addEventListener('click', () => {
@@ -66,8 +78,11 @@
     document.querySelector('.hint-stars').textContent = '★ ★ ★ ☆ ☆';
     $('feedback').textContent = ''; $('feedback').className = 'feedback'; $('check').textContent = 'Kiểm tra'; $('activity').replaceChildren(); $('instruction').textContent = '';
     const t = type(), n = target(), area = $('activity');
-    const heading = ['Hãy tô màu số ngôi sao tương ứng với số:', 'Nhóm nào có đúng số ngôi sao?', 'Điền số còn thiếu', 'Chọn dấu thích hợp', 'Sắp xếp các số từ bé đến lớn'];
+    const heading = ['Hãy tô màu số ngôi sao tương ứng với số:', 'Hãy chọn nhóm có số lượng tương ứng với số:', 'Điền số còn thiếu', 'Chọn dấu thích hợp', 'Sắp xếp các số từ bé đến lớn'];
     $('exercise-title').textContent = heading[t];
+    document.querySelector('.exercise-panel').classList.toggle('is-group-exercise', t === 1);
+    document.querySelector('.hint-panel').classList.toggle('is-group-hint', t === 1);
+    $('group-hint-robot').hidden = t !== 1;
     if (t === 0 || t === 1) { const targetCard = document.createElement('div'); targetCard.className = 'target-number'; targetCard.textContent = n; area.append(targetCard); }
     if (t === 0) {
       const shape = coloringShapes[question % coloringShapes.length];
@@ -94,7 +109,26 @@
       $('instruction').textContent = n === 0 ? 'Số 0 nghĩa là không có ' + shape.name + ' nào được tô màu.' : 'Chạm vào từng ' + shape.name + ' để tô màu nhé!';
     } else {
       const options = document.createElement('div'); options.className = 'answer-options';
-      if (t === 1) { [n, (n + 2) % 11, (n + 5) % 11].sort((a,b) => a-b).forEach(v => { const b = choice(v === 0 ? 'Không có ngôi sao' : '★'.repeat(v), v, 'group-choice'); b.setAttribute('aria-label', v + ' ngôi sao'); options.append(b); }); }
+      if (t === 1) {
+        options.classList.add('group-options'); options.setAttribute('role', 'group'); options.setAttribute('aria-label', 'Chọn một nhóm hình');
+        groupQuestions[question].counts.forEach((count, index) => {
+          const object = groupObjects[index];
+          const button = choice('', count, 'group-choice'); button.dataset.count = count;
+          button.setAttribute('aria-label', 'Nhóm ' + (index + 1) + ': ' + count + ' ' + object.name);
+          const pictures = document.createElement('span'); pictures.className = 'group-pictures';
+          for (let i = 0; i < count; i++) {
+            const image = document.createElement('img'); image.src = object.image; image.alt = ''; image.width = 88; image.height = 88; image.draggable = false; pictures.append(image);
+          }
+          button.append(pictures); options.append(button);
+        });
+        const example = document.querySelector('.hint-stars'); example.replaceChildren();
+        groupObjects.forEach(object => {
+          const image = document.createElement('img'); image.src = object.image; image.alt = ''; image.width = 76; image.height = 76; example.append(image);
+        });
+        const steps = document.createElement('ul'); steps.className = 'group-hint-steps';
+        ['Đếm số hình trong từng nhóm.', 'Chọn nhóm có số lượng bằng với số ở trên.', 'Sau đó bấm Kiểm tra.'].forEach(text => { const item = document.createElement('li'); item.textContent = text; steps.append(item); });
+        $('hint').replaceChildren(steps);
+      }
       if (t === 2) { const start = [0, 3, 6, 8, 1][question]; const seq = document.createElement('p'); seq.className = 'number-sequence'; seq.textContent = start + '   ·   ?   ·   ' + (start + 2); area.append(seq); [start, start + 1, start + 2].forEach(v => options.append(choice(v, v))); }
       if (t === 3) { const pairs = [[2,5],[7,3],[4,4],[0,1],[10,8]], [a,b] = pairs[question]; const seq = document.createElement('p'); seq.className = 'number-sequence'; seq.textContent = a + '   ?   ' + b; area.append(seq); ['<','=','>'].forEach(v => { const button = choice(v,v); button.setAttribute('aria-label', {'<':'Bé hơn','=':'Bằng nhau','>':'Lớn hơn'}[v]); options.append(button); }); }
       if (t === 4) { const sets = [[3,1,2],[5,0,2],[8,6,7],[10,8,9],[4,2,3]]; sets[question].forEach(v => options.append(choice(v,v))); const result = document.createElement('p'); result.id = 'sort-answer'; result.className = 'sort-answer'; result.setAttribute('aria-live','polite'); result.textContent = '…'; area.append(result); $('instruction').textContent = 'Bấm các số theo thứ tự. Bấm lại để bỏ chọn.'; }
@@ -112,7 +146,7 @@
   $('check').addEventListener('click', () => {
     if (finished) { if (mission < 5) { mission++; question = scores[mission] === questionTotals[mission] ? 0 : scores[mission]; } else { mission = 0; question = 0; } render(); $('exercise-title').focus(); return; }
     if (checked) { question++; render(); $('exercise-title').focus(); return; }
-    if (!correct()) { $('feedback').className = 'feedback'; $('feedback').textContent = selection === null && type() !== 4 ? 'Bé hãy chọn một đáp án nhé!' : 'Chưa đúng rồi. Bé xem gợi ý và thử lại nhé!'; return; }
+    if (!correct()) { $('feedback').className = 'feedback'; $('feedback').textContent = selection === null && type() !== 4 ? (type() === 1 ? 'Bé hãy chọn một nhóm hình nhé!' : 'Bé hãy chọn một đáp án nhé!') : 'Chưa đúng rồi. Bé xem gợi ý và thử lại nhé!'; return; }
     checked = true; scores[mission] = Math.max(scores[mission], question + 1); save(); renderNav(); $('feedback').className = 'feedback is-success';
     if (question === questionTotals[mission] - 1) { finished = true; $('feedback').textContent = mission === 5 ? 'Tuyệt vời! Bé đã chinh phục cả 6 nhiệm vụ Sao Thủy! 🏆' : 'Giỏi lắm! Bé đã hoàn thành nhiệm vụ này! ★'; $('check').textContent = mission === 5 ? 'Ôn tập từ đầu' : 'Nhiệm vụ tiếp theo'; }
     else { $('feedback').textContent = 'Chính xác! Bé làm tốt lắm! ★'; $('check').textContent = 'Câu tiếp theo'; }

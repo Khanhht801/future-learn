@@ -67,3 +67,10 @@ Bài tô màu dùng năm ảnh chibi nền trong suốt, tạo bằng imagegen t
 Nhiệm vụ đầu có 10 câu với 5 loại hình chibi luân phiên; các nhiệm vụ khác giữ 5 câu. Tiến độ, bộ đếm và mở khóa dùng số câu riêng của từng nhiệm vụ. Dữ liệu v1 được chuyển khi đọc: bài tô hình đã hoàn thành giữ trạng thái hoàn thành; bài đang học giữ số câu đã làm. Dữ liệu mới lưu ở `futurelearn.math.mercury.v2`.
 
 Đã kiểm tra Chromium/Playwright: đủ 10 câu, khóa đến câu cuối, tải lại sau câu 6, mở bài tiếp theo với 5 câu, chơi lại và chuyển tiến độ cũ cả trường hợp đã hoàn thành và đang học; không lỗi JavaScript. Đã chạy `node --check` và `git diff --check`.
+
+### Chọn nhóm theo hình tham chiếu
+
+- Nhiệm vụ chọn nhóm có ba thẻ hình: ngôi sao, cụm pha lê và hành tinh. Câu đầu là số 4 với ba nhóm 3/4/5 hình; các câu sau thay đổi số lượng và vị trí đáp án đúng.
+- Mỗi thẻ là một nút có nhãn đọc màn hình, hỗ trợ bàn phím và trạng thái đã chọn. Bé chọn thẻ rồi bấm Kiểm tra; phản hồi sai không cộng tiến độ. Sau khi đúng, khóa lựa chọn đến câu tiếp theo.
+- Ô gợi ý có hình minh họa, ba bước hướng dẫn và robot; giao diện được khôi phục khi chuyển sang loại bài khác. Bài chọn nhóm trong thử thách cuối dùng cùng trải nghiệm.
+- Đã kiểm tra Chromium/Playwright: ba thẻ, số hình/ảnh tải đúng, đủ năm câu, chọn duy nhất bằng bàn phím, phản hồi thiếu/sai, khóa sau khi đúng, lưu/tải lại, mở khóa và thử thách cuối. Đã kiểm tra bài tô hình 10 câu, xem ảnh desktop/mobile, kiểm tra 320/390/768/1024/1536px không tràn ngang, không lỗi JavaScript; `node --check` và `git diff --check` đạt.
