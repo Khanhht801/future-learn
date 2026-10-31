@@ -63,7 +63,10 @@
     if (element.tagName === "BUTTON") {
       element.setAttribute("aria-label", accessibleLabel + (stage.state === "current" ? ", đang học" : ", đã hoàn thành"));
       if (stage.state === "current") element.setAttribute("aria-current", "step");
-      element.addEventListener("click", function () { openLesson(lessonFor(stage.id) || data.lessons[0]); });
+      element.addEventListener("click", function () {
+        if (stage.id === "numbers") { location.href = "./mercury/"; return; }
+        openLesson(lessonFor(stage.id) || data.lessons[0]);
+      });
     } else {
       element.setAttribute("aria-label", accessibleLabel + ", chưa mở khóa");
       element.setAttribute("aria-disabled", "true");
