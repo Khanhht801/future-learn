@@ -90,7 +90,7 @@ body { background:#eff7ff; }
 .subject-nav__item.is-current { background:#e3edff; color:#1458ee; }
 .mercury-main { padding-top:calc(var(--header-height) + 18px); padding-inline:calc(var(--sidebar-width) + 20px) 20px; }
 .breadcrumbs { margin-bottom:14px; color:#314c99; font-size:15px; flex-wrap:wrap; }
-.mercury-hero { display:block; min-height:248px; padding:0; background:#657be2; border-radius:20px; margin-bottom:20px; }
+.mercury-hero { display:block; min-height:248px; padding:0; background:#d9edff; border-radius:20px; margin-bottom:20px; }
 .mercury-hero::after { content:none; }
 .mercury-hero__art { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 .mercury-hero__intro { position:absolute; left:24%; top:25%; width:24%; height:52%; display:flex; flex-direction:column; justify-content:center; gap:10px; text-align:center; color:#783808; }

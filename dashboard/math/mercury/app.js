@@ -2,7 +2,7 @@
   'use strict';
   const journeyLink = document.querySelector('.sidebar-journey--learning');
   if (journeyLink) {
-    const image = document.createElement('img'); image.src = './assets/mercury-banner.webp'; image.alt = 'Phi hành gia và robot khám phá Sao Thủy'; image.className = 'mercury-sidebar-art';
+    const image = document.createElement('img'); image.src = './assets/mercury-banner.webp?v=2'; image.alt = 'Phi hành gia và robot khám phá Sao Thủy'; image.className = 'mercury-sidebar-art';
     journeyLink.replaceChildren(image); journeyLink.href = '../#math-path';
   }
   const key = 'futurelearn.math.mercury.v1';
