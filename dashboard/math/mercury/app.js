@@ -297,10 +297,21 @@
       buttons.push(button); options.append(button);
     });
     const alternate = document.createElement('p'); alternate.className = 'sequence-alternative'; alternate.textContent = 'Bé cũng có thể chọn một số rồi bấm vào ô trống.'; area.append(alternate);
-    const example = document.querySelector('.hint-stars'); example.replaceChildren();
-    for (let i = 1; i <= 5; i++) { const number = document.createElement('span'); number.className = 'sequence-hint-number' + (i === 4 ? ' is-highlighted' : ''); number.textContent = i; example.append(number); }
+    const intro = document.createElement('p'); intro.className = 'sequence-hint-intro';
+    intro.textContent = 'Bé hãy quan sát các số đứng trước và sau ô trống nhé!';
+    const toggle = document.createElement('button'); toggle.type = 'button'; toggle.className = 'sequence-hint-toggle'; toggle.textContent = 'Xem gợi ý ›';
+    toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-controls', 'sequence-hint-detail');
+    const detail = document.createElement('p'); detail.id = 'sequence-hint-detail'; detail.className = 'sequence-hint-detail'; detail.hidden = true;
+    detail.textContent = item.blank === 0
+      ? 'Ô trống đứng ngay trước số ' + (item.start + 1) + '. Bé hãy tìm số bé hơn số đó 1 đơn vị.'
+      : 'Ô trống đứng ngay sau số ' + (answer - 1) + '. Bé hãy đếm thêm 1 để tìm số tiếp theo.';
+    toggle.addEventListener('click', () => {
+      detail.hidden = !detail.hidden;
+      toggle.setAttribute('aria-expanded', String(!detail.hidden)); toggle.textContent = detail.hidden ? 'Xem gợi ý ›' : 'Ẩn gợi ý ‹';
+    });
     const list = document.createElement('ul'); list.className = 'group-hint-steps';
-    ['Quan sát thứ tự các số trong dãy.', 'Các số tăng dần thêm 1 đơn vị.', 'Kéo số thích hợp vào ô trống. Bé sẽ biết kết quả ngay!'].forEach(text => { const li = document.createElement('li'); li.textContent = text; list.append(li); }); $('hint').replaceChildren(list);
+    ['Các số đang tăng dần, mỗi số hơn số trước 1 đơn vị.', 'Kéo số thích hợp vào ô trống để biết kết quả ngay.', 'Bấm Xem gợi ý nếu bé cần thêm trợ giúp.'].forEach(text => { const li = document.createElement('li'); li.textContent = text; list.append(li); });
+    $('hint').replaceChildren(intro, toggle, detail, list);
   }
   function correct() {
     switch (type()) {
