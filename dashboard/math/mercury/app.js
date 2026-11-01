@@ -174,7 +174,9 @@
       row.append(box);
     }
     area.append(row); options.classList.add('sequence-options'); options.setAttribute('role', 'group'); options.setAttribute('aria-label', 'Các số có thể kéo vào ô trống');
-    const values = [(answer + 8) % 11, answer, (answer + 3) % 11];
+    const values = [(answer + 8) % 11, (answer + 3) % 11];
+    const answerPosition = [0, 2, 1, 2, 0, 1, 0, 2, 1, 0][question];
+    values.splice(answerPosition, 0, answer);
     const buttons = [];
     function submit(value) {
       if (checked) return;
