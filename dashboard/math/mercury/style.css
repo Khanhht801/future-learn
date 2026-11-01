@@ -224,7 +224,6 @@ body { background:#eff7ff; }
 .sequence-drop.is-filled { border:2px solid #3a966f; background:#e8f7ef; color:#216547; opacity:1; }
 .sequence-options { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin:16px 0 14px; }
 .number-tile { display:grid; place-items:center; min-width:0; min-height:94px; padding:16px; border:1px solid #bcb1ff; border-radius:18px; background:#ece8ff; color:#11276d; font:700 48px/1 var(--font-heading); cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; }
-.number-tile:nth-child(2) { background:#e6f0ff; border-color:#98c4ff; }
 .number-tile[aria-pressed=true] { border:2px solid #2862ef; box-shadow:0 0 0 3px #2862ef18; }
 .number-tile.is-dragging { opacity:.4; }
 .number-tile:disabled { cursor:default; opacity:.55; }
