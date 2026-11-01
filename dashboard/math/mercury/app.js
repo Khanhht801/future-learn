@@ -103,7 +103,9 @@
     document.querySelector('.hint-panel').classList.toggle('is-group-hint', t === 1);
     document.querySelector('.exercise-panel').classList.toggle('is-sequence-exercise', t === 2);
     document.querySelector('.hint-panel').classList.toggle('is-sequence-hint', t === 2);
-    $('group-hint-robot').hidden = t !== 1 && t !== 2;
+    document.querySelector('.exercise-panel').classList.toggle('is-comparison-exercise', t === 3);
+    document.querySelector('.hint-panel').classList.toggle('is-comparison-hint', t === 3);
+    $('group-hint-robot').hidden = t !== 1 && t !== 2 && t !== 3;
     $('check').hidden = t === 2;
     if (t === 0 || t === 1) { const targetCard = document.createElement('div'); targetCard.className = 'target-number'; targetCard.textContent = n; area.append(targetCard); }
     if (t === 0) {
@@ -154,10 +156,44 @@
       if (t === 2) {
         renderSequence(area, options);
       }
-      if (t === 3) { const [a,b] = comparisonPairs[question]; const seq = document.createElement('p'); seq.className = 'number-sequence'; seq.textContent = a + '   ?   ' + b; area.append(seq); ['<','=','>'].forEach(v => { const button = choice(v,v); button.setAttribute('aria-label', {'<':'Bé hơn','=':'Bằng nhau','>':'Lớn hơn'}[v]); options.append(button); }); }
+      if (t === 3) renderComparison(area, options);
       if (t === 4) { sortingSets[question].forEach(v => options.append(choice(v,v))); const result = document.createElement('p'); result.id = 'sort-answer'; result.className = 'sort-answer'; result.setAttribute('aria-live','polite'); result.textContent = '…'; area.append(result); $('instruction').textContent = 'Bấm các số theo thứ tự. Bấm lại để bỏ chọn.'; }
       area.append(options);
     }
+  }
+  function renderComparison(area, options) {
+    const [a, b] = comparisonPairs[question];
+    $('exercise-title').textContent = 'Hãy so sánh hai số:';
+    $('instruction').textContent = 'Chọn dấu thích hợp rồi bấm Kiểm tra nhé!';
+    const row = document.createElement('div'); row.className = 'comparison-row';
+    row.setAttribute('role', 'group'); row.setAttribute('aria-label', 'So sánh số ' + a + ' và số ' + b);
+    const left = document.createElement('span'); left.className = 'comparison-number'; left.textContent = a;
+    const slot = document.createElement('span'); slot.className = 'comparison-slot'; slot.textContent = '?';
+    slot.setAttribute('aria-label', 'Chưa chọn dấu');
+    const right = document.createElement('span'); right.className = 'comparison-number'; right.textContent = b;
+    row.append(left, slot, right); area.append(row);
+    options.classList.add('comparison-options'); options.setAttribute('role', 'group'); options.setAttribute('aria-label', 'Chọn dấu so sánh');
+    const labels = { '>': 'Lớn hơn', '<': 'Bé hơn', '=': 'Bằng nhau' };
+    ['>', '<', '='].forEach(value => {
+      const button = choice(value, value);
+      button.setAttribute('aria-label', labels[value]);
+      button.addEventListener('click', () => {
+        if (checked) return;
+        slot.textContent = value; slot.classList.add('is-selected'); slot.setAttribute('aria-label', 'Đã chọn dấu ' + labels[value].toLowerCase());
+      });
+      options.append(button);
+    });
+    const example = document.querySelector('.hint-stars'); example.replaceChildren();
+    ['6', '<', '8'].forEach((text, index) => {
+      const part = document.createElement('span'); part.textContent = text;
+      if (index === 1) part.className = 'comparison-hint-sign';
+      example.append(part);
+    });
+    const steps = document.createElement('ul'); steps.className = 'group-hint-steps';
+    ['Quan sát hai số.', 'Chọn > nếu số bên trái lớn hơn, < nếu bé hơn, = nếu bằng nhau.', 'Ví dụ: 6 bé hơn 8 nên chọn dấu <.'].forEach(text => {
+      const item = document.createElement('li'); item.textContent = text; steps.append(item);
+    });
+    $('hint').replaceChildren(steps);
   }
   function renderSequence(area, options) {
     const item = sequenceQuestions[question], answer = item.start + item.blank;
