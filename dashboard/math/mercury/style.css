@@ -231,11 +231,12 @@ body { background:#eff7ff; }
 .number-drag-ghost { position:fixed; z-index:100; width:80px; height:80px; display:grid; place-items:center; transform:translate(-50%,-50%); pointer-events:none; background:#e7efff; color:#15357c; border:2px solid #3776ff; border-radius:18px; box-shadow:0 8px 24px #254ca33d; font:700 44px/1 var(--font-heading); }
 .sequence-alternative { order:2; margin:8px 0 0; color:var(--color-muted); font-size:14px; }
 /* So sánh số: hai thẻ số và một ô dấu, cùng bảng màu của bài dãy số. */
+.is-comparison-exercise { background:radial-gradient(ellipse at 50% 35%,#eaf5ff99,transparent 55%),#fff; }
 .is-comparison-exercise h2 { font-size:28px; margin:30px 0 10px; }
-.comparison-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr); align-items:center; gap:clamp(12px,3vw,32px); margin:28px 0 24px; padding:28px clamp(14px,2vw,30px); background:linear-gradient(145deg,#f6f5ff,#eae8ff); border:3px solid #cbc5ff; border-radius:26px; box-shadow:0 4px 0 #e9e6ff; }
-.comparison-number,.comparison-slot { display:grid; place-items:center; min-width:0; min-height:112px; border:2px solid #c3baff; border-radius:20px; color:#11276d; font:700 clamp(44px,5vw,76px)/1 var(--font-heading); }
-.comparison-number { background:#efecff; box-shadow:inset 0 2px 3px #ffffffaa; }
-.comparison-slot { background:#ffffff99; border-style:dashed; color:#a199d5; }
+.comparison-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr); align-items:center; gap:clamp(12px,3vw,32px); margin:28px 0 24px; padding:28px clamp(14px,2vw,30px); background:linear-gradient(145deg,#f5f9ff,#e5eeff); border:3px solid #afceff; border-radius:26px; box-shadow:0 4px 0 #e0ebff; }
+.comparison-number,.comparison-slot { display:grid; place-items:center; min-width:0; min-height:112px; border:2px solid #afceff; border-radius:20px; color:#11276d; font:700 clamp(44px,5vw,76px)/1 var(--font-heading); }
+.comparison-number { background:#edf4ff; box-shadow:inset 0 2px 3px #ffffffaa; }
+.comparison-slot { background:#ffffff99; border-style:dashed; color:#779bd1; }
 .comparison-slot.is-selected { color:#1458ee; background:#e6efff; border-color:#86aaff; }
 .comparison-slot { cursor:pointer; }
 .comparison-slot.is-over { border-color:#2464ff; background:#e2eeff; box-shadow:0 0 0 5px #2464ff18; }
@@ -243,8 +244,8 @@ body { background:#eff7ff; }
 .comparison-slot.is-filled { border:2px solid #3a966f; background:#e8f7ef; color:#216547; opacity:1; cursor:default; }
 .comparison-alternative { margin:0; font-size:14px; color:var(--color-muted); }
 .comparison-options { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin:28px 0 12px; }
-.comparison-options .choice-button { min-width:0; min-height:90px; padding:12px; border:2px solid #cfc8ff; background:#f0edff; color:#11276d; border-radius:20px; font:700 56px/1 var(--font-heading); }
-.comparison-options .choice-button:hover { border-color:#8c9fff; background:#e9edff; }
+.comparison-options .choice-button { min-width:0; min-height:90px; padding:12px; border:2px solid #afceff; background:#edf4ff; color:#11276d; border-radius:20px; font:700 56px/1 var(--font-heading); }
+.comparison-options .choice-button:hover { border-color:#83a8ff; background:#e5eeff; }
 .comparison-options .choice-button[aria-pressed=true] { border-color:#2862ef; background:#e5eeff; box-shadow:0 0 0 3px #2862ef18; color:#1458ee; }
 .comparison-options .choice-button:focus-visible { outline:3px solid #1460ff; outline-offset:4px; }
 .comparison-options .choice-button { cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; }
@@ -253,9 +254,9 @@ body { background:#eff7ff; }
 .comparison-options .choice-button:disabled[aria-pressed=true] { opacity:1; background:#e8f7ef; border-color:#3a966f; color:#216547; }
 .comparison-slot:focus-visible { outline:3px solid #1460ff; outline-offset:4px; }
 .is-comparison-hint { position:relative; overflow:hidden; padding-bottom:120px; }
-.is-comparison-hint .hint-stars { min-height:110px; gap:12px; background:#efecff; border:2px solid #d3cdff; border-radius:26px; color:#11276d; font:700 44px/1 var(--font-heading); }
-.comparison-hint-sign { color:#df47c7; }
-.is-comparison-hint .group-hint-steps { background:#f3f1ff; border-radius:16px; padding:12px 12px 12px 30px; line-height:1.6; }
+.is-comparison-hint .hint-stars { min-height:110px; gap:12px; background:#edf4ff; border:2px solid #c2d8ff; border-radius:26px; color:#11276d; font:700 44px/1 var(--font-heading); }
+.comparison-hint-sign { color:var(--color-primary); }
+.is-comparison-hint .group-hint-steps { background:#f1f7ff; border-radius:16px; padding:12px 12px 12px 30px; line-height:1.6; }
 @media(max-width:700px) {
   .is-comparison-exercise h2 { font-size:24px; }
   .comparison-row { gap:10px; padding:20px 12px; border-radius:20px; }
