@@ -106,7 +106,7 @@
     document.querySelector('.exercise-panel').classList.toggle('is-comparison-exercise', t === 3);
     document.querySelector('.hint-panel').classList.toggle('is-comparison-hint', t === 3);
     $('group-hint-robot').hidden = t !== 1 && t !== 2 && t !== 3;
-    $('check').hidden = t === 2;
+    $('check').hidden = t === 2 || t === 3;
     if (t === 0 || t === 1) { const targetCard = document.createElement('div'); targetCard.className = 'target-number'; targetCard.textContent = n; area.append(targetCard); }
     if (t === 0) {
       const shape = coloringShapes[(mission === 5 ? Math.floor(question / 5) : question) % coloringShapes.length];
@@ -161,28 +161,86 @@
       area.append(options);
     }
   }
+  function attachDragChoice(button, value, drop, buttons, submit, prompt) {
+      let pointer = null, ghost = null, moved = false, suppressClick = false, originX = 0, originY = 0;
+      const cleanup = () => {
+        if (ghost) ghost.remove(); ghost = null; drop.classList.remove('is-over'); button.classList.remove('is-dragging');
+        const id = pointer; pointer = null;
+        if (id !== null && button.hasPointerCapture(id)) button.releasePointerCapture(id);
+        if (cancelNumberDrag === cleanup) cancelNumberDrag = null;
+      };
+      const inside = event => { const rect = drop.getBoundingClientRect(); return event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom; };
+      button.addEventListener('pointerdown', event => {
+        if (checked || !event.isPrimary || event.button !== 0) return;
+        if (cancelNumberDrag) cancelNumberDrag();
+        suppressClick = false; moved = false; pointer = event.pointerId; originX = event.clientX; originY = event.clientY;
+        button.setPointerCapture(pointer); cancelNumberDrag = cleanup;
+      });
+      button.addEventListener('pointermove', event => {
+        if (event.pointerId !== pointer) return;
+        if (!moved && Math.hypot(event.clientX - originX, event.clientY - originY) < 6) return;
+        moved = true;
+        if (!ghost) { ghost = document.createElement('div'); ghost.className = 'number-drag-ghost'; ghost.textContent = value; ghost.setAttribute('aria-hidden', 'true'); document.body.append(ghost); button.classList.add('is-dragging'); }
+        ghost.style.left = event.clientX + 'px'; ghost.style.top = event.clientY + 'px'; drop.classList.toggle('is-over', inside(event));
+      });
+      button.addEventListener('pointerup', event => {
+        if (event.pointerId !== pointer) return;
+        const dropped = moved && inside(event); suppressClick = moved; cleanup();
+        if (moved) setTimeout(() => { suppressClick = false; }, 0);
+        if (dropped) submit(value);
+      });
+      button.addEventListener('pointercancel', () => { suppressClick = true; cleanup(); });
+      button.addEventListener('lostpointercapture', cleanup);
+      button.addEventListener('click', () => {
+        if (suppressClick) { suppressClick = false; return; }
+        if (checked) return;
+        selection = value; buttons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+        drop.classList.remove('is-wrong'); $('feedback').textContent = prompt;
+      });
+  }
   function renderComparison(area, options) {
     const [a, b] = comparisonPairs[question];
     $('exercise-title').textContent = 'Hãy so sánh hai số:';
-    $('instruction').textContent = 'Chọn dấu thích hợp rồi bấm Kiểm tra nhé!';
+    $('instruction').textContent = 'Kéo dấu thích hợp vào ô trống nhé!';
     const row = document.createElement('div'); row.className = 'comparison-row';
     row.setAttribute('role', 'group'); row.setAttribute('aria-label', 'So sánh số ' + a + ' và số ' + b);
     const left = document.createElement('span'); left.className = 'comparison-number'; left.textContent = a;
-    const slot = document.createElement('span'); slot.className = 'comparison-slot'; slot.textContent = '?';
-    slot.setAttribute('aria-label', 'Chưa chọn dấu');
+    const slot = document.createElement('button'); slot.type = 'button'; slot.className = 'comparison-slot'; slot.textContent = '?';
+    slot.setAttribute('aria-label', 'Ô trống. Chọn một dấu rồi nhấn vào đây để điền.');
     const right = document.createElement('span'); right.className = 'comparison-number'; right.textContent = b;
     row.append(left, slot, right); area.append(row);
     options.classList.add('comparison-options'); options.setAttribute('role', 'group'); options.setAttribute('aria-label', 'Chọn dấu so sánh');
     const labels = { '>': 'Lớn hơn', '<': 'Bé hơn', '=': 'Bằng nhau' };
-    ['>', '<', '='].forEach(value => {
-      const button = choice(value, value);
-      button.setAttribute('aria-label', labels[value]);
-      button.addEventListener('click', () => {
-        if (checked) return;
-        slot.textContent = value; slot.classList.add('is-selected'); slot.setAttribute('aria-label', 'Đã chọn dấu ' + labels[value].toLowerCase());
-      });
-      options.append(button);
+    const buttons = [];
+    const answer = a < b ? '<' : a > b ? '>' : '=';
+    function submit(value) {
+      if (checked) return;
+      selection = value; slot.textContent = value;
+      slot.classList.remove('is-over', 'is-wrong');
+      if (value !== answer) {
+        slot.classList.add('is-wrong');
+        slot.setAttribute('aria-label', 'Dấu ' + labels[value].toLowerCase() + ' chưa đúng. Bé thử lại nhé!');
+        $('feedback').className = 'feedback'; $('feedback').textContent = 'Chưa đúng rồi. Bé so sánh hai số và thử lại nhé!';
+        buttons.forEach(button => button.setAttribute('aria-pressed', 'false')); selection = null;
+        return;
+      }
+      slot.classList.add('is-filled'); slot.disabled = true;
+      slot.setAttribute('aria-label', 'Đã điền đúng dấu ' + labels[value].toLowerCase());
+      buttons.forEach(button => { button.disabled = true; button.setAttribute('aria-pressed', String(button.textContent === value)); });
+      acceptAnswer(); $('check').focus({ preventScroll: true });
+    }
+    slot.addEventListener('click', () => {
+      if (selection === null) { $('feedback').textContent = 'Bé chọn một dấu rồi bấm vào ô trống nhé!'; return; }
+      submit(selection);
     });
+    ['>', '<', '='].forEach(value => {
+      const button = document.createElement('button'); button.type = 'button'; button.className = 'choice-button'; button.textContent = value;
+      button.setAttribute('aria-pressed', 'false');
+      button.setAttribute('aria-label', labels[value] + '. Kéo vào ô trống hoặc nhấn để chọn.');
+      attachDragChoice(button, value, slot, buttons, submit, 'Bấm vào ô trống để điền dấu đã chọn.');
+      buttons.push(button); options.append(button);
+    });
+    const alternate = document.createElement('p'); alternate.className = 'comparison-alternative'; alternate.textContent = 'Bé cũng có thể chọn một dấu rồi bấm vào ô trống.'; area.append(alternate);
     const example = document.querySelector('.hint-stars'); example.replaceChildren();
     ['6', '<', '8'].forEach((text, index) => {
       const part = document.createElement('span'); part.textContent = text;
@@ -235,41 +293,7 @@
     values.forEach(value => {
       const button = document.createElement('button'); button.type = 'button'; button.className = 'number-tile'; button.textContent = value; button.setAttribute('aria-pressed', 'false');
       button.setAttribute('aria-label', 'Số ' + value + '. Kéo vào ô trống hoặc nhấn để chọn.');
-      let pointer = null, ghost = null, moved = false, suppressClick = false, originX = 0, originY = 0;
-      const cleanup = () => {
-        if (ghost) ghost.remove(); ghost = null; drop.classList.remove('is-over'); button.classList.remove('is-dragging');
-        const id = pointer; pointer = null;
-        if (id !== null && button.hasPointerCapture(id)) button.releasePointerCapture(id);
-        if (cancelNumberDrag === cleanup) cancelNumberDrag = null;
-      };
-      const inside = event => { const rect = drop.getBoundingClientRect(); return event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom; };
-      button.addEventListener('pointerdown', event => {
-        if (checked || !event.isPrimary || event.button !== 0) return;
-        if (cancelNumberDrag) cancelNumberDrag();
-        suppressClick = false; moved = false; pointer = event.pointerId; originX = event.clientX; originY = event.clientY;
-        button.setPointerCapture(pointer); cancelNumberDrag = cleanup;
-      });
-      button.addEventListener('pointermove', event => {
-        if (event.pointerId !== pointer) return;
-        if (!moved && Math.hypot(event.clientX - originX, event.clientY - originY) < 6) return;
-        moved = true;
-        if (!ghost) { ghost = document.createElement('div'); ghost.className = 'number-drag-ghost'; ghost.textContent = value; ghost.setAttribute('aria-hidden', 'true'); document.body.append(ghost); button.classList.add('is-dragging'); }
-        ghost.style.left = event.clientX + 'px'; ghost.style.top = event.clientY + 'px'; drop.classList.toggle('is-over', inside(event));
-      });
-      button.addEventListener('pointerup', event => {
-        if (event.pointerId !== pointer) return;
-        const dropped = moved && inside(event); suppressClick = moved; cleanup();
-        if (moved) setTimeout(() => { suppressClick = false; }, 0);
-        if (dropped) submit(value);
-      });
-      button.addEventListener('pointercancel', () => { suppressClick = true; cleanup(); });
-      button.addEventListener('lostpointercapture', cleanup);
-      button.addEventListener('click', () => {
-        if (suppressClick) { suppressClick = false; return; }
-        if (checked) return;
-        selection = value; buttons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
-        drop.classList.remove('is-wrong'); $('feedback').textContent = 'Bấm vào ô trống để điền số đã chọn.';
-      });
+      attachDragChoice(button, value, drop, buttons, submit, 'Bấm vào ô trống để điền số đã chọn.');
       buttons.push(button); options.append(button);
     });
     const alternate = document.createElement('p'); alternate.className = 'sequence-alternative'; alternate.textContent = 'Bé cũng có thể chọn một số rồi bấm vào ô trống.'; area.append(alternate);
