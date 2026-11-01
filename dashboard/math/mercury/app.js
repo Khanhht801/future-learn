@@ -241,17 +241,23 @@
       buttons.push(button); options.append(button);
     });
     const alternate = document.createElement('p'); alternate.className = 'comparison-alternative'; alternate.textContent = 'Bé cũng có thể chọn một dấu rồi bấm vào ô trống.'; area.append(alternate);
-    const example = document.querySelector('.hint-stars'); example.replaceChildren();
-    ['6', '<', '8'].forEach((text, index) => {
-      const part = document.createElement('span'); part.textContent = text;
-      if (index === 1) part.className = 'comparison-hint-sign';
-      example.append(part);
+    const intro = document.createElement('p'); intro.className = 'comparison-hint-intro';
+    intro.textContent = 'Bé hãy quan sát số bên trái và số bên phải rồi chọn dấu thích hợp nhé!';
+    const toggle = document.createElement('button'); toggle.type = 'button'; toggle.className = 'comparison-hint-toggle'; toggle.textContent = 'Xem gợi ý ›';
+    toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-controls', 'comparison-hint-detail');
+    const detail = document.createElement('p'); detail.id = 'comparison-hint-detail'; detail.className = 'comparison-hint-detail'; detail.hidden = true;
+    detail.textContent = a === b
+      ? 'Hai số đều là ' + a + '. Khi hai số bằng nhau, bé dùng dấu = nhé!'
+      : 'Số ' + a + (a < b ? ' bé hơn ' : ' lớn hơn ') + b + '. Miệng rộng của dấu luôn quay về phía số lớn hơn nhé!';
+    toggle.addEventListener('click', () => {
+      detail.hidden = !detail.hidden;
+      toggle.setAttribute('aria-expanded', String(!detail.hidden)); toggle.textContent = detail.hidden ? 'Xem gợi ý ›' : 'Ẩn gợi ý ‹';
     });
     const steps = document.createElement('ul'); steps.className = 'group-hint-steps';
-    ['Quan sát hai số.', 'Chọn > nếu số bên trái lớn hơn, < nếu bé hơn, = nếu bằng nhau.', 'Ví dụ: 6 bé hơn 8 nên chọn dấu <.'].forEach(text => {
+    ['Chọn > nếu số bên trái lớn hơn, < nếu bé hơn, = nếu bằng nhau.', 'Kéo dấu thích hợp vào ô trống để biết kết quả ngay.', 'Bấm Xem gợi ý nếu bé cần thêm trợ giúp.'].forEach(text => {
       const item = document.createElement('li'); item.textContent = text; steps.append(item);
     });
-    $('hint').replaceChildren(steps);
+    $('hint').replaceChildren(intro, toggle, detail, steps);
   }
   function renderSequence(area, options) {
     const item = sequenceQuestions[question], answer = item.start + item.blank;

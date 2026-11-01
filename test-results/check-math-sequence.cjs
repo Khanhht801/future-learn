@@ -50,7 +50,7 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4175';
     }
     assert.equal(await page.locator('.is-sequence-hint').count(), 0);
     assert.equal(await page.locator('.sequence-hint-toggle').count(), 0);
-    assert.equal(await page.locator('.is-comparison-hint .hint-stars').isVisible(), true);
+    assert.equal(await page.locator('.comparison-hint-toggle').isVisible(), true);
     assert.deepEqual(errors, []);
     console.log('Passed: 10 sequences, mouse drag, wrong retry, contextual hints including first/last blank, keyboard toggle/reset, mission switch, 320–1536px, no JS errors.');
   } finally { await browser.close(); }
