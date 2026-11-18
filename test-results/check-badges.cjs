@@ -83,6 +83,7 @@ const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
     const second = await context.newPage();
     track(second);
     await second.goto(base + '/dashboard/badges/');
+    await second.locator('[data-earned-count]').waitFor();
     await page.evaluate(() => localStorage.setItem('futurelearn-demo-badges-v1', '[]'));
     await second.waitForFunction(() => document.querySelector('[data-earned-count]').textContent === '2');
     assert.equal(await second.locator('.is-celebrating').count(), 0);
@@ -91,6 +92,7 @@ const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
     for (const width of [320, 390, 768, 900, 1448]) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto(base + '/dashboard/badges/');
+      await page.locator('.badge-card').first().waitFor();
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'Overflow at ' + width);
       for (const selector of ['.sidebar', '#mobile-drawer', '.bottom-nav']) {
         assert.equal(await page.locator(selector + ' [aria-current="page"]').count(), 1);
@@ -151,6 +153,7 @@ const screenshotDirectory = process.env.SCREENSHOT_DIR || __dirname;
     await page.goto(base + '/dashboard/badges/');
     await page.evaluate(() => localStorage.setItem('futurelearn-demo-badges-v1', '{broken'));
     await page.reload();
+    await page.locator('.badge-card').first().waitFor();
     assert.equal(await page.locator('.badge-card').count(), 6);
     assert.equal(await page.locator('[data-earned-count]').textContent(), '2');
     await page.evaluate(() => localStorage.setItem('futurelearn-demo-badges-v1', '["explorer","unknown","first-steps"]'));

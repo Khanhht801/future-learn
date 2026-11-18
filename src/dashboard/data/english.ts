@@ -1,6 +1,6 @@
 /* Presentation fixtures only. Replace this object with account/API data when
    the learning service exists. Opening a preview never changes these values. */
-window.englishDashboardData = {
+export const data = {
   isDemo: true,
   stars: 120,
   wordsLearned: 24,
@@ -14,7 +14,12 @@ window.englishDashboardData = {
       image: "./assets/topic-animals.webp",
       completed: 6,
       total: 10,
-      words: ["Cat · Con mèo", "Dog · Con chó", "Bird · Con chim", "Fish · Con cá"]
+      words: [
+        "Cat · Con mèo",
+        "Dog · Con chó",
+        "Bird · Con chim",
+        "Fish · Con cá",
+      ],
     },
     {
       id: "fruit",
@@ -23,7 +28,12 @@ window.englishDashboardData = {
       image: "./assets/topic-fruit.webp",
       completed: 3,
       total: 10,
-      words: ["Apple · Quả táo", "Banana · Quả chuối", "Orange · Quả cam", "Grape · Quả nho"]
+      words: [
+        "Apple · Quả táo",
+        "Banana · Quả chuối",
+        "Orange · Quả cam",
+        "Grape · Quả nho",
+      ],
     },
     {
       id: "colors",
@@ -32,7 +42,12 @@ window.englishDashboardData = {
       image: "./assets/topic-colors.webp",
       completed: 0,
       total: 10,
-      words: ["Red · Màu đỏ", "Yellow · Màu vàng", "Blue · Màu xanh dương", "Green · Màu xanh lá"]
-    }
-  ]
+      words: [
+        "Red · Màu đỏ",
+        "Yellow · Màu vàng",
+        "Blue · Màu xanh dương",
+        "Green · Màu xanh lá",
+      ],
+    },
+  ],
 };

@@ -1,6 +1,6 @@
 ﻿# Chi tiết Đảo tiếng Anh – Động vật
 
-Trang: `dashboard/english/animals/index.html`. Từ Đảo tiếng Anh, chọn Động vật hoặc Tiếp tục học.
+Trang: `/dashboard/english/animals/`. Component React dùng chung với Trái cây/Màu sắc tại `src/dashboard/pages/VocabularyPage.tsx`; hook `Vocabulary.tsx`, dữ liệu `src/dashboard/data/animals.ts` và bộ lưu trữ `src/dashboard/lib/progress.ts`. Chạy bằng `npm run dev`. Xem [kiến trúc và kiểm tra React](../../README.md).
 
 ## Công việc đã triển khai
 
@@ -29,7 +29,7 @@ Trang: `dashboard/english/animals/index.html`. Từ Đảo tiếng Anh, chọn �
 
 Mở/chọn thẻ và quay lại chỉ thay đổi `current`. Bấm “Tiếp theo” thêm ID hiện tại nếu chưa tồn tại, sau đó chuyển từ. Từ cuối dẫn về từ chưa học nếu còn thiếu. Đủ 10 ID thì mở các bước sau và ghi nhận thưởng; học lại không cộng trùng. Tiến độ = số ID duy nhất / 10, độc lập vị trí thẻ. Dữ liệu hỏng được khôi phục về trạng thái mới, ID không hợp lệ bị loại. Nếu trình duyệt chặn lưu, có thông báo và vẫn học được trong phiên.
 
-Dữ liệu này chỉ ghi nhận bé đã xác nhận xem từ, không khẳng định đã thuộc. Điểm luyện tập/kiểm tra chỉ có trong lượt hiện tại. Sao bài học chưa tích hợp ví sao chung hoặc tài khoản; dashboard khác vẫn dùng fixture minh họa. Xóa dữ liệu trình duyệt sẽ xóa tiến độ. Chưa có đồng bộ giữa thiết bị/tab; cần backend khi triển khai tài khoản thật.
+Dữ liệu này chỉ ghi nhận bé đã xác nhận xem từ, không khẳng định đã thuộc. Điểm luyện tập/kiểm tra được lưu trong trường `results` cùng thời điểm hoàn thành. Sao bài học chưa tích hợp ví sao chung hoặc tài khoản; dashboard khác vẫn dùng fixture minh họa. Xóa dữ liệu trình duyệt sẽ xóa tiến độ. Có cập nhật giữa các tab qua sự kiện storage; chưa đồng bộ giữa thiết bị, cần backend khi triển khai tài khoản thật.
 
 ## Cách đơn giản để phát âm
 

@@ -1,0 +1,28 @@
+/* Presentation fixtures only. Opening a page never awards points or completes tasks.
+   Subject progress comes from the existing math and English data sources. */
+export const data = {
+  isDemo: true,
+  learner: { name: "An", initials: "AN" },
+  streakDays: 3,
+  resumeSubject: "math",
+  tasks: [
+    {
+      id: "addition",
+      title: "Luyện 5 phép cộng",
+      subject: "math",
+      completed: true,
+    },
+    {
+      id: "vocabulary",
+      title: "Học 5 từ mới",
+      subject: "english",
+      completed: true,
+    },
+    {
+      id: "badges",
+      title: "Khám phá bộ sưu tập huy hiệu",
+      subject: "badges",
+      completed: false,
+    },
+  ],
+};

@@ -2,9 +2,7 @@
 
 Trang học Toán độc lập tại `/dashboard/math/`, dùng chung hệ màu, typography, header và sidebar với dashboard English.
 
-Khung giao diện và hành vi menu nằm trong `../shared/layout.css` và
-`../shared/layout.js`. `style.css` và `app.js` tại đây chỉ chứa phần riêng của
-môn Toán. Xem [hướng dẫn layout](../README.md).
+Khung giao diện dùng `src/dashboard/components/DashboardLayout.tsx` và `shared/layout.css`. `src/dashboard/pages/MathPage.tsx` chia banner, hành trình, thử thách và mục tiêu; `Math.tsx` quản lý state. Sao Thủy dùng `MercuryPage.tsx`, `Mercury.tsx` và các component bài tập trong `MercuryActivities.tsx`. Chạy bằng `npm run dev`; CSS riêng vẫn ở `style.css`. Xem [hướng dẫn layout](../README.md).
 
 ## Nội dung
 
@@ -21,7 +19,7 @@ môn Toán. Xem [hướng dẫn layout](../README.md).
 - Trên desktop, thử thách nằm cạnh lộ trình và nhóm bài; “Mục tiêu hôm nay”
   cùng hàng, cùng chiều cao với “Tiếp tục hành trình”. Tablet dùng thử thách
   dạng ngang; màn hình hẹp xếp các phần thành một cột.
-- `demo-data.js` là dữ liệu minh họa; thao tác xem trước không thay đổi tiến độ hoặc điểm sao.
+- `src/dashboard/data/math.ts` là dữ liệu minh họa; thao tác xem trước không thay đổi tiến độ hoặc điểm sao.
 
 ## Minh họa
 

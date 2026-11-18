@@ -1,10 +1,8 @@
 # Đảo tiếng Anh
 
-Trang học tập độc lập tại `/dashboard/english/`, chạy trên static server từ thư mục gốc dự án. Không cần cài dependency hoặc build.
+Trang React tại `/dashboard/english/`. Chạy `npm run dev` từ thư mục gốc; dùng `npm run build` và `npm run preview` để kiểm tra bản production.
 
-Header, sidebar và menu mobile dùng chung với các môn khác qua
-`../shared/layout.css` và `../shared/layout.js`. `style.css` và `app.js` tại đây
-chỉ chứa phần riêng của tiếng Anh. Xem [hướng dẫn layout](../README.md).
+Header, sidebar và menu mobile dùng chung qua `src/dashboard/components/DashboardLayout.tsx` và `shared/layout.css`. `src/dashboard/pages/EnglishPage.tsx` chia giao diện theo section, `English.tsx` quản lý state và danh sách chủ đề. CSS riêng vẫn ở `style.css`. Xem [hướng dẫn layout](../README.md).
 
 ## Phase 2
 
@@ -17,9 +15,9 @@ chỉ chứa phần riêng của tiếng Anh. Xem [hướng dẫn layout](../REA
 
 ## Dữ liệu
 
-`demo-data.js` cung cấp dữ liệu mẫu cho 120 sao, 24 từ và mục tiêu 2/3. Tiến độ Động vật, Trái cây và Màu sắc lấy từ localStorage riêng của mỗi chủ đề; bài học lưu từ đã học và kết quả luyện tập, kiểm tra trên trình duyệt. Các số liệu tổng hợp vẫn là dữ liệu mẫu, chưa kết nối API.
+`src/dashboard/data/english.ts` cung cấp dữ liệu mẫu cho 120 sao, 24 từ và mục tiêu 2/3. Tiến độ Động vật, Trái cây và Màu sắc lấy từ localStorage riêng của mỗi chủ đề; bài học lưu từ đã học và kết quả luyện tập, kiểm tra trên trình duyệt. Các số liệu tổng hợp vẫn là dữ liệu mẫu, chưa kết nối API.
 
-Khi có API, thay `window.englishDashboardData` theo cùng cấu trúc và đặt `isDemo: false` chỉ khi dữ liệu thực đã được kết nối. `resumeTopicId` xác định chủ đề mà nút “Tiếp tục học” mở.
+Khi có API, thay nguồn fixture trong hook `src/dashboard/pages/English.tsx` và đặt `isDemo: false` chỉ khi dữ liệu thực đã được kết nối. `resumeTopicId` xác định chủ đề mà nút “Tiếp tục học” mở.
 
 ## Minh họa
 

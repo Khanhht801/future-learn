@@ -8,4 +8,4 @@ Dùng chung giao diện và logic với Động vật: phát âm en-US, học t�
 
 Tiến độ, phần thưởng và kết quả lưu riêng trong `futurelearn.english.colors.v1`, cập nhật về thẻ Màu sắc trên Đảo tiếng Anh. Không thay đổi tiến độ Động vật hoặc Trái cây. Phát âm dùng Speech Synthesis; số sao và số từ tổng hợp trên đảo vẫn là dữ liệu mẫu.
 
-Kiểm tra trình duyệt: `node test-results/check-english-colors.cjs` (cần Playwright và static server, mặc định cổng 4175). Có thể chỉ định `PLAYWRIGHT_MODULE` và `BASE_URL`.
+Component dùng chung: `src/dashboard/pages/VocabularyPage.tsx` / `Vocabulary.tsx`; dữ liệu: `src/dashboard/data/colors.ts`. Chạy `npm run dev`; kiểm tra bản build bằng `node scripts/check-dashboard.cjs` với preview cổng 4175. Có thể chỉ định `PLAYWRIGHT_MODULE` và `BASE_URL`.

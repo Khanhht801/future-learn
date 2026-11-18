@@ -1,6 +1,6 @@
 ﻿# FutureLearn
 
-Landing page chạy bằng React, TypeScript và Vite. Các trang học trong `dashboard/` vẫn là trang tĩnh và được sao chép cùng tài nguyên vào bản build.
+Landing page và toàn bộ dashboard chạy bằng React, TypeScript và Vite. Dashboard có 9 entry HTML để giữ các đường dẫn hiện tại; Vite build từng entry và tải riêng component của mỗi trang. Xem [cấu trúc dashboard](dashboard/README.md).
 
 ```sh
 npm install
