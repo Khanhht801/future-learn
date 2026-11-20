@@ -20,7 +20,7 @@ describe('account dialog', () => {
     expect(screen.getByRole('status').textContent).toContain('chưa khớp');
     fireEvent.change(screen.getByLabelText('Xác nhận mật khẩu'), { target: { value: 'password123' } });
     fireEvent.submit(screen.getByRole('button', { name: 'Tạo tài khoản' }).closest('form')!);
-    expect((await screen.findByRole('status')).textContent).toContain('kiểm tra email');
+    expect((await screen.findByRole('status')).textContent).toBe('Hãy kiểm tra hộp thư email để xác nhận đăng ký tài khoản.');
     expect(auth.signUp).toHaveBeenCalledWith({ email: 'an@example.com', password: 'password123', options: { data: { full_name: 'An Nguyen' } } });
   });
 

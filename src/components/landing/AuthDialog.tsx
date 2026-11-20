@@ -54,7 +54,7 @@ export function AuthDialog({ onClose }: { onClose: () => void }) {
     try {
       if (mode === 'register') {
         const { error } = await supabase.auth.signUp({ email, password, options: { data: { full_name: String(data.get('name') ?? '').trim() } } });
-        setMessage(error ? 'Không thể đăng ký. Vui lòng kiểm tra thông tin và thử lại.' : 'Nếu có thể đăng ký, hãy kiểm tra email để xác nhận tài khoản.');
+        setMessage(error ? 'Không thể đăng ký. Vui lòng kiểm tra thông tin và thử lại.' : 'Hãy kiểm tra hộp thư email để xác nhận đăng ký tài khoản.');
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) setMessage('Không thể đăng nhập. Hãy kiểm tra email, mật khẩu và xác nhận email.');
