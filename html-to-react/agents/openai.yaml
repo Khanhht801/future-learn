@@ -1,0 +1,4 @@
+interface:
+  display_name: "HTML to React"
+  short_description: "Preserve HTML layouts with Tailwind or CSS Modules"
+  default_prompt: "Use $html-to-react to convert the supplied HTML into React, preserving the original layout, responsive behavior, assets, and interactions with Tailwind CSS or CSS Modules."
