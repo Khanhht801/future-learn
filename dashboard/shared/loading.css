@@ -1,0 +1,194 @@
+/* Critical placeholders are inlined into every dashboard document before JS loads. */
+.dashboard-skeleton {
+  min-height: 100vh;
+  color: var(--color-muted, #61708f);
+}
+.dashboard-skeleton > .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.dashboard-skeleton__header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height, 74px);
+  padding-inline: 24px;
+  background: #fff;
+  border-bottom: 1px solid #dce4f1;
+}
+.dashboard-skeleton__shape {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #eaf0f7;
+}
+.dashboard-skeleton__shape::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 25%,
+    #ffffffa6 50%,
+    transparent 75%
+  );
+  transform: translateX(-100%);
+  animation: dashboard-skeleton-shimmer 1.6s ease-in-out infinite;
+  content: "";
+}
+.dashboard-skeleton__brand {
+  width: 190px;
+  height: 34px;
+}
+.dashboard-skeleton__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+.dashboard-skeleton__sidebar {
+  position: fixed;
+  inset: var(--header-height, 74px) auto 0 0;
+  width: var(--sidebar-width, 248px);
+  padding: 22px 14px;
+  border-right: 1px solid #dce4f1;
+  background: #fff;
+}
+.dashboard-skeleton__nav {
+  height: 48px;
+  margin-bottom: 12px;
+}
+.dashboard-skeleton__heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.dashboard-skeleton__title {
+  width: 260px;
+  max-width: 80%;
+  height: 32px;
+}
+.dashboard-skeleton__subtitle {
+  width: 340px;
+  max-width: 95%;
+  height: 16px;
+}
+.dashboard-skeleton__hero {
+  height: clamp(180px, 18vw, 250px);
+  margin-bottom: 22px;
+  border-radius: 24px;
+}
+.dashboard-skeleton__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.85fr;
+  gap: 20px;
+}
+.dashboard-skeleton__card {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid #dce4f1;
+  border-radius: 24px;
+  background: #fff;
+}
+.dashboard-skeleton__picture {
+  height: 160px;
+  margin-bottom: 22px;
+  border-radius: 16px;
+}
+.dashboard-skeleton__line {
+  width: 85%;
+  height: 20px;
+  margin-bottom: 16px;
+}
+.dashboard-skeleton__line--short {
+  width: 65%;
+  height: 14px;
+}
+.dashboard-skeleton__progress {
+  height: 12px;
+  margin-block: 30px 8px;
+  border-radius: 20px;
+}
+.dashboard-skeleton__ring {
+  width: 130px;
+  height: 130px;
+  margin: 28px auto;
+  border-radius: 50%;
+}
+[data-dashboard-loading="home"] .dashboard-skeleton__heading {
+  display: none;
+}
+[data-dashboard-loading="lesson"] .dashboard-skeleton__hero,
+[data-dashboard-loading="parents"] .dashboard-skeleton__hero {
+  display: none;
+}
+[data-dashboard-loading="lesson"] .dashboard-skeleton__grid {
+  grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
+}
+[data-dashboard-loading="lesson"]
+  .dashboard-skeleton__card:first-child
+  .dashboard-skeleton__picture {
+  height: 290px;
+}
+[data-dashboard-loading="lesson"] .dashboard-skeleton__card:nth-child(2) {
+  display: none;
+}
+[data-dashboard-loading="parents"] .dashboard-skeleton__grid {
+  grid-template-columns: 1fr 1fr;
+}
+[data-dashboard-loading="parents"] .dashboard-skeleton__summary {
+  grid-column: 1 / -1;
+}
+@keyframes dashboard-skeleton-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+@media (max-width: 1023.98px) {
+  .dashboard-skeleton__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .dashboard-skeleton__summary {
+    grid-column: 1 / -1;
+  }
+  [data-dashboard-loading="lesson"] .dashboard-skeleton__summary {
+    grid-column: auto;
+  }
+}
+@media (max-width: 767.98px) {
+  .dashboard-skeleton__header {
+    padding-inline: 16px;
+  }
+  .dashboard-skeleton__brand {
+    width: 145px;
+    height: 28px;
+  }
+  .dashboard-skeleton__sidebar {
+    display: none;
+  }
+  .dashboard-skeleton__grid,
+  [data-dashboard-loading="lesson"] .dashboard-skeleton__grid,
+  [data-dashboard-loading="parents"] .dashboard-skeleton__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .dashboard-skeleton__summary {
+    grid-column: auto;
+  }
+  .dashboard-skeleton__hero {
+    height: 180px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-skeleton__shape::after {
+    animation: none;
+    background: none;
+  }
+}

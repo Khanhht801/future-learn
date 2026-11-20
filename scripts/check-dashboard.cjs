@@ -33,9 +33,9 @@ const screenshotDir = process.env.SCREENSHOT_DIR;
   const page = await context.newPage();
   track(page);
   async function open(route) {
-    await page.goto(base + "/dashboard/" + route);
+    await page.goto(base + "/dashboard/" + route, { waitUntil: "domcontentloaded" });
     await page.locator("main").waitFor();
-    await page.evaluate(() => document.fonts.ready);
+    // Content is usable before optional web fonts and images finish downloading.
   }
   async function noOverflow() {
     assert(
@@ -286,7 +286,7 @@ const screenshotDir = process.env.SCREENSHOT_DIR;
         topic,
       );
       assert.equal(saved.results.practice.score, 9);
-      await page.reload();
+      await page.reload({ waitUntil: "domcontentloaded" });
       await page.locator("[data-ring-count]").waitFor();
       assert.equal(
         await page.locator("[data-ring-count]").textContent(),
@@ -486,7 +486,7 @@ const screenshotDir = process.env.SCREENSHOT_DIR;
       ),
       [10, 10, 10, 10, 10, 10],
     );
-    await page.reload();
+    await page.reload({ waitUntil: "domcontentloaded" });
     await page.locator(".mission-button").first().waitFor();
     assert.equal(await page.locator(".mission-button:disabled").count(), 0);
     console.log(
@@ -500,7 +500,7 @@ const screenshotDir = process.env.SCREENSHOT_DIR;
       });
       await route.fulfill({ response });
     });
-    await page.goto(base + "/preview/dashboard/badges/");
+    await page.goto(base + "/preview/dashboard/badges/", { waitUntil: "domcontentloaded" });
     await page.locator(".badge-card").first().waitFor();
     assert.equal(
       new URL(

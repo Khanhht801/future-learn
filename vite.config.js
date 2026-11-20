@@ -1,5 +1,6 @@
 ﻿import { defineConfig } from 'vite';
 import { cpSync, mkdirSync, readdirSync } from 'node:fs';
+import { dashboardLoading } from './build/dashboard-loading.js';
 
 export default defineConfig({
   base: './',
@@ -11,7 +12,7 @@ export default defineConfig({
         .map(path => `dashboard/${path.replaceAll('\\', '/')}`)],
     },
   },
-  plugins: [{
+  plugins: [dashboardLoading(), {
     name: 'copy-existing-site',
     closeBundle() {
       mkdirSync('dist', { recursive: true });

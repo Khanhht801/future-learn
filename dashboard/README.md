@@ -9,13 +9,16 @@ npm run build
 npm run preview -- --port 4175
 ```
 
-Vite build 9 entry HTML, giữ đường dẫn và metadata từng trang. Mỗi trang tải component riêng qua React lazy; không cần cấu hình server chuyển mọi URL về trang chủ. Bản production nằm trong `dist/`. Đường dẫn asset tương đối và menu dùng được khi host dưới thư mục con.
+Vite build 9 entry HTML, giữ đường dẫn và metadata từng trang. Mỗi entry import trực tiếp component cần dùng để Vite preload toàn bộ mã của trang từ HTML, tránh phải khởi động React rồi mới tải thêm trang qua lazy/Suspense. Không cần cấu hình server chuyển mọi URL về trang chủ. Bản production nằm trong `dist/`. Đường dẫn asset tương đối và menu dùng được khi host dưới thư mục con.
+
+Khung skeleton có sẵn trong HTML và CSS nội tuyến, hiển thị trước khi JavaScript tải xong; React thay khung ngay khi có thể render, không có thời gian chờ tối thiểu. `build/dashboard-loading.js` dùng chung template `dashboard/shared/loading.html` và `loading.css` cho dev/build; khung có biến thể trang chủ, tổng quan, phụ huynh và bài từ vựng. Skeleton hỗ trợ màn hình hẹp và tắt chuyển động khi bật reduced motion. CSS Google Fonts tải không chặn render; nếu dịch vụ font chậm, nội dung vẫn hiện bằng font dự phòng rồi đổi sang font chính.
 
 ## Component và trạng thái
 
 ```text
 src/dashboard/
-  main.tsx                       # Chọn trang theo URL, lazy loading
+  main.tsx                       # Mount trang React, không qua Suspense
+  entries/                       # Entry riêng từng loại trang; import trực tiếp
   components/
     DashboardLayout.tsx          # Header, sidebar, drawer, bottom nav
     Dialog.tsx                   # Modal, Escape, giữ/trả focus
@@ -72,11 +75,14 @@ Giữ nguyên khóa localStorage: `futurelearn-sidebar-collapsed`, `futurelearn-
 npm run build
 npm test -- src/dashboard/lib/progress.test.tsx
 node scripts/check-dashboard.cjs
+node scripts/check-dashboard-loading.cjs
 node test-results/check-math-sequence.cjs
 node test-results/check-math-comparison.cjs
 node test-results/check-badges.cjs
 ```
 
-Các kiểm tra trình duyệt cần Playwright và server preview (mặc định `http://127.0.0.1:4175`). Có thể đặt `BASE_URL`, `PLAYWRIGHT_MODULE` để trỏ tới module Playwright đã cài; `BROWSER_CHANNEL=msedge` cho script React nếu dùng Edge. `SCREENSHOT_DIR` tùy chọn lưu ảnh của bộ kiểm tra React/huy hiệu.
+Các kiểm tra trình duyệt cần Playwright và server preview (mặc định `http://127.0.0.1:4175`). Có thể đặt `BASE_URL`, `PLAYWRIGHT_MODULE` để trỏ tới module Playwright đã cài; `BROWSER_CHANNEL=msedge` cho script React nếu dùng Edge. `SCREENSHOT_DIR` tùy chọn lưu ảnh của bộ kiểm tra React/huy hiệu/loading.
+
+`check-dashboard-loading.cjs` giữ các request JavaScript và Google Fonts để kiểm tra skeleton hiện trước React trên cả 9 route ở 320/768/1440px. Sau khi thả JavaScript, kiểm tra trang render được dù font vẫn chậm, mọi module đã được HTML preload, skeleton được gỡ và không còn dòng “Đang mở góc học tập…”. Đặt thêm `DEV_SERVER=1` khi chạy với server `npm run dev` để kiểm tra các module nguồn chưa bundle.
 
 `check-dashboard.cjs` kiểm tra 9 route ở 320/390/768/1024/1440px, menu và bàn phím, query/resume, báo cáo, 3 chủ đề từ vựng, chấm điểm thử lại, các ngưỡng kết quả quiz, Fullscreen API thật/dự phòng, đủ 60 câu Sao Thủy, lưu tiến độ và hosting dưới thư mục con. Hai script Toán kiểm tra sâu kéo thả chuột/cảm ứng, điền bằng bàn phím và gợi ý. Script huy hiệu kiểm tra nhận/lưu/xem lại, đồng bộ tab, storage hỏng/bị chặn và reduced motion. Các script cũ kiểm tra mã nguồn HTML/JS tĩnh trong `test-results/` là tài liệu của bản trước; dùng các lệnh trên cho bản React.
