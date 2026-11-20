@@ -63,7 +63,7 @@ export function SiteHeader() {
             ))}
           </ul>
         </nav>
-        <div className="site-header__cta"><button type="button" className="site-header__auth" onClick={() => setAuthOpen(true)}>??ng nh?p</button><EnrollButton /></div>
+        <div className="site-header__cta"><button type="button" className="site-header__auth" onClick={() => setAuthOpen(true)}>Đăng nhập</button><EnrollButton /></div>
         <button ref={buttonRef} className="site-header__hamburger" type="button" aria-label="Mở menu" aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen(open => !open)}>
           <span className="site-header__hamburger-bar" />
           <span className="site-header__hamburger-bar" />
@@ -76,7 +76,7 @@ export function SiteHeader() {
             <li key={link.id}><a href={`#${link.id}`} onClick={() => setMenuOpen(false)}>{link.label}</a></li>
           ))}
         </ul>
-        <div className="site-header__drawer-cta"><button type="button" className="site-header__auth" onClick={() => { setMenuOpen(false); setAuthOpen(true); }}>??ng nh?p / ??ng k?</button><EnrollButton /></div>
+        <div className="site-header__drawer-cta"><button type="button" className="site-header__auth" onClick={() => { setMenuOpen(false); setAuthOpen(true); }}>Đăng nhập / Đăng ký</button><EnrollButton /></div>
       </div>
       {authOpen && <AuthDialog onClose={() => setAuthOpen(false)} />}
     </header>

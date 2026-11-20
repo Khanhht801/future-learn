@@ -89,6 +89,15 @@ afterEach(() => {
 });
 
 describe('landing page interactions', () => {
+  it('shows readable account labels on desktop and in the mobile menu', () => {
+    render(<SiteHeader />);
+    expect(screen.getByRole('button', { name: 'Đăng nhập' })).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Mở menu' }));
+    const mobileLogin = screen.getByRole('button', { name: 'Đăng nhập / Đăng ký' });
+    fireEvent.click(mobileLogin);
+    expect(screen.getByRole('dialog', { name: 'Chào mừng bạn trở lại!' })).toBeTruthy();
+  });
+
   it('closes the mobile menu on Escape, outside click, navigation and desktop resize', () => {
     render(<SiteHeader />);
     const button = screen.getByRole('button', { name: 'Mở menu' });
