@@ -3,9 +3,11 @@ import { navigationLinks } from '../../data/landing';
 import { useActiveSection } from '../../hooks/useActiveSection';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { EnrollButton } from './EnrollButton';
+import { AuthDialog } from './AuthDialog';
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -61,7 +63,7 @@ export function SiteHeader() {
             ))}
           </ul>
         </nav>
-        <div className="site-header__cta"><EnrollButton /></div>
+        <div className="site-header__cta"><button type="button" className="site-header__auth" onClick={() => setAuthOpen(true)}>??ng nh?p</button><EnrollButton /></div>
         <button ref={buttonRef} className="site-header__hamburger" type="button" aria-label="Mở menu" aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen(open => !open)}>
           <span className="site-header__hamburger-bar" />
           <span className="site-header__hamburger-bar" />
@@ -74,8 +76,9 @@ export function SiteHeader() {
             <li key={link.id}><a href={`#${link.id}`} onClick={() => setMenuOpen(false)}>{link.label}</a></li>
           ))}
         </ul>
-        <div className="site-header__drawer-cta"><EnrollButton /></div>
+        <div className="site-header__drawer-cta"><button type="button" className="site-header__auth" onClick={() => { setMenuOpen(false); setAuthOpen(true); }}>??ng nh?p / ??ng k?</button><EnrollButton /></div>
       </div>
+      {authOpen && <AuthDialog onClose={() => setAuthOpen(false)} />}
     </header>
   );
 }

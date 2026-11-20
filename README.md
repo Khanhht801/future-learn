@@ -14,3 +14,5 @@ Chạy `npm run build` để kiểm tra TypeScript và tạo bản production tr
 State và sự kiện giao diện nằm ở component tương ứng; `src/hooks/` chứa logic dùng chung cho carousel, hiệu ứng xuất hiện, điều hướng theo vị trí cuộn, media query và trạng thái hiển thị của trang. Các hook dọn timer và observer khi component unmount; nhóm đánh giá lặp được render bằng React. CSS và tài nguyên hiện có được giữ trong `public-home/`.
 
 Biểu mẫu tư vấn hiện chỉ kiểm tra thông tin trên trình duyệt và chưa kết nối hệ thống tiếp nhận.
+
+Giao di?n ??ng nh?p v? ??ng k? c? th? m? t? thanh ?i?u h??ng. D? ?n ch?a c? d?ch v? x?c th?c: bi?u m?u ch? ki?m tra d? li?u tr?n tr?nh duy?t v? ch?a t?o t?i kho?n hay ??ng nh?p.

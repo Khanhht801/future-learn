@@ -1,0 +1,23 @@
+﻿/* Account entry follows the landing page's blue, cyan and orange palette. */
+.site-header__auth { border: 0; background: transparent; color: var(--primary-blue-1); font-family: var(--font-display); font-weight: 700; padding: .7rem .8rem; cursor: pointer; white-space: nowrap; }
+.site-header__auth:hover, .auth-switch button:hover { color: var(--primary-blue-2); }
+.auth-overlay { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; padding: 1rem; background: rgba(15, 43, 66, .58); overflow-y: auto; }
+.auth-dialog { position: relative; width: min(100%, 510px); max-height: calc(100dvh - 2rem); overflow-y: auto; padding: 2rem 2.5rem; border-radius: 24px; background: white; box-shadow: 0 20px 70px rgba(0, 54, 104, .25); }
+.auth-close { position: absolute; right: 1rem; top: .8rem; width: 40px; height: 40px; border: 0; border-radius: 50%; background: #eff9ff; color: #007dd3; font-size: 1.8rem; line-height: 1; cursor: pointer; }
+.auth-intro { text-align: center; }
+.auth-logo { width: 140px; height: auto; margin: 0 auto 1rem; }
+.auth-intro h2 { margin: 0 0 .5rem; color: #006fba; font: 700 1.65rem/1.25 var(--font-display); }
+.auth-intro p { margin: 0; color: #525252; }
+.auth-tabs { display: flex; gap: .25rem; padding: .3rem; margin: 1.5rem 0; border-radius: 999px; background: #edf8ff; }
+.auth-tabs button { flex: 1; padding: .65rem; border: 0; border-radius: 999px; background: transparent; color: #526b7a; font: 700 1rem var(--font-display); cursor: pointer; }
+.auth-tabs button.is-active { background: white; color: #007dd3; box-shadow: 0 2px 8px rgba(0, 125, 211, .14); }
+.auth-form { display: grid; gap: .95rem; }
+.auth-form label { display: grid; gap: .35rem; color: #323232; font-weight: 600; }
+.auth-form input { width: 100%; min-height: 46px; padding: .7rem .9rem; border: 1px solid #cbdde8; border-radius: 12px; color: #323232; background: white; font-weight: 400; }
+.auth-form input:focus { border-color: #007dd3; outline: 2px solid #b4e6ff; }
+.auth-submit { min-height: 48px; border: 0; border-radius: 999px; color: white; background: linear-gradient(135deg, #ff9a28, #ff8a00); font: 700 1rem var(--font-display); cursor: pointer; }
+.auth-message { margin: 0; padding: .75rem; border-radius: 10px; background: #fff9eb; color: #724400; }
+.auth-switch { margin: 1.2rem 0 0; text-align: center; color: #525252; }
+.auth-switch button { padding: 0; border: 0; background: none; color: #007dd3; font-weight: 700; cursor: pointer; }
+.auth-dialog button:focus-visible, .site-header__auth:focus-visible { outline: 3px solid #00a6ff; outline-offset: 2px; }
+@media (max-width: 575px) { .auth-dialog { padding: 1.75rem 1.25rem; } .auth-intro h2 { font-size: 1.4rem; } .site-header__drawer-cta { flex-wrap: wrap; } }
