@@ -15,4 +15,6 @@ State và sự kiện giao diện nằm ở component tương ứng; `src/hooks/
 
 Biểu mẫu tư vấn hiện chỉ kiểm tra thông tin trên trình duyệt và chưa kết nối hệ thống tiếp nhận.
 
+Stylesheet cục bộ dùng URL không có `?v=`: Vite dùng tham số này cho cache dependency và có thể lưu nhầm bản JavaScript của CSS khi tải lại trong dev. Vite tự đặt tên có hash cho CSS production. Kiểm tra hồi quy cache bằng `DEV_SERVER=1 BASE_URL=http://localhost:5173 node scripts/check-stylesheets.cjs` (cần Playwright; trên PowerShell đặt các biến môi trường bằng `$env:`). Script giữ HTTP cache thật, nạp trước cả bản JS và các URL phiên bản cũ rồi kiểm tra trang chủ cùng 9 trang dashboard sau reload.
+
 Giao di?n ??ng nh?p v? ??ng k? c? th? m? t? thanh ?i?u h??ng. D? ?n ch?a c? d?ch v? x?c th?c: bi?u m?u ch? ki?m tra d? li?u tr?n tr?nh duy?t v? ch?a t?o t?i kho?n hay ??ng nh?p.
