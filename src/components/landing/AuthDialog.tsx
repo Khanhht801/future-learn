@@ -1,10 +1,13 @@
 ﻿import { useEffect, useRef, useState, type FormEvent } from 'react';
 
+import { supabase } from '../../supabase';
+
 type Mode = 'login' | 'register';
 
 export function AuthDialog({ onClose }: { onClose: () => void }) {
   const [mode, setMode] = useState<Mode>('login');
   const [message, setMessage] = useState('');
+  const [pending, setPending] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,7 +34,7 @@ export function AuthDialog({ onClose }: { onClose: () => void }) {
   }, [onClose]);
 
   function switchMode(next: Mode) { setMode(next); setMessage(''); }
-  function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
@@ -39,7 +42,29 @@ export function AuthDialog({ onClose }: { onClose: () => void }) {
       setMessage('Mật khẩu xác nhận chưa khớp. Vui lòng kiểm tra lại.');
       return;
     }
-    setMessage('Tính năng tài khoản đang được chuẩn bị. Vui lòng quay lại sau.');
+    if (!supabase) {
+      setMessage('Chưa có cấu hình tài khoản. Vui lòng thử lại sau.');
+      return;
+    }
+    if (pending) return;
+    const email = String(data.get('email') ?? '').trim();
+    const password = String(data.get('password') ?? '');
+    setPending(true);
+    setMessage('');
+    try {
+      if (mode === 'register') {
+        const { error } = await supabase.auth.signUp({ email, password, options: { data: { full_name: String(data.get('name') ?? '').trim() } } });
+        setMessage(error ? 'Không thể đăng ký. Vui lòng kiểm tra thông tin và thử lại.' : 'Nếu có thể đăng ký, hãy kiểm tra email để xác nhận tài khoản.');
+      } else {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) setMessage('Không thể đăng nhập. Hãy kiểm tra email, mật khẩu và xác nhận email.');
+        else onClose();
+      }
+    } catch {
+      setMessage('Không thể kết nối. Vui lòng thử lại sau.');
+    } finally {
+      setPending(false);
+    }
   }
 
   return (
@@ -61,7 +86,7 @@ export function AuthDialog({ onClose }: { onClose: () => void }) {
           <label>Mật khẩu<input name="password" type="password" autoComplete={mode === 'login' ? 'current-password' : 'new-password'} required minLength={mode === 'register' ? 8 : undefined} placeholder={mode === 'register' ? 'Ít nhất 8 ký tự' : 'Nhập mật khẩu'} /></label>
           {mode === 'register' && <label>Xác nhận mật khẩu<input name="confirmPassword" type="password" autoComplete="new-password" required minLength={8} placeholder="Nhập lại mật khẩu" /></label>}
           {message && <p className="auth-message" role="status">{message}</p>}
-          <button className="auth-submit" type="submit">{mode === 'login' ? 'Đăng nhập' : 'Tạo tài khoản'}</button>
+          <button className="auth-submit" type="submit" disabled={pending}>{pending ? 'Đang xử lý...' : mode === 'login' ? 'Đăng nhập' : 'Tạo tài khoản'}</button>
         </form>
         <p className="auth-switch">{mode === 'login' ? 'Chưa có tài khoản?' : 'Đã có tài khoản?'} <button type="button" onClick={() => switchMode(mode === 'login' ? 'register' : 'login')}>{mode === 'login' ? 'Đăng ký' : 'Đăng nhập'}</button></p>
       </div>
